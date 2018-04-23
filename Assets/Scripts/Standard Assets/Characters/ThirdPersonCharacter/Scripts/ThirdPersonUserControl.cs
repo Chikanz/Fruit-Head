@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
+/// <summary>
+/// Handles player input
+/// </summary>
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof (ThirdPersonCharacter))]
@@ -42,12 +45,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
+
+            if(Input.GetMouseButtonDown(0))
+            {
+                GetComponent<Animator>().SetTrigger("Punch");
+            }
         }
 
 
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
+           
             // read inputs
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
