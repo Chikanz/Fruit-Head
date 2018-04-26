@@ -51,12 +51,28 @@ public class CombatCharacter : MonoBehaviour
     public event EventHandler OnDefeat;
     public event EventHandler OnHurt;
 
+    //This character's move set to spawn
+    public GameObject[] Moves;
+    private List<Move> _movelist = new List<Move>();
+    private Transform _moveParent;
+
+    int _isPerformingMove = -1; //Stores the move index currently being performed. -1 for no move
+
     // Unity Methods
     public virtual void Awake()
     {
-
         //Set max health
         MaxHealth = hp;
+
+        //Spawn moves
+        _moveParent = transform.GetChild(0);
+        foreach (GameObject m in Moves)
+        {
+            var g = Instantiate(m, Vector3.zero, Quaternion.identity, _moveParent);
+            var moveObj = g.GetComponent<Move>();
+            Debug.Assert(moveObj, "No move component was found on " + m.name);
+            _movelist.Add(moveObj);
+        }
     }
 
     public virtual void Update()
@@ -212,6 +228,26 @@ public class CombatCharacter : MonoBehaviour
     public bool IsDead()
     {
         return Health <= 0;
+    }
+
+    public void UseMove(int moveIndex)
+    {
+        Move m = _movelist[moveIndex];
+        m.Init();
+        _isPerformingMove = moveIndex;
+    }
+
+    /// <summary>
+    /// Called by animation event, tells the current move to Execute;
+    /// </summary>
+    public void Hit()
+    {
+        _movelist[_isPerformingMove].Execute();
+    }
+
+    public bool IsPerformingMove()
+    {
+        return _isPerformingMove != -1;
     }
 
     //For quick debuggerinos

@@ -13,9 +13,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
 
+        private CombatCharacter CC;
+
         
         private void Start()
         {
+            Screen.lockCursor = true;
+
+            CC = GetComponent<CombatCharacter>();
+
             // get the transform of the main camera
             if (Camera.main != null)
             {
@@ -39,16 +45,27 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
+
+            //Get input for moves
+            if(Input.GetMouseButtonDown(0))
+            {
+                GetComponent<CombatCharacter>().UseMove(0);
+            }
         }
 
 
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
-            // read inputs
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("Vertical");
-            bool crouch = Input.GetKey(KeyCode.C);
+            // read inputs if not using move
+            float v = 0, h = 0;
+            bool crouch = false;
+            if (!CC.IsPerformingMove())
+            {
+               h = CrossPlatformInputManager.GetAxis("Horizontal");
+               v = CrossPlatformInputManager.GetAxis("Vertical");
+               crouch = Input.GetKey(KeyCode.C);
+            }
 
             // calculate move direction to pass to character
             if (m_Cam != null)

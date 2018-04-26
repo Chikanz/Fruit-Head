@@ -11,7 +11,7 @@ public class Bonk : Move
     //How long the box lingers
     public int destroyTime;
 
-    public override void Exec()
+    public override void Init()
     {
         throw new System.NotImplementedException();
     }
