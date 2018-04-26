@@ -23,7 +23,7 @@ public class CombatCharacter : MonoBehaviour
         get { return hp; }
         private set
         {
-            if (value < 0) //Can't be extra dead
+            if (value < 0) //Can't be extra dead (but I wish I could be ayyyyyyyyyooooo)
             {
                 value = 0;
             }
@@ -137,6 +137,8 @@ public class CombatCharacter : MonoBehaviour
         //Filter damage through stats
         //todo        
 
+
+        Debug.Log(gameObject.name + " was hit for " + damage);
         // Call the take damage method             
         TakeDamage(damage);
     }
@@ -232,9 +234,23 @@ public class CombatCharacter : MonoBehaviour
 
     public void UseMove(int moveIndex)
     {
+        //Check if performing move
+        if (IsPerformingMove()) return;
+
         Move m = _movelist[moveIndex];
-        m.Init();
+        m.Init(); //Init the move if cooldown is good
         _isPerformingMove = moveIndex;
+
+        //Reset isPerforming after animation has finished
+        //Assumes the animation name is the same as the trigger name
+        var resetTime = DookTools.GetAnimationLength(GetComponent<Animator>(), m.AnimationTriggerName);
+        Debug.Assert(resetTime > 0);
+        Invoke("ResetMove", resetTime);
+    }
+
+    public void ResetMove()
+    {
+        _isPerformingMove = -1;
     }
 
     /// <summary>

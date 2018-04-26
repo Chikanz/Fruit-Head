@@ -22,13 +22,14 @@ GameObject:
   - component: {fileID: 33589353708019710}
   - component: {fileID: 65454700164084052}
   - component: {fileID: 23797818539632804}
+  - component: {fileID: 114719684052334852}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1773372471602260
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +126,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114719684052334852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1763812118398944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e611d6efad8d3f54881208b1c9fa43d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114743415893870440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,6 +152,7 @@ MonoBehaviour:
   CoolDown: 3
   AnimationTriggerName: Punch
   _canMoveWhileUsing: 0
-  hitbox: {fileID: 0}
+  Projectile: {fileID: 0}
+  isProjectile: 0
   lingerTime: 0.5
   DestroyOnHit: 0

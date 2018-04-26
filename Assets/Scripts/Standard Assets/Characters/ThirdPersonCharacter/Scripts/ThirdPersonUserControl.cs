@@ -64,7 +64,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                h = CrossPlatformInputManager.GetAxis("Horizontal");
                v = CrossPlatformInputManager.GetAxis("Vertical");
-               crouch = Input.GetKey(KeyCode.C);
+               crouch = Input.GetKey(KeyCode.C);                
             }
 
             // calculate move direction to pass to character
@@ -78,6 +78,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 // we use world-relative directions in the case of no main camera
                 m_Move = v*Vector3.forward + h*Vector3.right;
+                Debug.Log(m_Move.magnitude);
             }
 #if !MOBILE_INPUT
 			// walk speed multiplier
