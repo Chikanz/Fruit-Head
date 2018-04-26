@@ -2,9 +2,6 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-/// <summary>
-/// Handles player input
-/// </summary>
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof (ThirdPersonCharacter))]
@@ -19,9 +16,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         
         private void Start()
         {
-
-            Screen.lockCursor = true;
-
             // get the transform of the main camera
             if (Camera.main != null)
             {
@@ -45,18 +39,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
-
-            if(Input.GetMouseButtonDown(0))
-            {
-                GetComponent<Animator>().SetTrigger("Punch");
-            }
         }
 
 
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
-           
             // read inputs
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
@@ -80,12 +68,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 #endif
 
             // pass all parameters to the character control script
-
-            if (Input.GetMouseButtonDown(1))
-                m_Character.Dodge(m_Move);
-            else
-                m_Character.Move(m_Move, crouch, m_Jump);
-
+            m_Character.Move(m_Move, crouch, m_Jump);
             m_Jump = false;
         }
     }

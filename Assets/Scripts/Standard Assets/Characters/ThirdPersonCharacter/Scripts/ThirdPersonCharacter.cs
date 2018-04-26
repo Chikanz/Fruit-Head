@@ -29,8 +29,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
 
-        public float DodgeSpeed = 2;
-
 
 		void Start()
 		{
@@ -43,12 +41,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
 		}
-
-        public void Dodge(Vector3 direction)
-        {
-            m_Rigidbody.AddForce(direction.normalized * DodgeSpeed);
-            Debug.Log("dodge");
-        }
 
 
 		public void Move(Vector3 move, bool crouch, bool jump)
@@ -81,15 +73,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			// send input and other state parameters to the animator
 			UpdateAnimator(move);
+		}
 
-            //dook move
-            if (m_IsGrounded && Time.deltaTime > 0)
-            {
-                m_Rigidbody.velocity += (transform.forward * m_ForwardAmount * m_MoveSpeedMultiplier) + (transform.right * m_TurnAmount);
-            }
-        }
 
-        void ScaleCapsuleForCrouching(bool crouch)
+		void ScaleCapsuleForCrouching(bool crouch)
 		{
 			if (m_IsGrounded && crouch)
 			{
@@ -184,7 +171,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				// jump!
 				m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, m_JumpPower, m_Rigidbody.velocity.z);
 				m_IsGrounded = false;
-				//m_Animator.applyRootMotion = false;
+				m_Animator.applyRootMotion = false;
 				m_GroundCheckDistance = 0.1f;
 			}
 		}
@@ -197,22 +184,22 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
-        //public void OnAnimatorMove()
-        //{
-        //    // we implement this function to override the default root motion.
-        //    // this allows us to modify the positional speed before it's applied.
-        //    if (m_IsGrounded && Time.deltaTime > 0)
-        //    {
-        //        Vector3 v = (m_Animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
+		public void OnAnimatorMove()
+		{
+			// we implement this function to override the default root motion.
+			// this allows us to modify the positional speed before it's applied.
+			if (m_IsGrounded && Time.deltaTime > 0)
+			{
+				Vector3 v = (m_Animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
 
-        //        // we preserve the existing y part of the current velocity.
-        //        v.y = m_Rigidbody.velocity.y;
-        //        m_Rigidbody.velocity = v;
-        //    }
-        //}
+				// we preserve the existing y part of the current velocity.
+				v.y = m_Rigidbody.velocity.y;
+				m_Rigidbody.velocity = v;
+			}
+		}
 
 
-        void CheckGroundStatus()
+		void CheckGroundStatus()
 		{
 			RaycastHit hitInfo;
 #if UNITY_EDITOR
@@ -225,13 +212,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			{
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
-				//m_Animator.applyRootMotion = true;
+				m_Animator.applyRootMotion = true;
 			}
 			else
 			{
 				m_IsGrounded = false;
 				m_GroundNormal = Vector3.up;
-			//	m_Animator.applyRootMotion = false;
+				m_Animator.applyRootMotion = false;
 			}
 		}
 	}
