@@ -6,6 +6,7 @@ using UnityEngine;
 /// <summary>
 /// An entity in the combat scene that has health and stats
 /// </summary>
+[RequireComponent(typeof(Rigidbody))]
 public class CombatCharacter : MonoBehaviour
 {
     /// <summary>
@@ -33,6 +34,7 @@ public class CombatCharacter : MonoBehaviour
             hp = value;
         }
     }
+
     // Fields
     /// <summary>
     /// How much damage this GameObject can take before it is defeated
@@ -56,6 +58,28 @@ public class CombatCharacter : MonoBehaviour
     private List<Move> _movelist = new List<Move>();
     private Transform _moveParent;
 
+    private static GameObject HitCanvas;
+
+    public enum HitParticles
+    {
+        NONE,
+        SPARKS,
+        //COINS,
+    }
+
+    public HitParticles ParticlesOnHit;
+
+    private readonly string[] resourceNames =
+    {
+        "",
+        "Sparks",
+        //"Coins",
+    };
+
+    private static List<GameObject> Particles = new List<GameObject>();
+
+    private Rigidbody _RB;
+
     int _isPerformingMove = -1; //Stores the move index currently being performed. -1 for no move
 
     // Unity Methods
@@ -64,12 +88,32 @@ public class CombatCharacter : MonoBehaviour
         //Set max health
         MaxHealth = hp;
 
+        //Get RB
+        _RB = GetComponent<Rigidbody>();
+
+        if(!HitCanvas)
+        {
+            HitCanvas = Resources.Load<GameObject>("HitCanvas");
+        }
+
+        //Load Particles if not loaded already
+        if (Particles.Count == 0)
+        {
+            //https://stackoverflow.com/questions/856154/total-number-of-items-defined-in-an-enum
+            var particles = Enum.GetNames(typeof(HitParticles)).Length; 
+            for (int i = 0; i < particles; i++)
+            {
+                Particles.Add(Resources.Load<GameObject>(resourceNames[i]));
+            }
+        }
+
         //Spawn moves
         _moveParent = transform.GetChild(0);
         foreach (GameObject m in Moves)
         {
             var g = Instantiate(m, Vector3.zero, Quaternion.identity, _moveParent);
             var moveObj = g.GetComponent<Move>();
+            g.transform.localPosition = Vector3.zero;
             Debug.Assert(moveObj, "No move component was found on " + m.name);
             _movelist.Add(moveObj);
         }
@@ -130,17 +174,33 @@ public class CombatCharacter : MonoBehaviour
         if (damage == 0) return;
 
         //Get rest of the message
-
-        //Perform knockback
         //todo
 
+        //Perform knockback
+        var dist = transform.position - attackMess.Attacker.transform.position;
+        //Hit back and slightly up
+        _RB.AddForce((dist.normalized * attackMess.KnockBack) + (Vector3.up * attackMess.KnockBack/2));
+        
         //Filter damage through stats
         //todo        
-
 
         Debug.Log(gameObject.name + " was hit for " + damage);
         // Call the take damage method             
         TakeDamage(damage);
+
+        //Play Particles at center of mesh
+        if (ParticlesOnHit != HitParticles.NONE)
+        {
+            var p = Instantiate(Particles[(int)ParticlesOnHit], GetComponentInChildren  <Renderer>().bounds.center, Quaternion.identity);
+            Destroy(p, 3);
+        }
+
+        //Spawn damage canvas
+        var h = Instantiate(HitCanvas);
+        var cap = GetComponent<CapsuleCollider>();
+        h.GetComponent<DamageCanvas>().NewHit(cap, attackMess.DamageStrength, wasCrit);
+
+        //StartCoroutine(Sleep(0.05f));
     }
 
     // Helper Methods
@@ -182,7 +242,7 @@ public class CombatCharacter : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when this unit has been defeated. Overwritable.
+    /// Called when this unit has been defeated.
     /// </summary>
     protected virtual void Defeated()
     {
@@ -264,6 +324,14 @@ public class CombatCharacter : MonoBehaviour
     public bool IsPerformingMove()
     {
         return _isPerformingMove != -1;
+    }
+
+    private IEnumerator Sleep(float t)
+    {
+        Time.timeScale = 0.1f;
+        var dt = Time.deltaTime;        
+        yield return new WaitForSeconds(t * Time.timeScale);
+        Time.timeScale = 1;        
     }
 
     //For quick debuggerinos

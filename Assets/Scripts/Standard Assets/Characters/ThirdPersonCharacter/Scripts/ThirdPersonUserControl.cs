@@ -47,7 +47,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
 
             //Get input for moves
-            if(Input.GetMouseButtonDown(0))
+            if(CC && Input.GetMouseButtonDown(0))
             {
                 GetComponent<CombatCharacter>().UseMove(0);
             }
@@ -60,7 +60,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // read inputs if not using move
             float v = 0, h = 0;
             bool crouch = false;
-            if (!CC.IsPerformingMove())
+            if (!CC || !CC.IsPerformingMove())
             {
                h = CrossPlatformInputManager.GetAxis("Horizontal");
                v = CrossPlatformInputManager.GetAxis("Vertical");

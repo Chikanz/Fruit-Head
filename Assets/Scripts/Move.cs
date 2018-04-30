@@ -43,6 +43,9 @@ public class Move : MonoBehaviour
 
     private bool _isSubscribed;
 
+    [Range(0,500)]
+    public int Knockback;
+
     private void Start()
     {
         _daddy = transform.parent.parent;
@@ -112,7 +115,7 @@ public class Move : MonoBehaviour
     /// </summary>
     public virtual void Trigger(GameObject enemy)
     {
-        enemy.SendMessage("Attack", new AttackMessage(Damage, _daddy.gameObject, 0));
+        enemy.SendMessage("Attack", new AttackMessage(Damage, _daddy.gameObject, Knockback));
 
         if (DestroyOnHit)
         {

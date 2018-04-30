@@ -40,7 +40,6 @@ public class Hitbox : MonoBehaviour
         if (BeenHit != null)
         {
             BeenHit.Clear();
-            Debug.Log("Cleared hitlist");
         }
     }
 }
