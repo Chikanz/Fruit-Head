@@ -60,11 +60,14 @@ public class CombatCharacter : MonoBehaviour
 
     private static GameObject HitCanvas;
 
+    [Range(0.0f,1.0f)]
+    public float weight;
+
     public enum HitParticles
     {
         NONE,
         SPARKS,
-        //COINS,
+        COINS,
     }
 
     public HitParticles ParticlesOnHit;
@@ -73,7 +76,7 @@ public class CombatCharacter : MonoBehaviour
     {
         "",
         "Sparks",
-        //"Coins",
+        "Coins",
     };
 
     private static List<GameObject> Particles = new List<GameObject>();
@@ -108,14 +111,17 @@ public class CombatCharacter : MonoBehaviour
         }
 
         //Spawn moves
-        _moveParent = transform.GetChild(0);
-        foreach (GameObject m in Moves)
+        if (Moves.Length > 0)
         {
-            var g = Instantiate(m, Vector3.zero, Quaternion.identity, _moveParent);
-            var moveObj = g.GetComponent<Move>();
-            g.transform.localPosition = Vector3.zero;
-            Debug.Assert(moveObj, "No move component was found on " + m.name);
-            _movelist.Add(moveObj);
+            _moveParent = transform.GetChild(0);
+            foreach (GameObject m in Moves)
+            {
+                var g = Instantiate(m, Vector3.zero, Quaternion.identity, _moveParent);
+                var moveObj = g.GetComponent<Move>();
+                g.transform.localPosition = Vector3.zero;
+                Debug.Assert(moveObj, "No move component was found on " + m.name);
+                _movelist.Add(moveObj);
+            }
         }
     }
 
@@ -178,15 +184,15 @@ public class CombatCharacter : MonoBehaviour
 
         //Perform knockback
         var dist = transform.position - attackMess.Attacker.transform.position;
-        //Hit back and slightly up
-        _RB.AddForce((dist.normalized * attackMess.KnockBack) + (Vector3.up * attackMess.KnockBack/2));
+
+        //Hit back and slightly up (factor in weight tho)
+        var knockback = attackMess.KnockBack * (1 - weight) * _RB.mass;
+        _RB.AddForce((dist.normalized * knockback) + (Vector3.up * knockback / 2));
         
         //Filter damage through stats
         //todo        
 
         Debug.Log(gameObject.name + " was hit for " + damage);
-        // Call the take damage method             
-        TakeDamage(damage);
 
         //Play Particles at center of mesh
         if (ParticlesOnHit != HitParticles.NONE)
@@ -196,11 +202,18 @@ public class CombatCharacter : MonoBehaviour
         }
 
         //Spawn damage canvas
-        var h = Instantiate(HitCanvas);
         var cap = GetComponent<CapsuleCollider>();
-        h.GetComponent<DamageCanvas>().NewHit(cap, attackMess.DamageStrength, wasCrit);
+        if (cap)
+        {
+            var h = Instantiate(HitCanvas);
+            h.GetComponent<DamageCanvas>().NewHit(cap, attackMess.DamageStrength, wasCrit);
+        }
+
+        // Call the take damage method (should always be last since it sends out the onHurt Event)
+        TakeDamage(damage);
 
         //StartCoroutine(Sleep(0.05f));
+        //StartCoroutine(Wobble(0.98f));
     }
 
     // Helper Methods
@@ -258,6 +271,9 @@ public class CombatCharacter : MonoBehaviour
 
         // We've now sent the defeated message
         hasSentDefeated = true;
+        
+        //DEBUG
+        Destroy(gameObject);
     }
 
     /// <summary>
@@ -326,12 +342,34 @@ public class CombatCharacter : MonoBehaviour
         return _isPerformingMove != -1;
     }
 
+    public bool CanMove()
+    {
+        return (!IsPerformingMove() || _movelist[_isPerformingMove].CanMoveAndUse());
+    }
+
     private IEnumerator Sleep(float t)
     {
         Time.timeScale = 0.1f;
         var dt = Time.deltaTime;        
         yield return new WaitForSeconds(t * Time.timeScale);
         Time.timeScale = 1;        
+    }
+
+    private IEnumerator Wobble(float decay)
+    {
+        var elapsed = 0.0f;
+        var wobbleForce = 0.5f;
+        var originalScale = transform.localScale;
+        float wobble = 1;
+        while(wobble > 0.01f)
+        {
+            elapsed += Time.deltaTime;
+            wobble = (float)Math.Sin(elapsed) * wobbleForce * decay;
+            transform.localScale = originalScale * wobble;
+            yield return null;
+        }
+
+        transform.localScale = originalScale;
     }
 
     //For quick debuggerinos

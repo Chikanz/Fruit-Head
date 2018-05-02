@@ -24,6 +24,8 @@ public class DamageCanvas : MonoBehaviour
         {
             cam = Camera.main.transform;
         }
+
+        Destroy(gameObject, 5);
     }
 
     
@@ -42,6 +44,12 @@ public class DamageCanvas : MonoBehaviour
     /// <param name="wasCrit">if the hit was a crit</param>
     public void NewHit(CapsuleCollider c, int Damage, bool wasCrit)
     {
+        if (!c)
+        {
+            Debug.Log("No capsule found, not displaying hitmarker");
+            return;
+        }
+
         NewHit(c.bounds.center + (Vector3.up * c.height/2), Damage, wasCrit);
     }
 

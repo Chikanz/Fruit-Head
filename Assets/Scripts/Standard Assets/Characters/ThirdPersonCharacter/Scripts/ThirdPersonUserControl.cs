@@ -60,7 +60,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // read inputs if not using move
             float v = 0, h = 0;
             bool crouch = false;
-            if (!CC || !CC.IsPerformingMove())
+            if (!CC || CC.CanMove())
             {
                h = CrossPlatformInputManager.GetAxis("Horizontal");
                v = CrossPlatformInputManager.GetAxis("Vertical");
