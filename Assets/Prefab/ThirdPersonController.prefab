@@ -1088,11 +1088,12 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 486a449cebc096c4d8f0b69c3f41e677, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114110903139750242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1127,6 +1128,7 @@ MonoBehaviour:
   hp: 100
   Moves:
   - {fileID: 1773372471602260, guid: d68bbd5c53678f44eb9833b38b9381a7, type: 2}
+  weight: 0
   ParticlesOnHit: 0
 --- !u!114 &114644272313020012
 MonoBehaviour:
@@ -1165,6 +1167,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: bc2025b75dc472e49a59fddfe8c6f84f, type: 2}
   m_StaticBatchInfo:
@@ -1188,7 +1191,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 4300000, guid: 1fb81bd74b0428141923af1481e5d154, type: 3}
   m_Bones:
