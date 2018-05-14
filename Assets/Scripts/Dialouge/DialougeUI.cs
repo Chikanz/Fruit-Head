@@ -30,14 +30,13 @@ using UnityEngine.UI;
 using System.Text;
 using System.Collections.Generic;
 
+using UnityEngine.Playables;
+using UnityStandardAssets.Characters.ThirdPerson;
+using System;
+
 /// Displays dialogue lines to the player, and sends
 /// user choices back to the dialogue system.
-
-/** Note that this is just one way of presenting the
- * dialogue to the user. The only hard requirement
- * is that you provide the RunLine, RunOptions, RunCommand
- * and DialogueComplete coroutines; what they do is up to you.
- */
+/// 
 public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
 {
 
@@ -65,9 +64,17 @@ public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
     /// The buttons that let the user choose an option
     public List<Button> optionButtons;
 
-    /// Make it possible to temporarily disable the controls when
-    /// dialogue is active and to restore them when dialogue ends
-    public RectTransform gameControlsContainer;
+    [Tooltip("How long to wait for the options UI transition")]
+    public float WaitForUITransition = 0.4f;
+
+    [Tooltip("Turns off during dialouge options")]
+    public ThirdPersonUserControl playerControl;
+
+    //Zac events
+
+    public delegate void DialougeAction(string name);
+    public event DialougeAction OnDialougeStart;
+    public event DialougeAction OnDialougeEnd;    
 
     void Awake()
     {
@@ -77,8 +84,11 @@ public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
 
         lineText.gameObject.SetActive(false);
 
-        foreach (var button in optionButtons)
+        for(int i = 0; i < optionButtons.Count; i++)
         {
+            var button = optionButtons[i];
+            //yarn spinner no likey guess I'll die
+            //button.onClick.AddListener(delegate { SetOption(i); }); //hook up button events automagically
             button.gameObject.SetActive(false);
         }
 
@@ -97,12 +107,20 @@ public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
         {
             // Display the line one character at a time
             var stringBuilder = new StringBuilder();
-
+            yield return null;
             foreach (char c in line.text)
             {
                 stringBuilder.Append(c);
                 lineText.text = stringBuilder.ToString();
-                yield return new WaitForSeconds(textSpeed);
+
+                //Early exit
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    lineText.text = line.text;
+                    break;
+                }
+                else
+                    yield return new WaitForSeconds(textSpeed);
             }
         }
         else
@@ -111,12 +129,14 @@ public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
             lineText.text = line.text;
         }
 
+        yield return null; //(HACKY HACK HACK) Skip a frame to stop early exit triggering continue
+
         // Show the 'press any key' prompt when done, if we have one
         if (continuePrompt != null)
             continuePrompt.SetActive(true);
 
         // Wait for any user input
-        while (Input.anyKeyDown == false)
+        while (Input.GetKeyDown(KeyCode.Space) == false)
         {
             yield return null;
         }
@@ -133,6 +153,11 @@ public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
     public override IEnumerator RunOptions(Yarn.Options optionsCollection,
                                             Yarn.OptionChooser optionChooser)
     {
+        //Make sure the text is visible
+        lineText.gameObject.SetActive(true);
+
+        playerControl.enabled = false; //Take away player control
+
         // Do a little bit of safety checking
         if (optionsCollection.options.Count > optionButtons.Count)
         {
@@ -152,26 +177,40 @@ public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
         // Record that we're using it
         SetSelectedOption = optionChooser;
 
+        //Start UI animation
+        GetComponent<PlayableDirector>().Play();
+
+        yield return new WaitForSeconds(WaitForUITransition); //Wait for it to play
+        GetComponent<PlayableDirector>().Pause(); //Stop on idle
+
         // Wait until the chooser has been used and then removed (see SetOption below)
         while (SetSelectedOption != null)
         {
             yield return null;
         }
 
+        //Play the anim out
+        GetComponent<PlayableDirector>().Play();
+
+        //wait again
+        yield return new WaitForSeconds(WaitForUITransition * 2);
+
         // Hide all the buttons
         foreach (var button in optionButtons)
         {
             button.gameObject.SetActive(false);
         }
+
+        //Give player back control
+        playerControl.enabled = true;
     }
 
     /// Called by buttons to make a selection.
     public void SetOption(int selectedOption)
     {
-
         // Call the delegate to tell the dialogue system that we've
         // selected an option.
-        SetSelectedOption(selectedOption);
+        SetSelectedOption(selectedOption); //null ref here sometimes, to do with my selection hackjob question mark????
 
         // Now remove the delegate so that the loop in RunOptions will exit
         SetSelectedOption = null;
@@ -187,37 +226,37 @@ public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
     }
 
     /// Called when the dialogue system has started running.
-    public override IEnumerator DialogueStarted()
+    public override IEnumerator DialogueStarted(string startNode)
     {
-        Debug.Log("Dialogue starting!");
+        //Debug.Log("Dialogue starting!");
 
         // Enable the dialogue controls.
         if (dialogueContainer != null)
             dialogueContainer.SetActive(true);
-
-        // Hide the game controls.
-        if (gameControlsContainer != null)
-        {
-            gameControlsContainer.gameObject.SetActive(false);
-        }
+        
+        //Send out event
+        if (OnDialougeStart != null)
+            OnDialougeStart(startNode);
+        
 
         yield break;
     }
 
     /// Called when the dialogue system has finished running.
-    public override IEnumerator DialogueComplete()
+    public override IEnumerator DialogueComplete(string startNode)
     {
-        Debug.Log("Complete!");
+        //Debug.Log("Complete!");
+
+        //Clear out text
+        lineText.text = "";
 
         // Hide the dialogue interface.
         if (dialogueContainer != null)
             dialogueContainer.SetActive(false);
 
-        // Show the game controls.
-        if (gameControlsContainer != null)
-        {
-            gameControlsContainer.gameObject.SetActive(true);
-        }
+        //Send out event
+        if (OnDialougeEnd != null)
+            OnDialougeEnd(startNode);
 
         yield break;
     }

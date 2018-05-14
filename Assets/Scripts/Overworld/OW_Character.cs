@@ -1,15 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class OW_Character : MonoBehaviour {
 
-    public string Name;
+    [SerializeField]
+    private string name;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public string Name
+    {
+        get {return name;}
+        set {name = value;}
+    }
+
+    protected static DialogueRunner _DR;
+
+    // Use this for initialization
+    public virtual void Start ()
+    {
+        if(!_DR) _DR = FindObjectOfType<DialogueRunner>();
+    }
 	
 	// Update is called once per frame
 	void Update () {

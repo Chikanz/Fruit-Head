@@ -212,7 +212,7 @@ namespace Yarn.Unity
             isDialogueRunning = true;
 
             // Signal that we're starting up.
-            yield return StartCoroutine(this.dialogueUI.DialogueStarted());
+            yield return StartCoroutine(this.dialogueUI.DialogueStarted(startNode));
 
             // Get lines, options and commands from the Dialogue object,
             // one at a time.
@@ -256,7 +256,7 @@ namespace Yarn.Unity
             }
 
             // No more results! The dialogue is done.
-            yield return StartCoroutine (this.dialogueUI.DialogueComplete ());
+            yield return StartCoroutine (this.dialogueUI.DialogueComplete(startNode));
 
             // Clear the 'is running' flag. We do this after DialogueComplete returns,
             // to allow time for any animations that might run while transitioning
@@ -429,7 +429,7 @@ namespace Yarn.Unity
     public abstract class DialogueUIBehaviour : MonoBehaviour
     {
         /// A conversation has started.
-        public virtual IEnumerator DialogueStarted() {
+        public virtual IEnumerator DialogueStarted(string startNode) {
             // Default implementation does nothing.
             yield break;
         }
@@ -451,7 +451,7 @@ namespace Yarn.Unity
         }
 
         /// The conversation has ended.
-        public virtual IEnumerator DialogueComplete () {
+        public virtual IEnumerator DialogueComplete(string startNode) {
             // Default implementation does nothing.
             yield break;
         }

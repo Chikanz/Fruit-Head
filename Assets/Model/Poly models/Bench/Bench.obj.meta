@@ -52,7 +52,17 @@ ModelImporter:
     4300012: mesh361907561
     4300014: mesh447724109
     4300016: mesh613786310
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat19
+    second: {fileID: 2100000, guid: 67761bd1c6b6aff469f9a6918bcaf7cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat20
+    second: {fileID: 2100000, guid: ef21a91d77bbd2e46ada186c6e51972d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -104,8 +114,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
-    normalImportMode: 0
+    normalSmoothAngle: 122
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1

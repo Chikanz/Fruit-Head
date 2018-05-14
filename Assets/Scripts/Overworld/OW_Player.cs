@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
-public class OW_Player : OW_Character {
-
-    private DialogueRunner _DR;
-
-	// Use this for initialization
-	void Start () {
-        _DR = FindObjectOfType<DialogueRunner>();
+public class OW_Player : OW_Character
+{
+    
+    public override void Start()
+    {
+        base.Start();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        //Get everything in range
         if(Input.GetKeyDown(KeyCode.Space) && !_DR.isDialogueRunning)
         {
             var colliders = Physics.OverlapSphere(transform.position, 2);
             foreach(Collider c in colliders)
             {
-                var uwu = c.GetComponent<OW_Character>();
-                if (!uwu || c.GetComponent<OW_Player>()) return; //Must have OWC script, must not be player
+                var uwu = c.GetComponent<OW_NPC>();
+                if (!uwu) continue; //Must have OWC script, must not be player
 
-                _DR.StartDialogue(uwu.Name);
+                uwu.TalkTo(transform);
             }
         }
     }
