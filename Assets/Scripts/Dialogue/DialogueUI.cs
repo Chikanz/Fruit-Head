@@ -37,7 +37,7 @@ using System;
 /// Displays dialogue lines to the player, and sends
 /// user choices back to the dialogue system.
 /// 
-public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
+public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 {
 
     /// The object that contains the dialogue and the options.
@@ -67,14 +67,14 @@ public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
     [Tooltip("How long to wait for the options UI transition")]
     public float WaitForUITransition = 0.4f;
 
-    [Tooltip("Turns off during dialouge options")]
+    [Tooltip("Turns off during dialogue options")]
     public ThirdPersonUserControl playerControl;
 
     //Zac events
 
-    public delegate void DialougeAction(string name);
-    public event DialougeAction OnDialougeStart;
-    public event DialougeAction OnDialougeEnd;    
+    public delegate void DialogueAction(string name);
+    public event DialogueAction OnDialogueStart;
+    public event DialogueAction OnDialogueEnd;    
 
     void Awake()
     {
@@ -235,8 +235,8 @@ public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
             dialogueContainer.SetActive(true);
         
         //Send out event
-        if (OnDialougeStart != null)
-            OnDialougeStart(startNode);
+        if (OnDialogueStart != null)
+            OnDialogueStart(startNode);
         
 
         yield break;
@@ -255,8 +255,8 @@ public class DialougeUI : Yarn.Unity.DialogueUIBehaviour
             dialogueContainer.SetActive(false);
 
         //Send out event
-        if (OnDialougeEnd != null)
-            OnDialougeEnd(startNode);
+        if (OnDialogueEnd != null)
+            OnDialogueEnd(startNode);
 
         yield break;
     }

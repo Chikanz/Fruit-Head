@@ -1,0 +1,495 @@
+title: JackTask1
+tags: 
+colorID: 2
+position: 1277,371
+---
+//CHARLIE: Hey Jack, what’s up?
+JACK: Oh, hi Charlie. Um. Do you—do you like poetry?
+->Oh yeah, I love poetry!
+    JACK: Awesome! What do you think of this?
+->Uhhh...what?
+    JACK: Poetry—you know, expressing inner thoughts and emotions through the medium of—Never mind, just listen and tell me what you think.
+->I despise it with every fibre of my being.
+    JACK: Oh...well, maybe you can tell me if you hate this a lot or just a little bit.
+
+JACK: There once was a fruit called Finn\nTheir heart Jack wanted to win\nSo Jack wrote this poem\nHoping it would show 'em\nThat they are the best lemon
+
+->That was, uh, great.
+    JACK: You really think so? You’re the best, Charlie. I’m going to give it to Finn.
+->It needs a little work.
+    JACK: True art is never perfect, Charlie. It'll always need a little work.
+->My ears are bleeding.
+    JACK: ...oh. Okay. Um. Thanks for your honesty, I guess. Was it really that bad?
+    JACK: No, you know what? I don’t care! I poured my heart and soul into this poem and I am not going to throw it away! I’m going to give it to Finn! Even if it’s bad, the sentiments are real!
+
+JACK: Ugh, now I’m nervous. Do you think Finn will like it? They’ll like it, won’t they? 
+Jack: Hey...Charlie, will you give it to Finn for me? They’re working in the market today, so you don’t have to go far. Please, Charlie? I’ll pay you!
+->Sure.
+    JACK: Great! Awesome! Thanks Charlie! Bring back their answer and I'll give you $20.
+    <<set $jackaccept to true>>
+    <<set $jackcomplete to false>>
+->Not right now.
+    JACK: Oh. Okay...
+    <<set $jackaccept to false>>
+
+
+===
+title: RedpeelStart
+tags: 
+colorID: 1
+position: 2127,108
+---
+<<if visited("RedpeelStart") is false>> 
+CAPTAIN REDPEEL: How’s it goin’ kid? What brings you to the docks this fine mornin’?
+CHARLIE: I want to go to Berry Island. Can you take me?
+CAPTAIN REDPEEL: Arr, of course. We be settin’ sail on the evenin’ tide. You just pay up now, and I'll make sure we've got a spot for you.
+CAPTAIN REDPEEL: That'll be fifty gold, kid.
+CHARLIE: Fifty...gold?
+CAPTAIN REDPEEL: Dollars. It’s fifty dollars.
+CHARLIE: I don't have that much.
+CAPTAIN REDPEEL: Then get goin', kid. I ain't runnin' a charity. Pay or stay. 
+CAPTAIN REDPEEL: If you want to earn some money, try talkin’ to some folks. Maybe they’ll give you a few bucks if you help ‘em out.
+
+<<else>>
+CAPTAIN REDPEEL: You got the money yet, kid?
+    //<<if>>  //has the money
+    //<<else>>    //doesn't have the money
+        CHARLIE: Not yet.
+        CAPTAIN REDPEEL: Get on, then. See if anyone around the village needs some help.
+    //<<endif>>
+<<endif>>
+===
+title: FinnTask1A
+tags: 
+colorID: 3
+position: 1814,392
+---
+CHARLIE: Jack wanted me to give you this.
+FINN: [reads poem] Oh boy. This is...
+CHARLIE: It's terrible.
+FINN: Well, yeah, but it's also kind of sweet. I didn't even know Jack felt this away about me. 
+CHARLIE: Do you want me to give them your answer?
+FINN:...I don't know what to say. I've never thought about Jack like that before. What do you think, Charlie? 
+->Give Jack a chance. You might have some fun together.
+    <<set $finnyes to true>>
+    FINN: Yeah. Yeah, you're right. Just-hang on a sec, okay? [goes and writes some poetry] Will you give this to Jack?
+	FINN: Thanks heaps, Charlie! I hope Jack likes it...
+->I'd stay away. You're just going to get more terrible poetry.
+    <<set $finnyes to false>>
+	FINN: Hmm, I guess so. Well...Will you tell Jack for me? I don't know what to say.
+	Charlie: Okay.
+	FINN: Thanks, Charlie. Be nice to Jack, okay?
+
+===
+title: FinnTask1B
+tags: 
+colorID: 3
+position: 2063,392
+---
+CHARLIE: Jack gave me a poem to give to you, but I won't subject you to it. 
+FINN: Ha ha...Is it really that bad?
+[[Here, see for yourself. (give poem)|FinnTaskA]]
+[[It's really that bad.|FinnTaskC]]
+===
+title: FinnTaskC
+tags: 
+colorID: 3
+position: 2068,647
+---
+FINN: Poor Jack. Points for trying, I guess. 
+FINN: I should probably tell them I'm not interested...But I don't want to hurt their feelings.
+FINN: Hey, Charlie, would you...would you tell them for me?
+CHARLIE: Sure.
+FINN: Thanks, Charlie, you're the best.
+<<set $finnyes to false>>
+===
+title: NancyTask1
+tags: 
+colorID: 2
+position: 1529,371
+---
+NANCY: Oh, Charlie, dear! Will you help me? There’s a swarm of fruitbats in my attic and they’re making an awful mess.
+->Sure.
+    <<set $nancyaccept to true>>
+->Not right now.
+    <<set $nancyaccept to false>>
+NANCY: Oh, thank you Charlie! I've been having so much trouble here alone, since my dear Harold died. Harold was my spouse, you know.
+CHARLIE: I know. I've lived on this island my whole life. 
+NANCY: Harold died a few years ago, and I miss them so much. They used to be the one who would deal with things like this, you know.
+NANCY: Fruitbats in the attic, ants in the kitchen, snails in the garden...Dear Harold. Dear, dear Harold. Did I ever tell you about the time we went on holiday to Orchard Island?
+CHARLIE: You might have mentioned it once or twice.
+NANCY: It was so wonderful. Orchard Island is beautiful, Charlie, you should visit sometime. Harold loved it there. 
+NANCY: We journeyed all over that island, and it was the best time of my life. The sun, the people, the food...and, of course, Harold. 
+NANCY: Going on a journey with someone you love is something you absolutely must do, dear. You'll regret it if you don't.
+CHARLIE: About those bats...
+NANCY: Ah, yes, the bats. Do you think you can handle them, dear? Maybe I should ask someone else. You're just a little thing. 
+NANCY: You live alone, don't you, since Kell moved to Berry Island. Are you eating enough? Are you looking after yourself? It's quiet, living alone. 
+NANCY: Are you lonely? You should come and visit more often, dear. We can keep each other company. I can tell you more about Harold. I'm sure you would have loved them. Everyone loved Harold.
+CHARLIE: I really should go and deal with those bats now.
+NANCY: Of course, dear. You're so helpful, Charlie. Just like Harold. Oh, I miss them. 
+NANCY: Did I ever tell you about that time we went fishing off the coast of Berry Island? I'm not much of a one for fishing, to tell the truth, but Harold loved it so. 
+NANCY: They caught all sorts of fish on that trip. They were very good at fishing, you know. The best on Blossom Island! Do you like fishing, Charlie?
+CHARLIE: No, but I like clearing bats out of attics.
+NANCY: Oh, excellent! There’s a swarm of fruitbats in my attic and they’re making an awful mess.
+CHARLIE: I know. You told me.
+NANCY: Did I? I've been having trouble remembering things since dear Harold died. Harold was my spouse, you know.
+CHARLIE: ...I'm just gonna go deal with those bats now.
+===
+title: AveryStart
+tags: 
+colorID: 1
+position: 2724,111
+---
+AVERY: Hey, you heading into the forest? Wanna help me out?
+AVERY: I’m looking for Kim’s dog but there’s a bunch of wolves in there and I can’t handle them on my own.
+CHARLIE: I’m looking for the dog too. You think the two of us can take those wolves?
+AVERY: Depends. How good are you with that bat?
+->I guess we’ll find out.
+    AVERY: Love the confidence. Come on, let’s go.
+->I just took out an attic full of fruitbats, so.
+    AVERY: Well, I guess that’s something. Come on, let’s go save that dog!
+->I'm amazing.
+    AVERY: That’s some big talk, Charlie. Hope you can back it up! Let’s go get that dog.
+===
+title: NancyStart
+tags: 
+colorID: 1
+position: 1529,104
+---
+<<if visited ("RedpeelStart") is false>>
+NANCY: Hello there, Charlie. Isn't it a lovely day? 
+NANCY: The sun is a little warm, though, isn't it? Hmm, I might have to fetch my parasol from the attic.
+
+<<else>>
+    <<if visited ("NancyTask1") is false>>
+        [[NancyTask1]]
+    <<else>>
+        <<if $nancyaccept is true>> //if they've accepted the task
+            <<if $batscomplete is true>> //if task complete
+            <<else>> //if task not complete
+                NANCY: You'll take care of those bats for me, won't you, Charlie?
+            <<endif>>
+        <<else>> //if they haven't accepted the task
+            NANCY: Please help me, Charlie. I need someone to get rid of the fruitbats in my attic.
+            NANCY: Harold always used to do that kind of thing, you know, before they died.
+            ->I'll get rid of the bats for you.
+                <<set $nancyaccept to true>>
+                NANCY: Oh, wonderful! Thank you so much, dear. 
+                NANCY: You be careful, now. Those bats can be vicious.
+            ->Maybe later.
+                NANCY: Please come back soon, Charlie. 
+        <<endif>>
+    <<endif>>
+<<endif>>
+===
+title: JackStart
+tags: 
+colorID: 1
+position: 1273,107
+---
+<<if visited ("RedpeelStart") is false>>
+JACK: Can't talk now, I'm working on something really important!
+
+<<else>>
+    <<if visited ("JackTask1") is false>>  
+        [[JackTask1]]   //visit jack and learn about the task
+    <<else>>
+        <<if $jackaccept is true>>
+            <<if $jackcomplete is false>>   //accepted and not complete
+                [[JackTask2]]   
+            <<else>>    //accepted and is complete
+                [[JackCompleted]]
+            <<endif>>
+        <<else>>    
+            [[JackTask1A]]  //if you haven't accepted the task
+        <<endif>>
+    <<endif>>
+<<endif>>
+===
+title: FinnStart
+tags: 
+colorID: 1
+position: 1829,107
+---
+<<if visited ("RedpeelStart") is false>>
+FINN: Hi Charlie! What can I do for you?
+->How can I get to Berry Island?
+    FINN: Just go and talk to Captain Redpeel at the docks, they'll get you there.
+->Just dropping in to say hi.
+    FINN: Oh. Hi! 
+//FINN: I should probably get back to work. Talk to you later Charlie!
+<<else>>
+    <<if visited ("JackTask1") is false>>   //if haven't visited jack
+        FINN: Hey Charlie!
+        CHARLIE: Hi Finn.
+    <<else>>
+        <<if visited ("FinnTask1A") is false and visited ("FinnTask1B") is false>>
+        //if they haven't talked to finn about the poem
+        [[(Give poem)|FinnTask1A]]
+        [[(Don't give poem)|FinnTask1B]]
+        <<else>>
+        //if they've talked to finn about the poem and got their response and
+            <<if $jackcomplete is true>> //have brought it to jack
+                [[FinnCompleted]]
+            <<else>> //haven't brought it to jack
+                [[FinnTask2]]
+            <<endif>>
+        <<endif>>
+    <<endif>>
+<<endif>>
+===
+title: JackTask2
+tags: 
+colorID: 2
+position: 1144,638
+---
+JACK: Did you speak to Finn? What did they say?
+<<if visited("FinnTask1A") is false and visited("FinnTask1B") is false>>
+CHARLIE: I haven't spoken to them yet.
+JACK: Please do it soon, I'm going to puke if I have to wait much longer.
+<<else>>
+    <<if $finnyes is true>>
+        CHARLIE: Here, see for yourself. (give Finn's poem)
+        JACK: Finn likes me? Finn likes me! This is the best day of my life! I'm going to go and talk to them, bye Charlie, thanks!
+    <<else>>
+        CHARLIE: They're not interested. Sorry, Jack.
+        JACK: Oh...okay. I...I guess I'll...just...bye Charlie.
+    <<endif>>
+    <<set $jackcomplete to true>>
+//money
+<<endif>>
+===
+title: JackTask1A
+tags: 
+colorID: 3
+position: 994,361
+---
+//spoken to jack but haven't accepted quest
+JACK: I can't do it, Charlie, I can't do it. Please, you have to help me!
+->All right, I'll give Finn your poem.
+    <<set $jackaccept to true>>
+    <<set $jackcomplete to false>>
+    JACK: Great! Thank you so much, Charlie!
+->Maybe later.
+===
+title: JackCompleted
+tags: 
+colorID: 2
+position: 876,717
+---
+<<if visited ("JackCompleted") is false>>
+    <<if $finnyes is true>>
+        //finn accepted and jack is standing with them
+    <<else>>
+        [[Jack3]]
+    <<endif>>
+<<else>>
+    <<if $kimaccept is true>>   //you're looking for ajax
+        JACK: Hey Charlie.
+        CHARLIE: I'm looking for Kim's dog, Ajax. Have you seen them?
+        JACK: I haven't, sorry.
+        <<if $finnyes is true>>
+            [[JackAndFinn]]
+        <<endif>>
+    <<else>>    //you haven't agreed to look for ajax
+        <<if $finnyes is true>>
+            [[JackAndFinn]]
+        <<else>>
+            [[Jack3]]
+        <<endif>>
+    <<endif>>
+<<endif>>
+===
+title: FinnCompleted
+tags: 
+colorID: 2
+position: 1867,879
+---
+<<if visited("FinnCompleted") is false>>
+    <<if $finnyes is true>> //jack is standing there
+        FINN: Hi Charlie. Um, listen...
+        FINN: Thanks for saying...what you said. I think it was the right call.
+        JACK: What are you talking about?
+        ->You're welcome, Finn.
+        ->Sure //????????
+    <<else>>
+        FINN: How did things go with Jack?  //are these options different enough?
+        ->He took it pretty bad.
+            FINN: Poor Jack.
+        ->He's fine.
+            FINN: That's good, I guess.
+        ->He'll get over it.
+            FINN: I hope so.
+    <<endif>>
+<<else>>
+    <<if $kimaccept is true>>   //if you've accepted kim's task
+        CHARLIE: Have you seen Ajax? Kim's dog?
+        <<if $finnyes is true>>
+        [[JackAndFinn]]
+        <<else>>
+            FINN: Have you tried asking Dale? They seem to notice every little thing that goes on around here.  
+            FINN: They might be able to help.
+        <<endif>>
+    <<else>>    //if you haven't accepted kim's task
+        FINN: 
+    <<endif>>
+<<endif>>
+===
+title: FinnTask2
+tags: 
+colorID: 3
+position: 1729,640
+---
+//if you've got their response and haven't spoken to jack
+FINN: Have you spoken to Jack yet?
+->Not yet.
+    FINN: You should probably do it soon...I don't want to keep them in suspense.
+->Just wanted to check you were sure about your answer.
+    [[FinnTask2A]]
+    
+
+===
+title: FinnTask2A
+tags: 
+colorID: 3
+position: 1447,654
+---
+//discussion with finn about changing answer
+===
+title: NOTES
+tags: 
+colorID: 0
+position: 768,-20
+---
+BLUE: START NODE
+GREEN: COMPULSORY NODE
+YELLOW: OPTIONAL NODE
+ORANGE: OBJECT NODE
+
+
+
+===
+title: DaleStart
+tags: 
+colorID: 1
+position: 2413,112
+---
+<<if visited ("RedpeelStart") is false>>
+DALE: Hello Charlie! What are you getting up to today?
+CHARLIE: I’m going to visit Kell for their birthday.
+DALE: Oh, how nice! 
+DALE: I haven’t seen Kell since they moved to Berry Island—what was it, two years ago? Make sure you say hello to them for me. 
+DALE: You hurry along to the docks now, you don’t want to miss the ship!
+<<set $dalestart to true>>
+<<else>>
+    <<if $dalestart is true>>   //does this work if the variable is not set to false anywhere?
+        DALE: Hello again, Charlie. I thought you were going to visit Berry Island.
+        CHARLIE: I don't have enough money.
+        DALE: Oh no! 
+    <<else>>
+        DALE: Hello Charlie! What are you getting up to today?
+        CHARLIE: I’m going to visit Kell for their birthday.
+        DALE: Oh, how nice! 
+        DALE: I haven’t seen Kell since they moved to Berry Island—what was it, two years ago? Make sure you say hello to them for me. 
+        ->I will.
+            DALE: Thank you, Charlie.
+        ->I need to make some money first. Do you have anything I can do?
+            DALE: No, Charlie, I'm sorry.
+    <<endif>>
+        DALE: You could try talking to Nancy. She was having some trouble, I believe.
+        DALE: And I overhead Jack mention something about needing a messenger...
+<<endif>>
+===
+title: Present
+tags: 
+colorID: 4
+position: 1678,-181
+---
+A gift for Kell
+CHARLIE: Oh yeah, it’s nearly Kell’s birthday...I haven’t seen my sibling in ages. 
+CHARLIE: Maybe I should go visit them on Berry Island as a surprise, instead of just sending the present. I’ll have to find a ship to take me. 
+->(take present)
+===
+title: Map
+tags: 
+colorID: 4
+position: 1946,-181
+---
+A map of the four islands
+
+<<if visited ("Present") is true>>
+CHARLIE: I need to find someone to take me to Berry Island so I can surprise Kell for their birthday.
+<<endif>>
+===
+title: BaseballBat
+tags: 
+colorID: 4
+position: 1395,-185
+---
+A baseball bat. Good for hitting things.
+===
+title: KimStart
+tags: 
+colorID: 1
+position: 2414,375
+---
+<<if visited ("KimStart") is false>>
+KIM: Oh no oh no oh no oh no - 
+CHARLIE: Kim? Everything okay?
+KIM: Charlie, you have to help me! I can’t find Ajax anywhere! 
+KIM: I’m sure they were inside last night but they didn’t come when I called this morning and I’ve searched the whole house and I can’t find them! 
+KIM: What if I left them outside overnight? What if they ran into the forest and got eaten? What if—
+CHARLIE: It’s okay, calm down. I’ll help you look for them.
+KIM: Will you really?
+->Absolutely.
+    KIM: Thank you thank you thank you thank you!
+    KIM: I promise I'll reward you if you find my poor dog.
+    <<set $kimaccept to true>>
+->In a bit.
+    KIM: Please hurry!
+    <<set $kimaccept to false>>
+<<else>>
+    <<if $kimaccept is true>>   //you've spoken to kim and accepted their task
+        //found dog
+        //haven't found dog
+    <<else>> //you've spoken to kim and haven't accepted their task
+        KIM: Please help me find Ajax!
+        ->I'll go look for them right now.
+            KIM: Thank you thank you thank you thank you!
+            KIM: I promise I'll reward you if you find my poor dog.
+            <<set $kimaccept to true>>
+        ->I'll look for them soon.
+    <<endif>>
+
+<<endif>>
+===
+title: JackAndFinn
+tags: 
+colorID: 3
+position: 1142,915
+---
+//looking for ajax
+<<if $kimaccept is true>>
+FINN: Have you tried asking Dale? They seem to notice every little thing that goes on around here.  
+FINN: They might be able to help.
+JACK: That's a great idea, Finn! You're so smart.
+FINN: You don't have to go overboard with the flattery, Jack.
+<<else>>
+JACK: Hey Charlie! Isn't it a great day!
+FINN: Stop grinning like that, you're going to break your face.
+<<endif>>
+===
+title: Jack3
+tags: 
+colorID: 3
+position: 707,435
+---
+//if finn rejected jack and charlie hasn't moved on to stage 2/accepted kim's task
+JACK: Sorry, Charlie, I don't really feel like talking right now.
+->I'm sorry about Finn.
+    JACK: Yeah...me too. I guess...it just wasn't meant to be.  
+    JACK: I really thought they were the one, you know?
+->You need to toughen up.
+    JACK: You can be a real jerk sometimes, Charlie. 
+    JACK: Just leave me alone.
+===

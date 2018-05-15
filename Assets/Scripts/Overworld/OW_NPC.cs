@@ -24,11 +24,11 @@ public class OW_NPC : OW_Character
             thumbCam.SetActive(false);
         }
 
-        //((DialougeUI)_DR.dialogueUI).OnDialougeStart += OW_NPC_OnDialougeStart;
-        ((DialougeUI)_DR.dialogueUI).OnDialougeEnd += OW_NPC_OnDialougeEnd;
+        //((DialogueUI)_DR.dialogueUI).OnDialogueStart += OW_NPC_OnDialogueStart;
+        ((DialogueUI)_DR.dialogueUI).OnDialogueEnd += OW_NPC_OnDialogueEnd;
     }
 
-    private void OW_NPC_OnDialougeEnd(string name)
+    private void OW_NPC_OnDialogueEnd(string name)
     {
         if (!name.Contains(this.Name)) return; //only call for this NPC
 
@@ -63,7 +63,7 @@ public class OW_NPC : OW_Character
         //Look at
         lookAt = other;        
 
-        //Run dialouge
+        //Run dialogue
         _DR.StartDialogue(Name);
 
         //Setup thumb cam

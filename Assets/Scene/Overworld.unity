@@ -253,6 +253,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114131606073163550, guid: 61c9d6a96844f094984906065587d3d5,
+        type: 2}
+      propertyPath: defaultVariables.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4618447033027704, guid: 61c9d6a96844f094984906065587d3d5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.558895
@@ -340,6 +345,26 @@ Prefab:
       propertyPath: playerControl
       value: 
       objectReference: {fileID: 1885522148}
+    - target: {fileID: 114334888100976630, guid: 61c9d6a96844f094984906065587d3d5,
+        type: 2}
+      propertyPath: sourceText.Array.data[0]
+      value: 
+      objectReference: {fileID: 4900000, guid: 5ab8cc098ecfe45459ab1cd65965038c, type: 3}
+    - target: {fileID: 114334888100976630, guid: 61c9d6a96844f094984906065587d3d5,
+        type: 2}
+      propertyPath: dialogueUI
+      value: 
+      objectReference: {fileID: 550289756}
+    - target: {fileID: 114131606073163550, guid: 61c9d6a96844f094984906065587d3d5,
+        type: 2}
+      propertyPath: defaultVariables.Array.data[0].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114131606073163550, guid: 61c9d6a96844f094984906065587d3d5,
+        type: 2}
+      propertyPath: defaultVariables.Array.data[0].value
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61c9d6a96844f094984906065587d3d5, type: 2}
   m_IsPrefabParent: 0
@@ -1967,7 +1992,7 @@ GameObject:
   - component: {fileID: 323688699}
   - component: {fileID: 323688701}
   m_Layer: 0
-  m_Name: NPC (2)
+  m_Name: Finn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2015,7 +2040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5cdfad8c6ad8b4ca08b0fd09edb7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Steve
+  name: FinnStart
   lookSpeed: 0.05
   LookAtPlayer: 1
 --- !u!4 &338679344 stripped
@@ -2307,7 +2332,7 @@ GameObject:
   - component: {fileID: 394217509}
   - component: {fileID: 394217510}
   m_Layer: 5
-  m_Name: Dialouge Box
+  m_Name: Dialogue Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3976,12 +4001,16 @@ Prefab:
     - target: {fileID: 114039188536563788, guid: 03559085a751369478cb063099a877dc,
         type: 2}
       propertyPath: name
-      value: Steve
+      value: JackStart
       objectReference: {fileID: 0}
     - target: {fileID: 114039188536563788, guid: 03559085a751369478cb063099a877dc,
         type: 2}
       propertyPath: lookSpeed
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505408199105594, guid: 03559085a751369478cb063099a877dc, type: 2}
+      propertyPath: m_Name
+      value: Jack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 03559085a751369478cb063099a877dc, type: 2}
@@ -4191,7 +4220,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -6845,7 +6874,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1382591577}
-  m_LocalRotation: {x: 0.009860761, y: -0.85124826, z: 0.52442515, w: 0.016046036}
+  m_LocalRotation: {x: 0.008572551, y: -0.85127383, z: 0.52446616, w: 0.013954318}
   m_LocalPosition: {x: -4.9315796, y: 13.056477, z: 27.5145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8677,7 +8706,7 @@ GameObject:
   - component: {fileID: 1664431135}
   - component: {fileID: 1664431137}
   m_Layer: 0
-  m_Name: NPC (1)
+  m_Name: Redpeel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8725,7 +8754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5cdfad8c6ad8b4ca08b0fd09edb7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Steve
+  name: RedpeelStart
   lookSpeed: 0.05
   LookAtPlayer: 1
 --- !u!4 &1707462601 stripped
@@ -9712,7 +9741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702e30827f7480b46985169b05bfdac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: Player
 --- !u!114 &1885522148 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114671932605800014, guid: 06d9c2824f6fd234ead4eddf5cfb8f81,
@@ -10050,7 +10079,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1505408199105594, guid: 03559085a751369478cb063099a877dc, type: 2}
       propertyPath: m_Name
-      value: NPC (3)
+      value: Nancy
       objectReference: {fileID: 0}
     - target: {fileID: 4221960978204626, guid: 03559085a751369478cb063099a877dc, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -10059,7 +10088,7 @@ Prefab:
     - target: {fileID: 114039188536563788, guid: 03559085a751369478cb063099a877dc,
         type: 2}
       propertyPath: name
-      value: Steve
+      value: NancyStart
       objectReference: {fileID: 0}
     - target: {fileID: 114039188536563788, guid: 03559085a751369478cb063099a877dc,
         type: 2}
