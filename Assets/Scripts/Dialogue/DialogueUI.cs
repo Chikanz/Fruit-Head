@@ -71,10 +71,12 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
     public ThirdPersonUserControl playerControl;
 
     //Zac events
-
     public delegate void DialogueAction(string name);
     public event DialogueAction OnDialogueStart;
-    public event DialogueAction OnDialogueEnd;    
+    public event DialogueAction OnDialogueEnd;
+
+    public Text charName;
+    private object text;
 
     void Awake()
     {
@@ -108,7 +110,14 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
             // Display the line one character at a time
             var stringBuilder = new StringBuilder();
             yield return null;
-            foreach (char c in line.text)
+
+            //Name
+            var splitline = line.text.Split(':');
+            charName.text = Capitalize(splitline[0]);
+
+            string finalLine = splitline[1].Substring(1); //Remove space
+
+            foreach (char c in finalLine) 
             {
                 stringBuilder.Append(c);
                 lineText.text = stringBuilder.ToString();
@@ -116,7 +125,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
                 //Early exit
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    lineText.text = line.text;
+                    lineText.text = finalLine;
                     break;
                 }
                 else
@@ -203,6 +212,10 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 
         //Give player back control
         playerControl.enabled = true;
+
+        //Reset playable
+        GetComponent<PlayableDirector>().time = 0;
+        GetComponent<PlayableDirector>().Pause();
     }
 
     /// Called by buttons to make a selection.
@@ -259,6 +272,12 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
             OnDialogueEnd(startNode);
 
         yield break;
+    }
+
+    string Capitalize(string s)
+    {
+        s = s.ToLower();
+        return char.ToUpper(s[0]) + s.Substring(1);
     }
 
 }
