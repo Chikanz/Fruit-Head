@@ -112,10 +112,13 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
             yield return null;
 
             //Name
+            string finalLine = line.text;
             var splitline = line.text.Split(':');
-            charName.text = Capitalize(splitline[0]);
-
-            string finalLine = splitline[1].Substring(1); //Remove space
+            if (splitline.Length > 1)
+            {
+                charName.text = Capitalize(splitline[0]);
+                finalLine = splitline[1].Substring(1); //Remove space
+            }
 
             foreach (char c in finalLine) 
             {
