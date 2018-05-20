@@ -5,9 +5,10 @@ using UnityEngine;
 public class ReturnOnSubmerge : MonoBehaviour
 {
     Vector3 lastSafePoint;
+    public float waterPlaneY;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         InvokeRepeating("FindSafePoint", 2, 2);
 	}
@@ -20,6 +21,7 @@ public class ReturnOnSubmerge : MonoBehaviour
     void FindSafePoint()
     {
         RaycastHit hitInfo;
+        if (transform.position.y < waterPlaneY) return;
         if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, 0.3f))
         {
             if(hitInfo.collider.tag.Equals("Terrain"))

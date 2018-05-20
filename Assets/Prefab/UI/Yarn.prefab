@@ -68,13 +68,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceText:
-  - {fileID: 4900000, guid: 11f96e1196575cb4a9a1de94f1396d30, type: 3}
+  - {fileID: 4900000, guid: 5ab8cc098ecfe45459ab1cd65965038c, type: 3}
   stringGroups: []
   shouldOverrideLanguage: 0
   overrideLanguage: 10
   variableStorage: {fileID: 114131606073163550}
   dialogueUI: {fileID: 114550877233237718}
-  startNode: Start
+  startNode: 
   startAutomatically: 0
   automaticCommands: 0
 --- !u!114 &114550877233237718
@@ -96,8 +96,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  gameControlsContainer: {fileID: 0}
   WaitForUITransition: 0.4
+  playerControl: {fileID: 0}
+  charName: {fileID: 0}
 --- !u!320 &320260126884139034
 PlayableDirector:
   m_ObjectHideFlags: 1
