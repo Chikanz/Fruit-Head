@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
+/// <summary>
+/// Singleton player object
+/// </summary>
 public class OW_Player : OW_Character
 {
-    
+    static OW_Player instance;
+
     public override void Start()
     {
+        //Enforce singleton
+        if (!instance) instance = this;
+        else Destroy(gameObject);
+
         base.Start();
     }
 	

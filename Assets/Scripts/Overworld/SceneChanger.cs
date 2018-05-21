@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MADHAX : MonoBehaviour
+/// <summary>
+/// Singleton responsible for changing scenes
+/// </summary>
+public class SceneChanger: MonoBehaviour
 {
     // Use this for initialization
     bool isOverWorld = true;

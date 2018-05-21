@@ -1,30 +1,4 @@
-﻿/*
-
-The MIT License (MIT)
-
-Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-*/
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Text;
@@ -74,12 +48,16 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
     public delegate void DialogueAction(string name);
     public event DialogueAction OnDialogueStart;
     public event DialogueAction OnDialogueEnd;
+    public event DialogueAction OnTargetChanged;
 
     public Text charName;
-    private object text;
+    public string TalkingTo { get; set; }
+
 
     void Awake()
     {
+        //Debug.Log(UppercaseFirst("big Butts i cannot lie") + ".");
+
         // Start by hiding the container, line and option buttons
         if (dialogueContainer != null)
             dialogueContainer.SetActive(false);
@@ -97,6 +75,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         // Hide the continue prompt if it exists
         if (continuePrompt != null)
             continuePrompt.SetActive(false);
+        
     }
 
     /// Show a line of dialogue, gradually
@@ -111,13 +90,25 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
             var stringBuilder = new StringBuilder();
             yield return null;
 
-            //Name
+            //Extract name
             string finalLine = line.text;
             var splitline = line.text.Split(':');
+
+            Debug.Assert(splitline.Length <= 2, "There's two colons in the node " + line.text);
+
             if (splitline.Length > 1)
             {
-                charName.text = Capitalize(splitline[0]);
-                finalLine = splitline[1].Substring(1); //Remove space
+                var name = UppercaseFirst(splitline[0]);
+
+                //Fire off event
+                if (TalkingTo != name && OnTargetChanged != null)
+                {
+                    TalkingTo = name;
+                    OnTargetChanged(TalkingTo);
+                }
+
+                charName.text = name;
+                finalLine = splitline[1].Substring(1);  //Remove space on dialogue
             }
 
             foreach (char c in finalLine) 
@@ -168,8 +159,6 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         //Make sure the text is visible
         lineText.gameObject.SetActive(true);
 
-        playerControl.enabled = false; //Take away player control
-
         // Do a little bit of safety checking
         if (optionsCollection.options.Count > optionButtons.Count)
         {
@@ -213,9 +202,6 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
             button.gameObject.SetActive(false);
         }
 
-        //Give player back control
-        playerControl.enabled = true;
-
         //Reset playable
         GetComponent<PlayableDirector>().time = 0;
         GetComponent<PlayableDirector>().Pause();
@@ -253,7 +239,8 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         //Send out event
         if (OnDialogueStart != null)
             OnDialogueStart(startNode);
-        
+
+        playerControl.CanMove = false;
 
         yield break;
     }
@@ -270,17 +257,37 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         if (dialogueContainer != null)
             dialogueContainer.SetActive(false);
 
-        //Send out event
+        //Send out event + reset talkingTo so ChangeTarget gets fired at the start of the next convo
         if (OnDialogueEnd != null)
+        {
+            TalkingTo = "";
             OnDialogueEnd(startNode);
+        }
+
+        //Give player back control
+        playerControl.CanMove = true;
 
         yield break;
     }
 
-    string Capitalize(string s)
+    static string UppercaseFirst(string s)
     {
-        s = s.ToLower();
-        return char.ToUpper(s[0]) + s.Substring(1);
+        s = s.ToLower(); //Sanitize input
+
+        if (string.IsNullOrEmpty(s))
+        {
+            return string.Empty;
+        }
+
+        var words = s.Split(' ');
+        string r = ""; 
+        foreach(string w in words)
+        {
+            r += char.ToUpper(w[0]) + w.Substring(1) + " ";
+        }
+
+        r = r.Remove(r.Length - 1); //Remove trailing space
+        return r;
     }
 
 }

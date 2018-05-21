@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// An NPC you can talk to in the overworld
+/// Please note, the name (inherited var) of this NPC should match how it appears in dialouge (ie Nancy)
+/// </summary>
 public class OW_NPC : OW_Character
 {
     private Quaternion targetRot;
     private Quaternion normalRot;
-    private Transform lookAt;
-    static GameObject thumbCam;
+    private Transform lookAt;    
 
     public float lookSpeed = 0.1f;
     public bool LookAtPlayer = true;
 
+    [Tooltip("The yarn node to call when the player talks to this NPC")]
+    public string StartNode;  
+
     // Use this for initialization
     public override void Start()
-    {
+    {        
         base.Start();
         normalRot = transform.rotation;
-
-        if (!thumbCam)
-        {
-            thumbCam = GameObject.Find("ThumbCam");
-            thumbCam.SetActive(false);
-        }
 
         //((DialogueUI)_DR.dialogueUI).OnDialogueStart += OW_NPC_OnDialogueStart;
         ((DialogueUI)_DR.dialogueUI).OnDialogueEnd += OW_NPC_OnDialogueEnd;
@@ -31,11 +31,9 @@ public class OW_NPC : OW_Character
     private void OW_NPC_OnDialogueEnd(string name)
     {
         if (!name.Contains(this.Name)) return; //only call for this NPC
-
-        thumbCam.SetActive(false);
+        
         targetRot = normalRot;
         lookAt = null;
-        thumbCam.transform.SetParent(null);
     }
 
     // Update is called once per frame
@@ -64,12 +62,6 @@ public class OW_NPC : OW_Character
         lookAt = other;        
 
         //Run dialogue
-        _DR.StartDialogue(Name);
-
-        //Setup thumb cam
-        thumbCam.SetActive(true);
-        thumbCam.transform.position = transform.position + (transform.forward * 1) + (transform.right * 1) + transform.up * 1.5f;
-        thumbCam.transform.LookAt(transform.GetComponent<Collider>().bounds.center);
-        thumbCam.transform.SetParent(transform, true);
+        _DR.StartDialogue(StartNode);    
     }
 }

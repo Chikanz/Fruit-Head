@@ -15,6 +15,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private CombatCharacter CC;
 
+        public bool CanMove = true;
+
         
         private void Start()
         {
@@ -60,7 +62,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // read inputs if not using move
             float v = 0, h = 0;
             bool crouch = false;
-            if (!CC || CC.CanMove())
+            if ((!CC || CC.CanMove()) && CanMove)
             {
                h = CrossPlatformInputManager.GetAxis("Horizontal");
                v = CrossPlatformInputManager.GetAxis("Vertical");
