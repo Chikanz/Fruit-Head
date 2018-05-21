@@ -240,7 +240,8 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         if (OnDialogueStart != null)
             OnDialogueStart(startNode);
 
-        playerControl.CanMove = false;
+        if(playerControl)
+            playerControl.CanMove = false;
 
         yield break;
     }
@@ -265,7 +266,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         }
 
         //Give player back control
-        playerControl.CanMove = true;
+        if(playerControl) playerControl.CanMove = true;
 
         yield break;
     }

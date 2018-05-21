@@ -262,7 +262,7 @@ JACK: Please do it soon, I'm going to puke if I have to wait much longer.
 title: JackTask1A
 tags: 
 colorID: 3
-position: 994,361
+position: 982,426
 ---
 //spoken to jack but haven't accepted quest
 JACK: I can't do it, Charlie, I can't do it. Please, you have to help me!
@@ -405,17 +405,18 @@ tags:
 colorID: 4
 position: 1678,-181
 ---
-A gift for Kell
-CHARLIE: Oh yeah, it’s nearly Kell’s birthday...I haven’t seen my sibling in ages. 
-CHARLIE: Maybe I should go visit them on Berry Island as a surprise, instead of just sending the present. I’ll have to find a ship to take me. 
-->(take present)
+Present: It's a gift for Kell
+CHARLIE: Oh yeah, it’s nearly Kell’s birthday... I haven’t seen my sibling in ages. 
+CHARLIE: Maybe I should go visit them on Berry Island as a surprise, instead of just sending the present.
+CHARLIE: I’ll have to find a ship to take me. 
+->Take present
 ===
 title: Map
 tags: 
 colorID: 4
 position: 1946,-181
 ---
-A map of the four islands
+Map: It's a map of the four islands
 
 <<if visited ("Present") is true>>
 CHARLIE: I need to find someone to take me to Berry Island so I can surprise Kell for their birthday.
@@ -426,7 +427,7 @@ tags:
 colorID: 4
 position: 1395,-185
 ---
-A baseball bat. Good for hitting things.
+Bat: A baseball bat. Good for hitting things... Like baseballs.
 ===
 title: KimStart
 tags: 

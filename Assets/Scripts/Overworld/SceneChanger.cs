@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 /// <summary>
 /// Singleton responsible for changing scenes
@@ -32,5 +33,11 @@ public class SceneChanger: MonoBehaviour
         {
             SceneManager.LoadScene("BattleFlies");
         }
+    }
+
+    [YarnCommand("ChangeScene")]
+    public void Change(int scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 }
