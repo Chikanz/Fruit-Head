@@ -8,7 +8,7 @@ using Yarn.Unity;
 /// </summary>
 public class OW_Player : OW_Character
 {
-    static OW_Player instance;
+    public static OW_Player instance;
 
     public override void Start()
     {

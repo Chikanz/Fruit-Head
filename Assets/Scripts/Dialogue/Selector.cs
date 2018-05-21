@@ -11,6 +11,8 @@ public class Selector : MonoBehaviour
     Image arrow;
     Transform Selected;
 
+    bool hasClicked = false;
+
     public GameObject triggerOnEnabled;
 
     bool active = false;
@@ -48,13 +50,17 @@ public class Selector : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPos, 0.1f);
 
             //Select the button
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !hasClicked)
+            {
                 Selected.GetComponent<Button>().onClick.Invoke();
+                hasClicked = true;
+            }
         }
         else
         {
             childCount = 0;
-            arrow.enabled = false;            
+            arrow.enabled = false;
+            hasClicked = false;
         }
     }
 }

@@ -36,7 +36,7 @@ public class SceneChanger: MonoBehaviour
     }
 
     [YarnCommand("ChangeScene")]
-    public void Change(int scene)
+    public void Change(int scene, int playerToLoad)
     {
         SceneManager.LoadScene(scene);
     }

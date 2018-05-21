@@ -28,7 +28,7 @@ public class ThumbCamera : MonoBehaviour
         DUI.OnDialogueEnd += DUI_OnDialogueEnd;
 
         cam = GetComponent<Camera>();
-        cam.enabled = false;        
+        cam.enabled = false;       
     }
 
     // Update is called once per frame

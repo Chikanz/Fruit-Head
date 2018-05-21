@@ -8,7 +8,8 @@ JACK: Oh, hi Charlie. Um. Do you—do you like poetry?
     JACK: Awesome! What do you think of this?
 ->Uhhh...what?
     JACK: Poetry—you know, expressing inner thoughts and emotions through the medium of—Never mind, just listen and tell me what you think.
-->I despise it with every fibre of my being.
+->I despise it 
+    Charlie: With every fibre of my being.
     JACK: Oh...well, maybe you can tell me if you hate this a lot or just a little bit.
 
 JACK: There once was a fruit called Finn
@@ -23,7 +24,8 @@ That they are the best lemon
     JACK: True art is never perfect, Charlie. It'll always need a little work.
 ->My ears are bleeding.
     JACK: ...oh. Okay. Um. Thanks for your honesty, I guess. Was it really that bad?
-    JACK: No, you know what? I don’t care! I poured my heart and soul into this poem and I am not going to throw it away! I’m going to give it to Finn! Even if it’s bad, the sentiments are real!
+    JACK: No, you know what? I don’t care! I poured my heart and soul into this poem and I am not going to throw it away!
+    JACK: I’m going to give it to Finn! Even if it’s bad, the sentiments are real!
 
 JACK: Ugh, now I’m nervous. Do you think Finn will like it? They’ll like it, won’t they? 
 Jack: Hey...Charlie, will you give it to Finn for me? They’re working in the market today, so you don’t have to go far. 
@@ -77,13 +79,15 @@ FINN: Well, yeah, but it's also kind of sweet.
 CHARLIE: Jack wanted me to bring back your answer.
 FINN:...I don't know what to say. I've never thought about Jack like that before. 
 FINN: What do you think, Charlie? 
-->Give Jack a chance. You might have some fun together.
+->Give Jack a chance
     <<set $finnyes to true>>
+    CHARLIE: You might have some fun together.
     FINN: Yeah. Yeah, you're right. Just-hang on a sec, okay? 
     FINN: [writes something on a piece of paper]
     FINN: Give this to Jack. Thanks, Charlie.
-->I'd stay away. You're just going to get more terrible poetry.
+->I'd stay away
     <<set $finnyes to false>>   //make no clearer?
+    CHARLIE: You're just going to get more terrible poetry.
 	FINN: Hmm, I guess so. 
     FINN: You should go and tell Jack. Be nice to them, okay?
 
@@ -155,8 +159,11 @@ CHARLIE: I’m looking for the dog too. You think the two of us can take those w
 AVERY: Depends. How good are you with that bat?
 ->I guess we’ll find out.
     AVERY: Love the confidence.
-->I just took out an attic full of fruitbats, so.
+    //shortened from "I just took out an attic full of fruitbats, so."
+->You should ask those fruitbats
+    CHARLIE: I just took out an attic full of them.
     AVERY: Well, I guess that’s something. 
+    
 ->I'm amazing.
     AVERY: That’s some big talk, Charlie. Hope you can back it up! 
 AVERY: Come on, let’s go get that dog!
@@ -248,6 +255,7 @@ FINN: Hi Charlie! What can I do for you?
     <<else>>
         <<if visited ("FinnTask1A") is false and visited ("FinnTask1B") is false>>
         //if they haven't talked to finn about the poem
+        FINN: Hey Charlie!
         [[(Give poem)|FinnTask1A]]
         [[(Don't give poem)|FinnTask1B]]
         <<else>>
@@ -298,8 +306,8 @@ position: 982,426
 ---
 //spoken to jack but haven't accepted quest
 JACK: I can't do it, Charlie, I can't do it. Please, you have to help me!
-->All right, I'll give Finn your poem.
-    <<set $jackaccept to true>>
+->Alright, I'll do it
+    <<set $jackaccept to true>> //shortened from "All right I'll give Finn your poem."
     <<set $jackcomplete to false>>
     JACK: Great! Thank you so much, Charlie!
 ->Maybe later.
@@ -422,19 +430,15 @@ tags:
 colorID: 4
 position: 1678,-181
 ---
-<<<<<<< HEAD
 Present: It's a gift for Kell
 CHARLIE: Oh yeah, it’s nearly Kell’s birthday... I haven’t seen my sibling in ages. 
 CHARLIE: Maybe I should go visit them on Berry Island as a surprise, instead of just sending the present.
 CHARLIE: I’ll have to find a ship to take me. 
 ->Take present
-=======
-A gift for Kell
-CHARLIE: Oh yeah, it’s nearly Kell’s birthday...I haven’t seen my sibling in ages. 
-CHARLIE: Maybe I should go visit them on Berry Island as a surprise, instead of just sending the present. 
-->(take present)
-//delete/hide object
->>>>>>> ecb795fd9407b38f7ba1055a5c8e55157966efcc
+    <<Take Present>>
+->Stay home and sleep in
+    <<Take Present>>
+    Charlie: Woops, I accidentally took the present. Weird.
 ===
 title: Map
 tags: 
@@ -453,11 +457,13 @@ colorID: 4
 position: 1395,-185
 ---
 Bat: A baseball bat. Good for hitting things... Like baseballs.
+Charlie: I'd better take this in case I run into any baseballs today
+<<Take BaseballBat>>
 ===
 title: KimStart
 tags: 
 colorID: 1
-position: 2674,111
+position: 2674,108
 ---
 <<if visited ("KimStart") is false>>
 KIM: Charlie, you have to help me! I can’t find Ajax anywhere! 
@@ -469,9 +475,9 @@ KIM: Will you really?
     KIM: Thank you thank you thank you thank you!
     <<set $kimaccept to true>>
     <<activate Avery>>
-->As long as there's a reward.
+->For a fee.
     KIM: If you bring my dear Ajax home, I'll pay whatever you want.
-    <<set $kimaccept to true>>
+    <<set $kimaccept to true>> //Shortened from "As long as there's a reward."
     <<activate Avery>>
 ->In a bit.
     KIM: Please hurry!
@@ -562,11 +568,4 @@ DALE: Please say hello to them for me.
     DALE: You could try talking to Nancy. They were having some trouble, I believe.
     DALE: And I overhead Jack mention something about wanting a messenger...
 <<endif>>
-===
-title: Test
-tags: 
-colorID: 0
-position: 970,-290
----
-
 ===

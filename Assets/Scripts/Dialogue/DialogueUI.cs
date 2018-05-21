@@ -109,6 +109,9 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 
                 charName.text = name;
                 finalLine = splitline[1].Substring(1);  //Remove space on dialogue
+
+                if (finalLine.Length >= 142)
+                    Debug.Log("Line might be off screen! Line:" + finalLine);
             }
 
             foreach (char c in finalLine) 
@@ -212,7 +215,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
     {
         // Call the delegate to tell the dialogue system that we've
         // selected an option.
-        SetSelectedOption(selectedOption); //null ref here sometimes, to do with my selection hackjob question mark????
+        SetSelectedOption(selectedOption); //tell zac if there was a null ref here
 
         // Now remove the delegate so that the loop in RunOptions will exit
         SetSelectedOption = null;
