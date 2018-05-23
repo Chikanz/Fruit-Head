@@ -7,12 +7,25 @@ using Yarn.Unity;
 /// <summary>
 /// Singleton responsible for changing scenes
 /// </summary>
+/// 
+using System;
+using UnityStandardAssets.Characters.ThirdPerson;
+
 public class SceneChanger: MonoBehaviour
 {
     // Use this for initialization
     bool isOverWorld = true;
-	void Start ()
+
+    public static SceneChanger instance;
+
+    public event EventHandler OnSceneChange;
+
+    void Start ()
     {
+        //Enforce singleton
+        if (!instance) instance = this;
+        else Destroy(gameObject);
+
         DontDestroyOnLoad(gameObject);
 	}
 	
@@ -35,9 +48,32 @@ public class SceneChanger: MonoBehaviour
         }
     }
 
-    [YarnCommand("ChangeScene")]
-    public void Change(int scene, int playerToLoad)
+    [YarnCommand("Change")]
+    public void Change(string scene)
     {
-        SceneManager.LoadScene(scene);
+        //Trigger Events
+        if (OnSceneChange != null) OnSceneChange(this,null);
+
+        //Make dialouge events run + clean up
+        GetComponentInChildren<DialogueRunner>().Stop();
+
+        //Change scene
+        var sceneIndex = Int32.Parse(scene);
+        SceneManager.LoadScene(sceneIndex);
+
+        Invoke("SetPlayer", 0.5f); //AAAAAAAAAAAAAAAAAAAAAAAA
+    }
+
+    void SetPlayer()
+    {
+        //Get the player
+        var player = NPCman.instance.GetCharacter("Charlie");
+        if (!player) return; //DA FUCK
+        GetComponentInChildren<DialogueUI>().playerControl = player.GetComponent<ThirdPersonUserControl>();  //yikes
+    }
+
+    public void Change(int scene)
+    {
+        Change(scene.ToString()); //yum yum
     }
 }

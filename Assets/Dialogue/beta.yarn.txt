@@ -1,7 +1,7 @@
 title: JackTask1
 tags: 
 colorID: 2
-position: 1277,371
+position: 1275,371
 ---
 JACK: Oh, hi Charlie. Um. Do you—do you like poetry?
 ->Oh yeah, I love poetry!
@@ -117,40 +117,46 @@ FINN: Thanks, Charlie, you're the best.
 title: NancyTask1
 tags: 
 colorID: 2
-position: 1529,371
+position: 1531,369
 ---
 NANCY: Oh, Charlie, dear! Will you help me? There’s a swarm of fruitbats in my attic and they’re making an awful mess.
 ->Sure.
     <<set $nancyaccept to true>>
+    NANCY: Oh, thank you Charlie! I've been having so much trouble here alone, since my dear Harold died. Harold was my spouse, you know.
+    CHARLIE: I know. I've lived on this island my whole life. 
+    NANCY: Harold died a few years ago, and I miss them so much. They used to be the one who would deal with things like this, you know.
+    NANCY: Dear Harold. Did I ever tell you about the time we went on holiday to Orchard Island?
+    CHARLIE: You might have mentioned it once or twice.
+    NANCY: It was so wonderful. Orchard Island is beautiful, Charlie, you should visit sometime. Harold loved it there. 
+    NANCY: We journeyed all over that island, and it was the best time of my life. 
+    NANCY: The sun, the people, the food...and, of course, Harold. 
+    CHARLIE: About those bats...
+    NANCY: Ah, yes, the bats. Do you think you can handle them, dear? Maybe I should ask someone else. You're just a little thing. 
+    NANCY: You live alone, don't you, since Kell moved to Berry Island. Are you eating enough? Are you looking after yourself? It's quiet, living alone. 
+    NANCY: Are you lonely? You should come and visit more often, dear. We can keep each other company. I can tell you more about Harold.
+    NANCY: I'm sure you would have loved them. Everyone loved Harold.
+    CHARLIE: I really should go and deal with those bats now.
+    NANCY: Of course, dear. You're so helpful, Charlie. Just like Harold. Oh, I miss them. 
+    NANCY: Did I ever tell you about that time we went fishing off the coast of Berry Island?
+    NANCY: I'm not much of a one for fishing, to tell the truth, but Harold loved it so. //(is this a typo???)
+    NANCY: They caught all sorts of fish on that trip. They were very good at fishing, you know. The best on Blossom Island! Do you like fishing, Charlie?
+    CHARLIE: No, but I like clearing bats out of attics.
+    NANCY: Oh, excellent! There’s a swarm of fruitbats in my attic and they’re making an awful mess.
+    CHARLIE: I know. You told me.
+    NANCY: Did I? I've been having trouble remembering things since dear Harold died.   
+    NANCY: Harold was my spouse, you know.
+    CHARLIE: ...I'm just gonna go deal with those bats now.
+    <<Change Scene 3>>
+    <<set $batscomplete to true>>
 ->Not right now.
+    NANCY: Oh... ok then dearie. 
     <<set $nancyaccept to false>>
-NANCY: Oh, thank you Charlie! I've been having so much trouble here alone, since my dear Harold died. Harold was my spouse, you know.
-CHARLIE: I know. I've lived on this island my whole life. 
-NANCY: Harold died a few years ago, and I miss them so much. They used to be the one who would deal with things like this, you know.
-NANCY: Dear Harold. Did I ever tell you about the time we went on holiday to Orchard Island?
-CHARLIE: You might have mentioned it once or twice.
-NANCY: It was so wonderful. Orchard Island is beautiful, Charlie, you should visit sometime. Harold loved it there. 
-NANCY: We journeyed all over that island, and it was the best time of my life. 
-NANCY: The sun, the people, the food...and, of course, Harold. 
-CHARLIE: About those bats...
-NANCY: Ah, yes, the bats. Do you think you can handle them, dear? Maybe I should ask someone else. You're just a little thing. 
-NANCY: You live alone, don't you, since Kell moved to Berry Island. Are you eating enough? Are you looking after yourself? It's quiet, living alone. 
-NANCY: Are you lonely? You should come and visit more often, dear. We can keep each other company. I can tell you more about Harold.
-NANCY: I'm sure you would have loved them. Everyone loved Harold.
-CHARLIE: I really should go and deal with those bats now.
-NANCY: Of course, dear. You're so helpful, Charlie. Just like Harold. Oh, I miss them. 
-NANCY: Did I ever tell you about that time we went fishing off the coast of Berry Island? I'm not much of a one for fishing, to tell the truth, but Harold loved it so. 
-NANCY: They caught all sorts of fish on that trip. They were very good at fishing, you know. The best on Blossom Island! Do you like fishing, Charlie?
-CHARLIE: No, but I like clearing bats out of attics.
-NANCY: Oh, excellent! There’s a swarm of fruitbats in my attic and they’re making an awful mess.
-CHARLIE: I know. You told me.
-NANCY: Did I? I've been having trouble remembering things since dear Harold died. Harold was my spouse, you know.
-CHARLIE: ...I'm just gonna go deal with those bats now.
+    
 ===
 title: AveryStart
 tags: 
 colorID: 1
-position: 2904,120
+position: 2904,118
 ---
 <<if visited("AveryStart") is false>>
 AVERY: Hey, you heading into the forest? Wanna help me out?
@@ -160,8 +166,9 @@ AVERY: Depends. How good are you with that bat?
 ->I guess we’ll find out.
     AVERY: Love the confidence.
     //shortened from "I just took out an attic full of fruitbats, so."
-->You should ask those fruitbats
-    CHARLIE: I just took out an attic full of them.
+    //STILL TOO LONG AAAAAAAAAAAAAAAA
+->You should ask Nancy
+    CHARLIE: I just took out an attic full of fruitbats for them.
     AVERY: Well, I guess that’s something. 
     
 ->I'm amazing.
@@ -184,10 +191,8 @@ AVERY: Come on, let’s go get that dog!
 title: NancyStart
 tags: 
 colorID: 1
-position: 1529,106
+position: 1529,104
 ---
-<<set $money to 10>>
-
 <<if visited ("RedpeelStart") is false>>
 NANCY: Hello there, Charlie. Isn't it a lovely day? 
 NANCY: The sun is a little warm, though. Hmm, I might have to fetch my parasol from the attic.
@@ -197,17 +202,19 @@ NANCY: The sun is a little warm, though. Hmm, I might have to fetch my parasol f
         [[NancyTask1]]
     <<else>>
         <<if $nancyaccept is true>> //if they've accepted the task
-            <<if $batscomplete is true>>    //if task complete
-            <<else>>    //if task not complete
-                NANCY: You'll take care of those bats for me, won't you, Charlie?
-            <<endif>>
+            //bats complete no worky for some reason
+            NANCY: Thanks for taking care of those bats, Dearie.
+            NANCY: Here's your reward as promised
+            NANCY: Ta ta now!
         <<else>> //if they haven't accepted the task
             NANCY: Please help me, Charlie. I need someone to get rid of the fruitbats in my attic.
             NANCY: Harold always used to do that kind of thing, you know, before they died.
             ->I'll get rid of the bats for you.
-                <<set $nancyaccept to true>>
                 NANCY: Oh, wonderful! Thank you so much, dear. 
                 NANCY: You be careful, now. Those bats can be vicious.
+                <<set $nancyaccept to true>>
+                <<Change Scene 3>>
+                <<set $batscomplete to true>>
             ->Maybe later.
                 NANCY: Please come back soon, Charlie. 
         <<endif>>
@@ -399,12 +406,22 @@ FINN: You should probably do it soon...I don't want to keep them in suspense.
 title: NOTES
 tags: 
 colorID: 0
-position: 768,-20
+position: 769,-22
 ---
 BLUE: START NODE
 GREEN: COMPULSORY NODE
 YELLOW: OPTIONAL NODE
 ORANGE: OBJECT NODE
+
+
+//Changing scene:  
+//MAKE SURE THIS IS THE LAST THING CALLED (sometimes variables don't set for some reason)
+//<<Change Scene [scene no]>> Found by pressing ctrl+shift+b
+
+//Taking objects (calls destroy() on dialouge end)
+//Must have the takable script attached
+//<<Take [object]>>
+
 ===
 title: DaleStart
 tags: 

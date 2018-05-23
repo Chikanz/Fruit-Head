@@ -19,9 +19,13 @@ position: 790,195
 ---
 Door: Leave?
 ->Yeah
-    <<Change Scene 0>>
+    <<if visited("Present") and visited("BaseballBat")>>
+        <<Change Scene 1>>
+    <<else>>
+        Charlie: Wait a second... I think I forgot something!
+    <<endif>>
 ->Nah
-    DOOR: Cool! We can hang out for a little longer! OwO
+    DOOR: Cool! We can hang out for a little longer! 0w0
 ===
 title: Toilet
 tags: 
@@ -42,4 +46,17 @@ position: 791,418
 Bird Statue: Ah, it's the commemmerative staue of the purple garbage bird.
 Bird Statue: The townsfolk sing tales of it swooping in and saving this island over 200 years ago.
 Charlie: What great dialogue
+===
+title: House
+tags: 
+colorID: 0
+position: 532,26
+---
+<<if visited("RedpeelStart") is true and $houseScene is false>>
+HOUSE: Enter house?
+->Yeah
+    <<set $houseScene to true>>
+    <<Change Scene 2>>
+->Nah
+<<endif>>
 ===

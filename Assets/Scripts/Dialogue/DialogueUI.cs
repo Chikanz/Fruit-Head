@@ -252,8 +252,6 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
     /// Called when the dialogue system has finished running.
     public override IEnumerator DialogueComplete(string startNode)
     {
-        //Debug.Log("Complete!");
-
         //Clear out text
         lineText.text = "";
 
@@ -266,6 +264,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         {
             TalkingTo = "";
             OnDialogueEnd(startNode);
+            Debug.Log("Dialouge ended");
         }
 
         //Give player back control

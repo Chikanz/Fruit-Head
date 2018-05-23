@@ -26,7 +26,6 @@ public class basicMove : MonoBehaviour {
             counter++;
             if (counter > points.Length - 1) counter = 0;
             NM.SetDestination(points[counter].position);
-            Debug.Log("AAAA");
         }
 	}
 }

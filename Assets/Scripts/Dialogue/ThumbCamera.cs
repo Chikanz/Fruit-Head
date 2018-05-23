@@ -18,6 +18,8 @@ public class ThumbCamera : MonoBehaviour
 
     bool firstLookat = true;
 
+    Transform originalParent;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -28,7 +30,9 @@ public class ThumbCamera : MonoBehaviour
         DUI.OnDialogueEnd += DUI_OnDialogueEnd;
 
         cam = GetComponent<Camera>();
-        cam.enabled = false;       
+        cam.enabled = false;
+
+        originalParent = transform.parent;
     }
 
     // Update is called once per frame
@@ -46,6 +50,10 @@ public class ThumbCamera : MonoBehaviour
 
     private void DUI_OnDialogueStart(string name)
     {
+        //Get player if null
+        if(!player)
+            player = (OW_Player) NPCman.instance.GetCharacter("Charlie");
+
         //Pan in from player position
         //transform.position = player.transform.position + (Vector3.up * 2);
         transform.rotation = Quaternion.Euler(player.transform.right);
@@ -73,12 +81,19 @@ public class ThumbCamera : MonoBehaviour
             LookAt = npc.GetComponent<Collider>().bounds.center;
         }
 
-    }
+    }    
 
 
     private void DUI_OnDialogueEnd(string name)
-    {
-        transform.SetParent(null);
+    {        
+        transform.SetParent(originalParent); //Return to papa
         cam.enabled = false;
+    }
+
+    private void OnDestroy()
+    {
+
+        Debug.Log("Thumb cam destroyed");
+        DUI.OnDialogueEnd -= DUI_OnDialogueEnd;
     }
 }

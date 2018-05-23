@@ -23,7 +23,7 @@ public class Hitbox : MonoBehaviour
         {
             if (BeenHit.Contains(c.gameObject)) continue;                   //Already been hit!
             if (!c.GetComponent<CombatCharacter>()) continue;               //Only care about characters
-            if (c.gameObject.Equals(transform.root.gameObject)) continue;   //Stop hitting yourself!
+            if (c.gameObject.Equals(transform.root.GetChild(0).gameObject)) continue;   //Stop hitting yourself! //FIX THIS
 
             if (OnHit != null)
             {

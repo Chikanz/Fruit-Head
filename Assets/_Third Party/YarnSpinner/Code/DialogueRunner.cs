@@ -277,7 +277,7 @@ namespace Yarn.Unity
         /// Stop the dialogue
         public void Stop() {
             isDialogueRunning = false;
-            dialogue.Stop();
+            dialogue.Stop();            
         }
 
         /// Test to see if a node name exists

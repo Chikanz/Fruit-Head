@@ -8,15 +8,10 @@ using Yarn.Unity;
 /// </summary>
 public class OW_Player : OW_Character
 {
-    public static OW_Player instance;
-
     public override void Start()
     {
-        //Enforce singleton
-        if (!instance) instance = this;
-        else Destroy(gameObject);
-
         base.Start();
+        Name = "Charlie";
     }
 	
 	// Update is called once per frame
