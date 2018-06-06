@@ -67,6 +67,7 @@ public class CoinCounter : MonoBehaviour
         if (!Finished())
         {
             coins += mons;
+
             if (!updatingDisplay) StartCoroutine(DisplayLag(0.1f));
         }
     }
@@ -90,6 +91,6 @@ public class CoinCounter : MonoBehaviour
 
     private void Coin_OnSceneChange(object sender, System.EventArgs e)
     {
-        VS.SetValue("Money", new Yarn.Value(coins + startCoins));
+        VS.SetValue("$money", new Yarn.Value(coins + startCoins));
     }
 }

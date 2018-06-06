@@ -28,9 +28,10 @@ That they are the best lemon
     JACK: I’m going to give it to Finn! Even if it’s bad, the sentiments are real!
 
 JACK: Ugh, now I’m nervous. Do you think Finn will like it? They’ll like it, won’t they? 
-Jack: Hey...Charlie, will you give it to Finn for me? They’re working in the market today, so you don’t have to go far. 
+JACK: Hey...Charlie, will you give it to Finn for me? They’re working in the market today, so you don’t have to go far. 
+JACK: Please? I'll pay you!
 ->Sure.
-    JACK: Great! Awesome! Thanks Charlie! Bring back their answer and I'll give you $20.
+    JACK: Great! Awesome! Thanks Charlie! Don't forget to bring back their answer!
     <<set $jackaccept to true>>
     <<set $jackcomplete to false>>
 ->Not right now.
@@ -53,6 +54,7 @@ CAPTAIN REDPEEL: Dollars. It’s fifty dollars.
 CHARLIE: I don't have that much.
 CAPTAIN REDPEEL: Then get goin', kid. I ain't runnin' a charity. Pay or stay. 
 CAPTAIN REDPEEL: If you want to earn some money, try talkin’ to some folks. Maybe they’ll give you a few bucks if you help ‘em out.
+CHARLIE: I should see if I have anything lying around at home first.
 
 <<else>>
 CAPTAIN REDPEEL: You got the money yet, kid?
@@ -99,7 +101,7 @@ position: 2063,392
 ---
 CHARLIE: Jack gave me a poem to give to you, but I won't subject you to it. 
 FINN: Ha ha...Is it really that bad?
-[[Here, see for yourself. (give poem)|FinnTaskA]]
+[[Here, see for yourself. (give poem)|FinnTask1A]]
 [[It's really that bad.|FinnTaskC]]
 ===
 title: FinnTaskC
@@ -122,35 +124,52 @@ position: 1531,369
 NANCY: Oh, Charlie, dear! Will you help me? There’s a swarm of fruitbats in my attic and they’re making an awful mess.
 ->Sure.
     <<set $nancyaccept to true>>
-    NANCY: Oh, thank you Charlie! I've been having so much trouble here alone, since my dear Harold died. Harold was my spouse, you know.
-    CHARLIE: I know. I've lived on this island my whole life. 
-    NANCY: Harold died a few years ago, and I miss them so much. They used to be the one who would deal with things like this, you know.
-    NANCY: Dear Harold. Did I ever tell you about the time we went on holiday to Orchard Island?
-    CHARLIE: You might have mentioned it once or twice.
-    NANCY: It was so wonderful. Orchard Island is beautiful, Charlie, you should visit sometime. Harold loved it there. 
-    NANCY: We journeyed all over that island, and it was the best time of my life. 
-    NANCY: The sun, the people, the food...and, of course, Harold. 
+    NANCY: Oh, thank you, Charlie!
+->Not right now.
+    <<set $nancyaccept to false>>
+    NANCY: Please come back soon, Charlie. I need your help.
+NANCY: I've been having so much trouble here alone, since my dear Harold died. Harold was my spouse, you know.
+CHARLIE: I know. I've lived on this island my whole life. 
+NANCY: Harold died a few years ago, and I miss them so much. They used to be the one who would deal with things like this, you know.
+NANCY: Dear Harold. Did I ever tell you about the time we went on holiday to Orchard Island?
+CHARLIE: You might have mentioned it once or twice.
+NANCY: It was so wonderful. Orchard Island is beautiful, Charlie, you should visit sometime. Harold loved it there. 
+NANCY: We journeyed all over that island, and it was the best time of my life. 
+NANCY: The sun, the people, the food...and, of course, Harold. 
+<<if $nancyaccept is true>>
     CHARLIE: About those bats...
     NANCY: Ah, yes, the bats. Do you think you can handle them, dear? Maybe I should ask someone else. You're just a little thing. 
-    NANCY: You live alone, don't you, since Kell moved to Berry Island. Are you eating enough? Are you looking after yourself? It's quiet, living alone. 
-    NANCY: Are you lonely? You should come and visit more often, dear. We can keep each other company. I can tell you more about Harold.
-    NANCY: I'm sure you would have loved them. Everyone loved Harold.
+<<else>>
+    CHARLIE: Sounds great...
+<<endif>>
+NANCY: You live alone, don't you, since Kell moved to Berry Island. Are you eating enough? Are you looking after yourself? It's quiet, living alone. 
+NANCY: Are you lonely? You should come and visit more often, dear. We can keep each other company. I can tell you more about Harold.
+<<if $nancyaccept is true>>
     CHARLIE: I really should go and deal with those bats now.
     NANCY: Of course, dear. You're so helpful, Charlie. Just like Harold. Oh, I miss them. 
-    NANCY: Did I ever tell you about that time we went fishing off the coast of Berry Island?
-    NANCY: I'm not much of a one for fishing, to tell the truth, but Harold loved it so. //(is this a typo???)
-    NANCY: They caught all sorts of fish on that trip. They were very good at fishing, you know. The best on Blossom Island! Do you like fishing, Charlie?
+<<else>>
+    CHARLIE: I think I know enough about Harold.
+<<endif>>
+NANCY: Did I ever tell you about that time we went fishing off the coast of Berry Island?
+NANCY: I'm not much of a one for fishing, to tell the truth, but Harold loved it so. 
+NANCY: They caught all sorts of fish on that trip. They were very good at fishing, you know. The best on Blossom Island! Do you like fishing, Charlie?
+<<if $nancyaccept is true>>
     CHARLIE: No, but I like clearing bats out of attics.
     NANCY: Oh, excellent! There’s a swarm of fruitbats in my attic and they’re making an awful mess.
     CHARLIE: I know. You told me.
     NANCY: Did I? I've been having trouble remembering things since dear Harold died.   
     NANCY: Harold was my spouse, you know.
     CHARLIE: ...I'm just gonna go deal with those bats now.
-    <<Change Scene 3>>
     <<set $batscomplete to true>>
-->Not right now.
-    NANCY: Oh... ok then dearie. 
-    <<set $nancyaccept to false>>
+    <<Change Scene 3>>
+<<else>>
+    CHARLIE: I do like fishing. In fact, I'm going to go fishing right now. Bye.
+    NANCY: Oh...goodbye.
+    NANCY: Come back when you're ready to get rid of those bats for me!
+<<endif>>
+
+
+    
     
 ===
 title: AveryStart
@@ -175,6 +194,7 @@ AVERY: Depends. How good are you with that bat?
     AVERY: That’s some big talk, Charlie. Hope you can back it up! 
 AVERY: Come on, let’s go get that dog!
 ->Yeah!
+    <<Change Scene 5>>
 ->Just give me a minute.
 <<else>>
     <<if $foundDog is true>>
@@ -182,10 +202,11 @@ AVERY: Come on, let’s go get that dog!
     <<else>>
         AVERY: Ready to head into the forest?
         ->Let's go.
+            <<Change Scene 5>>
         ->Not yet.
     <<endif>>
 <<endif>>
-//trigger scene change
+
 
 ===
 title: NancyStart
@@ -198,25 +219,26 @@ NANCY: Hello there, Charlie. Isn't it a lovely day?
 NANCY: The sun is a little warm, though. Hmm, I might have to fetch my parasol from the attic.
 
 <<else>>
-    <<if visited ("NancyTask1") is false>>
-        [[NancyTask1]]
-    <<else>>
-        <<if $nancyaccept is true>> //if they've accepted the task
-            //bats complete no worky for some reason
-            NANCY: Thanks for taking care of those bats, Dearie.
-            NANCY: Here's your reward as promised
-            NANCY: Ta ta now!
-        <<else>> //if they haven't accepted the task
-            NANCY: Please help me, Charlie. I need someone to get rid of the fruitbats in my attic.
+    <<if $nancyaccept is false>>
+        <<if visited ("NancyTask1") is false>>
+            [[NancyTask1]]
+        <<else>>
+            NANCY: Will you get rid of the fruitbats in my attic now?
             NANCY: Harold always used to do that kind of thing, you know, before they died.
-            ->I'll get rid of the bats for you.
+            ->I'll do it.
                 NANCY: Oh, wonderful! Thank you so much, dear. 
                 NANCY: You be careful, now. Those bats can be vicious.
                 <<set $nancyaccept to true>>
                 <<Change Scene 3>>
-                <<set $batscomplete to true>>
             ->Maybe later.
-                NANCY: Please come back soon, Charlie. 
+                NANCY: Please come back soon, Charlie.
+        <<endif>>
+    <<else>>
+        <<if visited ("Nancy2") is false>>
+            [[Nancy2]]
+        <<else>>
+            NANCY: Would you like to hear more about Harold?
+            CHARLIE: Maybe another time.
         <<endif>>
     <<endif>>
 <<endif>>
@@ -252,9 +274,9 @@ position: 1829,107
 ---
 <<if visited ("RedpeelStart") is false>>
 FINN: Hi Charlie! What can I do for you?
-->How can I get to Berry Island?
+->I want to go to Berry Island.
     FINN: Just go and talk to Captain Redpeel at the docks, they'll get you there.
-->Just dropping in to say hi.
+->Just wanted to say hi.
     FINN: Oh. Hi! 
 <<else>>
     <<if visited ("JackTask1") is false>>   //if haven't visited jack
@@ -291,14 +313,14 @@ JACK: Please do it soon, I'm going to puke if I have to wait much longer.
         JACK: Finn likes me? Finn likes me! This is the best day of my life! 
         JACK: I'm going to go and talk to them, bye Charlie, thanks!
         JACK: Oh, and here's your money!
-        <<move Jack Finn>>
+        <<move Jack JackDestination>>
     <<else>>
         CHARLIE: They're not interested. Sorry, Jack.
         JACK: Oh...okay. I...I guess I'll...just...Here's your money. Bye Charlie.
     <<endif>>
     <<set $jackcomplete to true>>
-    //increase money amount
-    <<if $jackcomplete is true>>
+    <<set $money to $money + 10>>
+    <<if $jackcomplete is true and $nancycomplete is true and $houseScene is true>>
         <<activate Kim>>
         <<move Kim Charlie>>
     <<endif>>
@@ -394,7 +416,7 @@ position: 1867,879
 title: FinnTask2
 tags: 
 colorID: 3
-position: 1729,640
+position: 1766,643
 ---
 //if you've got their response and haven't spoken to jack
 FINN: Have you spoken to Jack yet?
@@ -418,7 +440,7 @@ ORANGE: OBJECT NODE
 //MAKE SURE THIS IS THE LAST THING CALLED (sometimes variables don't set for some reason)
 //<<Change Scene [scene no]>> Found by pressing ctrl+shift+b
 
-//Taking objects (calls destroy() on dialouge end)
+//Taking objects (calls destroy() on dialogue end)
 //Must have the takable script attached
 //<<Take [object]>>
 
@@ -441,41 +463,6 @@ position: 2413,112
         [[DaleGreeting]]
     <<endif>>
 <<endif>>
-===
-title: Present
-tags: 
-colorID: 4
-position: 1678,-181
----
-Present: It's a gift for Kell
-CHARLIE: Oh yeah, it’s nearly Kell’s birthday... I haven’t seen my sibling in ages. 
-CHARLIE: Maybe I should go visit them on Berry Island as a surprise, instead of just sending the present.
-CHARLIE: I’ll have to find a ship to take me. 
-->Take present
-    <<Take Present>>
-->Stay home and sleep in
-    <<Take Present>>
-    Charlie: Woops, I accidentally took the present. Weird.
-===
-title: Map
-tags: 
-colorID: 4
-position: 1946,-181
----
-Map: It's a map of the four islands
-
-<<if visited ("Present") is true>>
-CHARLIE: I need to find someone to take me to Berry Island so I can surprise Kell for their birthday.
-<<endif>>
-===
-title: BaseballBat
-tags: 
-colorID: 4
-position: 1395,-185
----
-Bat: A baseball bat. Good for hitting things... Like baseballs.
-Charlie: I'd better take this in case I run into any baseballs today
-<<Take BaseballBat>>
 ===
 title: KimStart
 tags: 
@@ -556,7 +543,7 @@ JACK: Sorry, Charlie, I don't really feel like talking right now.
 title: AverySailing
 tags: 
 colorID: 1
-position: 2902,551
+position: 2910,423
 ---
 //after forest
 AVERY: Well, that wasn't too bad. You're a mean hand with that bat.
@@ -584,5 +571,24 @@ DALE: Please say hello to them for me.
     DALE: No, Charlie, I'm sorry.
     DALE: You could try talking to Nancy. They were having some trouble, I believe.
     DALE: And I overhead Jack mention something about wanting a messenger...
+<<endif>>
+===
+title: Nancy2
+tags: 
+colorID: 2
+position: 1489,612
+---
+NANCY: Thank you for getting rid of those bats, Charlie.
+NANCY: Here's a little something for your trouble.
+<<set $money to $money + 10>>
+NANCY: If you're not busy, I could tell you some more about Harold...
+CHARLIE: I'm busy. Very busy.
+NANCY: Come back when you're free, dear, and I'll tell you all about them.
+<<set $nancycomplete to true>>
+
+
+<<if $jackcomplete is true and $nancycomplete is true and $houseScene is true>>
+    <<activate Kim>>
+    <<move Kim Charlie>>
 <<endif>>
 ===

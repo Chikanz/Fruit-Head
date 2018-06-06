@@ -1,0 +1,81 @@
+title: Present
+tags: 
+colorID: 4
+position: 407,241
+---
+PRESENT: A gift for Kell.
+CHARLIE: Oh yeah, it’s nearly Kell’s birthday... I haven’t seen my sibling in ages. 
+CHARLIE: Maybe I should go visit them on Berry Island as a surprise, instead of just sending the present.
+CHARLIE: I guess I'll need to find a ship. 
+->Take present
+    <<Take Present>>
+->Stay home and sleep in
+    <<Take Present>>
+    Charlie: Woops, I accidentally took the present. Weird.
+===
+title: BaseballBat
+tags: 
+colorID: 4
+position: 704,245
+---
+BAT: A baseball bat. Good for hitting things... Like baseballs.
+Charlie: I'd better take this in case I run into any baseballs today.
+<<Take BaseballBat>>
+===
+title: Map
+tags: 
+colorID: 4
+position: 986,237
+---
+MAP: A map of the four islands.
+===
+title: TV
+tags: 
+colorID: 4
+position: 148,235
+---
+CHARLIE: I still haven't watched the latest episode of Game of Chairs.
+===
+title: Kitchen
+tags: 
+colorID: 4
+position: 147,504
+---
+CHARLIE: I should probably do the dishes...
+===
+title: Door
+tags: 
+colorID: 4
+position: 420,498
+---
+Door: Leave?
+->Yeah
+    <<if $houseScene is false>>
+    <<if visited("Present") and visited("BaseballBat")>>
+        <<Change Scene 1>>
+    <<else>>
+        Charlie: Wait a second... I think I forgot something!
+    <<endif>>
+    <<else>>
+    <<Change Scene 1>>
+    <<endif>>
+->Nah
+    DOOR: Cool! We can hang out for a little longer! 0w0
+===
+title: Toilet
+tags: 
+colorID: 4
+position: 691,501
+---
+TOILET: It's a toilet. In the bedroom.
+CHARLIE: I'm sure putting this here made sense to someone.
+===
+title: Bird Statue
+tags: 
+colorID: 4
+position: 993,501
+---
+BIRD STATUE: A commemorative staue of the purple garbage bird.
+BIRD STATUE: The villagers tell tales of it swooping in and saving this island over 200 years ago.
+Charlie: What great dialogue
+===

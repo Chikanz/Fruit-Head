@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Yarn.Unity {
 	public class MoveCharacter : MonoBehaviour {
@@ -8,6 +9,7 @@ namespace Yarn.Unity {
 		GameObject target;
 		float speed;
 		static GameObject dialogue;
+		NavMeshAgent agent;
 
 
 		// Use this for initialization
@@ -16,16 +18,16 @@ namespace Yarn.Unity {
 			speed = 2.0f;
 
             if (!dialogue) dialogue = GameObject.Find("Yarn");
-
+			//agent = gameObject.GetComponent<NavMeshAgent> ();
         }
-		
+
 		// Update is called once per frame
 		void Update () {
 			if (target != null ) {
 
-				float step = speed * Time.deltaTime;
-				Transform destination = target.gameObject.transform;
-				transform.position = Vector3.MoveTowards(transform.position, destination.position, step);
+			float step = speed * Time.deltaTime;
+			Transform destination = target.gameObject.transform;
+			transform.position = Vector3.MoveTowards(transform.position, destination.position, step);
 
 				if (Vector3.Distance (transform.position, destination.position) < 2.0f) {
 					if (target.GetComponent<OW_Character> ().Name == "Charlie") {
@@ -45,8 +47,8 @@ namespace Yarn.Unity {
 			print (destination);
 			target = GameObject.Find (destination);
 
-			print (target.name);
-
+			//Transform location = target.gameObject.transform;
+			//this.GetComponent<NavMeshAgent> ().destination = location.position;
 		}
 
 	}

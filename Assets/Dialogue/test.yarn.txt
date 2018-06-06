@@ -12,41 +12,6 @@ Test: Have some options!
 ->please leave me alone
 Test: You got it, pal!
 ===
-title: Door
-tags: 
-colorID: 0
-position: 790,195
----
-Door: Leave?
-->Yeah
-    <<if visited("Present") and visited("BaseballBat")>>
-        <<Change Scene 1>>
-    <<else>>
-        Charlie: Wait a second... I think I forgot something!
-    <<endif>>
-->Nah
-    DOOR: Cool! We can hang out for a little longer! 0w0
-===
-title: Toilet
-tags: 
-colorID: 0
-position: 1047,203
----
-Toilet: It's a toilet. You see a small sticker on the side of it
-Toilet: "DO NOT DEFECATE IN!!! For decorative use only, since everyone knows that fruits don't poo"
-Charlie: ...Why did I buy this??
-Charlie: ...
-Charlie: I'm replacing this shitty dialogue 
-===
-title: Bird Statue
-tags: 
-colorID: 0
-position: 791,418
----
-Bird Statue: Ah, it's the commemmerative staue of the purple garbage bird.
-Bird Statue: The townsfolk sing tales of it swooping in and saving this island over 200 years ago.
-Charlie: What great dialogue
-===
 title: House
 tags: 
 colorID: 0
