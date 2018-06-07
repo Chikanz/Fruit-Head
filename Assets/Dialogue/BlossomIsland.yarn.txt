@@ -218,6 +218,9 @@ tags:
 colorID: 1
 position: 1529,104
 ---
+<<activate Kim>>
+<<move Kim Charlie>>
+
 <<if visited ("RedpeelStart") is false>>
 NANCY: Hello there, Charlie. Isn't it a lovely day? 
 NANCY: The sun is a little warm, though. Hmm, I might have to fetch my parasol from the attic.
@@ -362,14 +365,14 @@ position: 876,717
         [[Jack3]]
     <<endif>>
 <<else>>
-    <<if $kimaccept is true and $forest is false>>   //you're looking for ajax
+    <<if $kimaccept is true and $forest is false>>   //you're looking for spot
         JACK: Hey Charlie.
         CHARLIE: I'm looking for Kim's dog. Have you seen them?
         JACK: I haven't, sorry.
         <<if $finnyes is true>>
             [[JackAndFinn]]
         <<endif>>
-    <<else>>    //you haven't agreed to look for ajax/you've found ajax
+    <<else>>    //you haven't agreed to look for spot/you've found spot
         <<if $finnyes is true>>
             [[JackAndFinn]]
         <<else>>
@@ -487,8 +490,9 @@ colorID: 1
 position: 2674,108
 ---
 <<if visited ("KimStart") is false>>
-    KIM: Charlie, you have to help me! I can’t find Ajax anywhere! 
-    KIM: I’m sure they were inside last night but they didn’t come when I called this morning and I’ve searched the whole house and I can’t find them! 
+    KIM: Charlie, you have to help me! I can’t find my dog anywhere! 
+    KIM: I’m sure Spot was inside last night but they didn’t come when I called this morning!
+    KIM: I’ve searched the whole house and I can’t find them! 
     KIM: What if I left them outside overnight? What if they ran into the forest and got eaten? What if—
     CHARLIE: It’s okay, calm down. I’ll help you look for them.
     KIM: Will you really?
@@ -497,8 +501,8 @@ position: 2674,108
         <<set $kimaccept to true>>
         <<activate Avery>>
     ->For a fee.
-        KIM: If you bring my dear Ajax home, I'll pay whatever you want.
-        <<set $kimaccept to true>> //Shortened from "As long as there's a reward."
+        KIM: If you bring my dear Spot home, I'll pay whatever you want.
+        <<set $kimaccept to true>>
         <<activate Avery>>
     ->In a bit.
         KIM: Please hurry!
@@ -508,12 +512,12 @@ position: 2674,108
         <<if $forest is true>> //found dog - avery is with you
             [[Kim2]]
         <<else>> //haven't found dog - haven't gone in to forest
-            KIM: Have you found Ajax yet?
+            KIM: Have you found Spot yet?
             CHARLIE: I'm still looking.
             KIM: Please hurry!
         <<endif>>
     <<else>> //you've spoken to kim and haven't accepted their task
-        KIM: Please help me find Ajax!
+        KIM: Please help me find Spot!
         ->I'll go look for them right now.
             KIM: Thank you thank you thank you thank you!
             <<set $kimaccept to true>>
@@ -528,12 +532,12 @@ tags:
 colorID: 3
 position: 1142,915
 ---
-//looking for ajax
+//looking for spot
 <<if $kimaccept is true and $forest is false>>
     FINN: Have you tried asking Dale? They seem to notice every little thing that goes on around here.  
     FINN: They might be able to help.
     JACK: That's a great idea, Finn! You're so smart.
-<<else>> //not looking for ajax/already found ajax
+<<else>> //not looking for spot/already found spot
     JACK: Hey Charlie! Isn't it a great day!
     FINN: Stop grinning like that, you're going to break your face.
 <<endif>>
@@ -627,7 +631,7 @@ position: 2647,420
 ---
 <<if visited ("Kim2") is false>>
 //dog appears with kim when you speak to her?
-    KIM: Ajax! Oh my poor little puppy, where have you been?
+    KIM: Spot! Oh my poor little puppy, where have you been?
     AVERY: We found them in the forest.
     KIM: In the forest? They must have been so scared!
     ->They're safe now.
@@ -636,10 +640,10 @@ position: 2647,420
     ->Do we get a reward?
         KIM: Oh, uh, yes, of course. Here.
     <<set $money to $money + 10>>
-    KIM: Thank you. Now, Ajax, you're not going to run away again, are you?
-    AJAX: [barks]
+    KIM: Thank you. Now, Spot, you're not going to run away again, are you?
+    SPOT: [barks]
     [[AverySailing]]
 <<else>>
-    KIM: Thank you so much for finding Ajax!
+    KIM: Thank you so much for finding Spot!
 <<endif>>
 ===

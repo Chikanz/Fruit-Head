@@ -1,0 +1,50 @@
+title: Creepy
+tags: 
+colorID: 3
+position: 273,11
+---
+AVERY: Oh man it's dark in here. 
+CHARLIE: Scared?
+AVERY: No!
+AVERY: Unless you're scared, in which case...a little bit, maybe.
+>It is pretty creepy in here. 
+	AVERY: So creepy.
+    //plus friendship!
+>It's fine. There's nothing in here to be scared of.
+	AVERY: You sure about that?
+>Ha, I'm not scared. 
+	AVERY: Well, good for you. 
+    //minus friendship :(
+AVERY: Come on, let's look for that dog.
+
+
+===
+title: Spot
+tags: 
+colorID: 2
+position: 573,30
+---
+AVERY: Hey there, little guy. I bet you’ve been having lots of fun on this adventure, but it’s time to go home.
+SPOT: Woof!
+//take dog
+AVERY: Now let's get out of here before any more wolves show up.
+<<Change Scene 1>>
+===
+title: Gate
+tags: 
+colorID: 4
+position: -50,13
+---
+AVERY: We should probably find Kim's dog before we head back to the village.
+===
+title: AveryForest
+tags: 
+colorID: 2
+position: 268,-312
+---
+<<if visited ("Creepy") is false>>
+    [[Creepy]]
+<<else>>
+    AVERY: Let's hurry up and find that dog, yeah? The sooner we get out of here, the better.
+<<endif>>
+===
