@@ -175,7 +175,7 @@ NANCY: They caught all sorts of fish on that trip. They were very good at fishin
 title: AveryStart
 tags: 
 colorID: 1
-position: 2904,118
+position: 2905,108
 ---
 <<if visited("AveryStart") is false>>
 AVERY: Hey, you heading into the forest? Wanna help me out?
@@ -194,16 +194,20 @@ AVERY: Depends. How good are you with that bat?
     AVERY: That’s some big talk, Charlie. Hope you can back it up! 
 AVERY: Come on, let’s go get that dog!
 ->Yeah!
+    <<set $averyaccept to true>>
+    <<set $forest to true>>
     <<Change Scene 5>>
 ->Just give me a minute.
+    <<set $averyaccept to false>>
 <<else>>
-    <<if $foundDog is true>>
-        [[AverySailing]]
-    <<else>>
+    <<if $averyaccept is false>>
         AVERY: Ready to head into the forest?
         ->Let's go.
+            <<set $averyaccept to true>>
+            <<set $forest to true>>
             <<Change Scene 5>>
         ->Not yet.
+            AVERY: We should probably go soon, before that poor little dog gets eaten.
     <<endif>>
 <<endif>>
 
@@ -262,7 +266,7 @@ JACK: Can't talk now, I'm working on something really important!
                 [[JackCompleted]]
             <<endif>>
         <<else>>    
-            [[JackTask1A]]  //if you haven't accepted the task
+           [[JackTask1A]]  //if you haven't accepted the task
         <<endif>>
     <<endif>>
 <<endif>>
@@ -358,14 +362,14 @@ position: 876,717
         [[Jack3]]
     <<endif>>
 <<else>>
-    <<if $kimaccept is true>>   //you're looking for ajax
+    <<if $kimaccept is true and $forest is false>>   //you're looking for ajax
         JACK: Hey Charlie.
         CHARLIE: I'm looking for Kim's dog. Have you seen them?
         JACK: I haven't, sorry.
         <<if $finnyes is true>>
             [[JackAndFinn]]
         <<endif>>
-    <<else>>    //you haven't agreed to look for ajax
+    <<else>>    //you haven't agreed to look for ajax/you've found ajax
         <<if $finnyes is true>>
             [[JackAndFinn]]
         <<else>>
@@ -399,16 +403,16 @@ position: 1867,879
             FINN: I hope so.
     <<endif>>
 <<else>>
-    <<if $kimaccept is true>>   //if you've accepted kim's task
+    <<if $kimaccept is true and $forest is false>>   //if you've accepted kim's task
         CHARLIE: Have you seen Kim's dog?
         <<if $finnyes is true>>
-        [[JackAndFinn]]
+            [[JackAndFinn]]
         <<else>>
             FINN: No, I haven't.
             FINN: Have you tried asking Dale? They seem to notice every little thing that goes on around here.  
             FINN: They might be able to help.
         <<endif>>
-    <<else>>    //if you haven't accepted kim's task
+    <<else>>    //if you haven't accepted kim's task/already completed the task
         FINN: Hey Charlie.
     <<endif>>
 <<endif>>
@@ -451,16 +455,29 @@ colorID: 1
 position: 2413,112
 ---
 <<if visited ("RedpeelStart") is false>>
-[[DaleGreeting]]
-<<else>>
-    <<if visited("DaleGreeting") is true>>  
-        DALE: Hello again, Charlie. I thought you were going to Berry Island.
-        CHARLIE: I don't have enough money.
-        DALE: Oh no! 
-        DALE: You could try talking to Nancy. She was having some trouble, I believe.
-        DALE: And I overhead Jack mention something about needing a messenger...
-    <<else>>
+    <<if visited ("DaleGreeting") is false>>    
         [[DaleGreeting]]
+    <<else>>
+        DALE: You should go and speak to Captain Redpeel at the docks if you want to get to Berry Island.
+    <<endif>>
+<<else>>
+    <<if visited ("KimStart") is false>>
+        <<if visited("DaleGreeting") is true>>  
+            DALE: Hello again, Charlie. I thought you were going to Berry Island.
+            CHARLIE: I don't have enough money.
+            DALE: Oh no! 
+            DALE: You could try talking to Nancy. They were having some trouble, I believe.
+            DALE: And I overhead Jack mention something about needing a messenger...
+        <<else>>
+            [[DaleGreeting]]
+        <<endif>>
+    <<else>>
+        <<if $kimaccept is true and $forest is false>>
+            CHARLIE: Have you seen Kim's dog?
+            DALE: I believe I saw it running towards the forest earlier.
+        <<else>>
+            DALE: Hello there, Charlie. 
+        <<endif>>
     <<endif>>
 <<endif>>
 ===
@@ -470,32 +487,30 @@ colorID: 1
 position: 2674,108
 ---
 <<if visited ("KimStart") is false>>
-KIM: Charlie, you have to help me! I can’t find Ajax anywhere! 
-KIM: I’m sure they were inside last night but they didn’t come when I called this morning and I’ve searched the whole house and I can’t find them! 
-KIM: What if I left them outside overnight? What if they ran into the forest and got eaten? What if—
-CHARLIE: It’s okay, calm down. I’ll help you look for them.
-KIM: Will you really?
-->Absolutely.
-    KIM: Thank you thank you thank you thank you!
-    <<set $kimaccept to true>>
-    <<activate Avery>>
-->For a fee.
-    KIM: If you bring my dear Ajax home, I'll pay whatever you want.
-    <<set $kimaccept to true>> //Shortened from "As long as there's a reward."
-    <<activate Avery>>
-->In a bit.
-    KIM: Please hurry!
-    <<set $kimaccept to false>>
+    KIM: Charlie, you have to help me! I can’t find Ajax anywhere! 
+    KIM: I’m sure they were inside last night but they didn’t come when I called this morning and I’ve searched the whole house and I can’t find them! 
+    KIM: What if I left them outside overnight? What if they ran into the forest and got eaten? What if—
+    CHARLIE: It’s okay, calm down. I’ll help you look for them.
+    KIM: Will you really?
+    ->Absolutely.
+        KIM: Thank you thank you thank you thank you!
+        <<set $kimaccept to true>>
+        <<activate Avery>>
+    ->For a fee.
+        KIM: If you bring my dear Ajax home, I'll pay whatever you want.
+        <<set $kimaccept to true>> //Shortened from "As long as there's a reward."
+        <<activate Avery>>
+    ->In a bit.
+        KIM: Please hurry!
+        <<set $kimaccept to false>>
 <<else>>
     <<if $kimaccept is true>>   //you've spoken to kim and accepted their task
-        <<if $foundDog is true>> //found dog - avery is with you
-        //dog appears with kim when you speak to her?
-        KIM: Ajax! Oh my poor little puppy, where have you been?
-        AVERY: We found him in the forest.
-        KIM: In the forest? He must have been so scared!
-            ->He's safe now.
-            ->Do we get a reward?
+        <<if $forest is true>> //found dog - avery is with you
+            [[Kim2]]
         <<else>> //haven't found dog - haven't gone in to forest
+            KIM: Have you found Ajax yet?
+            CHARLIE: I'm still looking.
+            KIM: Please hurry!
         <<endif>>
     <<else>> //you've spoken to kim and haven't accepted their task
         KIM: Please help me find Ajax!
@@ -514,12 +529,11 @@ colorID: 3
 position: 1142,915
 ---
 //looking for ajax
-<<if $kimaccept is true>>
+<<if $kimaccept is true and $forest is false>>
     FINN: Have you tried asking Dale? They seem to notice every little thing that goes on around here.  
     FINN: They might be able to help.
     JACK: That's a great idea, Finn! You're so smart.
-    FINN: You don't have to go overboard with the flattery, Jack.
-<<else>> //not looking for ajax
+<<else>> //not looking for ajax/already found ajax
     JACK: Hey Charlie! Isn't it a great day!
     FINN: Stop grinning like that, you're going to break your face.
 <<endif>>
@@ -542,10 +556,10 @@ JACK: Sorry, Charlie, I don't really feel like talking right now.
 ===
 title: AverySailing
 tags: 
-colorID: 1
+colorID: 2
 position: 2910,423
 ---
-//after forest
+//after forest and speaking to kim
 AVERY: Well, that wasn't too bad. You're a mean hand with that bat.
 CHARLIE: Thanks.
 //you're not so bad yourself
@@ -590,5 +604,42 @@ NANCY: Come back when you're free, dear, and I'll tell you all about them.
 <<if $jackcomplete is true and $nancycomplete is true and $houseScene is true>>
     <<activate Kim>>
     <<move Kim Charlie>>
+<<endif>>
+===
+title: Flowers
+tags: 
+colorID: 4
+position: 1317,-214
+---
+FLOWERS: Pretty.
+===
+title: Signpost
+tags: 
+colorID: 4
+position: 1689,-224
+---
+SIGNPOST: A signpost pointing to the docks, the market, and the forest.
+===
+title: Kim2
+tags: 
+colorID: 2
+position: 2647,420
+---
+<<if visited ("Kim2") is false>>
+//dog appears with kim when you speak to her?
+    KIM: Ajax! Oh my poor little puppy, where have you been?
+    AVERY: We found them in the forest.
+    KIM: In the forest? They must have been so scared!
+    ->They're safe now.
+        KIM: Thank you so much, both of you. 
+        KIM: Here, take this as a reward.
+    ->Do we get a reward?
+        KIM: Oh, uh, yes, of course. Here.
+    <<set $money to $money + 10>>
+    KIM: Thank you. Now, Ajax, you're not going to run away again, are you?
+    AJAX: [barks]
+    [[AverySailing]]
+<<else>>
+    KIM: Thank you so much for finding Ajax!
 <<endif>>
 ===
