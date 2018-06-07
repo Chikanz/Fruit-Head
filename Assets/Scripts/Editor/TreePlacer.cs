@@ -78,6 +78,8 @@ public class TreePlacer : EditorWindow
 
             // get the terrain height at the random position
             float posy = Terrain.activeTerrain.SampleHeight(new Vector3(posx, 0, posz));
+            
+            if(posy < 8 ) continue; //Don't place below sea level
 
             //Check if valid spawn
             var placepos = new Vector3(posx, posy, posz);
