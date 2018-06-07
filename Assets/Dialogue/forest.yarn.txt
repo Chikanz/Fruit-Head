@@ -7,12 +7,12 @@ AVERY: Oh man it's dark in here.
 CHARLIE: Scared?
 AVERY: No!
 AVERY: Unless you're scared, in which case...a little bit, maybe.
->It is pretty creepy in here. 
+->It is pretty creepy in here. 
 	AVERY: So creepy.
     //plus friendship!
->It's fine. There's nothing in here to be scared of.
+->It's fine. There's nothing in here to be scared of.
 	AVERY: You sure about that?
->Ha, I'm not scared. 
+->Ha, I'm not scared. 
 	AVERY: Well, good for you. 
     //minus friendship :(
 AVERY: Come on, let's look for that dog.
@@ -24,10 +24,12 @@ tags:
 colorID: 2
 position: 573,30
 ---
+<<position Avery Spot>>
 AVERY: Hey there, little guy. I bet you’ve been having lots of fun on this adventure, but it’s time to go home.
 SPOT: Woof!
 //take dog
 AVERY: Now let's get out of here before any more wolves show up.
+<<set $foundDog to true>>
 <<Change Scene 1>>
 ===
 title: Gate

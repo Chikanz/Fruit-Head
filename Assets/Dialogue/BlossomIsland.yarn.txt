@@ -178,27 +178,34 @@ colorID: 1
 position: 2905,108
 ---
 <<if visited("AveryStart") is false>>
-AVERY: Hey, you heading into the forest? Wanna help me out?
-AVERY: I’m looking for Kim’s dog but there’s a bunch of wolves in there and I can’t handle them on my own.
-CHARLIE: I’m looking for the dog too. You think the two of us can take those wolves?
-AVERY: Depends. How good are you with that bat?
-->I guess we’ll find out.
-    AVERY: Love the confidence.
+    <<if $foundDog is false>>
+        AVERY: Hey, you heading into the forest? Wanna help me out?
+        AVERY: I’m looking for Kim’s dog but there’s a bunch of wolves in there and I can’t handle them on my own.
+        CHARLIE: I’m looking for the dog too. You think the two of us can take those wolves?
+        AVERY: Depends. How good are you with that bat?
+        ->I guess we’ll find out.
+            AVERY: Love the confidence.
     //shortened from "I just took out an attic full of fruitbats, so."
     //STILL TOO LONG AAAAAAAAAAAAAAAA
-->You should ask Nancy
-    CHARLIE: I just took out an attic full of fruitbats for them.
-    AVERY: Well, I guess that’s something. 
-    
-->I'm amazing.
-    AVERY: That’s some big talk, Charlie. Hope you can back it up! 
-AVERY: Come on, let’s go get that dog!
-->Yeah!
-    <<set $averyaccept to true>>
-    <<set $forest to true>>
-    <<Change Scene 5>>
-->Just give me a minute.
-    <<set $averyaccept to false>>
+        ->You should ask Nancy
+            CHARLIE: I just took out an attic full of fruitbats for them.
+            AVERY: Well, I guess that’s something. 
+        ->I'm amazing.
+            AVERY: That’s some big talk, Charlie. Hope you can back it up! 
+        AVERY: Come on, let’s go get that dog!
+        ->Yeah!
+            <<set $averyaccept to true>>
+            <<set $forest to true>>
+            <<Change Scene 5>>
+        ->Just give me a minute.
+            <<set $averyaccept to false>>
+    <<else>>
+        <<if visited ("Kim2") is false>>
+            AVERY: We should bring Spot back to Kim.
+        <<else>>
+            AVERY: To the docks!
+        <<endif>>
+    <<endif>>
 <<else>>
     <<if $averyaccept is false>>
         AVERY: Ready to head into the forest?
@@ -208,8 +215,15 @@ AVERY: Come on, let’s go get that dog!
             <<Change Scene 5>>
         ->Not yet.
             AVERY: We should probably go soon, before that poor little dog gets eaten.
+    <<else>>
+        <<if visited ("Kim2") is false>>
+            AVERY: We should bring Spot back to Kim.
+        <<else>>
+            AVERY: To the docks!
+        <<endif>>
     <<endif>>
 <<endif>>
+    
 
 
 ===
@@ -218,9 +232,6 @@ tags:
 colorID: 1
 position: 1529,104
 ---
-<<activate Kim>>
-<<move Kim Charlie>>
-
 <<if visited ("RedpeelStart") is false>>
 NANCY: Hello there, Charlie. Isn't it a lovely day? 
 NANCY: The sun is a little warm, though. Hmm, I might have to fetch my parasol from the attic.
@@ -639,9 +650,9 @@ position: 2647,420
         KIM: Here, take this as a reward.
     ->Do we get a reward?
         KIM: Oh, uh, yes, of course. Here.
-    <<set $money to $money + 10>>
+    <<set $money to 55>>
     KIM: Thank you. Now, Spot, you're not going to run away again, are you?
-    SPOT: [barks]
+    //SPOT: [barks]
     [[AverySailing]]
 <<else>>
     KIM: Thank you so much for finding Spot!

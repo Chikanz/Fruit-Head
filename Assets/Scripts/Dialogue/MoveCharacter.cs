@@ -51,5 +51,8 @@ namespace Yarn.Unity {
 			//this.GetComponent<NavMeshAgent> ().destination = location.position;
 		}
 
+
+
+
 	}
 }

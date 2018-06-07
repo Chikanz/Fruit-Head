@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 114476500980298444}
   - component: {fileID: 136448351262428304}
   - component: {fileID: 114133986343809310}
+  - component: {fileID: 114644437681063924}
   m_Layer: 0
   m_Name: Avery
   m_TagString: Untagged
@@ -1778,6 +1779,17 @@ MonoBehaviour:
   lookSpeed: 0.1
   LookAtPlayer: 1
   StartNode: AveryStart
+--- !u!114 &114644437681063924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1150018876124786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d660a89ef838c64fb72fc34990dd8d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136448351262428304
 CapsuleCollider:
   m_ObjectHideFlags: 1

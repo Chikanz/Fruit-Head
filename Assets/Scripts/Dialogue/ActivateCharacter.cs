@@ -10,20 +10,29 @@ public class ActivateCharacter : MonoBehaviour {
 		public bool startActive;
 		SkinnedMeshRenderer[] meshes;
 		Transform originalPosition;
+		static GameObject dialogue;
 
+					
 
 	// Use this for initialization
 	void Start () {
-			originalPosition = gameObject.transform;
-			if (gameObject.name == "Avery") {
-				//set avery's position on the other side of the gate so players can't talk to them before they should
-				gameObject.transform.position -= new Vector3(10, 0, 0);
-			}
 
-			meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer> ();
-			foreach (var m in meshes) {
-				m.enabled = false;
-			}
+			if (!dialogue) dialogue = GameObject.Find("Yarn");
+			//if (gameObject.name == "Avery") {
+				Yarn.Value forestComplete = dialogue.GetComponent<ExampleVariableStorage> ().GetValue ("$foundDog");
+				bool temp = forestComplete.AsBool;
+				if (!temp) {
+					meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer> ();
+					foreach (var m in meshes) {
+						m.enabled = startActive;
+					}
+				}
+			//}
+
+
+			originalPosition = gameObject.transform;
+
+
 	}
 	
 	// Update is called once per frame
