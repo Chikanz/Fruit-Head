@@ -47,9 +47,9 @@ position: 2127,108
 ---
 <<if visited("RedpeelStart") is false>>
 CAPTAIN REDPEEL: How’s it goin’ kid? What brings you to the docks this fine mornin’?
-CHARLIE: I want to go to Berry Island.
-CAPTAIN REDPEEL: Arr, I can take ye. For fifty gold.
-CHARLIE: Fifty...gold?
+CHARLIE: Can you take me to Berry Island?
+CAPTAIN REDPEEL: Arr, I can take ye. For fifty gold doubloons.
+CHARLIE: Fifty...doubloons?
 CAPTAIN REDPEEL: Dollars. It’s fifty dollars.
 CHARLIE: I don't have that much.
 CAPTAIN REDPEEL: Then get goin', kid. I ain't runnin' a charity. Pay or stay. 
@@ -62,6 +62,7 @@ CAPTAIN REDPEEL: You got the money yet, kid?
         CHARLIE: Not yet.
         CAPTAIN REDPEEL: Get on, then. See if anyone around the village needs some help.
     <<else>>    //has the money and is with avery
+    //position avery with redpeel?
         CHARLIE: Yep, we both do.
         CAPTAIN REDPEEL: Arr, excellent.
         CAPTAIN REDPEEL: We be sailin’ soon, so you just hop on board now.
@@ -81,13 +82,13 @@ FINN: Well, yeah, but it's also kind of sweet.
 CHARLIE: Jack wanted me to bring back your answer.
 FINN:...I don't know what to say. I've never thought about Jack like that before. 
 FINN: What do you think, Charlie? 
-->Give Jack a chance
+->Give Jack a chance.
     <<set $finnyes to true>>
-    CHARLIE: You might have some fun together.
+    CHARLIE: You guys could be good together.
     FINN: Yeah. Yeah, you're right. Just-hang on a sec, okay? 
     FINN: [writes something on a piece of paper]
     FINN: Give this to Jack. Thanks, Charlie.
-->I'd stay away
+->I'd stay away.
     <<set $finnyes to false>>   //make no clearer?
     CHARLIE: You're just going to get more terrible poetry.
 	FINN: Hmm, I guess so. 
@@ -184,10 +185,8 @@ position: 2905,108
         CHARLIE: I’m looking for the dog too. You think the two of us can take those wolves?
         AVERY: Depends. How good are you with that bat?
         ->I guess we’ll find out.
-            AVERY: Love the confidence.
-    //shortened from "I just took out an attic full of fruitbats, so."
-    //STILL TOO LONG AAAAAAAAAAAAAAAA
-        ->You should ask Nancy
+            AVERY: Love the confidence, there.
+        ->You should ask Nancy.
             CHARLIE: I just took out an attic full of fruitbats for them.
             AVERY: Well, I guess that’s something. 
         ->I'm amazing.
@@ -371,7 +370,6 @@ position: 876,717
         JACK: Charlie! Can you believe it? Finn agreed to go out with me!
         CHARLIE: I know. I was there.
         JACK: THIS IS THE BEST DAY OF MY LIFE!
-        //finn input?
     <<else>>
         [[Jack3]]
     <<endif>>
@@ -576,12 +574,11 @@ position: 2910,423
 ---
 //after forest and speaking to kim
 AVERY: Well, that wasn't too bad. You're a mean hand with that bat.
-CHARLIE: Thanks.
-//you're not so bad yourself
+CHARLIE: Thanks. 
 AVERY: I can't stick around - I have to catch Captain Redpeel before they set sail.
 CHARLIE: You're going to Berry Island too?
 AVERY: Yeah - wait, are you? That's great, we can go together!
-AVERY: C'mon, we should head to the docks before they leave without us.
+AVERY: Come on, we should head to the docks before they leave without us.
 ===
 title: DaleGreeting
 tags: 
