@@ -74,9 +74,16 @@ public class SceneChanger: MonoBehaviour
 
         if (sceneIndex == 5 && RememberPlayerPos != Vector3.zero)
         {
-            GameObject.FindWithTag("Player").transform.position = RememberPlayerPos;
-            Debug.Log("read player pos");
+            Invoke("pp", 0.1f);
         }
+    }
+
+    void pp()
+    {
+        GameObject.FindWithTag("Player").transform.position = RememberPlayerPos;
+        //var cam = GameObject.Find("CM vcam1").transform;
+        //cam.position = new Vector3(RememberPlayerPos.x, cam.position.y ,RememberPlayerPos.z);
+        Debug.Log("read player pos");
     }
 
     void SetPlayer()
