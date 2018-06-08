@@ -54,13 +54,13 @@ Door: Leave?
     <<if visited("Present") and visited("BaseballBat")>>
         <<Change Scene 1>>
     <<else>>
-        Charlie: Wait a second... I think I forgot something!
+        Charlie: Wait a second... I think I'm forgetting something.
     <<endif>>
     <<else>>
     <<Change Scene 1>>
     <<endif>>
 ->Nah
-    DOOR: Cool! We can hang out for a little longer! 0w0
+    DOOR: Cool! We can hang out for a little longer!
 ===
 title: Toilet
 tags: 
@@ -75,7 +75,6 @@ tags:
 colorID: 4
 position: 993,501
 ---
-BIRD STATUE: A commemorative staue of the purple garbage bird.
-BIRD STATUE: The villagers tell tales of it swooping in and saving this island over 200 years ago.
-Charlie: What great dialogue
+BIRD STATUE: This statue stands tall and watchful. Its eyes seem to follow you wherever you go.
+BIRD STATUE: It's kind of creepy.
 ===
