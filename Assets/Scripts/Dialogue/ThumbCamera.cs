@@ -51,8 +51,12 @@ public class ThumbCamera : MonoBehaviour
     private void DUI_OnDialogueStart(string name)
     {
         //Get player if null
-        if(!player)
-            player = (OW_Player) NPCman.instance.GetCharacter("Charlie");
+        if (!player)
+        {
+            var n = NPCman.instance;
+            Debug.Assert(n, "Can't find NPC man! Did you forget to include one in the scene?");
+            player = (OW_Player) n.GetCharacter("Charlie");
+        }
 
         //Pan in from player position
         //transform.position = player.transform.position + (Vector3.up * 2);
@@ -64,7 +68,8 @@ public class ThumbCamera : MonoBehaviour
 
     private void DUI_OnTargetChanged(string name)
     {
-        Debug.Log(name);
+        //Debug.Log(name);
+        Debug.Assert(NPCman.instance, "Can't find NPC man instance! Did you forget to include one in the scene?");
         var npc = NPCman.instance.GetCharacter(name).transform;
 
         //Stay in one position 

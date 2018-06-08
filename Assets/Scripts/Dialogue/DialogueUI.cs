@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using UnityEngine.Playables;
 using UnityStandardAssets.Characters.ThirdPerson;
 using System;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 /// Displays dialogue lines to the player, and sends
 /// user choices back to the dialogue system.
@@ -40,8 +42,8 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 
     [Tooltip("How long to wait for the options UI transition")]
     public float WaitForUITransition = 0.4f;
-
-    [Tooltip("Turns off during dialogue options")]
+    
+    [HideInInspector]
     public ThirdPersonUserControl playerControl;
 
     //Zac events
@@ -75,7 +77,11 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         // Hide the continue prompt if it exists
         if (continuePrompt != null)
             continuePrompt.SetActive(false);
+
+        playerControl = GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>();
         
+        Debug.Assert(playerControl, "You silly goose! I couldn't find the player! Make sure they're tagged as 'Player' " +
+                                    "and are in the scene! Winkey face! 0w0");
     }
 
     /// Show a line of dialogue, gradually

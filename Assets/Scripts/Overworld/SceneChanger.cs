@@ -20,6 +20,9 @@ public class SceneChanger: MonoBehaviour
 
     public event EventHandler OnSceneChange;
 
+    [HideInInspector]
+    public Vector3 RememberPlayerPos;
+
     void Start ()
     {
         //Enforce singleton
@@ -62,6 +65,18 @@ public class SceneChanger: MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
 
         Invoke("SetPlayer", 0.5f); //AAAAAAAAAAAAAAAAAAAAAAAA
+
+        if (sceneIndex == 4)
+        {
+            RememberPlayerPos = GameObject.FindWithTag("Player").transform.position;
+            Debug.Log("set player pos");
+        }
+
+        if (sceneIndex == 5 && RememberPlayerPos != Vector3.zero)
+        {
+            GameObject.FindWithTag("Player").transform.position = RememberPlayerPos;
+            Debug.Log("read player pos");
+        }
     }
 
     void SetPlayer()

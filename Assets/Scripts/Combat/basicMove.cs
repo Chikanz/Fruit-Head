@@ -20,7 +20,7 @@ public class basicMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Vector3.Distance(transform.position, points[counter].position) < 0.3f)
+        if (Vector3.Distance(transform.position, points[counter].position) < 0.5f)
         {
             
             counter++;

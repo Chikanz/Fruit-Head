@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    public int SceneToExitTo = 1;
+    
     List<CombatCharacter> Enemies = new List<CombatCharacter>();
 
-    bool changingScene = false;
+    private bool _changingScene;
 
 	// Use this for initialization
 	void Start ()
@@ -20,13 +22,13 @@ public class EnemyManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (changingScene) return;
+        if (_changingScene) return;
 
         foreach (CombatCharacter c in Enemies) //yum yum AAAAAAAAAAAAAAAAAAAAAAAAA
         {
             if (!c.IsDead()) return;
-            changingScene = true; 
-            SceneChanger.instance.Change(1);
         }
+        _changingScene = true; 
+        SceneChanger.instance.Change(SceneToExitTo);
     }
 }

@@ -39,7 +39,8 @@ public class NPCman : MonoBehaviour
     {
         OW_Character n;
         Phonebook.TryGetValue(name, out n);
-        if (n == null) Debug.Log("Got a null character");
+        if (n == null) Debug.Log("The NPC " + name + " was not found! Check to make sure they're a child of NPC man " +
+                                 "and the spelling of their name is correct");
         return n;
     }
 }
