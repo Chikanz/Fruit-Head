@@ -11,11 +11,12 @@ public class ActivateCharacter : MonoBehaviour {
 		SkinnedMeshRenderer[] meshes;
 		Transform originalPosition;
 		static GameObject dialogue;
+        SpriteRenderer spriteRend;
 
-					
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+        void Start () {
 
 			if (!dialogue) dialogue = GameObject.Find("Yarn");
 			//if (gameObject.name == "Avery") {
@@ -26,6 +27,8 @@ public class ActivateCharacter : MonoBehaviour {
 					foreach (var m in meshes) {
 						m.enabled = startActive;
 					}
+                spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
+                spriteRend.enabled = startActive;
 				}
 			//}
 
@@ -56,7 +59,10 @@ public class ActivateCharacter : MonoBehaviour {
 			foreach (var m in meshes) {
 				m.enabled = !startActive;
 			}
-		}
+
+            spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
+            spriteRend.enabled = !startActive;
+        }
 
 }
 }
