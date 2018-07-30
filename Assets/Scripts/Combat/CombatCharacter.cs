@@ -131,8 +131,7 @@ public class CombatCharacter : MonoBehaviour
     }
 
     public void OnDestroy()
-    {
-        // Were we destroyed without telling anyone?
+    {        
         if (!hasSentDefeated)
         {
             // Fire the defeated event
