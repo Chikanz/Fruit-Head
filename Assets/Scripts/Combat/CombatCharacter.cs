@@ -5,6 +5,9 @@ using UnityEngine;
 
 /// <summary>
 /// An entity in the combat scene that has health and stats
+/// Combat character:
+//  Bounding box: physics bounds objects that should be at least as tall as the enemy, and a smol space that the player can't enter needs to be a capsule
+//  Hit box: should match the enemy pretty closely and be on the "Hitbox" layer (9)
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class CombatCharacter : MonoBehaviour
@@ -160,7 +163,7 @@ public class CombatCharacter : MonoBehaviour
         Debug.Assert(args is AttackMessage, "Attack recieved message of wrong type! How the fuck did you manage that?");
 
         //Cast from object and read this bad boy
-        AttackMessage attackMess = args as AttackMessage;
+        AttackMessage attackMess = (AttackMessage) args;
 
         int damage = attackMess.DamageStrength;
 
@@ -201,11 +204,16 @@ public class CombatCharacter : MonoBehaviour
         }
 
         //Spawn damage canvas
-        var cap = GetComponent<CapsuleCollider>();
+        var cap = transform.GetChild(1).GetComponent<CapsuleCollider>();
         if (cap)
         {
             var h = Instantiate(HitCanvas);
             h.GetComponent<DamageCanvas>().NewHit(cap, attackMess.DamageStrength, wasCrit);
+        }
+        else
+        {
+            Debug.Log("Bounding box not found on " + gameObject.name + " Is it named \"Bounding Box\"? " +
+                      "Also needs to be a capsule");
         }
 
         // Call the take damage method (should always be last since it sends out the onHurt Event)

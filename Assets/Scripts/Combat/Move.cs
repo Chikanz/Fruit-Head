@@ -115,7 +115,7 @@ public class Move : MonoBehaviour
     /// </summary>
     public virtual void Trigger(GameObject enemy)
     {
-        enemy.SendMessage("Attack", new AttackMessage(Damage, _daddy.gameObject, Knockback));
+        enemy.GetComponentInParent<CombatCharacter>().Attack(new AttackMessage(Damage, _daddy.gameObject, Knockback));
 
         if (DestroyOnHit)
         {

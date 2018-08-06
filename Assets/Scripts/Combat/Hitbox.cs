@@ -18,12 +18,14 @@ public class Hitbox : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        var objs = Physics.OverlapBox(transform.position, GetComponent<BoxCollider>().bounds.extents);
+        var objs = Physics.OverlapBox(transform.position,
+            GetComponent<BoxCollider>().bounds.extents, transform.rotation, ~9);
+        
         foreach(Collider c in objs)
         {
-            if (BeenHit.Contains(c.gameObject)) continue;                   //Already been hit!
-            if (!c.GetComponent<CombatCharacter>()) continue;               //Only care about characters
-            if (c.gameObject.Equals(transform.root.GetChild(0).gameObject)) continue;   //Stop hitting yourself! //FIX THIS
+            if (BeenHit.Contains(c.gameObject)) continue;                           //Already been hit!
+            if (!c.GetComponentInParent<CombatCharacter>()) continue;               //Only care about characters
+            if (c.gameObject.CompareTag("Player")) continue;                       //Stop hitting yourself! 
 
             if (OnHit != null)
             {
