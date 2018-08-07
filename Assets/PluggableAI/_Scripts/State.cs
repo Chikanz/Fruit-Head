@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "PluggableAI/State")]
 public class State : ScriptableObject 
 {
-
 	public Action[] actions;
 	public Transition[] transitions;	
 
@@ -23,14 +22,19 @@ public class State : ScriptableObject
 		}
 	}
 
-	private void CheckTransitions(StateController controller)
+	private void CheckTransitions(StateController c)
 	{
 		foreach (var t in transitions)
 		{
-			if (t.Decision.Decide (controller)) //Find out if we should change to this state 
+			if (t.Decision.Decide (c)) //Find out if we should change to this state 
 			{
+				Debug.Assert(t.NextState != null, "Next state is null, dum dum");
+				
 				Debug.Log("Transitioning to state " + t.NextState.name);
-				controller.TransitionToState (t.NextState); //do it
+				c.TransitionToState (t.NextState); //do it
+				
+				if(!t.AnimationToPlay.Equals("")) //Optional animation to trigger
+					c.GetComponentInChildren<Animator>().SetTrigger(t.AnimationToPlay);
 			}
 		}
 	}

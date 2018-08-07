@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Name: CircleState
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: bb73fe3e143d3304c8d7986a1b8e660c, type: 2}
-  transitions: []
+  - {fileID: 11400000, guid: 4394477a4b51de74288aa9a7ade67c17, type: 2}
+  transitions:
+  - Decision: {fileID: 11400000, guid: a2073d2e33d6f234b916923758835ef3, type: 2}
+    NextState: {fileID: 11400000, guid: 54384fd1431c63c49bb8c610f091053c, type: 2}
+    AnimationToPlay: 

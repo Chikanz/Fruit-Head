@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,13 +17,15 @@ public class StateController : MonoBehaviour
 	public BaseAI MyAI;
 	
 	[HideInInspector] public Transform Target;
-	[HideInInspector] public float stateTimeElapsed;	
+	[HideInInspector] public float stateTimeElapsed;
 
+	public Dictionary<string, object> VarStorage { get; private set; }
 
 	void Awake ()
 	{
 		Target = GameObject.FindWithTag("Player").transform;
 		MyAI = GetComponent<BaseAI>();
+		VarStorage = new Dictionary<string, object>();
 	}
 
 	public void SetupAI()
@@ -56,5 +59,27 @@ public class StateController : MonoBehaviour
 	private void OnExitState()
 	{
 		stateTimeElapsed = 0;
+	}
+
+	/// <summary>
+	/// Since our pluggable AI system behaviour is stateless, per enemy variables can't be stored on the scriptabled objects
+	/// THUSN'TLY we instead use a dict of objects to store and retrieve any variables we might want
+	/// Generics are used to ensure we don't accidentally get the wrong variable type and fuck everything
+	/// Also makes it way cleaner so we don't have to check types every time we call this function
+	/// generics are fucking litty
+	/// </summary>
+	public T GetVar<T>(string name)
+	{
+		object returnVal = null;
+		VarStorage.TryGetValue(name, out returnVal);
+		Debug.Assert(returnVal != null, "Couldn't get var"); //This func shouldn't return nully boyes, use dict contains instead
+		Debug.Assert(returnVal is T, "Var is wrong type"); //Janky type safety ftw
+		
+		return (T) returnVal; //Cast and return knowing we've got the right type
+	}
+
+	public void SetVar(string name, object o)
+	{
+		VarStorage.Add(name, o);
 	}
 }

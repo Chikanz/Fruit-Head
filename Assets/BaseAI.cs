@@ -27,6 +27,8 @@ public class BaseAI : MonoBehaviour
 	{
 		if (velocity == Vector3.zero) return;
 		
+		velocity.y = 0; //Only operate on X and Z (Fixes spazzing out)
+		
 		//Move
 		var finalVel = velocity.normalized * stats.moveSpeed;
 		RB.MovePosition(transform.position + finalVel);

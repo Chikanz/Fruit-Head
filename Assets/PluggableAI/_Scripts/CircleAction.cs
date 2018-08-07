@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu (menuName = "PluggableAI/Actions/Circle")]
-public class NewBehaviourScript : Action
+public class CircleAction : Action
 {
 	public float radius = 3;
 	

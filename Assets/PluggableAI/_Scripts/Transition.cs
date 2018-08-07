@@ -6,5 +6,6 @@ using UnityEngine;
 public class Transition 
 {
 	public Decision Decision;
-	public State NextState;	
+	public State NextState;
+	public string AnimationToPlay; 
 }
