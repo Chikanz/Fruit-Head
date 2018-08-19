@@ -611,6 +611,9 @@ MonoBehaviour:
   - name: finnyes
     value: False
     type: 2
+  - name: biStage
+    value: 0
+    type: 0
   debugTextView: {fileID: 114819443594758568}
 --- !u!114 &114119102831172504
 MonoBehaviour:
@@ -1002,6 +1005,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: b37b2c2dbb4e06848822384106880d94, type: 3}
   - {fileID: 4900000, guid: 4d17b4fff1c76044e9503ff41a8ff07f, type: 3}
   - {fileID: 4900000, guid: 06828e3f81a8b774fa56c005e4863f7c, type: 3}
+  - {fileID: 4900000, guid: 287613470e40b1b4eb210f65b60202e3, type: 3}
+  - {fileID: 4900000, guid: cc1541b1f491b4642bf256d75ac584a5, type: 3}
   stringGroups: []
   shouldOverrideLanguage: 0
   overrideLanguage: 10
@@ -1230,6 +1235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c7b502b7169cd47907fcf193642737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RememberPlayerPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114829728375335036
 MonoBehaviour:
   m_ObjectHideFlags: 1

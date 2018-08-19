@@ -1,0 +1,450 @@
+title: BerryIslandStart
+tags: 
+colorID: 5
+position: -545,-793
+---
+AVERY: Berry Island! We made it! 
+AVERY: I'd forgotten how much I hate ships.
+CHARLIE: I thought you said you'd never left Blossom Island before.
+AVERY: ...I haven't.
+CHARLIE: But you just said you hate ships. If you've never left the island, when--
+AVERY: Don't worry about it, Charlie. We should go and see Kell.
+CHARLIE: Oooookay.
+CHARLIE: You don't have to come with me. Didn't you have someone you wanted to see?
+AVERY: Nah, no rush. I'll come with you.
+->All right, let's go.
+//:) for not questioning
+    AVERY: Thanks, Charlie.
+->Are you sure? 
+    AVERY: Yeah, it's nothing important. I can hang with you a bit longer.
+    CHARLIE: Okay then.
+->Uhhh...Fine.
+    AVERY: Wow, don't get too excited about it. 
+//:(
+AVERY: Have you visited Kell here before? Do you know where they live?
+CHARLIE: Yeah, their house is just up ahead.
+AVERY: Then let's go say hi.
+
+
+===
+title: KellsHouseExt
+tags: 
+colorID: 3
+position: -314,-792
+---
+CHARLIE: This is Kell's house.
+->[Knock]
+    [No answer]
+    AVERY: Try knocking louder?
+    ->[Knock louder]
+        [No answer]
+        AVERY: Maybe they're sleeping in.
+        CHARLIE: Maybe.
+        ->[Enter]
+        //option to leave?
+            <<Change Scene 7>>
+    ->[Enter]
+        <<Change Scene 7>>
+->[Enter]
+    <<Change Scene 7>>
+===
+title: KellsHouseInt
+tags: 
+colorID: 3
+position: -315,-578
+---
+CHARLIE: Kell? It's Charlie.
+CHARLIE: Hello?
+[no answer]
+AVERY: I guess they're not home. Should we wait and see if they come back?
+<<set $biStage to 1.5>>
+->Maybe just for a minute.
+    AVERY: Cool. 
+    AVERY: I wonder what Kell's been up to since they left Blossom Island.
+    CHARLIE: Working, they said. I think they had a job in the mayor's office.
+    AVERY: A politician, huh? Wonder if they've got any interesting dirt on the mayor lying around.
+    AVERY: Want to look around?
+->Let's look around town.
+    <<Change Scene 6>>
+===
+title: Debate
+tags: 
+colorID: 4
+position: 150,-787
+---
+<<activate Eden>>
+<<move Eden Charlie>>
+TAM: You're all smiles and empty words. You wouldn't last a day in office.
+LUCA: What's so bad about a smile?
+TAM: You're weak. You haven't got the guts to do what needs to be done.
+LUCA: You make it all sound so dramatic. 
+LUCA: Friends, thank you for coming today. I know that what you've heard has shown you that I am the best candidate.
+LUCA: Perhaps I am weak, as Tam says. 
+LUCA: But surely it's better to be weak than hard-headed and full of aggression, howling like a mad wolf hungry for violence.
+TAM: What is THAT supposed to mean?
+LUCA: Have a good day, everyone.
+//crowd disperses
+CHARLIE: Hey, do you know what's going on?
+EDEN: The last mayor of Berry Island recently passed away. 
+EDEN: Those two up there are hoping to be the next one.
+CHARLIE: It looked like it was getting pretty heated.
+EDEN: Yeah. That's politics for you.
+EDEN: Are you two visiting? I haven't seen you around before.
+CHARLIE: I'm here to see my sibling, Kell. 
+CHARLIE: Do you know them? They weren't at home.
+EDEN: Yes, I know Kell. They worked for the last mayor.
+EDEN: I haven't seen them in a few days...but they mostly keep to themself.
+EDEN: Was Kell expecting you?
+CHARLIE: I'm here to surprise them for their birthday.
+//if you looked around the house
+//AVERY: It looked like no one had been home for a few days.
+EDEN: Hmm...I wonder...
+EDEN: Several people have gone missing in the last few weeks.
+CHARLIE: Kell's gone missing?!
+EDEN: Well, we don't know that for sure. Why don't you ask around? Maybe someone's seen them.
+EDEN: Come and find me at the police station if you find out anything.
+===
+title: MaisonMeeting
+tags: 
+colorID: 2
+position: 395,-787
+---
+STRANGER: I knew they'd come after me sooner or later.
+STRANGER: Thanks a bunch, friends. Thought I was gone for sure.
+CHARLIE: You're welcome. Are you Maison?
+STRANGER: Who's asking?
+CHARLIE: I'm Charlie, and this is Avery. I'm looking for my sibling, Kell. 
+CHARLIE: I think they've gone missing.
+AVERY: Someone in town said you knew something about the disappearances. //people in town? specific person?
+MAISON: Something? I know EVERYTHING! Come with me, I'll show you.
+
+//load scene--maison's house
+===
+title: MaisonsHouseInt
+tags: 
+colorID: 2
+position: 396,-565
+---
+//standing in front of conspiracy board
+MAISON: ...and that's why people are going missing.
+CHARLIE: ...
+AVERY: ...
+CHARLIE: You think that one of the people going for mayor is kidnapping people?
+AVERY: To EAT them.
+CHARLIE: As part of some weird cult ritual?
+MAISON: You saw the cultists try to get me, right? The cult is real. They're taking people.
+MAISON: Think about it! Who has enough power in this town to make it all just go away?
+MAISON: The mayor, that's who! That's why Tam is trying so hard to win votes.
+MAISON: They want to turn this town into an all-you-can-eat buffet!
+AVERY: Riiiiight...
+AVERY: [muttering] Charlie, they're crazy. //let's get out of here
+CHARLIE: I don't know...maybe they're on to something. We both saw those cultists.
+AVERY: They think Tam is eating people!
+CHARLIE: I didn't say I believed everything they said.
+CHARLIE: Maison, have you told the police about this?
+MAISON: Ha, those idiots? They're useless! 
+MAISON: They wouldn't be able to solve a mystery like this if the culprit was dancing naked in front of them wearing a sombrero!
+CHARLIE: Well, I was talking to one of them earlier and they said they would help me find Kell.
+CHARLIE: Will you come with me and tell them what you told us?
+AVERY: [whispering] This is a terrible idea.
+MAISON: Go to the police? They won't believe me. They're too stupid to see the truth.
+->Please? We need your help.
+->You never know.
+    CHARLIE: They might surprise you. ///???
+->//something mean
+MAISON: ...Fine. Just let me grab a couple of things.
+
+//fade out
+
+
+===
+title: PoliceStation
+tags: 
+colorID: 1
+position: 646,-785
+---
+EDEN: Did you find Kell?
+CHARLIE: No, but we found Maison. They think they know why people are going missing.
+MAISON: Hello there, Officer Eden.
+EDEN: [sigh] Hello, Maison. What is it this time? I told you, no one's been drugging the water.
+MAISON: All those people who've gone missing? I figured it out. Before you.
+MAISON: It's a cult taking them. A cult led by Tam.
+EDEN: ...
+EDEN: A cult.
+MAISON: See, Charlie? I told you they wouldn't believe me.
+CHARLIE: Maison's right - about the cult, anyway. We saw them.
+EDEN: Listen, kid. I don't know you, but I know Maison. Their theories are always getting them into trouble.
+EDEN: Don't let them drag you into this.
+AVERY: I hate to agree with the conspiracy nut, but...we really did see the cult.
+EDEN: [sigh] Even if I believed you...Cults aren't illegal. I can't arrest people for belonging to a cult.
+EDEN: If there IS a cult, and if they ARE taking people, I need proof. Solid proof. Can you give me that?
+->//we'll get it
+->
+->
+EDEN: Good luck. I'll keep an eye out for Kell.
+
+//leave station
+===
+title: OnStationExit
+tags: 
+colorID: 1
+position: 647,-559
+---
+CHARLIE: How are we going to find proof?
+AVERY: Maybe there's some evidence at Kell's house we missed.
+MAISON: We should talk to Tam. Get them to confess.
+AVERY: You don't have to come with us anymore.
+MAISON: If you're hunting the cult, there's no way I'm staying behind.
+MAISON: Besides, they'll be after all of us now that we're on their trail.
+MAISON: We need to stick together. There's safety in numbers.
+AVERY: If you say so.
+AVERY: It'll be a waste of time talking to Tam, though. If they are involved, they're not going to just tell us.
+MAISON: It's a better idea than going to search some empty house.
+AVERY: Guess it's up to you, Charlie.
+===
+title: KellsHouse2
+tags: 
+colorID: 3
+position: 892,-784
+---
+//search for evidence of cult
+===
+title: Tam
+tags: 
+colorID: 4
+position: -317,-314
+---
+//go in and talk to her vs search her office--or both? search first and then she enters?
+//find something suspicious
+TAM: What do you want? I'm busy.
+MAISON: We know what you're up to.
+TAM: What I'm up to is running for office. If you're not here to talk about that, you should leave.
+CHARLIE: We just have a few questions.
+TAM: I don't have time for this. I don't know you, but I know your friend there. Always causing trouble.
+TAM: You all need to--Wait. Avery? Is that you?
+AVERY: Hi, Tam.
+CHARLIE: Avery? You know Tam?
+AVERY: No...
+AVERY: Well. Yes.
+MAISON: This is why you didn't want to come here! You're working with the enemy!
+TAM: The enemy?
+AVERY: I'm not working with Tam.
+TAM: What are you talking about?
+CHARLIE: How do you know each other? Why didn't you say anything before?
+MAISON: Don't listen to them, Charlie, they're here to spy on us!
+TAM: WILL SOMEONE TELL ME WHAT IS GOING ON!
+->What do you know about the missing people?
+    TAM: I know people are going missing. That's it.
+    MAISON: They're lying. I know they're lying.
+    TAM: First you break into my office[????], now you accuse me of lying?
+    TAM: Get out, before I call the police.
+    AVERY: Tam--
+    TAM: All of you.
+    ->[Leave]
+        CHARLIE: Sorry. We'll go. //fade scene
+    ->No. Not until you answer our questions.
+        MAISON: Yeah! //?? answer our questions
+        TAM: Get. Out.
+        CHARLIE: All right, all right, we're going.
+        //exit scene
+->We know you're part of the cult.
+    TAM: [sigh] You've spent too long with this conspiracy nut. //??
+    MAISON: Stop deflecting! We know you're guilty!
+    TAM: All right, I've had enough of this. Get out of my office.
+    CHARLIE: Tell me where Kell is, and we'll go.
+    TAM: I don't know Kell. 
+    TAM: You have three seconds to leave before I call the police.
+    AVERY: Tam--
+    TAM: Get. Out.
+    CHARLIE: All right, we're leaving.
+    MAISON: But we'll be back!
+    //exit scene
+
+===
+title: TamExit
+tags: 
+colorID: 4
+position: -84,-316
+---
+MAISON: You! You're working with the cult!
+AVERY: Calm down, crazy. I'm not working with anybody. //?? 'crazy' too harsh?
+MAISON: You know Tam! You didn't want us to question them!
+->[accuse avery]
+    CHARLIE: Maison's right. You defended Tam.
+    AVERY: Really? You're siding with Maison?
+    AVERY: Listen. I'm not part of any damn cult. And I'm pretty sure Tam isn't, either.
+    MAISON: Prove it!
+    AVERY: How am I supposed to prove it, huh? You obviously don't believe me.
+    CHARLIE: Tell us how you know Tam.
+    [[TamSibling]]
+    
+->[question avery]
+    CHARLIE: Why didn't you tell us you knew Tam?
+    AVERY: Because...it's weird, okay? I haven't seen them in years.
+    CHARLIE: How do you know them?
+    [[TamSibling]]
+
+->[defend avery]
+    CHARLIE: It's all right, Maison. I trust Avery.
+    MAISON: Trust them? After they lied to us?
+    MAISON: I thought you were different, Charlie, but you're just as blind as everyone else.
+    CHARLIE: I believe you about the cult, but I don't think Avery's a part of it.
+    AVERY: I'm not.
+    MAISON: How can you trust them, Charlie? They didn't tell us they knew Tam.
+    CHARLIE: Avery? Will you tell us?
+    [[TamSibling]]
+    
+
+
+
+===
+title: TamSibling
+tags: 
+colorID: 4
+position: -88,-58
+---
+AVERY: ...
+AVERY: Tam's my sibling.
+CHARLIE: Why didn't you say something?
+AVERY: I don't know. I thought...
+AVERY: It doesn't matter. We need to focus on finding Kell.
+AVERY: I swear, Charlie, I'm not part of the cult.
+MAISON: This doesn't prove anything.
+//if visited Kell's house before this
+CHARLIE: Let's just go talk to Officer Eden.
+//if not
+CHARLIE: Let's just go check out Kell's house.
+===
+title: PoliceStation2
+tags: 
+colorID: 1
+position: 142,-313
+---
+EDEN: Hello again. Did you find anything?
+//if visited both places--or one place?
+CHARLIE: We have proof the cult exists.
+MAISON: And Avery is part of it.
+AVERY: I'm not in the damn cult!
+MAISON: But Tam is.
+AVERY: No they aren't!
+EDEN: Tam? Never mind, it doesn't matter.
+EDEN: I told you, I can't go around arresting people just because they belong to a cult.
+EDEN: I need more.
+//else
+CHARLIE: Not yet.
+EDEN: Keep looking, then.
+===
+title: Hideout
+tags: 
+colorID: 6
+position: 639,-308
+---
+//people in cages - one? two?
+MAISON: [w] It's the missing people!
+CHARLIE: Are you sure?
+MAISON: Absolutely. I snuck into Eden's office and took a photo of their files.
+AVERY: Pretty sure that's illegal.
+MAISON: So is trespassing.
+AVERY: Fair point.
+CHARLIE: Avery, can you take a photo? We need to bring back proof.
+[footsteps]
+MAISON: Someone's coming!
+//walking into view in front of cages--luca! in cult clothes
+LUCA: You'll take them to HQ tonight?
+COMPANION: As soon as it's dark.    //someone they've met?
+CHARLIE: LUCA is part of the cult? //??
+LUCA: Good. The ritual is almost ready.
+MAISON: Quick, take a photo! //or another comment
+LUCA: Did you hear something?
+AVERY: Time to go.
+===
+title: PoliceStation3
+tags: 
+colorID: 1
+position: 1153,-302
+---
+MAISON: I was right! About everything!
+AVERY: Not everything.
+EDEN: What? What are you talking about?
+CHARLIE: We found the cult's hideout. They're behind the missing people.
+AVERY: Here, we got photos. [shows phone]
+EDEN: [looks at photos] Those are definitely some of the missing people.
+EDEN: Is that Luca?
+MAISON: I told you so! I told you so!
+MAISON: I said one of them belonged to the cult and you didn't believe me!
+CHARLIE: They said they were leaving tonight. 
+EDEN: Then we need to hurry. 
+//end conversation there? no--need indication of where to go.
+//hideout or luca's place?
+===
+title: HideoutExit
+tags: 
+colorID: 6
+position: 876,-303
+---
+MAISON: I knew it! I was right about the cult!
+AVERY: You were wrong about Tam.
+MAISON: We don't know they're NOT part of the cult.
+AVERY: What would be the point of running against Luca for mayor if they're both part of the cult?
+MAISON: So you don't suspect them. It's clearly working.
+CHARLIE: We need to get the evidence to Eden before the cultists find us.
+===
+title: Luca
+tags: 
+colorID: 2
+position: -315,179
+---
+LUCA: Hello, Officer. And, er, friends. How can I help you?
+EDEN: You're under arrest for the abduction and unlawful detainment[????]. //???????
+LUCA: Under arrest? There must be some mistake.
+MAISON: We know you're part of the cult! We have proof!
+LUCA: Really, Officer Eden, you should know better than to listen to this one. 
+LUCA: Haven't they caused you plenty of trouble in the past?
+LUCA: I'm sure this is all a simple misunderstanding.
+EDEN: They have proof, Luca. Are you going to come quietly?
+LUCA: ... 
+//Luca flees
+MAISON: Quick, after them!
+//chase scene!!
+//uh charlie says nothing in this scene...
+===
+title: Docks
+tags: 
+colorID: 5
+position: -90,179
+---
+//luca on a boat, sailing away
+EDEN: Damn it.
+MAISON: We can't let them get away!
+AVERY: Are there any other boats around?
+CHARLIE: I might know someone who can help.
+AVERY: Oh, no.
+//fade to redpeel conversation?
+//or go straight to final island and thank redpeel as you're leaving the dock there?
+===
+title: KellsDoor
+tags: 
+colorID: 0
+position: -322,-1081
+---
+AVERY: Are we leaving?
+->Yes.
+    AVERY: Cool, let's go.
+    <<Change Scene 6>>
+->Not just yet.
+===
+title: testA
+tags: 
+colorID: 0
+position: 10,-1094
+---
+CHARLIE: hey
+===
+title: KellsHouseExit
+tags: 
+colorID: 3
+position: -81,-787
+---
+AVERY: Hey, do you hear that? There's something up ahead.
+CHARLIE: I hear it. Let's go check it out.
+===
