@@ -326,7 +326,9 @@ public class CombatCharacter : MonoBehaviour
 
         //Reset isPerforming after animation has finished
         //Assumes the animation name is the same as the trigger name
-        var resetTime = DookTools.GetAnimationLength(GetComponent<Animator>(), m.AnimationTriggerName);
+        var resetTime = 1f;
+        if(GetComponent<Animator>())
+            resetTime = DookTools.GetAnimationLength(GetComponent<Animator>(), m.AnimationTriggerName);
         Debug.Assert(resetTime > 0);
         Invoke("ResetMove", resetTime);
     }

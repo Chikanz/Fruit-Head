@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33656083499861374}
   - component: {fileID: 23839197797708920}
   - component: {fileID: 136618405094403126}
-  m_Layer: 0
-  m_Name: Capsule
+  m_Layer: 9
+  m_Name: Hit Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 4237453624735502}
   - component: {fileID: 33171178337812372}
   - component: {fileID: 23858987495619428}
-  - component: {fileID: 114567756739918810}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -56,9 +55,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4383446295324302}
   - component: {fileID: 54318647712020258}
+  - component: {fileID: 114960741246356906}
   - component: {fileID: 114536718291652712}
   - component: {fileID: 114748834120075112}
-  - component: {fileID: 114960741246356906}
   m_Layer: 0
   m_Name: bananaWolf
   m_TagString: Untagged
@@ -293,26 +292,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 30
-  Moves: []
+  Moves:
+  - {fileID: 1773372471602260, guid: 78f8d99308c27bf499441609ec781c0a, type: 2}
   weight: 0.529
   ParticlesOnHit: 1
---- !u!114 &114567756739918810
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1616030363861544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7aaa7bb6b9384548b1e290d925e3732, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: {fileID: 0}
-  enemyStats: {fileID: 0}
-  eyes: {fileID: 0}
-  MyAI: {fileID: 0}
-  Target: {fileID: 0}
-  stateTimeElapsed: 0
 --- !u!114 &114748834120075112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -324,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f8873048e948947a2c7c86c65d9786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceLook: {x: 0, y: 0, z: 0}
 --- !u!114 &114960741246356906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -335,10 +319,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7aaa7bb6b9384548b1e290d925e3732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: {fileID: 0}
+  currentState: {fileID: 11400000, guid: d554706b891717b4eb9f081483e3ee8f, type: 2}
   enemyStats: {fileID: 11400000, guid: 2bb127c14f9e0a24d8d260bb76df28b0, type: 2}
   eyes: {fileID: 0}
   MyAI: {fileID: 0}
+  MyCC: {fileID: 0}
   Target: {fileID: 0}
   stateTimeElapsed: 0
 --- !u!136 &136454731829597486

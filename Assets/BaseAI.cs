@@ -12,7 +12,12 @@ public class BaseAI : MonoBehaviour
 {
 	private Rigidbody RB;
 	private Vector3 velocity;
+	private Vector3 burstVel;
 	private EnemyStats stats;
+
+	private Transform lookatTarget;
+
+	[HideInInspector] public Vector3 forceLook;
 
 	// Use this for initialization
 	private void Start ()
@@ -25,18 +30,34 @@ public class BaseAI : MonoBehaviour
 
 	private void FixedUpdate ()
 	{
-		if (velocity == Vector3.zero) return;
-		
-		velocity.y = 0; //Only operate on X and Z (Fixes spazzing out)
-		
-		//Move
-		var finalVel = velocity.normalized * stats.moveSpeed;
-		RB.MovePosition(transform.position + finalVel);
-		Debug.DrawLine(transform.position, transform.position + finalVel * 100, Color.red);
+		if (velocity == Vector3.zero)
+		{
+			velocity.y = 0; //Only operate on X and Z (Fixes spazzing out)
 
-		//Face direction we're moving in
+			//Move
+			var finalVel = (velocity.normalized * stats.moveSpeed) +
+			               ((burstVel.normalized * stats.moveSpeed) * 2);
+
+			RB.MovePosition(transform.position + finalVel);
+			Debug.DrawLine(transform.position, transform.position + finalVel * 100, Color.red);
+		}
+
+		//Face direction we're moving in, override if we have to
 		var look = Quaternion.LookRotation(velocity.normalized);
+
+		if (lookatTarget)
+		{
+			var l = (lookatTarget.position - transform.position).normalized;
+			look = Quaternion.LookRotation(l);
+		}
+
+		Debug.DrawLine(transform.position,transform.position + (look.eulerAngles * 5), Color.magenta);
+	
+		
 		RB.MoveRotation(Quaternion.Lerp(transform.rotation, look, 0.1f));
+
+		if(burstVel.sqrMagnitude > 0)
+			burstVel *= 0.9f;
 		
 		velocity = Vector3.zero;
 	}
@@ -46,7 +67,21 @@ public class BaseAI : MonoBehaviour
 	/// </summary>
 	/// <param name="v"></param>
 	public void Move(Vector3 v)
+	/// <summary>
 	{
 		velocity += v;
+	}
+
+	/// Move this agent but don't normalize the velocity
+	/// </summary>
+	/// <param name="vUnclamped"></param>
+	public void BurstMove(Vector3 vUnclamped)
+	{
+		burstVel += vUnclamped;
+	}
+
+	public void ForceLookAt(Transform cTarget)
+	{
+		lookatTarget = cTarget;
 	}
 }

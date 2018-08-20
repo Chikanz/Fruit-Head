@@ -13,18 +13,19 @@ public class StateController : MonoBehaviour
 	public EnemyStats enemyStats;
 	public Transform eyes;
 
-	[HideInInspector]
-	public BaseAI MyAI;
+	[HideInInspector] public BaseAI MyAI;
+	[HideInInspector] public CombatCharacter MyCC;
 	
 	[HideInInspector] public Transform Target;
 	[HideInInspector] public float stateTimeElapsed;
-
+	
 	public Dictionary<string, object> VarStorage { get; private set; }
 
 	void Awake ()
 	{
 		Target = GameObject.FindWithTag("Player").transform;
 		MyAI = GetComponent<BaseAI>();
+		MyCC = GetComponent<CombatCharacter>();
 		VarStorage = new Dictionary<string, object>();
 	}
 

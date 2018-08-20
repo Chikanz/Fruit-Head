@@ -81,7 +81,8 @@ public class Move : MonoBehaviour
         _coolDownTimer = CoolDown;
 
         //Set the trigger for the animation
-        _myAnim.SetTrigger(AnimationTriggerName);
+        if(_myAnim)
+            _myAnim.SetTrigger(AnimationTriggerName);
     }
 
     /// <summary>
