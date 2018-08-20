@@ -35,7 +35,7 @@ namespace Yarn.Unity {
                 UpdateAnimator(move);
 
                 if (Vector3.Distance (transform.position, destination.position) < 2.0f) {
-					if (target.GetComponent<OW_Character> ().Name == "Charlie") {
+					if (target.GetComponent<OW_Character> ().Name == "Charlie" && gameObject.name != "Eden") {
 						string startNode = gameObject.GetComponent<OW_NPC> ().StartNode;
 						dialogue.GetComponent<DialogueRunner>().StartDialogue (startNode);
 					}

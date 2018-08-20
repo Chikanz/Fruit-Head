@@ -156,7 +156,17 @@ ModelImporter:
     4300000: banana1:pCylinder2
     7400000: standStill
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bananaBrown
+    second: {fileID: 2100000, guid: ce261ed1a09df3c4494ce8d58cc60927, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bananaYellow
+    second: {fileID: 2100000, guid: a03b5d64c50bd8b4396b8954edec45b0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -215,7 +225,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 10
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

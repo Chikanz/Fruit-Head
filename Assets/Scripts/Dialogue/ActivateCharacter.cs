@@ -18,19 +18,39 @@ public class ActivateCharacter : MonoBehaviour {
     // Use this for initialization
         void Start () {
 
-			if (!dialogue) dialogue = GameObject.Find("Yarn");
-			//if (gameObject.name == "Avery") {
-				Yarn.Value forestComplete = dialogue.GetComponent<ExampleVariableStorage> ().GetValue ("$foundDog");
-				bool temp = forestComplete.AsBool;
-				if (!temp) {
-					meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer> ();
-					foreach (var m in meshes) {
-						m.enabled = startActive;
-					}
+            
+            if (!dialogue) dialogue = GameObject.Find("Yarn");
+            
+            Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
+            float stage = biStage.AsNumber;
+            if (stage == 0)
+            {
+                //activate avery on blossom island
+                Yarn.Value forestComplete = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$foundDog");
+                bool temp = forestComplete.AsBool;
+                if (!temp)
+                {
+                    meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+                    foreach (var m in meshes)
+                    {
+                        m.enabled = startActive;
+                    }
+                    spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
+                    spriteRend.enabled = startActive;
+                }
+            }
+
+            if (gameObject.name == "Eden")
+            {
+                meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+                foreach (var m in meshes)
+                {
+                    m.enabled = startActive;
+                }
                 spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
                 spriteRend.enabled = startActive;
-				}
-			//}
+            }
+			
 
 
 			originalPosition = gameObject.transform;
@@ -38,10 +58,7 @@ public class ActivateCharacter : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-	}
+	
 
 
 		[YarnCommand("activate")]

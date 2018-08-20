@@ -14,6 +14,7 @@ public class BaseAI : MonoBehaviour
 	private Vector3 velocity;
 	private Vector3 burstVel;
 	private EnemyStats stats;
+    private Animator m_Animator;
 
 	private Transform lookatTarget;
 
@@ -26,7 +27,9 @@ public class BaseAI : MonoBehaviour
 		RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
 		stats = GetComponent<StateController>().enemyStats;
-	}
+
+        m_Animator = GetComponent<Animator>();
+    }
 
 	private void FixedUpdate ()
 	{
@@ -60,6 +63,10 @@ public class BaseAI : MonoBehaviour
 			burstVel *= 0.9f;
 		
 		velocity = Vector3.zero;
+
+		//test
+        UpdateAnimator(transform.position + finalVel);
+
 	}
 
 	/// <summary>
@@ -84,4 +91,15 @@ public class BaseAI : MonoBehaviour
 	{
 		lookatTarget = cTarget;
 	}
+
+	//from ThirdPersonCharacter, so the animations play when it moves
+    void UpdateAnimator(Vector3 move)
+    {
+        float m_TurnAmount = Mathf.Atan2(move.x, move.z);
+        float m_ForwardAmount = move.z;
+        // update the animator parameters
+        m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
+        m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
+
+    }
 }
