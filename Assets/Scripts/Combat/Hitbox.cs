@@ -9,11 +9,13 @@ public class Hitbox : MonoBehaviour
 
     HashSet<GameObject> BeenHit = new HashSet<GameObject>(); //List of who's been hit
 
+    private Transform daddy; //our root character combat script
+
     // Use this for initialization
     void Start ()
     {
-		
-	}
+        daddy = GetComponentInParent<Move>().daddy;
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -25,7 +27,10 @@ public class Hitbox : MonoBehaviour
         {
             if (BeenHit.Contains(c.gameObject)) continue;                           //Already been hit!
             if (!c.GetComponentInParent<CombatCharacter>()) continue;               //Only care about characters
-            if (c.gameObject.CompareTag("Player")) continue;                       //Stop hitting yourself! 
+            if (c.transform.parent.name == daddy.name) continue;                       //Stop hitting yourself!
+
+            if (c.transform.parent.name != daddy.name)
+                Debug.Log("hit " + c.transform.parent.name);
 
             if (OnHit != null)
             {

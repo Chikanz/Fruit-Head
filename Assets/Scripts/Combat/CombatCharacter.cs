@@ -119,7 +119,10 @@ public class CombatCharacter : MonoBehaviour
             _moveParent = transform.GetChild(0);
             foreach (GameObject m in Moves)
             {
-                var g = Instantiate(m, Vector3.zero, Quaternion.identity, _moveParent);
+                var g = Instantiate(m, Vector3.zero, Quaternion.identity);
+                g.transform.SetParent(_moveParent,false);
+                g.transform.localRotation = Quaternion.identity;
+                g.transform.localPosition = Vector3.zero;
                 var moveObj = g.GetComponent<Move>();
                 g.transform.localPosition = Vector3.zero;
                 Debug.Assert(moveObj, "No move component was found on " + m.name);

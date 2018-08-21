@@ -18,6 +18,7 @@ public class State : ScriptableObject
 	{
 		foreach (var a in actions)
 		{
+			if(!a) continue;
 			a.Act (controller);
 		}
 	}

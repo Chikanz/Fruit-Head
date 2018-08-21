@@ -17,8 +17,7 @@ public class BaseAI : MonoBehaviour
     private Animator m_Animator;
 
 	private Transform lookatTarget;
-
-	[HideInInspector] public Vector3 forceLook;
+	private EnemyManager _EM;
 
 	// Use this for initialization
 	private void Start ()
@@ -29,33 +28,33 @@ public class BaseAI : MonoBehaviour
 		stats = GetComponent<StateController>().enemyStats;
 
         m_Animator = GetComponent<Animator>();
-    }
+
+		_EM = GetComponentInParent<EnemyManager>();
+	}
 
 	private void FixedUpdate ()
 	{
-		if (velocity == Vector3.zero)
-		{
-			velocity.y = 0; //Only operate on X and Z (Fixes spazzing out)
+		velocity.y = 0; //Only operate on X and Z (Fixes spazzing out)
+		
+		if(velocity.magnitude > 1) velocity.Normalize();
 
-			//Move
-			var finalVel = (velocity.normalized * stats.moveSpeed) +
-			               ((burstVel.normalized * stats.moveSpeed) * 2);
+		//Move
+		var finalVel = (velocity * stats.moveSpeed); //+
+		               //((burstVel * stats.moveSpeed) * 2);		               
 
-			RB.MovePosition(transform.position + finalVel);
-			Debug.DrawLine(transform.position, transform.position + finalVel * 100, Color.red);
-		}
+		RB.MovePosition(transform.position + finalVel);
+		Debug.DrawLine(transform.position, transform.position + finalVel * 100, Color.red);
+		
 
-		//Face direction we're moving in, override if we have to
-		var look = Quaternion.LookRotation(velocity.normalized);
+		//Face direction we're moving in, override if we have to		
+		var look = velocity == Vector3.zero ?
+			transform.rotation : Quaternion.LookRotation(velocity.normalized); //Don't face velocity when not moving
 
 		if (lookatTarget)
 		{
 			var l = (lookatTarget.position - transform.position).normalized;
 			look = Quaternion.LookRotation(l);
-		}
-
-		Debug.DrawLine(transform.position,transform.position + (look.eulerAngles * 5), Color.magenta);
-	
+		}	
 		
 		RB.MoveRotation(Quaternion.Lerp(transform.rotation, look, 0.1f));
 
@@ -63,9 +62,6 @@ public class BaseAI : MonoBehaviour
 			burstVel *= 0.9f;
 		
 		velocity = Vector3.zero;
-
-		//test
-        UpdateAnimator(transform.position + finalVel);
 
 	}
 
@@ -91,15 +87,4 @@ public class BaseAI : MonoBehaviour
 	{
 		lookatTarget = cTarget;
 	}
-
-	//from ThirdPersonCharacter, so the animations play when it moves
-    void UpdateAnimator(Vector3 move)
-    {
-        float m_TurnAmount = Mathf.Atan2(move.x, move.z);
-        float m_ForwardAmount = move.z;
-        // update the animator parameters
-        m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
-        m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
-
-    }
 }

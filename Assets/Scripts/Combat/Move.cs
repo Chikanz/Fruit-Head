@@ -35,11 +35,15 @@ public class Move : MonoBehaviour
     [Tooltip("Should we destroy this hitbox after it hits an enemy?")]
     private bool DestroyOnHit;
 
+    [Tooltip("if no, this class will w8 for an animation event to trigger is. Ticking this will fire the move immediately")]
+    public bool fireImmediate = false;
+
     private GameObject ActiveObject; //The hitbox/projectile spawned
 
     private Animator _myAnim;
 
-    private Transform _daddy;
+    [HideInInspector]
+    public Transform daddy;
 
     private bool _isSubscribed;
 
@@ -48,8 +52,10 @@ public class Move : MonoBehaviour
 
     private void Start()
     {
-        _daddy = transform.parent.parent;
-        _myAnim = _daddy.GetComponent<Animator>();
+        daddy = transform.parent.parent;
+        _myAnim = daddy.GetComponent<Animator>();
+
+        ToggleChild(false);
 
         //set hitbox if we've got one
         //if (transform.childCount == 1)
@@ -83,6 +89,10 @@ public class Move : MonoBehaviour
         //Set the trigger for the animation
         if(_myAnim)
             _myAnim.SetTrigger(AnimationTriggerName);
+        
+        //Fire now if that's a thing we're doing 
+        if(fireImmediate)
+            Execute();
     }
 
     /// <summary>
@@ -116,7 +126,7 @@ public class Move : MonoBehaviour
     /// </summary>
     public virtual void Trigger(GameObject enemy)
     {
-        enemy.GetComponentInParent<CombatCharacter>().Attack(new AttackMessage(Damage, _daddy.gameObject, Knockback));
+        enemy.GetComponentInParent<CombatCharacter>().Attack(new AttackMessage(Damage, daddy.gameObject, Knockback));
 
         if (DestroyOnHit)
         {
