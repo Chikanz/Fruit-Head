@@ -32,7 +32,7 @@ public class startDialogue : MonoBehaviour {
             {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("BerryIslandStart");
             }
-            else if (stage == 1.5)
+            else if (stage == 2)
             {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("KellsHouseExit");
             }
@@ -52,7 +52,7 @@ public class startDialogue : MonoBehaviour {
         Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
         float stage = biStage.AsNumber;
         print("debate");
-        if (stage == 1.5)
+        if (stage == 2)
         {
             dialogue.GetComponent<DialogueRunner>().StartDialogue("Debate");
         }

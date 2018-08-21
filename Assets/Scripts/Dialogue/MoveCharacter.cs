@@ -35,11 +35,17 @@ namespace Yarn.Unity {
                 UpdateAnimator(move);
 
                 if (Vector3.Distance (transform.position, destination.position) < 2.0f) {
-					if (target.GetComponent<OW_Character> ().Name == "Charlie" && gameObject.name != "Eden") {
+					if (gameObject.name != "Eden" && gameObject.name != "Alvy" && gameObject.name != "Sam" && target.GetComponent<OW_Character>().Name == "Charlie") {
 						string startNode = gameObject.GetComponent<OW_NPC> ().StartNode;
 						dialogue.GetComponent<DialogueRunner>().StartDialogue (startNode);
 					}
-					target = null;
+
+                    if (gameObject.name == "Alvy" || gameObject.name == "Sam" || (gameObject.name == "Eden" && target.gameObject.name == "PoliceStationExt"))
+                    {
+                        Destroy(gameObject);
+                    }
+
+                    target = null;
 				}
 			}
 

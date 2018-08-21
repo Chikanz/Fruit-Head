@@ -20,7 +20,9 @@ public class ActivateCharacter : MonoBehaviour {
 
             
             if (!dialogue) dialogue = GameObject.Find("Yarn");
-            
+            meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+            spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
+
             Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
             float stage = biStage.AsNumber;
             if (stage == 0)
@@ -30,27 +32,21 @@ public class ActivateCharacter : MonoBehaviour {
                 bool temp = forestComplete.AsBool;
                 if (!temp)
                 {
-                    meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
                     foreach (var m in meshes)
                     {
                         m.enabled = startActive;
                     }
-                    spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
                     spriteRend.enabled = startActive;
                 }
             }
-
-            if (gameObject.name == "Eden")
+            else
             {
-                meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
-                foreach (var m in meshes)
+                if (!startActive && gameObject.name != "Avery")
                 {
-                    m.enabled = startActive;
+                    disableMesh();
                 }
-                spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
-                spriteRend.enabled = startActive;
+
             }
-			
 
 
 			originalPosition = gameObject.transform;
@@ -63,7 +59,7 @@ public class ActivateCharacter : MonoBehaviour {
 
 		[YarnCommand("activate")]
 		public void activate() {
-			print (gameObject.name);
+			//print (gameObject.name);
 			if (gameObject.name == "Kim") {
 				Vector3 temp = Camera.main.ViewportToWorldPoint (new Vector3 (1.1f, 0.5f, 15.0f));
 				gameObject.transform.position = temp;
@@ -73,13 +69,41 @@ public class ActivateCharacter : MonoBehaviour {
 				gameObject.transform.position += new Vector3(10, 0, 0);
 			}
 
-			foreach (var m in meshes) {
-				m.enabled = !startActive;
-			}
+            enableMesh();
 
-            spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
-            spriteRend.enabled = !startActive;
         }
 
-}
+        [YarnCommand("start")]
+        public void makeActive()
+        {
+            //ameObject temp = GameObject.Find("Townspeople");
+            print("activate");
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+
+        public void disableMesh()
+        {
+            foreach (var m in meshes)
+            {
+                m.enabled = false;
+            }
+
+            spriteRend.enabled = false;
+        }
+
+
+        public void enableMesh()
+        {
+            foreach (var m in meshes)
+            {
+                m.enabled = true;
+            }
+
+            spriteRend.enabled = true;
+        }
+
+    }
 }

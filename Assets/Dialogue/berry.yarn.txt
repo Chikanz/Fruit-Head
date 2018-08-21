@@ -51,13 +51,13 @@ CHARLIE: This is Kell's house.
 title: KellsHouseInt
 tags: 
 colorID: 3
-position: -315,-578
+position: -314,-584
 ---
 CHARLIE: Kell? It's Charlie.
 CHARLIE: Hello?
 [no answer]
 AVERY: I guess they're not home. Should we wait and see if they come back?
-<<set $biStage to 1.5>>
+<<set $biStage to 2>>
 ->Maybe just for a minute.
     AVERY: Cool. 
     AVERY: I wonder what Kell's been up to since they left Blossom Island.
@@ -72,6 +72,7 @@ tags:
 colorID: 4
 position: 150,-787
 ---
+//<<move Charlie Debate>>
 <<activate Eden>>
 <<move Eden Charlie>>
 TAM: You're all smiles and empty words. You wouldn't last a day in office.
@@ -83,7 +84,9 @@ LUCA: Perhaps I am weak, as Tam says.
 LUCA: But surely it's better to be weak than hard-headed and full of aggression, howling like a mad wolf hungry for violence.
 TAM: What is THAT supposed to mean?
 LUCA: Have a good day, everyone.
-//crowd disperses
+<<move Alvy AlvysHouseExt>>
+<<move Sam SamsHouseExt>>
+
 CHARLIE: Hey, do you know what's going on?
 EDEN: The last mayor of Berry Island recently passed away. 
 EDEN: Those two up there are hoping to be the next one.
@@ -101,24 +104,29 @@ CHARLIE: I'm here to surprise them for their birthday.
 EDEN: Hmm...I wonder...
 EDEN: Several people have gone missing in the last few weeks.
 CHARLIE: Kell's gone missing?!
-EDEN: Well, we don't know that for sure. Why don't you ask around? Maybe someone's seen them.
+EDEN: We don't know that for sure. Why don't you ask around? Maybe someone's seen them.
 EDEN: Come and find me at the police station if you find out anything.
+<<move Eden PoliceStationExt>>
+<<set $biStage to 3>>
+<<activate Maison>>
+
+
 ===
 title: MaisonMeeting
 tags: 
 colorID: 2
 position: 395,-787
 ---
-STRANGER: I knew they'd come after me sooner or later.
-STRANGER: Thanks a bunch, friends. Thought I was gone for sure.
+MAISON: I knew they'd come after me sooner or later.
+MAISON: Thanks a bunch, friends. Thought I was gone for sure.
 CHARLIE: You're welcome. Are you Maison?
-STRANGER: Who's asking?
+MAISON: Who's asking?
 CHARLIE: I'm Charlie, and this is Avery. I'm looking for my sibling, Kell. 
 CHARLIE: I think they've gone missing.
 AVERY: Someone in town said you knew something about the disappearances. //people in town? specific person?
 MAISON: Something? I know EVERYTHING! Come with me, I'll show you.
+<<Change Scene 7>>
 
-//load scene--maison's house
 ===
 title: MaisonsHouseInt
 tags: 
@@ -154,7 +162,7 @@ MAISON: Go to the police? They won't believe me. They're too stupid to see the t
 ->//something mean
 MAISON: ...Fine. Just let me grab a couple of things.
 
-//fade out
+<<Change Scene 6>>
 
 
 ===
@@ -436,7 +444,7 @@ AVERY: Are we leaving?
 title: testA
 tags: 
 colorID: 0
-position: 10,-1094
+position: -1064,-1037
 ---
 CHARLIE: hey
 ===
@@ -447,4 +455,78 @@ position: -81,-787
 ---
 AVERY: Hey, do you hear that? There's something up ahead.
 CHARLIE: I hear it. Let's go check it out.
+<<activate Luca>>
+<<activate Tam>>
+<<start Townspeople>>
+//<<activate Bailey>>
+//<<activate Devon>>
+//<<activate Riley>>
+//<<activate Ash>>
+//<<activate Sam>>
+//<<activate Alvy>>
+//<<activate Dee>>
+
+
+===
+title: DR
+tags: 
+colorID: 4
+position: 151,-558
+---
+//devon and riley conversation
+DEVON: tam blah blah
+RILEY: no luca etc words and things
+CHARLIE: Do either of you know Kell?
+DEVON: Who?
+RILEY: Kell...Kell...Didn't they work for the old mayor?
+CHARLIE: Yeah, I'm trying to find them.
+RILEY: Can't help you, sorry.
+===
+title: Alvy
+tags: 
+colorID: 4
+position: 242,-1139
+---
+CHARLIE: Hey, do you know Kell?
+===
+title: Sam
+tags: 
+colorID: 4
+position: 73,-989
+---
+CHARLIE: Hey, do you know Kell?
+===
+title: BA
+tags: 
+colorID: 4
+position: -49,-1182
+---
+BAILEY: the words
+ASH: more of the words
+===
+title: Dee
+tags: 
+colorID: 4
+position: 267,-994
+---
+CHARLIE: Do you know Kell?
+DEE: Yes, I know them. Why do you ask?
+CHARLIE: I'm trying to find them. 
+DEE: I haven't seen them since the old mayor died a few days ago.
+CHARLIE: I think they've gone missing.
+DEE: Missing? You haven't been talking to Maison, have you?
+DEE: That troublemaker was snooping around here the other day, claiming they were trying to find the missing people.
+DEE: I'm sure Kell's just fine.
+//leaves
+AVERY: Sounds like this Maison might have an idea about what's going on.
+CHARLIE: Let's go find them.
+
+===
+title: Station
+tags: 
+colorID: 1
+position: 647,-997
+---
+MAISON: Let's go in and hope these dancing monkeys can understand the truth.
+<<Change Scene 9>>
 ===
