@@ -36,13 +36,26 @@ public class startDialogue : MonoBehaviour {
             {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("KellsHouseExit");
             }
+            else if (stage == 3)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("TownHallExit");
+            }
+            else if (stage == 5)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("StationExit");
+            }
         }
         else if (scene == "KellsHouse")
         {
-            if (stage == 1)
-            {
-                dialogue.GetComponent<DialogueRunner>().StartDialogue("KellsHouseInt");
-            }
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("KellsHouseInt");
+        }
+        else if (scene == "MaisonsHouse")
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("MaisonsHouseInt");
+        }
+        else if (scene == "Station")
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("StationInt");
         }
     }
 

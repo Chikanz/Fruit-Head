@@ -1,7 +1,7 @@
 title: BerryIslandStart
 tags: 
 colorID: 5
-position: -545,-793
+position: -842,-1214
 ---
 AVERY: Berry Island! We made it! 
 AVERY: I'd forgotten how much I hate ships.
@@ -30,8 +30,9 @@ AVERY: Then let's go say hi.
 title: KellsHouseExt
 tags: 
 colorID: 3
-position: -314,-792
+position: -624,-1215
 ---
+<<if $biStage is 1>>
 CHARLIE: This is Kell's house.
 ->[Knock]
     [No answer]
@@ -47,12 +48,17 @@ CHARLIE: This is Kell's house.
         <<Change Scene 7>>
 ->[Enter]
     <<Change Scene 7>>
+<<endif>>
+<<if $biStage is 2>>
+        AVERY: We know Kell's not here. We should go check out what that noise is.
+<<endif>>
 ===
 title: KellsHouseInt
 tags: 
 colorID: 3
-position: -314,-584
+position: -408,-1214
 ---
+<<if $biStage is 1>>
 CHARLIE: Kell? It's Charlie.
 CHARLIE: Hello?
 [no answer]
@@ -66,14 +72,15 @@ AVERY: I guess they're not home. Should we wait and see if they come back?
     AVERY: Want to look around?
 ->Let's look around town.
     <<Change Scene 6>>
+<<endif>>
 ===
 title: Debate
 tags: 
 colorID: 4
-position: 150,-787
+position: 27,-1214
 ---
 //<<move Charlie Debate>>
-<<activate Eden>>
+<<show Eden>>
 <<move Eden Charlie>>
 TAM: You're all smiles and empty words. You wouldn't last a day in office.
 LUCA: What's so bad about a smile?
@@ -86,9 +93,10 @@ TAM: What is THAT supposed to mean?
 LUCA: Have a good day, everyone.
 <<move Alvy AlvysHouseExt>>
 <<move Sam SamsHouseExt>>
-
+<<move Luca TownHallExt>>
 CHARLIE: Hey, do you know what's going on?
 EDEN: The last mayor of Berry Island recently passed away. 
+<<move Tam TownHallExt>>
 EDEN: Those two up there are hoping to be the next one.
 CHARLIE: It looked like it was getting pretty heated.
 EDEN: Yeah. That's politics for you.
@@ -99,8 +107,8 @@ EDEN: Yes, I know Kell. They worked for the last mayor.
 EDEN: I haven't seen them in a few days...but they mostly keep to themself.
 EDEN: Was Kell expecting you?
 CHARLIE: I'm here to surprise them for their birthday.
-//if you looked around the house
-//AVERY: It looked like no one had been home for a few days.
+    //if you looked around the house
+    //AVERY: It looked like no one had been home for a few days.
 EDEN: Hmm...I wonder...
 EDEN: Several people have gone missing in the last few weeks.
 CHARLIE: Kell's gone missing?!
@@ -108,14 +116,14 @@ EDEN: We don't know that for sure. Why don't you ask around? Maybe someone's see
 EDEN: Come and find me at the police station if you find out anything.
 <<move Eden PoliceStationExt>>
 <<set $biStage to 3>>
-<<activate Maison>>
+<<show Maison>>
 
 
 ===
 title: MaisonMeeting
 tags: 
 colorID: 2
-position: 395,-787
+position: 464,-1213
 ---
 MAISON: I knew they'd come after me sooner or later.
 MAISON: Thanks a bunch, friends. Thought I was gone for sure.
@@ -125,13 +133,13 @@ CHARLIE: I'm Charlie, and this is Avery. I'm looking for my sibling, Kell.
 CHARLIE: I think they've gone missing.
 AVERY: Someone in town said you knew something about the disappearances. //people in town? specific person?
 MAISON: Something? I know EVERYTHING! Come with me, I'll show you.
-<<Change Scene 7>>
+<<Change Scene 8>>
 
 ===
 title: MaisonsHouseInt
 tags: 
 colorID: 2
-position: 396,-565
+position: 470,-999
 ---
 //standing in front of conspiracy board
 MAISON: ...and that's why people are going missing.
@@ -161,16 +169,17 @@ MAISON: Go to the police? They won't believe me. They're too stupid to see the t
     CHARLIE: They might surprise you. ///???
 ->//something mean
 MAISON: ...Fine. Just let me grab a couple of things.
-
+<<set $biStage to 4>>
 <<Change Scene 6>>
 
 
 ===
-title: PoliceStation
+title: StationInt
 tags: 
 colorID: 1
-position: 646,-785
+position: 692,-991
 ---
+<<if $biStage is 4>>
 EDEN: Did you find Kell?
 CHARLIE: No, but we found Maison. They think they know why people are going missing.
 MAISON: Hello there, Officer Eden.
@@ -186,26 +195,28 @@ EDEN: Don't let them drag you into this.
 AVERY: I hate to agree with the conspiracy nut, but...we really did see the cult.
 EDEN: [sigh] Even if I believed you...Cults aren't illegal. I can't arrest people for belonging to a cult.
 EDEN: If there IS a cult, and if they ARE taking people, I need proof. Solid proof. Can you give me that?
-->//we'll get it
-->
-->
+->a
+->b
+->c
 EDEN: Good luck. I'll keep an eye out for Kell.
+<<set $biStage to 5>>
+<<endif>>
 
-//leave station
+<<Change Scene 6>>
 ===
-title: OnStationExit
+title: StationExit
 tags: 
 colorID: 1
-position: 647,-559
+position: 691,-769
 ---
 CHARLIE: How are we going to find proof?
 AVERY: Maybe there's some evidence at Kell's house we missed.
 MAISON: We should talk to Tam. Get them to confess.
-AVERY: You don't have to come with us anymore.
+AVERY: You don't have to come with us anymore, Maison.
 MAISON: If you're hunting the cult, there's no way I'm staying behind.
-MAISON: Besides, they'll be after all of us now that we're on their trail.
-MAISON: We need to stick together. There's safety in numbers.
-AVERY: If you say so.
+MAISON: Besides, they'll be after all of us now that we're on their trail. We need to stick together. 
+MAISON: There's safety in numbers.
+AVERY: If you say so...
 AVERY: It'll be a waste of time talking to Tam, though. If they are involved, they're not going to just tell us.
 MAISON: It's a better idea than going to search some empty house.
 AVERY: Guess it's up to you, Charlie.
@@ -213,14 +224,14 @@ AVERY: Guess it's up to you, Charlie.
 title: KellsHouse2
 tags: 
 colorID: 3
-position: 892,-784
+position: -629,-997
 ---
 //search for evidence of cult
 ===
-title: Tam
+title: TamStage
 tags: 
 colorID: 4
-position: -317,-314
+position: -638,-43
 ---
 //go in and talk to her vs search her office--or both? search first and then she enters?
 //find something suspicious
@@ -272,7 +283,7 @@ TAM: WILL SOMEONE TELL ME WHAT IS GOING ON!
 title: TamExit
 tags: 
 colorID: 4
-position: -84,-316
+position: -360,-67
 ---
 MAISON: You! You're working with the cult!
 AVERY: Calm down, crazy. I'm not working with anybody. //?? 'crazy' too harsh?
@@ -326,7 +337,7 @@ CHARLIE: Let's just go check out Kell's house.
 title: PoliceStation2
 tags: 
 colorID: 1
-position: 142,-313
+position: 695,-556
 ---
 EDEN: Hello again. Did you find anything?
 //if visited both places--or one place?
@@ -344,8 +355,8 @@ EDEN: Keep looking, then.
 ===
 title: Hideout
 tags: 
-colorID: 6
-position: 639,-308
+colorID: 0
+position: 923,-1205
 ---
 //people in cages - one? two?
 MAISON: [w] It's the missing people!
@@ -369,7 +380,7 @@ AVERY: Time to go.
 title: PoliceStation3
 tags: 
 colorID: 1
-position: 1153,-302
+position: 693,-328
 ---
 MAISON: I was right! About everything!
 AVERY: Not everything.
@@ -387,8 +398,8 @@ EDEN: Then we need to hurry.
 ===
 title: HideoutExit
 tags: 
-colorID: 6
-position: 876,-303
+colorID: 0
+position: 922,-983
 ---
 MAISON: I knew it! I was right about the cult!
 AVERY: You were wrong about Tam.
@@ -397,10 +408,10 @@ AVERY: What would be the point of running against Luca for mayor if they're both
 MAISON: So you don't suspect them. It's clearly working.
 CHARLIE: We need to get the evidence to Eden before the cultists find us.
 ===
-title: Luca
+title: LucaStage
 tags: 
 colorID: 2
-position: -315,179
+position: 339,-31
 ---
 LUCA: Hello, Officer. And, er, friends. How can I help you?
 EDEN: You're under arrest for the abduction and unlawful detainment[????]. //???????
@@ -419,7 +430,7 @@ MAISON: Quick, after them!
 title: Docks
 tags: 
 colorID: 5
-position: -90,179
+position: 1146,-1204
 ---
 //luca on a boat, sailing away
 EDEN: Damn it.
@@ -432,8 +443,8 @@ AVERY: Oh, no.
 ===
 title: KellsDoor
 tags: 
-colorID: 0
-position: -322,-1081
+colorID: 3
+position: -406,-999
 ---
 AVERY: Are we leaving?
 ->Yes.
@@ -444,70 +455,82 @@ AVERY: Are we leaving?
 title: testA
 tags: 
 colorID: 0
-position: -1064,-1037
+position: -1246,-906
 ---
 CHARLIE: hey
 ===
 title: KellsHouseExit
 tags: 
 colorID: 3
-position: -81,-787
+position: -190,-1215
 ---
+<<show Devon>>
+<<show Riley>>
+<<show Luca>>
+<<show Tam>>
+<<show Bailey>>
+<<show Ash>>
+<<show Dee>>
+<<show Sam>>
+<<show Alvy>>
+
 AVERY: Hey, do you hear that? There's something up ahead.
 CHARLIE: I hear it. Let's go check it out.
-<<activate Luca>>
-<<activate Tam>>
-<<start Townspeople>>
-//<<activate Bailey>>
-//<<activate Devon>>
-//<<activate Riley>>
-//<<activate Ash>>
-//<<activate Sam>>
-//<<activate Alvy>>
-//<<activate Dee>>
+
 
 
 ===
 title: DR
 tags: 
 colorID: 4
-position: 151,-558
+position: 244,-1212
 ---
-//devon and riley conversation
-DEVON: tam blah blah
-RILEY: no luca etc words and things
+DEVON: Tam has a point. Just think about it. Luca talks a good game, but what have they actually done?
+DEVON: At least Tam worked with the previous mayor, so they know what the job involves.
+RILEY: Yeah, maybe...But Luca was right. Tam's so aggressive. I don't know if I want a mayor like that.
+//aggressive???
 CHARLIE: Do either of you know Kell?
 DEVON: Who?
 RILEY: Kell...Kell...Didn't they work for the old mayor?
 CHARLIE: Yeah, I'm trying to find them.
-RILEY: Can't help you, sorry.
+RILEY: Can't help you, sorry. We should get back to work.
+<<move Riley BankExt>>
+<<move Devon BankExt>>
+
 ===
 title: Alvy
 tags: 
 colorID: 4
-position: 242,-1139
+position: 28,-791
 ---
-CHARLIE: Hey, do you know Kell?
+CHARLIE: Excuse me, do you know Kell?
+ALVY: Sorry can't talk, I think I left my oven on...
 ===
 title: Sam
 tags: 
 colorID: 4
-position: 73,-989
+position: 27,-1004
 ---
 CHARLIE: Hey, do you know Kell?
+SAM: GO AWAY CAN'T YOU SEE I'M IN A HURRY!
 ===
 title: BA
 tags: 
 colorID: 4
-position: -49,-1182
+position: 247,-787
 ---
-BAILEY: the words
-ASH: more of the words
+BAILEY: What Luca said about Tam was totally uncalled for!
+ASH: It was the truth and you know it. Luca would never say something like that if it wasn't true.
+ASH: Oh, hi there.
+BAILEY: Can we help you?
+CHARLIE: I'm trying to find my sibling, Kell. Do you know them?
+BAILEY: I know OF them. I've seen them around, but I don't think we've ever had a conversation.
+ASH: Sorry, kid. But Bailey, seriously, Tam's only in it for the power.
 ===
 title: Dee
 tags: 
 colorID: 4
-position: 267,-994
+position: 245,-1003
 ---
 CHARLIE: Do you know Kell?
 DEE: Yes, I know them. Why do you ask?
@@ -525,8 +548,154 @@ CHARLIE: Let's go find them.
 title: Station
 tags: 
 colorID: 1
-position: 647,-997
+position: 689,-1206
 ---
-MAISON: Let's go in and hope these dancing monkeys can understand the truth.
+MAISON: Let's hope these dancing monkeys can see the truth.
 <<Change Scene 9>>
+===
+title: Tam
+tags: 
+colorID: 6
+position: 30,-576
+---
+<<if $biStage is 3>>
+    [[TamStage3]]
+<<endif>>
+===
+title: Luca
+tags: 
+colorID: 6
+position: 245,-572
+---
+<<if $biStage is 3>>
+    [[LucaStage3]]
+<<endif>>
+===
+title: TamStage3
+tags: 
+colorID: 6
+position: -173,-301
+---
+<<if visited("TamStage3") is false>>
+    TAM: Who are you?
+    CHARLIE: My name's Charlie. I'm looking for my sibling, Kell. 
+    CHARLIE: They used to work here.
+    TAM: I know Kell. Haven't seen them in a few days.
+    TAM: You should go. I'm very busy.
+    ->[Luca's Office]
+    ->[Leave]
+<<else>>
+    TAM: I told you to go.
+    ->[Luca's Office]
+    ->[Leave]
+<<endif>>
+===
+title: LucaStage3
+tags: 
+colorID: 6
+position: 249,-284
+---
+<<if visited("LucaStage3") is false>>
+    LUCA: Hello there! What can I do for you?
+    CHARLIE: Do you know Kell? They worked here with the last mayor.
+    LUCA: Yes, I know Kell. Not very well, unfortunately. They mostly kept to themself.
+    LUCA: You look a little like them, in fact. Are you related?
+    CHARLIE: Kell's my sibling.
+    LUCA: Of course. I can see the similarities clear as day. 
+    LUCA: It's wonderful to meet you - what was your name?
+    CHARLIE: Charlie.
+    LUCA: It's wonderful to meet you, Charlie. I never knew Kell had a sibling.
+    CHARLIE: Do you know where they are? I'm trying to find them.
+    LUCA: I'm sorry, but I'm afraid I can't help you. I haven't seen Kell for a few days.
+    CHARLIE: Oh. Okay. Thanks anyway.
+    ->[Tam's Office]
+    ->[Leave]
+<<else>>
+    LUCA: I'm sorry I can't help you find Kell. Is there anything else I can do for you?
+    CHARLIE: No thanks.
+    ->[Tam's Office]
+    ->[Leave]
+<<endif>>
+===
+title: TownHall
+tags: 
+colorID: 0
+position: -864,-735
+---
+->[Tam's Office]
+    <<set $office to "tam">>
+    [[AveryTownHall]]
+->[Luca's Office]
+    <<set $office to "luca">>
+    [[AveryTownHall]]
+->[Come back later]
+
+
+===
+title: AveryTownHall
+tags: 
+colorID: 0
+position: -605,-734
+---
+<<if visited("AveryTownHall") is false>>
+AVERY: I think I'll just...wait out here.
+->Why?
+    AVERY: Uhh...
+    AVERY: Politicians, you know.
+    CHARLIE: All right, I'll be back soon.
+->Are you sure?
+    AVERY: Yeah, go right ahead.
+    CHARLIE: All right, I'll be back soon.
+->Do what you want.
+    AVERY: I will.
+<<else>>
+AVERY: I'll wait out here.
+<<endif>>
+
+<<if $office is "tam">>
+//change scene
+CHARLIE: TAM
+<<else>>
+//change scene
+CHARLIE: LUCA
+<<endif>>
+===
+title: TownHallExit
+tags: 
+colorID: 0
+position: -605,-513
+---
+AVERY: How'd it go?
+CHARLIE: No one knows where Kell is. It's like they just disappeared.
+AVERY: There must be someone who knows what happened to them.
+===
+title: KellsPlants
+tags: 
+colorID: 0
+position: -379,-769
+---
+CHARLIE: These plants look like they haven't been watered recently.
+===
+title: KellsKitchen
+tags: 
+colorID: 0
+position: -362,-544
+---
+CHARLIE: There's no food here...
+===
+title: KellsLab
+tags: 
+colorID: 0
+position: -983,-413
+---
+CHARLIE: What's all this?
+AVERY: Looks like some kind of lab equipment.
+CHARLIE: I don't understand any of these notes...Are they formulas?
+===
+title: AveryBerry
+tags: 
+colorID: 0
+position: -1004,-151
+---
+AVERY: What's up?
 ===

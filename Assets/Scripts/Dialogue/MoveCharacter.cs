@@ -30,17 +30,19 @@ namespace Yarn.Unity {
 
 			float step = speed * Time.deltaTime;
 			Transform destination = target.gameObject.transform;
+                transform.LookAt(destination);
                 Vector3 move = Vector3.MoveTowards(transform.position, destination.position, step);
                 transform.position = move;
                 UpdateAnimator(move);
 
                 if (Vector3.Distance (transform.position, destination.position) < 2.0f) {
-					if (gameObject.name != "Eden" && gameObject.name != "Alvy" && gameObject.name != "Sam" && target.GetComponent<OW_Character>().Name == "Charlie") {
+					if (gameObject.name == "Kim" && target.GetComponent<OW_Character>().Name == "Charlie") {
 						string startNode = gameObject.GetComponent<OW_NPC> ().StartNode;
 						dialogue.GetComponent<DialogueRunner>().StartDialogue (startNode);
 					}
 
-                    if (gameObject.name == "Alvy" || gameObject.name == "Sam" || (gameObject.name == "Eden" && target.gameObject.name == "PoliceStationExt"))
+                    if (gameObject.name == "Alvy" || gameObject.name == "Sam" || gameObject.name == "Luca" || gameObject.name == "Tam"
+                        || gameObject.name == "Riley" || gameObject.name == "Devon" || (gameObject.name == "Eden" && target.gameObject.name == "PoliceStationExt"))
                     {
                         Destroy(gameObject);
                     }
