@@ -1,28 +1,44 @@
 fileFormatVersion: 2
-guid: ba112d02018f7524093ea4f03e5fbd03
+guid: 132a0356558b4934cb299c7c0d2f1f13
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Apple_msh01
-    100002: //RootNode
-    100004: Foot_msh01
-    100006: Wings_msh01
-    400000: Apple_msh01
-    400002: //RootNode
-    400004: Foot_msh01
-    400006: Wings_msh01
+    100000: ankleLEFT_jnt01
+    100002: ankleLEFT_jnt02
+    100004: Apple_msh01
+    100006: fingerTip_jnt01
+    100008: fingerTip_jnt02
+    100010: foot_jnt01
+    100012: foot_jnt01 1
+    100014: Foot_msh01
+    100016: //RootNode
+    100018: ROOT_jnt01
+    100020: shoulderLEFT_jnt01
+    100022: shoulderLEFT_jnt02
+    100024: Wings_msh01
+    400000: ankleLEFT_jnt01
+    400002: ankleLEFT_jnt02
+    400004: Apple_msh01
+    400006: fingerTip_jnt01
+    400008: fingerTip_jnt02
+    400010: foot_jnt01
+    400012: foot_jnt01 1
+    400014: Foot_msh01
+    400016: //RootNode
+    400018: ROOT_jnt01
+    400020: shoulderLEFT_jnt01
+    400022: shoulderLEFT_jnt02
+    400024: Wings_msh01
     2100000: Apple_TXT
-    2100002: black_plain
-    2100004: lambert1
-    2300000: Apple_msh01
-    2300002: Foot_msh01
-    2300004: Wings_msh01
-    3300000: Apple_msh01
-    3300002: Foot_msh01
-    3300004: Wings_msh01
+    2100002: wing_TXT
     4300000: Apple_msh01
     4300002: Foot_msh01
     4300004: Wings_msh01
+    7400000: Idle
+    9500000: //RootNode
+    13700000: Apple_msh01
+    13700002: Foot_msh01
+    13700004: Wings_msh01
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -32,13 +48,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: black_plain
-    second: {fileID: 2100000, guid: cefd5dc96f02b184580a5ade2c161a38, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: 3566a2f79d9bf4b4ca5ef6853594e95f, type: 2}
+      name: wing_TXT
+    second: {fileID: 2100000, guid: 98c2fdf207593a846a3b04b92a23805e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -65,7 +76,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -113,7 +152,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
