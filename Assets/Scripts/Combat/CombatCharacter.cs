@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 /// <summary>
 /// An entity in the combat scene that has health and stats
@@ -129,6 +131,11 @@ public class CombatCharacter : MonoBehaviour
                 _movelist.Add(moveObj);
             }
         }
+        
+        
+        //Cheese player activation for now
+        var uc = GetComponent<ThirdPersonUserControl>();
+        if (uc) CombatManager.OnCombatStart += (sender, args) => uc.CanMove = true;
     }
 
     public virtual void Update()

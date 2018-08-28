@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = System.Random;
 
 /// <summary>
 /// The state controller class is responsible for managing and changing the state of the AI 
@@ -18,6 +19,12 @@ public class StateController : MonoBehaviour
 	
 	[HideInInspector] public Transform Target;
 	[HideInInspector] public float stateTimeElapsed;
+
+	public Animator myAnim { get; set; }
+
+	public string StartAnimation;
+
+	private bool active = false; 
 	
 	public Dictionary<string, object> VarStorage { get; private set; }
 
@@ -27,15 +34,24 @@ public class StateController : MonoBehaviour
 		MyAI = GetComponent<BaseAI>();
 		MyCC = GetComponent<CombatCharacter>();
 		VarStorage = new Dictionary<string, object>();
+
+		myAnim = GetComponentInChildren<Animator>();
+
+		CombatManager.OnCombatStart += (sender, args) => OnActive();
 	}
 
-	public void SetupAI()
+	//Called on started active
+	void OnActive()
 	{
-		
+		active = true;
+		myAnim.SetTrigger(StartAnimation);
+		myAnim.SetFloat("Offset", UnityEngine.Random.Range(0.0f,1.0f));
 	}
 
 	void Update()
-	{		
+	{
+		if (!active) return;
+		
 		Debug.Assert(currentState,"AI state not set");
 		currentState.UpdateState (this);								
 	}

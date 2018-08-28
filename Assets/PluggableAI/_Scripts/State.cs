@@ -35,7 +35,7 @@ public class State : ScriptableObject
 				c.TransitionToState (t.NextState); //do it
 				
 				if(!t.AnimationToPlay.Equals("")) //Optional animation to trigger
-					c.GetComponentInChildren<Animator>().SetTrigger(t.AnimationToPlay);
+					c.myAnim.SetTrigger(t.AnimationToPlay);
 			}
 		}
 	}
