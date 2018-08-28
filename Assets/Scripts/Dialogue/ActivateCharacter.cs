@@ -16,11 +16,11 @@ public class ActivateCharacter : MonoBehaviour {
 
 
     // Use this for initialization
-        void Start () {
-
-            
+    void Start () {
             if (!dialogue) dialogue = GameObject.Find("Yarn");
-            
+            meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+            spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
+
             Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
             float stage = biStage.AsNumber;
             if (stage == 0)
@@ -30,40 +30,28 @@ public class ActivateCharacter : MonoBehaviour {
                 bool temp = forestComplete.AsBool;
                 if (!temp)
                 {
-                    meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
-                    foreach (var m in meshes)
-                    {
-                        m.enabled = startActive;
-                    }
-                    spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
-                    spriteRend.enabled = startActive;
+                    setMesh(true);
                 }
             }
-
-            if (gameObject.name == "Eden")
+            else
             {
-                meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
-                foreach (var m in meshes)
+                if (!startActive && gameObject.name != "Avery")
                 {
-                    m.enabled = startActive;
+                    setMesh(false);
                 }
-                spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
-                spriteRend.enabled = startActive;
+
             }
-			
 
-
-			originalPosition = gameObject.transform;
-
+            originalPosition = gameObject.transform;
 
 	}
 	
 	
 
 
-		[YarnCommand("activate")]
-		public void activate() {
-			print (gameObject.name);
+		[YarnCommand("show")]
+		public void show() {
+			//print (gameObject.name);
 			if (gameObject.name == "Kim") {
 				Vector3 temp = Camera.main.ViewportToWorldPoint (new Vector3 (1.1f, 0.5f, 15.0f));
 				gameObject.transform.position = temp;
@@ -73,13 +61,59 @@ public class ActivateCharacter : MonoBehaviour {
 				gameObject.transform.position += new Vector3(10, 0, 0);
 			}
 
-			foreach (var m in meshes) {
-				m.enabled = !startActive;
-			}
+            setMesh(true);
+            
 
-            spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
-            spriteRend.enabled = !startActive;
         }
 
-}
+        //doesn't work with the thumb cam for some reason??
+        //[YarnCommand("activate")]
+        //public void makeActive(string who)
+        //{
+            
+        //    if (who == "debate")
+        //    {
+        //        for (int i = 0; i < transform.childCount; i++)
+        //        {
+        //            print(transform.GetChild(i).gameObject.tag);
+        //            if (transform.GetChild(i).gameObject.tag == "Townspeople" && transform.GetChild(i).gameObject.name != "Eden")
+        //            {
+        //                transform.GetChild(i).gameObject.SetActive(true);
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        for (int i = 0; i < transform.childCount; i++)
+        //        {
+        //            if (transform.GetChild(i).gameObject.name == who)
+        //            {
+        //                transform.GetChild(i).gameObject.SetActive(true);
+        //            }
+        //        }
+        //    }
+        //}
+
+        public void setMesh(bool isVisible)
+        {
+
+            if (!isVisible)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y - 5, transform.position.z);
+                
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+            }
+
+            foreach (var m in meshes)
+            {
+                m.enabled = isVisible;
+            }
+
+            spriteRend.enabled = isVisible;
+        }
+
+    }
 }

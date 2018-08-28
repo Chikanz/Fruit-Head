@@ -340,7 +340,7 @@ JACK: Please do it soon, I'm going to puke if I have to wait much longer.
     <<set $jackcomplete to true>>
     <<set $money to $money + 10>>
     <<if $jackcomplete is true and $nancycomplete is true and $houseScene is true>>
-        <<activate Kim>>
+        <<show Kim>>
         <<move Kim Charlie>>
     <<endif>>
 
@@ -510,11 +510,11 @@ position: 2674,108
     ->Absolutely.
         KIM: Thank you thank you thank you thank you!
         <<set $kimaccept to true>>
-        <<activate Avery>>
+        <<show Avery>>
     ->For a fee.
         KIM: If you bring my dear Spot home, I'll pay whatever you want.
         <<set $kimaccept to true>>
-        <<activate Avery>>
+        <<show Avery>>
     ->In a bit.
         KIM: Please hurry!
         <<set $kimaccept to false>>
@@ -532,7 +532,7 @@ position: 2674,108
         ->I'll go look for them right now.
             KIM: Thank you thank you thank you thank you!
             <<set $kimaccept to true>>
-            <<activate Avery>>
+            <<show Avery>>
         ->I'll look for them soon.
             KIM: Hurry, Charlie! I'm so worried.
     <<endif>>
@@ -619,7 +619,7 @@ NANCY: Come back when you're free, dear, and I'll tell you all about them.
 
 
 <<if $jackcomplete is true and $nancycomplete is true and $houseScene is true>>
-    <<activate Kim>>
+    <<show Kim>>
     <<move Kim Charlie>>
 <<endif>>
 ===
