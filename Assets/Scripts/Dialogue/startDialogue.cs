@@ -16,6 +16,7 @@ public class startDialogue : MonoBehaviour {
         if (!dialogue) dialogue = GameObject.Find("Yarn");
         if (gameObject.name != "MeetingTrigger")
         {
+            positioning();
             runStartDialogue();
         }
         
@@ -42,7 +43,7 @@ public class startDialogue : MonoBehaviour {
             }
             else if (stage == 5)
             {
-                dialogue.GetComponent<DialogueRunner>().StartDialogue("StationExit");
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("Stage5");
             }
         }
         else if (scene == "KellsHouse")
@@ -57,8 +58,33 @@ public class startDialogue : MonoBehaviour {
         {
             dialogue.GetComponent<DialogueRunner>().StartDialogue("StationInt");
         }
+        else if (scene == "LucasOffice")
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("Luca");
+        }
+        else if (scene == "TamsOffice")
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("Tam");
+        }
+
     }
 
+    void positioning()
+    {
+        Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
+        float stage = biStage.AsNumber;
+
+        if (scene == "TamsOffice")
+        {
+            if (stage != 5)
+            {
+                GameObject temp = GameObject.Find("Avery");
+                temp.GetComponent<ActivateCharacter>().setMesh(false);
+                GameObject temp2 = GameObject.Find("Maison");
+                temp2.GetComponent<ActivateCharacter>().setMesh(false);
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

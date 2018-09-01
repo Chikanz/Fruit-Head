@@ -40,9 +40,8 @@ CHARLIE: This is Kell's house.
     ->[Knock louder]
         [No answer]
         AVERY: Maybe they're sleeping in.
-        CHARLIE: Maybe.
+        CHARLIE: Maybe. Let's go in.
         ->[Enter]
-        //option to leave?
             <<Change Scene 7>>
     ->[Enter]
         <<Change Scene 7>>
@@ -200,6 +199,7 @@ EDEN: If there IS a cult, and if they ARE taking people, I need proof. Solid pro
 ->c
 EDEN: Good luck. I'll keep an eye out for Kell.
 <<set $biStage to 5>>
+<<set $stage5 to "station">>
 <<endif>>
 
 <<Change Scene 6>>
@@ -228,14 +228,13 @@ position: -629,-997
 ---
 //search for evidence of cult
 ===
-title: TamStage
+title: TamStage5
 tags: 
-colorID: 4
-position: -638,-43
+colorID: 6
+position: -526,-24
 ---
-//go in and talk to her vs search her office--or both? search first and then she enters?
-//find something suspicious
-TAM: What do you want? I'm busy.
+<<set $stage5 to "tam">>
+TAM: What are you doing in here?
 MAISON: We know what you're up to.
 TAM: What I'm up to is running for office. If you're not here to talk about that, you should leave.
 CHARLIE: We just have a few questions.
@@ -255,19 +254,20 @@ TAM: WILL SOMEONE TELL ME WHAT IS GOING ON!
 ->What do you know about the missing people?
     TAM: I know people are going missing. That's it.
     MAISON: They're lying. I know they're lying.
-    TAM: First you break into my office[????], now you accuse me of lying?
+    TAM: First you break into my office, now you accuse me of being involved with the disappearances?
     TAM: Get out, before I call the police.
     AVERY: Tam--
     TAM: All of you.
     ->[Leave]
-        CHARLIE: Sorry. We'll go. //fade scene
+        CHARLIE: We're leaving. 
+        <<Change Scene 6>>
     ->No. Not until you answer our questions.
-        MAISON: Yeah! //?? answer our questions
+        MAISON: Yeah! 
         TAM: Get. Out.
         CHARLIE: All right, all right, we're going.
-        //exit scene
+        <<Change Scene 6>>
 ->We know you're part of the cult.
-    TAM: [sigh] You've spent too long with this conspiracy nut. //??
+    TAM: [sigh] You've spent too long with this conspiracy nut.
     MAISON: Stop deflecting! We know you're guilty!
     TAM: All right, I've had enough of this. Get out of my office.
     CHARLIE: Tell me where Kell is, and we'll go.
@@ -277,32 +277,19 @@ TAM: WILL SOMEONE TELL ME WHAT IS GOING ON!
     TAM: Get. Out.
     CHARLIE: All right, we're leaving.
     MAISON: But we'll be back!
-    //exit scene
+    <<Change Scene 6>>
+
+
 
 ===
 title: TamExit
 tags: 
 colorID: 4
-position: -360,-67
+position: -258,26
 ---
 MAISON: You! You're working with the cult!
-AVERY: Calm down, crazy. I'm not working with anybody. //?? 'crazy' too harsh?
+AVERY: Calm down, crazy. I'm not working with anybody. 
 MAISON: You know Tam! You didn't want us to question them!
-->[accuse avery]
-    CHARLIE: Maison's right. You defended Tam.
-    AVERY: Really? You're siding with Maison?
-    AVERY: Listen. I'm not part of any damn cult. And I'm pretty sure Tam isn't, either.
-    MAISON: Prove it!
-    AVERY: How am I supposed to prove it, huh? You obviously don't believe me.
-    CHARLIE: Tell us how you know Tam.
-    [[TamSibling]]
-    
-->[question avery]
-    CHARLIE: Why didn't you tell us you knew Tam?
-    AVERY: Because...it's weird, okay? I haven't seen them in years.
-    CHARLIE: How do you know them?
-    [[TamSibling]]
-
 ->[defend avery]
     CHARLIE: It's all right, Maison. I trust Avery.
     MAISON: Trust them? After they lied to us?
@@ -311,7 +298,23 @@ MAISON: You know Tam! You didn't want us to question them!
     AVERY: I'm not.
     MAISON: How can you trust them, Charlie? They didn't tell us they knew Tam.
     CHARLIE: Avery? Will you tell us?
-    [[TamSibling]]
+    
+->[question avery]
+    CHARLIE: Why didn't you tell us you knew Tam?
+    AVERY: Because...it's weird, okay? I haven't seen them in years.
+    CHARLIE: How do you know them?
+
+->[accuse avery]
+    CHARLIE: Maison's right. You defended Tam.
+    AVERY: Really? You're siding with Maison?
+    AVERY: Listen. I'm not part of any damn cult. And I'm pretty sure Tam isn't, either.
+    MAISON: Prove it!
+    AVERY: How am I supposed to prove it, huh? You obviously don't believe me.
+    CHARLIE: Tell us how you know Tam.
+
+[[TamSibling]]
+
+
     
 
 
@@ -320,7 +323,7 @@ MAISON: You know Tam! You didn't want us to question them!
 title: TamSibling
 tags: 
 colorID: 4
-position: -88,-58
+position: 7,58
 ---
 AVERY: ...
 AVERY: Tam's my sibling.
@@ -329,10 +332,11 @@ AVERY: I don't know. I thought...
 AVERY: It doesn't matter. We need to focus on finding Kell.
 AVERY: I swear, Charlie, I'm not part of the cult.
 MAISON: This doesn't prove anything.
-//if visited Kell's house before this
-CHARLIE: Let's just go talk to Officer Eden.
-//if not
-CHARLIE: Let's just go check out Kell's house.
+<<if visited("KellsHouse2") is true>>
+    CHARLIE: Let's just go talk to Officer Eden.
+<<else>>
+    CHARLIE: Let's just go check out Kell's house.
+<<endif>>
 ===
 title: PoliceStation2
 tags: 
@@ -540,7 +544,8 @@ CHARLIE: I think they've gone missing.
 DEE: Missing? You haven't been talking to Maison, have you?
 DEE: That troublemaker was snooping around here the other day, claiming they were trying to find the missing people.
 DEE: I'm sure Kell's just fine.
-//leaves
+AVERY: Where can we find Maison?
+DEE: They live in the cemetery. How they can stand to sleep in such a place, I'll never understand.
 AVERY: Sounds like this Maison might have an idea about what's going on.
 CHARLIE: Let's go find them.
 
@@ -561,6 +566,9 @@ position: 30,-576
 <<if $biStage is 3>>
     [[TamStage3]]
 <<endif>>
+<<if $biStage is 5>>
+    [[OfficeStage5]]
+<<endif>>
 ===
 title: Luca
 tags: 
@@ -574,7 +582,7 @@ position: 245,-572
 title: TamStage3
 tags: 
 colorID: 6
-position: -173,-301
+position: -266,-281
 ---
 <<if visited("TamStage3") is false>>
     TAM: Who are you?
@@ -587,7 +595,9 @@ position: -173,-301
 <<else>>
     TAM: I told you to go.
     ->[Luca's Office]
+        <<Change Scene 10>>
     ->[Leave]
+        <<Change Scene 6>>
 <<endif>>
 ===
 title: LucaStage3
@@ -614,7 +624,9 @@ position: 249,-284
     LUCA: I'm sorry I can't help you find Kell. Is there anything else I can do for you?
     CHARLIE: No thanks.
     ->[Tam's Office]
+        <<Change Scene 11>>
     ->[Leave]
+        <<Change Scene 6>>
 <<endif>>
 ===
 title: TownHall
@@ -637,6 +649,7 @@ tags:
 colorID: 0
 position: -605,-734
 ---
+<<if $biStage is 4>>
 <<if visited("AveryTownHall") is false>>
 AVERY: I think I'll just...wait out here.
 ->Why?
@@ -651,13 +664,19 @@ AVERY: I think I'll just...wait out here.
 <<else>>
 AVERY: I'll wait out here.
 <<endif>>
+<<endif>>
+
+<<if $biStage is 5>>
+AVERY: I really don't think this is necessary. I bet Tam doesn't know anything.
+MAISON: Why are you so against talking Tam? What are you hiding?
+AVERY: Nothing! 
+AVERY: Let's just go.
+<<endif>>
 
 <<if $office is "tam">>
-//change scene
-CHARLIE: TAM
+    <<Change Scene 11>>
 <<else>>
-//change scene
-CHARLIE: LUCA
+    <<Change Scene 10>>
 <<endif>>
 ===
 title: TownHallExit
@@ -698,4 +717,56 @@ colorID: 0
 position: -1004,-151
 ---
 AVERY: What's up?
+===
+title: OfficeStage5
+tags: 
+colorID: 6
+position: 3,-188
+---
+CHARLIE: Tam's not here.
+MAISON: Quick, let's search their office before they get back.
+===
+title: TamsDesk
+tags: 
+colorID: 6
+position: -527,-264
+---
+CHARLIE: Look, I found a note.
+MAISON: What does it say, what does it say?
+CHARLIE: "Meeting tonight at dusk. You know where. Don't let anyone see you."
+MAISON: PROOF! 
+MAISON: I told you they were part of the cult!
+AVERY: We don't know that for sure. That note could mean anything.
+MAISON: No it couldn't! 
+->Avery's right.
+    CHARLIE: It's suspicious, but it doesn't say anything about a cult.
+    AVERY: Told you.
+->We still need more evidence.
+    CHARLIE: Let's keep looking before we jump to any conclusions.
+->Maison's right.
+    CHARLIE: This proves that Tam's involved with the cult.
+    MAISON: I knew you were a smart one, Charlie.
+<<position Tam Entry>>
+[[TamStage5]]
+===
+title: Stage5
+tags: 
+colorID: 0
+position: -1606,-459
+---
+<<if $stage5 is "tam">>
+    [[TamExit]]
+<<endif>>
+
+<<if $stage5 is "station">>
+    [[StationExit]]
+<<endif>>
+
+<<if $stage5 is "KellsHouse">>
+
+<<endif>>
+
+
+
+    
 ===

@@ -112,7 +112,7 @@ public class ActivateCharacter : MonoBehaviour {
                 m.enabled = isVisible;
             }
 
-            spriteRend.enabled = isVisible;
+            //spriteRend.enabled = isVisible;
         }
 
     }

@@ -37,7 +37,14 @@ public class PositionCharacter : MonoBehaviour {
 
 		GameObject location = GameObject.Find (point);
 
-		gameObject.transform.position = location.transform.position + new Vector3 (1, 0, 1);
+        if (gameObject.name != "Tam")
+        {
+            gameObject.transform.position = location.transform.position + new Vector3(1, 0, 1);
+        }
+        else
+        {
+            gameObject.transform.position = location.transform.position;
+        }
 
 	}
 
@@ -134,6 +141,12 @@ public class PositionCharacter : MonoBehaviour {
             gameObject.transform.position = pos;
         }
         else if (gameObject.name == "Avery") { }
+        else if (gameObject.name == "Tam")
+        {
+            gameObject.transform.position += new Vector3(10, 0, 0);
+        }
+
+
     }
 
 }
