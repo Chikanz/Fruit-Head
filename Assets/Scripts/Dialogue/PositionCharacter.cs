@@ -20,15 +20,15 @@ public class PositionCharacter : MonoBehaviour {
         }
         else if (stage == 2)
         {
-            positionStage2();
+            positionKellExt();
         }
-        else if (stage == 4)
+        else if (stage == 4 || stage == 7)
         {
-            positionStage4();
+            positionMaisonExt();
         }
-        else if (stage == 5)
+        else if (stage == 5 || stage == 6)
         {
-            positionStage5();
+            positionStationExt();
         }
 	}
 	
@@ -105,7 +105,7 @@ public class PositionCharacter : MonoBehaviour {
         }
     }
 
-    void positionStage2()
+    void positionKellExt()
     {
         //place party near kell's house
         GameObject destination = GameObject.Find("KellsHouseExt");
@@ -119,11 +119,11 @@ public class PositionCharacter : MonoBehaviour {
         }
     }
 
-    void positionStage4()
+    void positionMaisonExt()
     {
         if (gameObject.name == "Charlie")
         {
-            //place charlie near police station
+            //place charlie near maison's house
             GameObject destination = GameObject.Find("MaisonsHouseExt");
             Vector3 pos = destination.gameObject.transform.position;
             gameObject.transform.position = pos;
@@ -131,7 +131,7 @@ public class PositionCharacter : MonoBehaviour {
         else if (gameObject.name == "Avery") { }
     }
 
-    void positionStage5()
+    void positionStationExt()
     {
         if (gameObject.name == "Charlie")
         {
