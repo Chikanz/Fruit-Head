@@ -45,6 +45,10 @@ public class startDialogue : MonoBehaviour {
             {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("Stage5");
             }
+            else if (stage == 6)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("Stage6");
+            }
         }
         else if (scene == "KellsHouse")
         {
