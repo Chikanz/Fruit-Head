@@ -23,6 +23,8 @@ public class SceneChanger: MonoBehaviour
     [HideInInspector]
     public Vector3 RememberPlayerPos;
 
+    private BattleData BD;
+
     void Start ()
     {
         //Enforce singleton
@@ -35,20 +37,7 @@ public class SceneChanger: MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		if(Input.GetKeyDown(KeyCode.P))
-        {
-            SceneManager.LoadScene("BattleChairs");
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            SceneManager.LoadScene("Overworld");
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            SceneManager.LoadScene("BattleFlies");
-        }
+        
     }
 
     [YarnCommand("Change")]
@@ -66,6 +55,7 @@ public class SceneChanger: MonoBehaviour
 
         Invoke("SetPlayer", 0.5f); //AAAAAAAAAAAAAAAAAAAAAAAA
 
+        //hmm this could be done better
         if (sceneIndex == 4)
         {
             RememberPlayerPos = GameObject.FindWithTag("Player").transform.position;
@@ -78,6 +68,7 @@ public class SceneChanger: MonoBehaviour
         }
     }
 
+    //player position
     void pp()
     {
         GameObject.FindWithTag("Player").transform.position = RememberPlayerPos;
@@ -98,4 +89,71 @@ public class SceneChanger: MonoBehaviour
     {
         Change(scene.ToString()); //yum yum
     }
+
+    //Load in a combat scene from yarn
+    [YarnCommand("Combat")]
+    public void StartCombat(string resourceName)
+    {
+        //Load in battle data
+        BD = Resources.Load<BattleData>(resourceName);
+        Debug.Assert(BD != null);
+        StartCombat(BD);
+    }
+
+    //Load in a combat scene
+    public void StartCombat(BattleData data)
+    {
+        BD = data;
+        //Subby to scene loaded event
+        SceneManager.sceneLoaded += CombatSceneLoaded;
+        
+        //Then load combat scene
+        Change(BD.SceneToLoad);
+    }
+
+    //Called when a combat scene is finished loading
+    private void CombatSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //Should only be a combat scene we just loaded
+        Debug.Assert(scene.buildIndex == BD.SceneToLoad);
+        
+        //Load in enemy data into combat man
+        CombatManager cm = GameObject.Find("Combat Manager").GetComponent<CombatManager>();
+        foreach (var e in BD.Enemies)
+        {
+            for (int i = 0; i < e.Amount; i++)
+            {
+                cm.Enemies.Add(e.Prefab);
+            }
+        }
+        
+        //Party
+        cm.Party.Add(Resources.Load<GameObject>("CharlieCombat"));
+        if(BD.Avery)
+            cm.Party.Add(Resources.Load<GameObject>("AveryCombat"));
+        if(BD.Eden)
+            cm.Party.Add(Resources.Load<GameObject>("EdenCombat"));
+        if(BD.Mason)
+            cm.Party.Add(Resources.Load<GameObject>("MasonCombat"));
+        
+        SceneManager.sceneLoaded -= CombatSceneLoaded; //unsubby event
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

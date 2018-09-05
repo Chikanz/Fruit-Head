@@ -8,7 +8,7 @@ using UnityEngine;
 public class Targeter : MonoBehaviour
 {
 	private EnemyManager EM;
-	public Camera cam;
+	private Camera cam;
 	public CinemachineTargetGroup CTG;
 	
 	[Tooltip("The gameobject that will follow the targeted enemy")]
@@ -19,14 +19,18 @@ public class Targeter : MonoBehaviour
 	private int targetInt;
 
 	private bool cameraSnapped;
-	private List<DotTarget> Targets;	
+	private List<DotTarget> Targets = new List<DotTarget>();
 	
 	// Use this for initialization
 	void Start ()
 	{
+		cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+		
 		EM = GameObject.Find("Enemies").GetComponent<EnemyManager>();
 		Debug.Assert(EM, "enemy manager not found. Tell zac he's a lazy piece of shit");
-		Targets = new List<DotTarget>();
+		
+		//Set charlie as camera target
+		CTG.m_Targets[0] = MakeCMTarget(transform.Find("Cam Point"));
 	}
 	
 	// Update is called once per frame

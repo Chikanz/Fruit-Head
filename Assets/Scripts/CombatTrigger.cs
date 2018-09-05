@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WolfTransition : MonoBehaviour
+/// <summary>
+/// Will start combat when a plater enters 
+/// </summary>
+public class CombatTrigger : MonoBehaviour
 {
 	private string _key;
 
 	private static Dictionary<int, bool> activeMask = new Dictionary<int, bool>();
+	
+	public BattleData BattleData;
 
-	public int Num;
+	private int Num;
 	
 	// Use this for initialization
 	void Start ()
 	{
+		Num = gameObject.GetInstanceID(); //set number to a unique number
+		
 		if (!activeMask.ContainsKey(Num))
 		{
 			activeMask.Add(Num, true);
@@ -22,6 +29,8 @@ public class WolfTransition : MonoBehaviour
 		if(activeMask.TryGetValue(Num, out state))
 		
 		transform.parent.gameObject.SetActive(state);
+		
+		Debug.Assert(BattleData, "No battle data found you dum dum");
 	}
 	
 	// Update is called once per frame
@@ -33,8 +42,8 @@ public class WolfTransition : MonoBehaviour
 	{
 		if (!other.transform.tag.Equals("Player")) return;
 
-		activeMask[Num] = false; //updat value
+		activeMask[Num] = false; //updat mask desu
 		
-		SceneChanger.instance.Change(4);
+		SceneChanger.instance.StartCombat(BattleData);
 	}
 }

@@ -30,7 +30,7 @@ public class StateController : MonoBehaviour
 
 	void Awake ()
 	{
-		Target = GameObject.FindWithTag("Player").transform;
+		//Target = GameObject.FindWithTag("Player").transform;
 		MyAI = GetComponent<BaseAI>();
 		MyCC = GetComponent<CombatCharacter>();
 		VarStorage = new Dictionary<string, object>();
@@ -38,6 +38,12 @@ public class StateController : MonoBehaviour
 		myAnim = GetComponentInChildren<Animator>();
 
 		CombatManager.OnCombatStart += (sender, args) => OnActive();
+		
+		//todo targeting
+		if (MyCC.Friendly)
+		{
+			
+		}
 	}
 
 	//Called on started active

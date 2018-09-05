@@ -65,6 +65,8 @@ public class CombatCharacter : MonoBehaviour
 
     private static GameObject HitCanvas;
 
+    public bool Friendly;
+
     [Range(0.0f,1.0f)]
     public float weight;
 

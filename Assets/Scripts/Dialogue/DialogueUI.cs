@@ -78,10 +78,12 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         if (continuePrompt != null)
             continuePrompt.SetActive(false);
 
+        Debug.Assert(GameObject.FindWithTag("Player"), "You silly goose! I couldn't find the player! Make sure they're tagged as 'Player' " +
+                                                       "and are in the scene! Winkey face! 0w0");
+        
         playerControl = GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>();
         
-        Debug.Assert(playerControl, "You silly goose! I couldn't find the player! Make sure they're tagged as 'Player' " +
-                                    "and are in the scene! Winkey face! 0w0");
+        
     }
 
     /// Show a line of dialogue, gradually

@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 114182625651202352}
   - component: {fileID: 114575391316650376}
   m_Layer: 0
-  m_Name: CombatPlayer
+  m_Name: CharlieCombat
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1449,7 +1449,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1399295583094072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00016021729, y: 0.24, z: -24.04}
+  m_LocalPosition: {x: 110.3139, y: 2.1513867, z: 97.4782}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4442643642825120}
@@ -1891,8 +1891,9 @@ MonoBehaviour:
   hp: 100
   Moves:
   - {fileID: 1773372471602260, guid: d68bbd5c53678f44eb9833b38b9381a7, type: 2}
-  weight: 0
-  ParticlesOnHit: 0
+  Friendly: 0
+  weight: 0.431
+  ParticlesOnHit: 1
 --- !u!114 &114575391316650376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1904,7 +1905,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5510ecfe4ca42c4396f1535525dc76b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   CTG: {fileID: 0}
   TargetPrebab: {fileID: 1462213017973930, guid: 20927bb367d1a6f4eafe68cffbf36a52,
     type: 2}
@@ -1919,7 +1919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521b611700410be45810047f0a74e899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanMove: 1
+  CanMove: 0
 --- !u!135 &135910772389552200
 SphereCollider:
   m_ObjectHideFlags: 1
