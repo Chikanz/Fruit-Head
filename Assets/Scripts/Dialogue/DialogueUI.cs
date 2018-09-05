@@ -272,7 +272,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         {
             TalkingTo = "";
             OnDialogueEnd(startNode);
-            Debug.Log("Dialouge ended");
+            Debug.Log("Dialogue ended");
         }
 
         //Give player back control
