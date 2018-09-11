@@ -187,6 +187,7 @@ MAISON: ...Fine. Just let me grab a couple of things.
 <<else>>
     MAISON: Solved it. The cult meets in a cabin on the northeast side of the island.
     CHARLIE: Let's go check it out.
+    <<set $biStage to 8>>
     <<Change Scene 6>>
 <<endif>>
 
@@ -225,6 +226,9 @@ EDEN: Good luck. I'll keep an eye out for Kell.
     [[PoliceStation2]]
 <<endif>>
 
+<<if $biStage is 9>>
+    [[PoliceStation3]]
+<<endif>>
 
 ===
 title: StationExit
@@ -374,7 +378,7 @@ EDEN: I need more than that. Get me proof that they're kidnapping people, and th
 title: Hideout
 tags: 
 colorID: 0
-position: 1048,-907
+position: 1254,-670
 ---
 //people in cages - one? two?
 MAISON: [w] It's the missing people!
@@ -386,14 +390,24 @@ AVERY: Fair point.
 CHARLIE: Avery, can you take a photo? We need to bring back proof.
 [footsteps]
 MAISON: Someone's coming!
+<<show Luca>>
+<<show Devon>>
 //walking into view in front of cages--luca! in cult clothes
+//<<move Luca LucaTarget>>
+//<<move Devon DevonTarget>>
 LUCA: You'll take them to HQ tonight?
-COMPANION: As soon as it's dark.    //someone they've met?
-CHARLIE: LUCA is part of the cult? //??
+DEVON: As soon as it's dark.    
+CHARLIE: LUCA is part of the cult? 
 LUCA: Good. The ritual is almost ready.
-MAISON: Quick, take a photo! //or another comment
+MAISON: Quick, take a photo! 
 LUCA: Did you hear something?
 AVERY: Time to go.
+
+//run back to other door.
+//devon chases?
+//or
+<<set $biStage to 9>>
+<<Change Scene 6>>
 ===
 title: PoliceStation3
 tags: 
@@ -411,13 +425,14 @@ MAISON: I told you so! I told you so!
 MAISON: I said one of them belonged to the cult and you didn't believe me!
 CHARLIE: They said they were leaving tonight. 
 EDEN: Then we need to hurry. 
-//end conversation there? no--need indication of where to go.
-//hideout or luca's place?
+<<set $biStage to 10>>
+<<Change Scene 6>>
+
 ===
 title: HideoutExit
 tags: 
 colorID: 0
-position: 1047,-685
+position: 1257,-451
 ---
 MAISON: I knew it! I was right about the cult!
 AVERY: You were wrong about Tam.
@@ -426,11 +441,12 @@ AVERY: What would be the point of running against Luca for mayor if they're both
 MAISON: So you don't suspect them. It's clearly working.
 CHARLIE: We need to get the evidence to Eden before the cultists find us.
 ===
-title: LucaStage
+title: LucaStage10
 tags: 
 colorID: 2
 position: 464,267
 ---
+<<stop Luca>>
 LUCA: Hello, Officer. And, er, friends. How can I help you?
 EDEN: You're under arrest for the abduction and unlawful detainment[????]. //???????
 LUCA: Under arrest? There must be some mistake.
@@ -440,7 +456,7 @@ LUCA: Haven't they caused you plenty of trouble in the past?
 LUCA: I'm sure this is all a simple misunderstanding.
 EDEN: They have proof, Luca. Are you going to come quietly?
 LUCA: ... 
-//Luca flees
+<<move Luca Rowboat>>
 MAISON: Quick, after them!
 //chase scene!!
 //uh charlie says nothing in this scene...
@@ -448,7 +464,7 @@ MAISON: Quick, after them!
 title: Docks
 tags: 
 colorID: 5
-position: 1271,-906
+position: 1801,-816
 ---
 //luca on a boat, sailing away
 EDEN: Damn it.
@@ -589,7 +605,7 @@ CHARLIE: Let's go find them.
 title: Station
 tags: 
 colorID: 1
-position: 814,-908
+position: 814,-906
 ---
 <<if $biStage is 4>>
     MAISON: Let's hope these dancing monkeys can see the truth.
@@ -602,6 +618,11 @@ position: 814,-908
         <<Change Scene 9>>
     ->I don't want to go in just yet.
         MAISON: The sooner we deal with the cult, the sooner they'll stopping taking people.
+<<endif>>
+
+<<if $biStage is 9>>
+    CHARLIE: I hope Officer Eden's in.
+    <<Change Scene 9>>
 <<endif>>
 
 //????
@@ -626,6 +647,11 @@ position: 370,-274
 ---
 <<if $biStage is 3>>
     [[LucaStage3]]
+<<endif>>
+
+
+<<if $biStage is 10>>
+    [[LucaStage10]]
 <<endif>>
 ===
 title: TamStage3
@@ -888,6 +914,7 @@ Maison's House: 8
 Station: 9
 Luca's Office: 10
 Tam's Office: 11
+Cult hideout cabin: 12
 
 Stage 1:
 Stage 2:
@@ -896,6 +923,9 @@ Stage 4: after maison's conspiracy talk, talking to eden (set in maisonshouseint
 Stage 5: (set in stationint) finding evidence 
 Stage 6: after visiting both Tam and Kell's house to find evidence, lasts until conversation after exiting station
 Stage 7: after bringing evidence of cult to Eden and setting out to look for proof that cult is involved in disappearances (set in "Stage6")
+Stage 8: after (Maison) has solved the puzzle (set in MaisonsHouseInt)
+Stage 9: after seeing Luca and Devon in cult hidout. (set in Hideout)
+Stage 10: after telling Eden about Luca (set in PoliceStation3)
 ===
 title: MaisonsHouse
 tags: 
@@ -918,4 +948,98 @@ MAISON: I should be able to decipher the code using my notes on the cult.
 //<<endif>>
 
 //<<if $biStage le
+===
+title: CabinFrontDoor
+tags: 
+colorID: 0
+position: 1030,-907
+---
+<<if visited("CabinFrontDoor") is false>>
+MAISON: Wait, we can't just charge through the front door.
+AVERY: Why not?
+MAISON: Because it lacks both subtlety and sense. Neither of which you possess, Avery. //too formal?
+MAISON: Unless you want us to get caught by the cultists who are undoubtedly on the other side. Because you're working with the cult.
+AVERY: Not this again.
+AVERY: We can just go through the front door and deal with whoever we find.
+MAISON: Or we could do the smart thing and find a different entrance. 
+MAISON: Barging through the front door is a good way to get us killed.
+CHARLIE: We probably should try not to draw too much attention.
+CHARLIE: Let's try to find another way in.
+<<else>>    //if already had discussion
+MAISON: We need to find another way in.
+CHARLIE: Let's keep looking.
+<<endif>>
+
+===
+title: CabinSideDoor
+tags: 
+colorID: 0
+position: 1032,-683
+---
+<<if visited("CabinSideDoor") is false>>
+MAISON: This will do. //seems quiet
+AVERY: Ready, Charlie?
+<<else>>
+    MAISON: Ready to see what's inside?
+<<endif>>
+->Let's go.
+    MAISON: Time to prove what the cult's up to once and for all.
+    <<Change Scene 12>>
+->Wait a moment.
+    CHARLIE: I'm not ready to go in just yet.
+===
+title: CabinInt
+tags: 
+colorID: 0
+position: 1034,-469
+---
+CHARLIE: Let's see if we can find anything that links the cult to the missing people.
+[[CabinDoor2]]
+===
+title: CabinDesk
+tags: 
+colorID: 0
+position: 1037,-247
+---
+AVERY: Anything interesting?
+CHARLIE: I think these are take-out menus...
+===
+title: CabinDoor1
+tags: 
+colorID: 0
+position: 1047,-36
+---
+CHARLIE: It's locked.
+===
+title: Crates
+tags: 
+colorID: 0
+position: 1051,185
+---
+CHARLIE: [smashes the crates]
+MAISON: Hopefully no one heard that.
+===
+title: CabinDoor2
+tags: 
+colorID: 0
+position: 1254,-908
+---
+CHARLIE: I think I hear something on the other side...
+AVERY: Let's go, then.
+Maison: Quietly.
+//open door
+//move them through door
+[[Hideout]]
+===
+title: Stage10
+tags: 
+colorID: 1
+position: 840,395
+---
+<<show Luca>>
+<<position Luca CabinExt>>
+<<move Luca TownHallExt>>
+EDEN: Where did you see Luca last?
+CHARLIE: The cabin.
+EDEN: Take me there, quickly.
 ===

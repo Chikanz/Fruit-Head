@@ -60,6 +60,11 @@ namespace Yarn.Unity {
 			print (destination);
 			target = GameObject.Find (destination);
 
+            if (destination == "Rowboat")
+            {
+                speed = 5.0f;
+            }
+
 			//Transform location = target.gameObject.transform;
 			//this.GetComponent<NavMeshAgent> ().destination = location.position;
 		}
@@ -83,6 +88,11 @@ namespace Yarn.Unity {
             
         }
 
+        [YarnCommand("stop")]
+        public void stopMoving()
+        {
+            target = null;
+        }
 
     }
 }

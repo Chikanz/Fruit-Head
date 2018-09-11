@@ -22,13 +22,17 @@ public class PositionCharacter : MonoBehaviour {
         {
             positionKellExt();
         }
-        else if (stage == 4 || stage == 7)
+        else if (stage == 4 || stage == 8)
         {
             positionMaisonExt();
         }
-        else if (stage == 5 || stage == 6)
+        else if (stage == 5 || stage == 6 || stage == 10)
         {
             positionStationExt();
+        }
+        else if (stage == 9)
+        {
+            positionHideoutExt();
         }
 	}
 	
@@ -37,7 +41,7 @@ public class PositionCharacter : MonoBehaviour {
 
 		GameObject location = GameObject.Find (point);
 
-        if (gameObject.name != "Tam")
+        if (gameObject.name != "Tam" && gameObject.name != "Luca")
         {
             gameObject.transform.position = location.transform.position + new Vector3(1, 0, 1);
         }
@@ -145,8 +149,20 @@ public class PositionCharacter : MonoBehaviour {
         {
             gameObject.transform.position += new Vector3(10, 0, 0);
         }
+    }
 
 
+    void positionHideoutExt()
+    {
+        if (gameObject.name == "Charlie")
+        {
+            //place charlie near cult hideout/cabin
+            GameObject destination = GameObject.Find("CabinExt");
+            Vector3 pos = destination.gameObject.transform.position;
+            gameObject.transform.position = pos;
+        }
+        else if (gameObject.name == "Avery") { }
+        
     }
 
 }

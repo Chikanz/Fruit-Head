@@ -49,6 +49,14 @@ public class startDialogue : MonoBehaviour {
             {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("Stage6");
             }
+            else if (stage == 9)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("HideoutExit");
+            }
+            else if (stage == 10)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("Stage10");
+            }
         }
         else if (scene == "KellsHouse")
         {
@@ -69,6 +77,10 @@ public class startDialogue : MonoBehaviour {
         else if (scene == "TamsOffice")
         {
             dialogue.GetComponent<DialogueRunner>().StartDialogue("Tam");
+        }
+        else if (scene == "Cabin")
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("CabinInt");
         }
 
     }
