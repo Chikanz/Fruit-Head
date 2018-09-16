@@ -1,0 +1,130 @@
+title: Arrival
+tags: 
+colorID: 5
+position: -362,-291
+---
+CAPTAIN REDPEEL: Here ye are. Orchard Island.
+//something about terrible journey
+EDEN: You have my thanks - Redpeel, was it?
+CAPTAIN REDPEEL: Captain. It's Captain Redpeel.
+EDEN: Captain Redpeel, then. Wait here for our return.
+CAPTAIN REDPEEL: Aye aye.
+CHARLIE: There's Luca's boat. They can't have gotten too far.
+EDEN: Let's get moving.
+
+
+===
+title: Kell
+tags: 
+colorID: 6
+position: 155,-48
+---
+//empty ritual room
+
+//beware Melodrama
+//more charlie choices in this conversation?
+CHARLIE: What...is this place?
+MAISON: This is where they perform their mad rituals. //??
+AVERY: Do you guys hear--I think someone's--//one or the other
+<<open Door2>>
+<<move Kell entry>>
+MAISON: Die, cultist!
+<<move Maison entry>>
+//would eden be okay with killing? no of course not. maison wants to kill
+//and eden stops them
+CHARLIE: Wait!
+<<stop Maison>>
+CHARLIE: Kell?
+KELL: Charlie? 
+KELL: What are you doing here?
+CHARLIE: I...I was looking for you. 
+->[how did you escape?]
+->[how did you get here]
+->[what are you doing]
+//choices ranging from naive to accusatory??
+MAISON: They're a cultist. Kell's a cultist.
+AVERY: Maybe Kell escaped by disguising themself as a cultist. That's what happened, right? Kell?
+KELL: I remember you. Avery, isn't it?
+CHARLIE: Kell, please. Tell me you're not part of this.
+KELL: I can't do that, Charlie.
+EDEN: Kell, you're under arrest. 
+EDEN: Show us where the missing people are, and I'll make sure you get a light sentence.
+CHARLIE: How could you! A cult, Kell? Kidnapping?
+KELL: You don't understand. We need those people.
+MAISON: I told you the cult was eating people!
+<<move Luca entry>>
+KELL: We don't--
+LUCA: Enough!
+LUCA: Kell, go and ready the sacrifices. I'll deal with our guests.
+KELL: ...
+KELL: Yes, Luca. 
+CHARLIE: Kell, wait--
+KELL: I'm sorry, Charlie. You shouldn't have come here.
+<<move Kell Exit>>
+EDEN: Stand down, Luca.
+LUCA: I'm afraid I can't do that, Officer.
+CHARLIE: What did you do to Kell?
+LUCA: Kell came to me of their own free will, Charlie. 
+//fight
+
+
+
+
+
+
+===
+title: HQDoor
+tags: 
+colorID: 0
+position: -65,-50
+---
+CHARLIE: This must be where Luca went.
+EDEN: Let's go.
+//AVERY: What does that sign say?
+//CHARLIE: "Secret cult headquarters. Keep out."
+//MAISON: Yeah, this is definitely the place.
+<<Change Scene 14>>
+===
+title: HQInt
+tags: 
+colorID: 0
+position: -359,-52
+---
+MAISON: This is it. The headquarters of the secret cult.
+===
+title: HQDoor1
+tags: 
+colorID: 0
+position: -65,-287
+---
+MAISON: I think I hear a voice behind the door.
+<<open Door1>>
+//move them through door
+===
+title: PostFight
+tags: 
+colorID: 4
+position: 158,171
+---
+CHARLIE: I need to find Kell.
+===
+title: FinalRoom
+tags: 
+colorID: 5
+position: 377,169
+---
+<<move Eden Cages>>
+EDEN: These are all the missing people.
+EDEN: Don't worry, everyone. We'll get you home.
+CHARLIE: I'm going to find Kell.
+AVERY: Kell's gone, Charlie.
+CHARLIE: I have to find them. I have to know why they did this.
+AVERY: I'll come with you, then. 
+MAISON: Me too. You need one smart person in the group.
+//someone smart to lead the group
+EDEN: If you help me get all these people back to Berry Island, I'll help you find Kell.
+EDEN: Maybe we can talk them around. If not, we need to stop them before they do anything like this again.
+CHARLIE: Thanks, everyone.
+EDEN: All right, let's get these people out of here.
+CHARLIE: And then we'll find Kell.
+===

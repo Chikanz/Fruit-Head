@@ -35,10 +35,13 @@ public class ActivateCharacter : MonoBehaviour {
             }
             else
             {
-                if (!startActive && gameObject.name != "Avery")
+                if (!startActive && gameObject.name != "Avery" /*&& gameObject.name != "Eden" && gameObject.name != "Maison"*/)
                 {
                     setMesh(false);
                 }
+                //else if ((gameObject.name == "Eden" && stage < 3) || (gameObject.name == "Maison" && stage < 3)) {
+                //    setMesh(false);
+                //} 
 
             }
 
@@ -47,8 +50,6 @@ public class ActivateCharacter : MonoBehaviour {
 	}
 	
 	
-
-
 		[YarnCommand("show")]
 		public void show() {
 			//print (gameObject.name);
@@ -66,33 +67,6 @@ public class ActivateCharacter : MonoBehaviour {
 
         }
 
-        //doesn't work with the thumb cam for some reason??
-        //[YarnCommand("activate")]
-        //public void makeActive(string who)
-        //{
-            
-        //    if (who == "debate")
-        //    {
-        //        for (int i = 0; i < transform.childCount; i++)
-        //        {
-        //            print(transform.GetChild(i).gameObject.tag);
-        //            if (transform.GetChild(i).gameObject.tag == "Townspeople" && transform.GetChild(i).gameObject.name != "Eden")
-        //            {
-        //                transform.GetChild(i).gameObject.SetActive(true);
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        for (int i = 0; i < transform.childCount; i++)
-        //        {
-        //            if (transform.GetChild(i).gameObject.name == who)
-        //            {
-        //                transform.GetChild(i).gameObject.SetActive(true);
-        //            }
-        //        }
-        //    }
-        //}
 
         public void setMesh(bool isVisible)
         {

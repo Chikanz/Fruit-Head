@@ -82,6 +82,7 @@ AVERY: I guess they're not home. Should we wait and see if they come back?
 ->Let's look around town.
     <<Change Scene 6>>
 <<else>>
+    <<show Maison>>
     <<show Note>>
     AVERY: Let's look for anything that can prove the cult took Kell.
 <<endif>>
@@ -91,7 +92,7 @@ tags:
 colorID: 4
 position: 150,-913
 ---
-//<<move Charlie Debate>>
+<<move Charlie Debate>>
 <<show Eden>>
 <<move Eden Charlie>>
 TAM: You're all smiles and empty words. You wouldn't last a day in office.
@@ -373,6 +374,7 @@ AVERY: No they aren't!
 EDEN: Wait - Tam? Never mind, it doesn't matter.
 EDEN: I told you, I can't go around arresting people just because they belong to a cult.
 EDEN: I need more than that. Get me proof that they're kidnapping people, and then I can do something.
+<<Change Scene 6>>
 
 ===
 title: Hideout
@@ -464,16 +466,16 @@ MAISON: Quick, after them!
 title: Docks
 tags: 
 colorID: 5
-position: 1801,-816
+position: 1505,-909
 ---
-//luca on a boat, sailing away
-EDEN: Damn it.
-MAISON: We can't let them get away!
-AVERY: Are there any other boats around?
+<<move EvilBoat Exit>>
+EDEN: Damn it, they're getting away.
+MAISON: Are there any other boats around?
 CHARLIE: I might know someone who can help.
 AVERY: Oh, no.
 //fade to redpeel conversation?
 //or go straight to final island and thank redpeel as you're leaving the dock there?
+<<Change Scene 13>>
 ===
 title: KellsDoor
 tags: 

@@ -16,15 +16,15 @@ public class OpenDoor : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (target) 
-        {
-            Vector3 targetDirection = target.position - transform.position;
-            float step = 0.5f * Time.deltaTime;
+        //if (target) 
+        //{
+        //    Vector3 targetDirection = target.position - transform.position;
+        //    float step = 0.01f * Time.deltaTime;
 
-            Vector3 newDirection = Vector3.RotateTowards(transform.position, targetDirection, step, 0);
+        //    Vector3 newDirection = Vector3.RotateTowards(transform.position, targetDirection, step, 0);
 
-            //transform.rotation = Quarternion.LookRotation(newDirection);
-        }
+        //    transform.rotation = Quaternion.LookRotation(newDirection);
+        //}
     }
 
 
@@ -33,6 +33,18 @@ public class OpenDoor : MonoBehaviour {
     public void open()
     {
         //target = transform.position + new Vector3(0, 90, 0);
+        //transform.rotation = new Quaternion(0, 90, 0, 0);
+        transform.Rotate(0, -90, 0);
+        //target = GameObject.Find("Charlie").transform;
+    }
+
+    [YarnCommand("close")]
+    public void close()
+    {
+        //target = transform.position + new Vector3(0, 90, 0);
+        //transform.rotation = new Quaternion(0, 90, 0, 0);
+        transform.Rotate(0, 90, 0);
+        //target = GameObject.Find("Charlie").transform;
     }
 
 }

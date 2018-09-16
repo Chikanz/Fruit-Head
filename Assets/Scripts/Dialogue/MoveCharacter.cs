@@ -33,21 +33,27 @@ namespace Yarn.Unity {
                 transform.LookAt(destination);
                 Vector3 move = Vector3.MoveTowards(transform.position, destination.position, step);
                 transform.position = move;
-                UpdateAnimator(move);
+                if (m_Animator)
+                {
+                    UpdateAnimator(move);
+                }
 
                 if (Vector3.Distance (transform.position, destination.position) < 2.0f) {
-					if (gameObject.name == "Kim" && target.GetComponent<OW_Character>().Name == "Charlie") {
+
+                    stopMoving();
+
+                    if (gameObject.name == "Kim" && target.GetComponent<OW_Character>().Name == "Charlie") {
 						string startNode = gameObject.GetComponent<OW_NPC> ().StartNode;
 						dialogue.GetComponent<DialogueRunner>().StartDialogue (startNode);
 					}
 
-                    if (gameObject.name == "Alvy" || gameObject.name == "Sam" || gameObject.name == "Luca" || gameObject.name == "Tam"
+                    if (gameObject.name == "Alvy" || gameObject.name == "Sam" || gameObject.name == "Luca" && target.gameObject.name == "TownHallExt" || gameObject.name == "Tam"
                         || gameObject.name == "Riley" || gameObject.name == "Devon" || (gameObject.name == "Eden" && target.gameObject.name == "PoliceStationExt"))
                     {
                         Destroy(gameObject);
                     }
 
-                    target = null;
+                    
 				}
 			}
 
@@ -92,6 +98,9 @@ namespace Yarn.Unity {
         public void stopMoving()
         {
             target = null;
+            //stop walking animation
+            m_Animator.SetFloat("Forward", 0, 0, 0);
+            m_Animator.SetFloat("Turn", 0, 0, 0);
         }
 
     }

@@ -14,7 +14,7 @@ public class startDialogue : MonoBehaviour {
     void Start () {
 
         if (!dialogue) dialogue = GameObject.Find("Yarn");
-        if (gameObject.name != "MeetingTrigger")
+        if (gameObject.name != "MeetingTrigger" && gameObject.name != "BoatTrigger" && gameObject.name != "KellTrigger" && gameObject.name != "FinalRoomTrigger")
         {
             positioning();
             runStartDialogue();
@@ -82,6 +82,14 @@ public class startDialogue : MonoBehaviour {
         {
             dialogue.GetComponent<DialogueRunner>().StartDialogue("CabinInt");
         }
+        else if (scene == "OrchardIsland")
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("Arrival");
+        }
+        else if (scene == "CultHQ")
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("HQInt");
+        }
 
     }
 
@@ -107,10 +115,30 @@ public class startDialogue : MonoBehaviour {
         Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
         float stage = biStage.AsNumber;
         print("debate");
-        if (stage == 2)
+        if (gameObject.name == "MeetingTrigger")
         {
-            dialogue.GetComponent<DialogueRunner>().StartDialogue("Debate");
+            if (stage == 2)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("Debate");
+            }
         }
+        else if (gameObject.name == "BoatTrigger")
+        {
+            if (stage == 10)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("Docks");
+            }
+        }
+        else if (gameObject.name == "KellTrigger")
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("Kell");
+        }
+        else
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("FinalRoom");
+        }
+
+
     }
 
 }
