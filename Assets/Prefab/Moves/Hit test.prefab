@@ -38,7 +38,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4827108525958644}
-  - component: {fileID: 114743415893870440}
+  - component: {fileID: 114061423811413080}
   m_Layer: 0
   m_Name: Hit test
   m_TagString: Untagged
@@ -127,6 +127,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114061423811413080
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773372471602260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef7486136c1e5f429a94a7fcfd00215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 10
+  CoolDown: 0
+  AnimationTriggerName: swing
+  fireImmediate: 0
+  daddy: {fileID: 0}
+  _canMoveWhileUsing: 1
+  Projectile: {fileID: 0}
+  isProjectile: 0
+  lingerTime: 0.5
+  DestroyOnHit: 0
+  Knockback: 0
 --- !u!114 &114719684052334852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,25 +160,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e611d6efad8d3f54881208b1c9fa43d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114743415893870440
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1773372471602260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d89131862e678b54da500ca7c655545c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 10
-  CoolDown: 0
-  AnimationTriggerName: Punching
-  _canMoveWhileUsing: 1
-  Projectile: {fileID: 0}
-  isProjectile: 0
-  lingerTime: 0.5
-  DestroyOnHit: 0
-  fireImmediate: 0
-  daddy: {fileID: 0}
-  Knockback: 320

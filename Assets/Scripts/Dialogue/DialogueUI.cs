@@ -76,17 +76,8 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 
         // Hide the continue prompt if it exists
         if (continuePrompt != null)
-            continuePrompt.SetActive(false);
-
-        //Debug.Assert(GameObject.FindWithTag("Player"), "You silly goose! I couldn't find the player! Make sure they're tagged as 'Player' " +
-        //                                               "and are in the scene! Winkey face! 0w0");
-
-        //Fallback to combat player depending on which scene we're in
-        GameObject playerObj;
-        playerObj = GameObject.FindWithTag("Player");
-        if (playerObj == null) playerObj = CombatManager.instance.Party[0];
-        
-        playerControl = playerObj.GetComponent<ThirdPersonUserControl>();        
+            continuePrompt.SetActive(false);        
+      
     }
 
     /// Show a line of dialogue, gradually
@@ -254,6 +245,8 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         if (OnDialogueStart != null)
             OnDialogueStart(startNode);
 
+        
+        GetPlayerControl();
         if(playerControl)
             playerControl.CanMove = false;
 
@@ -282,6 +275,19 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         if(playerControl) playerControl.CanMove = true;
 
         yield break;
+    }
+
+    //Get a ref to the player just before we need it
+    void GetPlayerControl()
+    {
+        if(playerControl) return;
+        
+        var p = GameObject.FindWithTag("Player");
+        Debug.Assert(p, "You silly goose! I couldn't find the player! Make sure they're tagged as 'Player' " +
+                                                       "and are in the scene! Winkey face! 0w0");
+        if(p == null) return;
+        
+        playerControl = p.GetComponent<ThirdPersonUserControl>();
     }
 
     static string UppercaseFirst(string s)

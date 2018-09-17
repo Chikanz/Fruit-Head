@@ -49,9 +49,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //}
 
             //Get input for moves
-            if(CC && Input.GetMouseButtonDown(0))
+            if (!CC) return;
+            if(Input.GetMouseButtonDown(0))
             {
                 GetComponent<CombatCharacter>().UseMove(0);
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                GetComponent<CombatCharacter>().UseMove(1);
             }
         }
 

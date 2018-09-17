@@ -2387,7 +2387,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1631067456662728}
   m_LocalRotation: {x: -0, y: -0.987322, z: -0, w: 0.15873027}
-  m_LocalPosition: {x: -7.5, y: -3.79, z: 10.43}
+  m_LocalPosition: {x: 126.646614, y: 0.031731606, z: 93.53199}
   m_LocalScale: {x: 1.6101497, y: 1.61014, z: 1.61014}
   m_Children:
   - {fileID: 4821131070330136}
@@ -3720,6 +3720,7 @@ MonoBehaviour:
   hp: 30
   Moves:
   - {fileID: 1773372471602260, guid: 78f8d99308c27bf499441609ec781c0a, type: 2}
+  Friendly: 0
   weight: 0.529
   ParticlesOnHit: 1
 --- !u!114 &114748834120075112
@@ -3751,6 +3752,7 @@ MonoBehaviour:
   MyCC: {fileID: 0}
   Target: {fileID: 0}
   stateTimeElapsed: 0
+  StartAnimation: Run
 --- !u!136 &136454731829597486
 CapsuleCollider:
   m_ObjectHideFlags: 1

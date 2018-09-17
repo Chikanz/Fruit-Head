@@ -27,11 +27,14 @@ public class EnemyManager : MonoBehaviour
         
         Enemies = new List<CombatCharacter>();
 
-		//Test mode
-		var kiddo = transform.GetChild(0);
-		if (kiddo && kiddo.GetComponent<CombatCharacter>())
+		//(mr) Test mode
+		if (transform.childCount > 0)
 		{
-			AddEnemy(kiddo.gameObject);
+			var kiddo = transform.GetChild(0);
+			if (kiddo && kiddo.GetComponent<CombatCharacter>())
+			{
+				AddEnemy(kiddo.gameObject);
+			}
 		}
 	}
 

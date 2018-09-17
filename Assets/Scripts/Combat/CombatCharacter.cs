@@ -338,11 +338,19 @@ public class CombatCharacter : MonoBehaviour
 
         //Reset isPerforming after animation has finished
         //Assumes the animation name is the same as the trigger name
-        var resetTime = 1f;
-        if(GetComponent<Animator>())
-            resetTime = DookTools.GetAnimationLength(GetComponent<Animator>(), m.AnimationTriggerName);
-        Debug.Assert(resetTime > 0);
-        Invoke("ResetMove", resetTime);
+        if (m.AnimationTriggerName != "" || !m.fireImmediate)
+        {
+            var resetTime = 1f;
+            if (GetComponent<Animator>())
+                resetTime = DookTools.GetAnimationLength(GetComponent<Animator>(), m.AnimationTriggerName);
+            Debug.Assert(resetTime > 0, "Couldn't find clip in animator, you probably have the wrong " +
+                                        "AnimationTriggerName on the move prefab");
+            Invoke("ResetMove", resetTime);
+        }
+        else
+        {
+            ResetMove();
+        }
     }
 
     public void ResetMove()

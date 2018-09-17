@@ -53,19 +53,25 @@ public class SceneChanger: MonoBehaviour
         var sceneIndex = Int32.Parse(scene);
         SceneManager.LoadScene(sceneIndex);
 
-        Invoke("SetPlayer", 0.5f); //AAAAAAAAAAAAAAAAAAAAAAAA
+        var player = GetComponentInChildren<DialogueUI>().playerControl;
 
-        //hmm this could be done better
-        if (sceneIndex == 4)
+        //todo: replace for a solution that works for all scenes
+        //save position in OW scene
+        //pass previous scene to enemy manager
+        //pop stack/cache of player pos
+        if (sceneIndex == 4 && player)
         {
             RememberPlayerPos = GameObject.FindWithTag("Player").transform.position;
             Debug.Log("set player pos");
         }
 
-        if (sceneIndex == 5 && RememberPlayerPos != Vector3.zero)
+        if (sceneIndex == 5 && RememberPlayerPos != Vector3.zero && player)
         {
             Invoke("pp", 0.1f);
         }
+
+        //since we're using a different player now just null the other ref and let it set itself
+        GetComponentInChildren<DialogueUI>().playerControl = null;  
     }
 
     //player position
@@ -75,14 +81,6 @@ public class SceneChanger: MonoBehaviour
         //var cam = GameObject.Find("CM vcam1").transform;
         //cam.position = new Vector3(RememberPlayerPos.x, cam.position.y ,RememberPlayerPos.z);
         Debug.Log("read player pos");
-    }
-
-    void SetPlayer()
-    {
-        //Get the player
-        var player = NPCman.instance.GetCharacter("Charlie");
-        if (!player) return; //DA FUCK
-        GetComponentInChildren<DialogueUI>().playerControl = player.GetComponent<ThirdPersonUserControl>();  //yikes
     }
 
     public void Change(int scene)

@@ -53,7 +53,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		public void Move(Vector3 move, bool crouch, bool jump)
 		{
-
+			if(! m_Rigidbody) Start(); //AAAAAAAAAAAAAAAAAAAAA
+			
 			// convert the world relative moveInput vector into a local-relative
 			// turn amount and forward amount required to head in the desired
 			// direction.
@@ -73,7 +74,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 			else
 			{
-				HandleAirborneMovement();
+				//HandleAirborneMovement();
 			}
 
 			ScaleCapsuleForCrouching(crouch);
@@ -131,6 +132,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		void UpdateAnimator(Vector3 move)
 		{
 			// update the animator parameters
+			if(!m_Animator) Start();
 			m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
 			m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
 			m_Animator.SetBool("Crouch", m_Crouching);
@@ -168,6 +170,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		void HandleAirborneMovement()
 		{
+			if(!m_Rigidbody) Start(); //HOW IS START NOT BEING CALLED FUCK EVERYHING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			
 			// apply extra gravity from multiplier:
 			Vector3 extraGravityForce = (Physics.gravity * m_GravityMultiplier) - Physics.gravity;
 			m_Rigidbody.AddForce(extraGravityForce);
