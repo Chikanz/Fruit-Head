@@ -7,6 +7,7 @@ using Cinemachine;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// legal guardian of the party
@@ -34,7 +35,6 @@ public class CombatManager : MonoBehaviour
 	
 	private Transform EnemyOrigin;
 	private Transform PartyOrigin;
-
 
 	public void Awake()
 	{
@@ -80,6 +80,13 @@ public class CombatManager : MonoBehaviour
 		var fl = Instantiate(CinemachineFreelook, transform.position + Vector3.up * 10, Quaternion.identity);
 		SpawnedParty[0].GetComponent<Targeter>().CTG = fl.GetComponentInChildren<CinemachineTargetGroup>();
 		fl.GetComponentInChildren<CinemachineFreeLook>().Follow = SpawnedParty[0].transform.Find("Cam Point");
+		
+		//Set up targets
+		for (int i = 0; i < Enemies.Count; i++)
+		{
+			EnemyManager.instance.Enemies[i].GetComponent<StateController>().Target = SpawnedParty[Random.Range(0, Party.Count)].transform;
+		}
+		
 	}
 
 	private Vector3 GetAlternatingPosition(Vector3 origin, int i, ref int alternate)

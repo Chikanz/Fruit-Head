@@ -14,7 +14,7 @@ public class CircleAction : Action
 		c.MyAI.ForceLookAt(null);
 		
 		//Circle		
-		var pointer = c.Target.transform.position - c.transform.position;
+		var pointer = c.Target.position - c.transform.position;
 		var cross = Vector3.Cross(c.transform.up, pointer.normalized); //Get vector perpendicular to target
 		
 		//Maintain Distance	

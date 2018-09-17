@@ -17,7 +17,7 @@ public class StateController : MonoBehaviour
 	[HideInInspector] public BaseAI MyAI;
 	[HideInInspector] public CombatCharacter MyCC;
 	
-	[HideInInspector] public Transform Target;
+	public Transform Target;
 	[HideInInspector] public float stateTimeElapsed;
 
 	public Animator myAnim { get; set; }
@@ -38,12 +38,6 @@ public class StateController : MonoBehaviour
 		myAnim = GetComponentInChildren<Animator>();
 
 		CombatManager.OnCombatStart += (sender, args) => OnActive();
-		
-		//todo targeting
-		if (MyCC.Friendly)
-		{
-			
-		}
 	}
 
 	//Called on started active

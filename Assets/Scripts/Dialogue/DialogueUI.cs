@@ -56,7 +56,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
     public string TalkingTo { get; set; }
 
 
-    void Awake()
+    void Start()
     {
         //Debug.Log(UppercaseFirst("big Butts i cannot lie") + ".");
 
@@ -78,12 +78,15 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         if (continuePrompt != null)
             continuePrompt.SetActive(false);
 
-        Debug.Assert(GameObject.FindWithTag("Player"), "You silly goose! I couldn't find the player! Make sure they're tagged as 'Player' " +
-                                                       "and are in the scene! Winkey face! 0w0");
+        //Debug.Assert(GameObject.FindWithTag("Player"), "You silly goose! I couldn't find the player! Make sure they're tagged as 'Player' " +
+        //                                               "and are in the scene! Winkey face! 0w0");
+
+        //Fallback to combat player depending on which scene we're in
+        GameObject playerObj;
+        playerObj = GameObject.FindWithTag("Player");
+        if (playerObj == null) playerObj = CombatManager.instance.Party[0];
         
-        playerControl = GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>();
-        
-        
+        playerControl = playerObj.GetComponent<ThirdPersonUserControl>();        
     }
 
     /// Show a line of dialogue, gradually
