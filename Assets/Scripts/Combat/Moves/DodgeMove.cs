@@ -31,7 +31,7 @@ public class DodgeMove : Move
 
 		toggleMoveSystems(false);
 		//daddy.GetComponent<Rigidbody>().AddForce(Vector3.left * 3000);
-		Invoke("Reset",0.8);
+		Invoke("Reset",0.8f);
 		
 	}
 
