@@ -19,8 +19,6 @@ public class startDialogue : MonoBehaviour {
             positioning();
             runStartDialogue();
         }
-        
-
     }
 	
 	void runStartDialogue()

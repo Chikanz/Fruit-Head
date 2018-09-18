@@ -8,7 +8,7 @@ public class NPCman : MonoBehaviour
 
     Dictionary<string, OW_Character> Phonebook = new Dictionary<string, OW_Character>();
 
-    void Start ()
+    void Awake ()
     {
         //Enforce singleton
         if (!instance) instance = this;
