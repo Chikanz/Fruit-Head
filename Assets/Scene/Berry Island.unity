@@ -5861,6 +5861,11 @@ Prefab:
       propertyPath: StartNode
       value: AveryBerry
       objectReference: {fileID: 0}
+    - target: {fileID: 114476500980298444, guid: a3be2d4299fe45f44975d6eb80e6fe6e,
+        type: 2}
+      propertyPath: name
+      value: Avery
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3be2d4299fe45f44975d6eb80e6fe6e, type: 2}
   m_IsPrefabParent: 0
@@ -7572,8 +7577,8 @@ Transform:
   - {fileID: 1711574713}
   - {fileID: 1873935125}
   - {fileID: 1551685785}
-  - {fileID: 423191779}
   - {fileID: 323390456}
+  - {fileID: 423191779}
   - {fileID: 1302850050}
   - {fileID: 2131470095}
   - {fileID: 440162329}
@@ -12693,6 +12698,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b018913cbf066e4f84fcf0240b984b7, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1938904724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1845721147}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1938904725}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1938904725
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1845721147}
+  m_GameObject: {fileID: 1938904724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1242790211}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1942075531
 Prefab:
   m_ObjectHideFlags: 0
@@ -12848,7 +12881,7 @@ Prefab:
     - target: {fileID: 114112439937194534, guid: ed9a4bca1281d44428b101fb3856c1ae,
         type: 2}
       propertyPath: defaultVariables.Array.data[4].value
-      value: 
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed9a4bca1281d44428b101fb3856c1ae, type: 2}
