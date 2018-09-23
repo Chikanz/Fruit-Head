@@ -11,9 +11,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
         private Vector3 m_Move;
-        private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
 
         private CombatCharacter CC;
+        private Targeter targeter;
 
         public bool CanMove = true;
 
@@ -23,6 +23,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             Screen.lockCursor = true;
 
             CC = GetComponent<CombatCharacter>();
+            targeter = GetComponent<Targeter>();            
+            
 
             // get the transform of the main camera
             if (Camera.main != null)
@@ -43,11 +45,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Update()
         {
-            //if (!m_Jump)
-            //{
-            //    m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-            //}
-
             //Get input for moves
             if (!CC) return;
             if(Input.GetMouseButtonDown(0))
@@ -66,35 +63,32 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             // read inputs if not using move
             float v = 0, h = 0;
-            bool crouch = false;
             if ((!CC || CC.CanMove()) && CanMove)
             {
                h = CrossPlatformInputManager.GetAxis("Horizontal");
-               v = CrossPlatformInputManager.GetAxis("Vertical");
-               crouch = Input.GetKey(KeyCode.C);                
+               v = CrossPlatformInputManager.GetAxis("Vertical");                           
             }
 
-            // calculate move direction to pass to character
-            if (m_Cam != null)
+            if (!targeter.cameraSnapped)
             {
                 // calculate camera relative direction to move:
                 m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-                m_Move = v*m_CamForward + h*m_Cam.right;
+                m_Move = v * m_CamForward + h * m_Cam.right;
+                m_Character.Move(m_Move); // pass all parameters to the character control script
             }
             else
             {
-                // we use world-relative directions in the case of no main camera
-                m_Move = v*Vector3.forward + h*Vector3.right;
-                Debug.Log(m_Move.magnitude);
+                var vec = targeter.CurrentTarget().transform.position - transform.position;
+                //Don't move if we're not facing
+                if (Vector3.Dot(vec.normalized, transform.forward) > 0.7f)
+                    m_Character.Strafe(h, v); //Strafe
+                
+                //Face target
+                var rot = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(vec.normalized), 0.1f).eulerAngles;
+                rot.x = 0;
+                rot.z = 0;
+                transform.rotation = Quaternion.Euler(rot);
             }
-#if !MOBILE_INPUT
-			// walk speed multiplier
-	        if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 3f;
-#endif
-
-            // pass all parameters to the character control script
-            m_Character.Move(m_Move, crouch, m_Jump);
-            m_Jump = false;
         }
     }
 }

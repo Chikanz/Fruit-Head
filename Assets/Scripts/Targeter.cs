@@ -18,7 +18,7 @@ public class Targeter : MonoBehaviour
 	//detirmines which enemy is being targeted, -1 for no enemy
 	private int targetInt;
 
-	private bool cameraSnapped;
+	public bool cameraSnapped { get; private set; }
 	private List<DotTarget> Targets = new List<DotTarget>();
 	
 	// Use this for initialization
@@ -143,7 +143,7 @@ public class Targeter : MonoBehaviour
 	
 	#region Helper Methods
 
-	GameObject CurrentTarget()
+	public GameObject CurrentTarget()
 	{
 		if(targetInt < Targets.Count) return Targets[targetInt].enemy;
 		return null;

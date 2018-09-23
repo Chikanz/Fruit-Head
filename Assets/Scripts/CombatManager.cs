@@ -72,7 +72,7 @@ public class CombatManager : MonoBehaviour
 		for (int i = 0; i < Party.Count; i++)
 		{
 			var p = GetAlternatingPosition(PartyOrigin.position, i, ref alternate);
-			var g = Instantiate(Party[i], p, Quaternion.identity);
+			var g = Instantiate(Party[i], p, Quaternion.Euler(0,180,0));
 			SpawnedParty.Add(g);
 		}
 		

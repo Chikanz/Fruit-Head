@@ -51,7 +51,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
 
 
-		public void Move(Vector3 move, bool crouch, bool jump)
+		public void Move(Vector3 move)
 		{
 			if(! m_Rigidbody) Start(); //AAAAAAAAAAAAAAAAAAAAA
 			
@@ -67,17 +67,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			ApplyExtraTurnRotation();
 
-			// control and velocity handling is different when grounded and airborne:
-			if (m_IsGrounded)
-			{
-				HandleGroundedMovement(crouch, jump);
-			}
-			else
-			{
-				//HandleAirborneMovement();
-			}
-
-			ScaleCapsuleForCrouching(crouch);
+			ScaleCapsuleForCrouching(false);
 			PreventStandingInLowHeadroom();
 
 			// send input and other state parameters to the animator
@@ -89,6 +79,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 m_Rigidbody.velocity += (transform.forward * m_ForwardAmount * m_MoveSpeedMultiplier) + (transform.right * m_TurnAmount);
             }
         }
+
+		public void Strafe(float horizontal, float vertical)
+		{
+			m_Rigidbody.velocity += (transform.forward * vertical * m_MoveSpeedMultiplier * 0.8f) +
+			                        (transform.right * horizontal * m_MoveSpeedMultiplier * 0.8f);
+		}
 
         void ScaleCapsuleForCrouching(bool crouch)
 		{
