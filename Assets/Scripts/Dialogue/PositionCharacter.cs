@@ -22,11 +22,33 @@ public class PositionCharacter : MonoBehaviour {
         {
             positionKellExt();
         }
+        else if (stage == 3)
+        {
+            positionTownHall();
+        }
         else if (stage == 4 || stage == 8)
         {
             positionMaisonExt();
         }
-        else if (stage == 5 || stage == 6 || stage == 10)
+        else if (stage == 5)
+        {
+            Yarn.Value temp = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$stage5");
+            string stage5 = temp.AsString;
+
+            if (stage5 == "station")
+            {
+                positionStationExt();
+            }
+            else if (stage5 == "tam")
+            {
+                positionTownHall();
+            }
+            else
+            {
+                positionKellExt();
+            }
+        }
+        else if (stage == 6 || stage == 10)
         {
             positionStationExt();
         }
@@ -120,6 +142,17 @@ public class PositionCharacter : MonoBehaviour {
         }
         else if (gameObject.name == "Avery") {
             gameObject.transform.position = pos - new Vector3(1, 0, 1);
+        }
+    }
+
+    void positionTownHall()
+    {
+        if (gameObject.name == "Charlie")
+        {
+            //place charlie outside town hall
+            GameObject destination = GameObject.Find("TownHallExt");
+            Vector3 pos = destination.gameObject.transform.position;
+            gameObject.transform.position = pos;
         }
     }
 

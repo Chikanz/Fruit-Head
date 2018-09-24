@@ -6,7 +6,7 @@ using UnityEngine.AI;
 namespace Yarn.Unity {
 	public class MoveCharacter : MonoBehaviour {
 
-		GameObject target;
+		Transform target;
 		float speed;
 		static GameObject dialogue;
 		NavMeshAgent agent;
@@ -29,32 +29,32 @@ namespace Yarn.Unity {
 			if (target != null ) {
 
 			float step = speed * Time.deltaTime;
-			Transform destination = target.gameObject.transform;
-                transform.LookAt(destination);
-                Vector3 move = Vector3.MoveTowards(transform.position, destination.position, step);
+			//Transform destination = target.gameObject.transform;
+                transform.LookAt(target);
+                Vector3 move = Vector3.MoveTowards(transform.position, target.position, step);
                 transform.position = move;
                 if (m_Animator)
                 {
                     UpdateAnimator(move);
                 }
 
-                if (Vector3.Distance (transform.position, destination.position) < 2.0f) {
-
-                    stopMoving();
+                if (Vector3.Distance (transform.position, target.position) < 2.0f) {
 
                     if (gameObject.name == "Kim" && target.GetComponent<OW_Character>().Name == "Charlie") {
 						string startNode = gameObject.GetComponent<OW_NPC> ().StartNode;
 						dialogue.GetComponent<DialogueRunner>().StartDialogue (startNode);
 					}
+                    //print(target.gameObject.name);
 
-                    if (gameObject.name == "Alvy" || gameObject.name == "Sam" || gameObject.name == "Luca" && target.gameObject.name == "TownHallExt" || gameObject.name == "Tam"
+                    if (gameObject.name == "Alvy" || gameObject.name == "Sam" || (gameObject.name == "Luca" && target.gameObject.name == "TownHallExt") || gameObject.name == "Tam"
                         || gameObject.name == "Riley" || gameObject.name == "Devon" || (gameObject.name == "Eden" && target.gameObject.name == "PoliceStationExt"))
                     {
                         Destroy(gameObject);
                     }
 
-                    
-				}
+                    stopMoving();
+
+                }
 			}
 
 		}
@@ -64,11 +64,19 @@ namespace Yarn.Unity {
 		public void movetopoint(string destination) {
 
 			print (destination);
-			target = GameObject.Find (destination);
+			target = GameObject.Find (destination).transform;
 
             if (destination == "Rowboat")
             {
                 speed = 5.0f;
+            }
+
+            if (destination == "Debate" && gameObject.name == "Eden")
+            {
+                
+                //Transform temp = target;
+                //temp.position += new Vector3(1, 0, 0);
+                //target = temp;
             }
 
 			//Transform location = target.gameObject.transform;
@@ -101,6 +109,13 @@ namespace Yarn.Unity {
             //stop walking animation
             m_Animator.SetFloat("Forward", 0, 0, 0);
             m_Animator.SetFloat("Turn", 0, 0, 0);
+        }
+
+        [YarnCommand("lookat")]
+        public void look(string temp)
+        {
+            Transform a = GameObject.Find(temp).transform;
+            transform.LookAt(a);
         }
 
     }

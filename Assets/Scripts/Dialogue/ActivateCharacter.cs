@@ -35,13 +35,11 @@ public class ActivateCharacter : MonoBehaviour {
             }
             else
             {
-                if (!startActive && gameObject.name != "Avery" /*&& gameObject.name != "Eden" && gameObject.name != "Maison"*/)
+                if (!startActive && gameObject.name != "Avery")
                 {
                     setMesh(false);
                 }
-                //else if ((gameObject.name == "Eden" && stage < 3) || (gameObject.name == "Maison" && stage < 3)) {
-                //    setMesh(false);
-                //} 
+                 
 
             }
 
