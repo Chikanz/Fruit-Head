@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 114267300616002806}
   - component: {fileID: 114934312718489784}
   - component: {fileID: 114803766183601206}
+  - component: {fileID: 136177568112688940}
   m_Layer: 0
   m_Name: Alvy
   m_TagString: Untagged
@@ -1664,7 +1665,7 @@ Animator:
   m_GameObject: {fileID: 1554972714337292}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e55efa99d2b446741aad0451e1d63ab0, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c0767382bbc06384494bf9a7ed4679dc, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1711,6 +1712,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startActive: 0
+--- !u!136 &136177568112688940
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1554972714337292}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.213541
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.6067705, z: 0}
 --- !u!137 &137060908932394354
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
