@@ -73,6 +73,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// send input and other state parameters to the animator
 			UpdateAnimator(move);
 
+            
             //dook move
             if (m_IsGrounded && Time.deltaTime > 0)
             {

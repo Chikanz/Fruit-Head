@@ -73,8 +73,9 @@ namespace Yarn.Unity {
 
             if (destination == "Debate" && gameObject.name == "Eden")
             {
-                
-                //Transform temp = target;
+
+                //Vector3 temp = target.position + new Vector3(1, 0, 0);
+                //target = temp;
                 //temp.position += new Vector3(1, 0, 0);
                 //target = temp;
             }

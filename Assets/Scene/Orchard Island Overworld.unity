@@ -510,11 +510,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4637755854848574, guid: 52f19f27acf31da4c883b69f0da114e0, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.018964121
+      value: 0.01896412
       objectReference: {fileID: 0}
     - target: {fileID: 4637755854848574, guid: 52f19f27acf31da4c883b69f0da114e0, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.00983204
+      value: -0.0098320395
       objectReference: {fileID: 0}
     - target: {fileID: 4637755854848574, guid: 52f19f27acf31da4c883b69f0da114e0, type: 2}
       propertyPath: m_LocalRotation.w
@@ -526,11 +526,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4588881022472112, guid: 52f19f27acf31da4c883b69f0da114e0, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.018964121
+      value: 0.01896412
       objectReference: {fileID: 0}
     - target: {fileID: 4588881022472112, guid: 52f19f27acf31da4c883b69f0da114e0, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.00983204
+      value: -0.0098320395
       objectReference: {fileID: 0}
     - target: {fileID: 4588881022472112, guid: 52f19f27acf31da4c883b69f0da114e0, type: 2}
       propertyPath: m_LocalRotation.w
@@ -992,6 +992,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 19.493948
       objectReference: {fileID: 0}
+    - target: {fileID: 114798554822998112, guid: 1d838bd853669c54284e437eb166157f,
+        type: 2}
+      propertyPath: StartNode
+      value: RedpeelOrchard
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d838bd853669c54284e437eb166157f, type: 2}
   m_IsPrefabParent: 0
@@ -1372,6 +1377,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 975045504}
   m_Mesh: {fileID: 4300000, guid: b9b0528b7f671dd4eb84bb649e2697f7, type: 3}
+--- !u!1 &1004114648 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1931679717634538, guid: 06d9c2824f6fd234ead4eddf5cfb8f81,
+    type: 2}
+  m_PrefabInternal: {fileID: 1750004600}
+--- !u!114 &1004114657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1004114648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5510ecfe4ca42c4396f1535525dc76b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CTG: {fileID: 0}
+  TargetPrebab: {fileID: 0}
 --- !u!1 &1035929847
 GameObject:
   m_ObjectHideFlags: 0

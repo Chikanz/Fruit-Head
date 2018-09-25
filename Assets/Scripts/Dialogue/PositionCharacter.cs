@@ -6,11 +6,14 @@ using Yarn.Unity;
 public class PositionCharacter : MonoBehaviour {
 
 	static GameObject dialogue;
+    GameObject Charlie;
 
 	// Use this for initialization
 	void Start () {
 
 		if (!dialogue) dialogue = GameObject.Find("Yarn");
+
+        Charlie = GameObject.Find("Charlie");
 
         Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
         float stage = biStage.AsNumber;
@@ -20,15 +23,18 @@ public class PositionCharacter : MonoBehaviour {
         }
         else if (stage == 2)
         {
-            positionKellExt();
+            //positionKellExt(false);
+            positionParty("KellsHouseExt", false, false);
         }
         else if (stage == 3)
         {
-            positionTownHall();
+            //positionTownHall(false);
+            positionParty("TownHallExt", false, false);
         }
         else if (stage == 4 || stage == 8)
         {
-            positionMaisonExt();
+            //positionMaisonExt();
+            positionParty("MaisonsHouseExt", true, false);
         }
         else if (stage == 5)
         {
@@ -37,24 +43,34 @@ public class PositionCharacter : MonoBehaviour {
 
             if (stage5 == "station")
             {
-                positionStationExt();
+                positionParty("PoliceStationExt", true, false);
+                //positionStationExt(false);
             }
             else if (stage5 == "tam")
             {
-                positionTownHall();
+                positionParty("TownHallExt", true, false);
+                //positionTownHall(true);
             }
             else
             {
-                positionKellExt();
+                positionParty("KellsHouseExt", true, false);
+                //positionKellExt(true);
             }
         }
-        else if (stage == 6 || stage == 10)
+        else if (stage == 6)
         {
-            positionStationExt();
+            positionParty("PoliceStationExt", true, false);
+            //positionStationExt(false);
         }
         else if (stage == 9)
         {
-            positionHideoutExt();
+            positionParty("CabinExt", true, false);
+            //positionHideoutExt();
+        }
+        else if (stage == 10)
+        {
+            positionParty("PoliceStationExt", true, true);
+            //positionStationExt(true);
         }
 	}
 	
@@ -131,7 +147,7 @@ public class PositionCharacter : MonoBehaviour {
         }
     }
 
-    void positionKellExt()
+    void positionKellExt(bool maison)
     {
         //place party near kell's house
         GameObject destination = GameObject.Find("KellsHouseExt");
@@ -143,59 +159,203 @@ public class PositionCharacter : MonoBehaviour {
         else if (gameObject.name == "Avery") {
             gameObject.transform.position = pos - new Vector3(1, 0, 1);
         }
+        else if (maison && gameObject.name == "Maison")
+        {
+            gameObject.transform.position = pos + new Vector3(1, 0, 1);
+        }
     }
 
-    void positionTownHall()
+    void positionTownHall(bool party)
     {
+
+        GameObject destination = GameObject.Find("TownHallExt");
+        Vector3 pos = destination.gameObject.transform.position;
+
         if (gameObject.name == "Charlie")
         {
             //place charlie outside town hall
-            GameObject destination = GameObject.Find("TownHallExt");
-            Vector3 pos = destination.gameObject.transform.position;
             gameObject.transform.position = pos;
+        }
+        
+        if (party) { 
+            if (gameObject.name == "Avery")
+            {
+                gameObject.transform.position = pos - new Vector3(1, 0, 1);
+            }
+            else if (gameObject.name == "Maison")
+            {
+                gameObject.transform.position = pos + new Vector3(1, 0, 1);
+            }
+        }
+        else
+        {
+            if (gameObject.name == "Avery")
+            {
+                destination = GameObject.Find("Debate");
+                pos = destination.gameObject.transform.position;
+                gameObject.transform.position = pos - new Vector3(1, 0, 1);
+            }
         }
     }
 
     void positionMaisonExt()
     {
+
+        //GameObject destination = GameObject.Find("MaisonsHouseExt");
+        //Vector3 pos = destination.gameObject.transform.position;
+        
+
+        //if (gameObject.name == "Charlie")
+        //{
+        //    //place charlie near maison's house
+        //    gameObject.transform.position = pos;
+        //    gameObject.transform.forward = destination.transform.forward;
+            
+        //}
+        //else if (gameObject.name == "Avery")
+        //{
+        //    positionAvery(pos);
+        //}
+        //{
+            
+        //    gameObject.transform.position = pos + (temp.transform.forward - new Vector3(0, 0, 2));
+        //}
+        //else if (gameObject.name == "Maison")
+        //{
+        //    gameObject.transform.position = pos + (temp.transform.forward + new Vector3(0, 0, 2));
+        //}
+    }
+
+    void positionStationExt(bool eden)
+    {
+
+        GameObject destination = GameObject.Find("PoliceStationExt");
+        Vector3 pos = destination.gameObject.transform.position;
+        GameObject temp = GameObject.Find("Charlie");
+
+
         if (gameObject.name == "Charlie")
         {
             //place charlie near maison's house
-            GameObject destination = GameObject.Find("MaisonsHouseExt");
-            Vector3 pos = destination.gameObject.transform.position;
             gameObject.transform.position = pos;
-        }
-        else if (gameObject.name == "Avery") { }
-    }
+            gameObject.transform.forward = destination.transform.forward;
 
-    void positionStationExt()
-    {
-        if (gameObject.name == "Charlie")
-        {
-            //place charlie near police station
-            GameObject destination = GameObject.Find("PoliceStationExt");
-            Vector3 pos = destination.gameObject.transform.position;
-            gameObject.transform.position = pos;
         }
-        else if (gameObject.name == "Avery") { }
-        else if (gameObject.name == "Tam")
+        else if (gameObject.name == "Avery")
         {
-            gameObject.transform.position += new Vector3(10, 0, 0);
+
+            gameObject.transform.position = pos + (temp.transform.forward - new Vector3(0, 0, 2));
         }
+        else if (gameObject.name == "Maison")
+        {
+            gameObject.transform.position = pos + (temp.transform.forward + new Vector3(0, 0, 2));
+        }
+
+        //if (gameObject.name == "Charlie")
+        //{
+        //    //place charlie near police station
+        //    gameObject.transform.position = pos;
+        //}
+        //else if (gameObject.name == "Avery")
+        //{
+        //    gameObject.transform.position = pos - new Vector3(1, 0, 1);
+        //}
+        //else if (gameObject.name == "Maison")
+        //{
+        //    gameObject.transform.position = pos + new Vector3(1, 0, 1);
+        //}
+
+        //if (eden)
+        //{
+        //    if (gameObject.name == "Eden")
+        //    {
+        //        gameObject.transform.position = pos - new Vector3(1, 0, 1);
+        //    }
+        //}
+
+        //else if (gameObject.name == "Tam")
+        //{
+        //    gameObject.transform.position += new Vector3(10, 0, 0);
+        //}
     }
 
 
     void positionHideoutExt()
     {
+
+        GameObject destination = GameObject.Find("CabinExt");
+        Vector3 pos = destination.gameObject.transform.position;
+
         if (gameObject.name == "Charlie")
         {
             //place charlie near cult hideout/cabin
-            GameObject destination = GameObject.Find("CabinExt");
-            Vector3 pos = destination.gameObject.transform.position;
             gameObject.transform.position = pos;
         }
-        else if (gameObject.name == "Avery") { }
-        
+        else if (gameObject.name == "Avery")
+        {
+            gameObject.transform.position = pos - new Vector3(1, 0, 1);
+        }
+        else if (gameObject.name == "Maison")
+        {
+            gameObject.transform.position = pos + new Vector3(1, 0, 1);
+        }
+
     }
 
+
+
+    void positionParty(string location, bool maison, bool eden)
+    {
+        GameObject destination = GameObject.Find(location);
+        Vector3 pos = destination.gameObject.transform.position;
+
+        gameObject.transform.forward = destination.transform.forward;
+
+        //Vector3 localForward = destination.transform.worldToLocalMatrix.MultiplyVector(transform.forward);
+
+        
+        Vector3 localForward = Charlie.transform.worldToLocalMatrix.MultiplyVector(transform.forward);
+
+
+        if (gameObject.name == "Charlie")
+        {
+            gameObject.transform.position = pos;
+        }
+        else if (gameObject.name == "Avery")
+        {
+            if (location != "TownHallExt")
+            {
+                gameObject.transform.position = pos + (localForward - new Vector3(-1, 0, 3));
+            }
+            else
+            {
+                if (!maison)
+                {
+                    gameObject.transform.position = GameObject.Find("Debate").transform.position;
+                    gameObject.transform.LookAt(Charlie.transform);
+                }
+                else
+                {
+                    gameObject.transform.position = pos + (localForward - new Vector3(-1, 0, 3));
+                }
+            }
+            
+        }
+
+        if (maison) { 
+            if (gameObject.name == "Maison")
+            {
+                gameObject.transform.position = pos - (localForward - new Vector3(-1, 0, -0.5f));
+            }
+        }
+
+        if (eden)
+        {
+            if (gameObject.name == "Eden")
+            {
+                gameObject.transform.position = pos - (localForward - new Vector3(1, 0, 1));
+            }
+
+        }
+    }
 }

@@ -30,14 +30,22 @@ public class ActivateCharacter : MonoBehaviour {
                 bool temp = forestComplete.AsBool;
                 if (!temp)
                 {
-                    setMesh(true);
+                    setMesh(true, false);
                 }
             }
             else
             {
                 if (!startActive && gameObject.name != "Avery")
                 {
-                    setMesh(false);
+                    if ((stage > 2 && gameObject.name == "Maison") || (stage == 10 && gameObject.name == "Eden"))
+                    {
+                        setMesh(true, false);
+                    }
+                    else
+                    {
+                        setMesh(false, true);
+                    }
+                    
                 }
                  
 
@@ -60,25 +68,27 @@ public class ActivateCharacter : MonoBehaviour {
 				gameObject.transform.position += new Vector3(10, 0, 0);
 			}
 
-            setMesh(true);
+            setMesh(true, true);
             
 
         }
 
 
-        public void setMesh(bool isVisible)
+        public void setMesh(bool isVisible, bool move)
         {
 
-            if (!isVisible)
+            if (move)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y - 5, transform.position.z);
-                
-            }
-            else
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
-            }
+                if (!isVisible)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y - 5, transform.position.z);
 
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+                }
+            }
             foreach (var m in meshes)
             {
                 m.enabled = isVisible;

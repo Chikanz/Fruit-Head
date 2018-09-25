@@ -3,6 +3,7 @@ tags:
 colorID: 5
 position: -717,-917
 ---
+<<setFollow Maison false>>
 AVERY: Berry Island! We made it! 
 AVERY: I'd forgotten how much I hate ships.
 CHARLIE: I thought you said you'd never left Blossom Island before.
@@ -133,7 +134,7 @@ TAM: What is THAT supposed to mean?
 LUCA: Have a good day, everyone.
 <<move Alvy AlvysHouseExt>>
 <<move Sam SamsHouseExt>>
-<<move Luca TownHallExt>>
+<<move Luca TownHallDoor>>
 <<lookat Charlie Eden>>
 <<lookat Bailey Ash>>
 <<lookat Ash Bailey>>
@@ -141,7 +142,7 @@ LUCA: Have a good day, everyone.
 <<lookat Riley Devon>>
 CHARLIE: Hey, do you know what's going on?
 EDEN: The last mayor of Berry Island recently passed away. 
-<<move Tam TownHallExt>>
+<<move Tam TownHallDoor>>
 EDEN: Those two up there are hoping to be the next one.
 CHARLIE: It looked like it was getting pretty heated.
 EDEN: Yeah. That's politics for you.
@@ -548,6 +549,7 @@ colorID: 3
 position: -69,-918
 ---
 <<if $biStage is 2>>
+<<setFollow Maison false>>
 <<show Devon>>
 <<show Riley>>
 <<show Luca>>
@@ -666,7 +668,10 @@ position: 814,-906
     <<Change Scene 9>>
 <<endif>>
 
-//AVERY: We don't need to go to the police station right now.
+<<if $biStage is 1 or $biStage is 2 or $biStage is 3 or $biStage is 7 or $biStage is 8 or $biStage is 10>>
+    AVERY: We don't need to go to the police station right now.
+    //specific to each stage??
+<<endif>>
 
 ===
 title: Tam
@@ -717,7 +722,7 @@ position: -141,17
 title: LucaStage3
 tags: 
 colorID: 6
-position: 390,-36
+position: 366,-11
 ---
 <<if visited("LucaStage3") is false>>
     LUCA: Hello there! What can I do for you?
@@ -744,11 +749,15 @@ tags:
 colorID: 0
 position: -739,-437
 ---
-<<if $biStage is 3>>
-    CHARLIE: Kell worked for the last mayor. Maybe someone in the town hall knows where they are.
+<<if $biStage is 3 or $biStage is 5>>
+    [[AveryTownHall]]
+<<else>>
+    AVERY: We don't need to visit town hall right now.
+    //specific to each stage?
 <<endif>>
 
-[[AveryTownHall]]
+
+
 
 
 
@@ -759,6 +768,7 @@ colorID: 0
 position: -479,-435
 ---
 <<if $biStage is 3>>
+CHARLIE: Kell worked for the last mayor. Maybe someone in the town hall knows where they are.
 <<if visited("AveryTownHall") is false>>
 AVERY: I think I'll just...wait out here.
 ->Why?
@@ -803,7 +813,7 @@ tags:
 colorID: 0
 position: -480,-215
 ---
-<<show Maison>>
+<<setFollow Maison false>>
 <<if visited("TownHallExit") is false>>
 AVERY: How'd it go?
 CHARLIE: No one knows where Kell is. It's like they just disappeared.
@@ -947,12 +957,10 @@ CHARLIE: We just need to find something connecting the cult to the disappearance
 AVERY: Where do we even start looking?
 MAISON: Maybe there's something in the note we found at Kell's. 
 MAISON: Let's go back to my place. I can decode it.
+AVERY: Back to the creepy graveyard, then...
 <<set $biStage to 7>>
-->All right, let's go.
-    AVERY: Back to the creepy graveyard, then...
-    <<Change Scene 8>>
-->Not just yet.
-    
+<<Change Scene 8>>
+
 ===
 title: BERRYNOTES
 tags: 
@@ -983,22 +991,27 @@ tags:
 colorID: 2
 position: 596,-474
 ---
-<<if $biStage is 7>>
-MAISON: I should be able to decipher the code using my notes on the cult.
-->Let's go.
-    <<Change Scene 8>>
-->Wait a minute.
-<<endif>>
-
-
-//<<if $biStage lo 4>>
-    CHARLIE: The door is locked.
+<<if visited("MaisonsHouse") is false>>
+    CHARLIE: The door's locked.
+    DOOR: VOICEPRINT NOT RECOGNISED.
+    AVERY: Voiceprint?
+    DOOR: VOICEPRINT NOT RECOGNISED.
     AVERY: Is that a keypad?
-    CHARLIE: Yep, and a thumbprint scanner.
+    CHARLIE: And a thumbprint scanner. And a retinal scanner.
+    DOOR: VOICEPRINT NOT RECOGNISED.
+    <<if $biStage < 3>>
     AVERY: Whoever lived here sure didn't skimp on security.
-//<<endif>>
-
-//<<if $biStage le
+    <<else>>
+    AVERY: Wow, Maison sure didn't skimp on security.
+    <<endif>>
+<<else>>
+    AVERY: Is all this security necessary?
+    <<if $biStage < 3>>
+    CHARLIE: I don't think I've ever seen so many locks.
+    <<else>>
+    MAISON: You'd have this much security too, if you knew what was really out there.
+    <<endif>>
+<<endif>>
 ===
 title: CabinFrontDoor
 tags: 
@@ -1120,6 +1133,7 @@ position: 840,395
 <<show Luca>>
 <<position Luca CabinExt>>
 <<move Luca TownHallExt>>
+<<setFollow Eden true>>
 EDEN: Where did you see Luca last?
 CHARLIE: The cabin.
 EDEN: Take me there, quickly.

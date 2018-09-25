@@ -16,15 +16,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Targeter targeter;
 
         public bool CanMove = true;
-
         
         private void Start()
         {
             Screen.lockCursor = true;
 
             CC = GetComponent<CombatCharacter>();
-            targeter = GetComponent<Targeter>();            
-            
+            targeter = GetComponent<Targeter>();
+                        
 
             // get the transform of the main camera
             if (Camera.main != null)

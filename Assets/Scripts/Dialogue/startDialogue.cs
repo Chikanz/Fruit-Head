@@ -101,9 +101,9 @@ public class startDialogue : MonoBehaviour {
             if (stage != 5)
             {
                 GameObject temp = GameObject.Find("Avery");
-                temp.GetComponent<ActivateCharacter>().setMesh(false);
+                temp.GetComponent<ActivateCharacter>().setMesh(false, true);
                 GameObject temp2 = GameObject.Find("Maison");
-                temp2.GetComponent<ActivateCharacter>().setMesh(false);
+                temp2.GetComponent<ActivateCharacter>().setMesh(false, true);
             }
         }
     }
@@ -122,18 +122,28 @@ public class startDialogue : MonoBehaviour {
         }
         else if (gameObject.name == "BoatTrigger")
         {
-            if (stage == 10)
+            if (stage == 10 && enabled)
             {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("Docks");
+                enabled = false;
             }
         }
         else if (gameObject.name == "KellTrigger")
         {
-            dialogue.GetComponent<DialogueRunner>().StartDialogue("Kell");
+            if (enabled)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("Kell");
+                enabled = false;
+            }
         }
         else
         {
-            dialogue.GetComponent<DialogueRunner>().StartDialogue("FinalRoom");
+            if (enabled)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("FinalRoom");
+                enabled = false;
+            }
+            
         }
 
 
