@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
+using System;
+using UnityEngine.Experimental.UIElements;
+using UnityStandardAssets.Characters.ThirdPerson;
+using Image = UnityEngine.UI.Image;
 
 /// <summary>
 /// Singleton responsible for changing scenes
 /// </summary>
 /// 
-using System;
-using UnityStandardAssets.Characters.ThirdPerson;
-
 public class SceneChanger: MonoBehaviour
 {
     // Use this for initialization
@@ -24,6 +25,7 @@ public class SceneChanger: MonoBehaviour
     public Vector3 RememberPlayerPos;
 
     private BattleData BD;
+    private Image[] LoadingUIList;
 
     void Start ()
     {
@@ -32,7 +34,12 @@ public class SceneChanger: MonoBehaviour
         else Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-	}
+
+        //Get all kiddy images
+        GetComponentInChildren<Canvas>(true).gameObject.SetActive(true); //Make sure loading screen is active
+        LoadingUIList = GetComponentInChildren<Canvas>().GetComponentsInChildren<Image>();
+        LoadingFade(0); //Turn make loading screen transparent
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -51,7 +58,8 @@ public class SceneChanger: MonoBehaviour
 
         //Change scene
         var sceneIndex = Int32.Parse(scene);
-        SceneManager.LoadScene(sceneIndex);
+        //SceneManager.LoadScene(sceneIndex);
+        StartCoroutine(LoadSceneAsync(sceneIndex, 0.25f));
 
         var player = GetComponentInChildren<DialogueUI>().playerControl;
 
@@ -72,6 +80,44 @@ public class SceneChanger: MonoBehaviour
 
         //since we're using a different player now just null the other ref and let it set itself
         GetComponentInChildren<DialogueUI>().playerControl = null;  
+    }
+
+    IEnumerator LoadSceneAsync(int index, float fadeTime)
+    {
+        //fade in loading screen first so it doesn't eat shit when the scene loads
+        var elapsedTime = 0.0f;
+        while (elapsedTime < fadeTime)
+        {
+            LoadingFade(elapsedTime / fadeTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        LoadingFade(1); //Avoid screen still being around on low frame rates  
+        elapsedTime = 0;
+
+        // Wait here until the asynchronous scene fully loads
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(index);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }        
+        
+        //Fade out loading screen
+        while (elapsedTime < fadeTime)
+        {
+            LoadingFade(1 - (elapsedTime / fadeTime)); //Reversi
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        LoadingFade(0);
+    }
+
+    void LoadingFade(float alpha)
+    {
+        foreach (Image img in LoadingUIList)
+        {
+            img.color = new Color(img.color.r,img.color.g,img.color.b, alpha);
+        }            
     }
 
     //player position

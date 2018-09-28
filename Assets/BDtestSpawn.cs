@@ -9,6 +9,11 @@ public class BDtestSpawn : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		Invoke("changeScene",1);
+	}
+
+	void changeScene()
+	{
 		SceneChanger.instance.StartCombat(BD);
 	}
 	

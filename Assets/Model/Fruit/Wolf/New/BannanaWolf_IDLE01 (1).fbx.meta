@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 79728509e165f7c46b0aa6a5180db203
+guid: 0f3f12d04c81c09478af9a224a610e87
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -75,25 +75,15 @@ ModelImporter:
     400068: wolf_legs_msh01
     2000000: back
     2000002: left
-    2100000: wolfLegs_TXT
-    2100002: Bannana_TXT
-    4300000: wolf_legs_msh01
-    4300002: wolf_bannana_msh01
-    7400000: Ilde
+    2100000: Bannana02_defaultMat1
+    2100002: WolfLegs_TXT
+    4300000: wolf_bannana_msh01
+    4300002: wolf_legs_msh01
+    7400000: IDLE
     9500000: //RootNode
     13700000: wolf_bannana_msh01
     13700002: wolf_legs_msh01
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Bannana_TXT
-    second: {fileID: 2100000, guid: 4ef23571fb5e0934abd5c43f8cb613e5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: wolfLegs_TXT
-    second: {fileID: 2100000, guid: 8ee29d0e1a8da6f4492ba68bb4003ea9, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -122,8 +112,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Ilde
-      takeName: Ilde
+      name: IDLE
+      takeName: IDLE
       firstFrame: 1
       lastFrame: 14
       wrapMode: 0
@@ -133,7 +123,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -152,13 +142,13 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 10
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
