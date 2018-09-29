@@ -16,11 +16,12 @@ public class ThumbCamera : MonoBehaviour
 
     public float lerpTime = 0.1f;
 
-    bool firstLookat = true;
+    bool firstTarget = true;
 
     Transform originalParent;
+    private Vector3 targetPos;
 
-	// Use this for initialization
+    // Use this for initialization
 	void Start ()
     {
         DUI = GetComponentInParent<DialogueUI>();
@@ -44,7 +45,8 @@ public class ThumbCamera : MonoBehaviour
             var v = LookAt - transform.position;
             targetRot = Quaternion.LookRotation(v.normalized);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, lerpTime); //lerp rot            
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, lerpTime); //lerp rot
+            transform.position = Vector3.Lerp(transform.position, targetPos, lerpTime); 
         }
     }
 
@@ -56,27 +58,31 @@ public class ThumbCamera : MonoBehaviour
             var n = NPCman.instance;
             Debug.Assert(n, "Can't find NPC man! Did you forget to include one in the scene?");
             player = (OW_Player) n.GetCharacter("Charlie");
-        }
+        }                       
+        //transform.rotation = Quaternion.Euler(player.transform.right);
 
-        //Pan in from player position
-        //transform.position = player.transform.position + (Vector3.up * 2);
-        transform.rotation = Quaternion.Euler(player.transform.right);
-
-        cam.enabled = true;
-        firstLookat = true;
+        cam.enabled = true;        
     }
 
     private void DUI_OnTargetChanged(string name)
     {
-        //Debug.Log(name);
+        Debug.Log(name);
         Debug.Assert(NPCman.instance, "Can't find NPC man instance! Did you forget to include one in the scene?");
         var npc = NPCman.instance.GetCharacter(name).transform;
 
-        //Stay in one position 
-        if (firstLookat)
-        {
-            firstLookat = false;
+        //Pan in front of whomst ever is speking firstb 
+        if (firstTarget)
+        {                  
             transform.position = npc.position + (npc.forward * 1) + (npc.right * 1) + npc.up * 1.5f;
+            targetPos = transform.position;
+            transform.SetParent(npc, true);
+            firstTarget = false;
+        }
+        
+        //only move if target is a while away
+        if (Vector3.Distance(targetPos, transform.position) > 5 || firstTarget) 
+        {
+            targetPos = npc.position + (npc.forward * 1) + (npc.right * 1) + npc.up * 1.5f;
             transform.SetParent(npc, true);
         }
 
@@ -85,19 +91,17 @@ public class ThumbCamera : MonoBehaviour
         {
             LookAt = npc.GetComponent<Collider>().bounds.center;
         }
-
     }    
-
 
     private void DUI_OnDialogueEnd(string name)
     {        
         transform.SetParent(originalParent); //Return to papa
         cam.enabled = false;
+        firstTarget = true;        
     }
 
     private void OnDestroy()
     {
-
         Debug.Log("Thumb cam destroyed");
         DUI.OnDialogueEnd -= DUI_OnDialogueEnd;
     }

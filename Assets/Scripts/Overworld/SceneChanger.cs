@@ -36,7 +36,7 @@ public class SceneChanger: MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         //Get all kiddy images
-        GetComponentInChildren<Canvas>(true).gameObject.SetActive(true); //Make sure loading screen is active
+        transform.GetChild(1).gameObject.SetActive(true); //Make sure loading screen is active
         LoadingUIList = GetComponentInChildren<Canvas>().GetComponentsInChildren<Image>();
         LoadingFade(0); //Turn make loading screen transparent
     }

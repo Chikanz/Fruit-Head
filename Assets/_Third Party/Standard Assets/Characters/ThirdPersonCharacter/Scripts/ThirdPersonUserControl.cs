@@ -65,17 +65,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if ((!CC || CC.CanMove()) && CanMove)
             {
                h = CrossPlatformInputManager.GetAxis("Horizontal");
-               v = CrossPlatformInputManager.GetAxis("Vertical");                           
+               v = CrossPlatformInputManager.GetAxis("Vertical");    
             }
 
-            if (!targeter.cameraSnapped)
+            if ((targeter && !targeter.cameraSnapped) || !targeter) //Normal third person move
             {
                 // calculate camera relative direction to move:
                 m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
                 m_Move = v * m_CamForward + h * m_Cam.right;
                 m_Character.Move(m_Move); // pass all parameters to the character control script
             }
-            else
+            else if(targeter) //Strafe
             {
                 var vec = targeter.CurrentTarget().transform.position - transform.position;
                 //Don't move if we're not facing

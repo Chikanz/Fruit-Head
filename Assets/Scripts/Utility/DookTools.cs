@@ -18,5 +18,14 @@ public static class DookTools
 
         Debug.Log("Couldn't find animation clip!");
         return -1;
-    }    
+    }
+    
+    public static float Map(float value, float OldMin, float OldMax, float NewMin, float NewMax)
+    {
+        float oldRange = (OldMax - OldMin);
+        float newRange = (NewMax - NewMin);
+        float newValue = (((value - OldMin) * newRange) / oldRange) + NewMin;
+
+        return (newValue);
+    }
 }
