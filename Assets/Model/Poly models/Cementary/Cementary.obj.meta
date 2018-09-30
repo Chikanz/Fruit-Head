@@ -5,14 +5,26 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: Cementary_mesh
+    100004: polySurface8
     400000: //RootNode
     400002: Cementary_mesh
+    400004: polySurface8
     2100000: Cementary_mat1
+    2100002: Cementary_Cementary_mat1
     2300000: Cementary_mesh
+    2300002: polySurface8
     3300000: Cementary_mesh
+    3300002: polySurface8
     4300000: Cementary_mesh
+    4300002: polySurface8
     6400000: Cementary_mesh
-  externalObjects: {}
+    6400002: polySurface8
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cementary_Cementary_mat1
+    second: {fileID: 2100000, guid: 07498a25b7d507943bc7a95578a48935, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

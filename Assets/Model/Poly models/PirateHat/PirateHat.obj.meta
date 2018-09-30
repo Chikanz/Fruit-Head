@@ -11,7 +11,12 @@ ModelImporter:
     2300000: PirateHat
     3300000: PirateHat
     4300000: PirateHat
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blinn1SG
+    second: {fileID: 2100000, guid: 054300f14d32a3941b8b1c9496b690e7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -63,8 +68,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
-    normalImportMode: 0
+    normalSmoothAngle: 180
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1

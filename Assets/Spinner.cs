@@ -10,7 +10,7 @@ public class Spinner : MonoBehaviour
 	[Range(0.0f, 1.0f)]
 	public float x, y, z;
     
-	[Range(0, 100)]
+	[Range(0, 1000)]
 	public float Speed;
 	
 	//todo stop spinning when not active	

@@ -75,7 +75,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 m_Move = v * m_CamForward + h * m_Cam.right;
                 m_Character.Move(m_Move); // pass all parameters to the character control script
             }
-            else if(targeter) //Strafe
+            else if(targeter && targeter.CurrentTarget()) //Strafe
             {
                 var vec = targeter.CurrentTarget().transform.position - transform.position;
                 //Don't move if we're not facing

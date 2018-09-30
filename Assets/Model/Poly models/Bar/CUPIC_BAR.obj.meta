@@ -5,14 +5,40 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: default
+    100004: CUPIC_BAR:Mesh1
+    100006: polySurface14
+    100008: polySurface40
     400000: //RootNode
     400002: default
+    400004: CUPIC_BAR:Mesh1
+    400006: polySurface14
+    400008: polySurface40
     2100000: tabla
+    2100002: CUPIC_BAR_tabla
     2300000: default
+    2300002: CUPIC_BAR:Mesh1
+    2300004: polySurface14
+    2300006: polySurface40
     3300000: default
+    3300002: CUPIC_BAR:Mesh1
+    3300004: polySurface14
+    3300006: polySurface40
     4300000: default
+    4300002: CUPIC_BAR:Mesh1
+    4300004: polySurface14
+    4300006: polySurface40
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CUPIC_BAR_tabla
+    second: {fileID: 2100000, guid: af6b97afa0aff0946a3377138c7b623f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tabla
+    second: {fileID: 2100000, guid: e5633afa18b148d43abdaef4830607c5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -68,7 +94,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

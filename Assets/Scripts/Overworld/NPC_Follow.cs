@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 [RequireComponent(typeof(Animator))] //use require component if a component is mandatory (animator definitely should be)
+[RequireComponent(typeof(Rigidbody))]
 public class NPC_Follow : MonoBehaviour 
 {
     public float targetDistance = 4.0f; //Serialize fields instead of hard coded magic numbers
@@ -21,7 +22,6 @@ public class NPC_Follow : MonoBehaviour
         Charlie = NPCman.instance.GetCharacter("Charlie").gameObject; //Get charlie ref from NPC man
         terrain = FindObjectOfType<Terrain>(); //this is hilariously slow never use this shhhhh 
         myAnim = GetComponent<Animator>();
-        //Since we're dictating positions, a RB isn't needed, but it'll mean collisions will be fucked 
         //highly recomend navmesh instead
         
         //Debug.Assert(RB,"needs rigidbody");
@@ -50,8 +50,9 @@ public class NPC_Follow : MonoBehaviour
         followPos = transform.position + followVec; //Final vector        
                     
         //We can sample the terrain height so we don't have to use physics to keep the NPC on the floor
+        //Actually using a RB was a lot cleaner than I thought lol
         float y = terrain.SampleHeight(followPos);
-        transform.position = new Vector3(followPos.x, y, followPos.z); 
+        transform.position = new Vector3(followPos.x, followPos.y, followPos.z); 
                 
         //Look at is great, but this will rotate on all axis (axises?) even though we only want 1  
         //transform.LookAt(Charlie.transform.position); //you can put this on a lerp to make it smoother

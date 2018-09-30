@@ -2,27 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-namespace Yarn.Unity {
-
-public class ActivateCharacter : MonoBehaviour {
-
-		public bool startActive;
-		SkinnedMeshRenderer[] meshes;
-		Transform originalPosition;
-		static GameObject dialogue;
+namespace Yarn.Unity
+{
+    public class ActivateCharacter : MonoBehaviour
+    {
+        public bool startActive;
+        SkinnedMeshRenderer[] meshes;
+        Transform originalPosition;
+        GameObject dialogue; //Probably avoid using static vars where you can
         SpriteRenderer spriteRend;
 
-
-
-    // Use this for initialization
-    void Start () {
-            if (!dialogue) dialogue = GameObject.Find("Yarn");
+        // Use this for initialization
+        void Start()
+        {            
+            //Use scene changer's singleton reference instead of slow gameobject.find
+            dialogue = SceneChanger.instance.transform.GetChild(0).gameObject; 
             meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
             spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
 
             Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
-            float stage = biStage.AsNumber;
+            int stage = (int) biStage.AsNumber; //avoid comparison of floating point numbers by casting to int 
             if (stage == 0)
             {
                 //activate avery on blossom island
@@ -45,50 +44,47 @@ public class ActivateCharacter : MonoBehaviour {
                     {
                         setMesh(false, true);
                     }
-                    
                 }
-                 
-
             }
 
             originalPosition = gameObject.transform;
-
-	}
-	
-	
-		[YarnCommand("show")]
-		public void show() {
-			//print (gameObject.name);
-			if (gameObject.name == "Kim") {
-				Vector3 temp = Camera.main.ViewportToWorldPoint (new Vector3 (1.1f, 0.5f, 15.0f));
-				gameObject.transform.position = temp;
-				gameObject.transform.position = new Vector3 (gameObject.transform.position.x, originalPosition.position.y, gameObject.transform.position.z);
-			} 
-			else if (gameObject.name == "Avery") {
-				gameObject.transform.position += new Vector3(10, 0, 0);
-			}
-
-            setMesh(true, true);
-            
-
         }
 
+        [YarnCommand("show")]
+        public void show()
+        {
+            //print (gameObject.name);
+            if (gameObject.name == "Kim")
+            {
+                Vector3 temp = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0.5f, 15.0f)); //wat
+                gameObject.transform.position = temp;
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x,
+                    originalPosition.position.y, gameObject.transform.position.z);
+            }
+            else if (gameObject.name == "Avery")
+            {
+                gameObject.transform.position += new Vector3(10, 0, 0);
+            }
+
+            setMesh(true, true);
+        }
 
         public void setMesh(bool isVisible, bool move)
         {
-
             if (move)
             {
                 if (!isVisible)
                 {
-                    transform.position = new Vector3(transform.position.x, transform.position.y - 5, transform.position.z);
-
+                    transform.position =
+                        new Vector3(transform.position.x, transform.position.y - 5, transform.position.z);
                 }
                 else
                 {
-                    transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+                    transform.position =
+                        new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
                 }
             }
+
             foreach (var m in meshes)
             {
                 m.enabled = isVisible;
@@ -99,6 +95,5 @@ public class ActivateCharacter : MonoBehaviour {
                 spriteRend.enabled = isVisible;
             }
         }
-
     }
 }

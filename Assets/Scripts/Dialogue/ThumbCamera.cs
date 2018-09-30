@@ -15,6 +15,7 @@ public class ThumbCamera : MonoBehaviour
     public OW_Player player;
 
     public float lerpTime = 0.1f;
+    public float MoveThreshold = 1;
 
     bool firstTarget = true;
 
@@ -80,7 +81,8 @@ public class ThumbCamera : MonoBehaviour
         }
         
         //only move if target is a while away
-        if (Vector3.Distance(targetPos, transform.position) > 5 || firstTarget) 
+        var dist = Vector3.Distance(transform.position, npc.transform.position);        
+        if (dist > MoveThreshold) 
         {
             targetPos = npc.position + (npc.forward * 1) + (npc.right * 1) + npc.up * 1.5f;
             transform.SetParent(npc, true);

@@ -27,7 +27,7 @@ public class SceneChanger: MonoBehaviour
     private BattleData BD;
     private Image[] LoadingUIList;
 
-    void Start ()
+    void Awake ()
     {
         //Enforce singleton
         if (!instance) instance = this;

@@ -58,7 +58,7 @@ public class Targeter : MonoBehaviour
 		//Update reticle
 		if (cameraSnapped)
 		{
-			if (CurrentTarget())
+			if (CurrentTarget() != null)
 			{
 				targetObj.transform.position = CurrentTarget().transform.position;
 			}
@@ -92,11 +92,11 @@ public class Targeter : MonoBehaviour
 		}		
 
 		//Set the target in the cinemachine target group
-		if(CTG.m_Targets.Length > 1)
+		if(CTG.m_Targets.Length > 1 && CurrentTarget())
 			CTG.m_Targets[1] = MakeCMTarget(CurrentTarget().transform);
 		else
 		{
-			Debug.Log("Array machine broke");
+			ResetSnap(); //Stahp snap if we have no targets left
 		}
 	}
 
