@@ -5,12 +5,12 @@ using Yarn.Unity;
 
 public class OpenDoor : MonoBehaviour {
 
-    Transform target;
+    //Transform target;
     
 
 	// Use this for initialization
 	void Start () {
-        target = null;
+        //target = null;
 	}
 
     // Update is called once per frame
@@ -34,7 +34,10 @@ public class OpenDoor : MonoBehaviour {
     {
         //target = transform.position + new Vector3(0, 90, 0);
         //transform.rotation = new Quaternion(0, 90, 0, 0);
-        transform.Rotate(0, -90, 0);
+        print("open");
+        //transform.Rotate(0, -90, 0);
+        
+        testing();
         //target = GameObject.Find("Charlie").transform;
     }
 
@@ -43,8 +46,17 @@ public class OpenDoor : MonoBehaviour {
     {
         //target = transform.position + new Vector3(0, 90, 0);
         //transform.rotation = new Quaternion(0, 90, 0, 0);
-        transform.Rotate(0, 90, 0);
+        //transform.Rotate(0, 90, 0);
         //target = GameObject.Find("Charlie").transform;
+        print("close");
+    }
+
+    void testing()
+    {
+        //transform.Rotate(0, -90, 0);
+        //transform.position += Vector3.one;
+        transform.rotation *= Quaternion.Euler(0, 90, 0);
+       
     }
 
 }

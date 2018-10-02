@@ -115,9 +115,10 @@ public class startDialogue : MonoBehaviour {
         print("debate");
         if (gameObject.name == "MeetingTrigger")
         {
-            if (stage == 2)
+            if (enabled && stage == 2)
             {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("Debate");
+                enabled = false;
             }
         }
         else if (gameObject.name == "BoatTrigger")
