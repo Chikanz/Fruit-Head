@@ -12,7 +12,6 @@ public class StateController : MonoBehaviour
 {
 	public State currentState;
 	public EnemyStats enemyStats;
-	public Transform eyes;
 
 	[HideInInspector] public BaseAI MyAI;
 	[HideInInspector] public CombatCharacter MyCC;

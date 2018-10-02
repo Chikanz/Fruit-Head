@@ -4,13 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-
-
 /// <summary>
 /// Simply Transition after timer is finished
 /// </summary>
-///
-[CreateAssetMenu (menuName = "PluggableAI/Decisions/RandomlyTimedDecision")] 
 public class TimedDecision : Decision
 {
     const string key = "RandomTimer";

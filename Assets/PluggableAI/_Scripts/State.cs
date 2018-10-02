@@ -27,7 +27,7 @@ public class State : ScriptableObject
 	{
 		foreach (var t in transitions)
 		{
-			if (t.Decision.Decide (c)) //Find out if we should change to this state 
+			if (t.Decision.GetDecision().Decide (c)) //Find out if we should change to this state 
 			{
 				Debug.Assert(t.NextState != null, "Next state is null, dum dum");
 				

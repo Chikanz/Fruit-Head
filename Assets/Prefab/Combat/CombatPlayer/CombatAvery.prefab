@@ -287,21 +287,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1306751902665868
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4069467314084074}
-  m_Layer: 0
-  m_Name: Cam Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1340829716985264
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,10 +393,8 @@ GameObject:
   - component: {fileID: 95937430324445932}
   - component: {fileID: 54242024080577440}
   - component: {fileID: 136842745016763474}
-  - component: {fileID: 114018009282434658}
-  - component: {fileID: 114646327164984244}
   - component: {fileID: 114324905692568576}
-  - component: {fileID: 114656761540936450}
+  - component: {fileID: 114655319306916072}
   m_Layer: 0
   m_Name: CombatAvery
   m_TagString: Player
@@ -1053,19 +1036,6 @@ Transform:
   m_Father: {fileID: 4635235649714510}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4069467314084074
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1306751902665868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.77, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4663097705740824}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4101236333878140
 Transform:
   m_ObjectHideFlags: 1
@@ -1539,7 +1509,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1340829716985264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.034, y: 0.669, z: 0.004}
+  m_LocalPosition: {x: -0.035, y: 0.79, z: 0.057}
   m_LocalScale: {x: 0.8518744, y: 0.85187423, z: 0.85187423}
   m_Children: []
   m_Father: {fileID: 4663097705740824}
@@ -1579,13 +1549,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1415917793445772}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00016021729, y: 0.24, z: -24.04}
+  m_LocalPosition: {x: 102.05798, y: 1.9959726, z: 93.1764}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4332784989170906}
   - {fileID: 4427089618318974}
   - {fileID: 4624519793259660}
-  - {fileID: 4069467314084074}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1905,18 +1874,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114018009282434658
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1415917793445772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521b611700410be45810047f0a74e899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CanMove: 1
 --- !u!114 &114324905692568576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1931,9 +1888,10 @@ MonoBehaviour:
   hp: 100
   Moves:
   - {fileID: 1773372471602260, guid: d68bbd5c53678f44eb9833b38b9381a7, type: 2}
+  Friendly: 0
   weight: 0
   ParticlesOnHit: 0
---- !u!114 &114646327164984244
+--- !u!114 &114655319306916072
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1941,33 +1899,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1415917793445772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
+  m_Script: {fileID: 11500000, guid: a7aaa7bb6b9384548b1e290d925e3732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 180
-  m_JumpPower: 6
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 4
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
-  DodgeSpeed: 100
---- !u!114 &114656761540936450
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1415917793445772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5510ecfe4ca42c4396f1535525dc76b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  CTG: {fileID: 0}
-  TargetPrebab: {fileID: 1462213017973930, guid: 20927bb367d1a6f4eafe68cffbf36a52,
-    type: 2}
+  currentState: {fileID: 0}
+  enemyStats: {fileID: 0}
+  MyAI: {fileID: 0}
+  MyCC: {fileID: 0}
+  Target: {fileID: 0}
+  stateTimeElapsed: 0
+  StartAnimation: 
 --- !u!135 &135244135329712340
 SphereCollider:
   m_ObjectHideFlags: 1
