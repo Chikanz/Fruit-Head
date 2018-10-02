@@ -8,7 +8,7 @@ namespace Yarn.Unity {
 
 		Transform target;
 		float speed;
-		static GameObject dialogue;
+		GameObject dialogue;
 		NavMeshAgent agent;
         Animator m_Animator;
 
@@ -46,8 +46,19 @@ namespace Yarn.Unity {
 					}
                     //print(target.gameObject.name);
 
-                    if (gameObject.name == "Alvy" || gameObject.name == "Sam" || (gameObject.name == "Luca" && target.gameObject.name == "TownHallExt") || gameObject.name == "Tam"
-                        || gameObject.name == "Riley" || gameObject.name == "Devon" || (gameObject.name == "Eden" && target.gameObject.name == "PoliceStationExt"))
+                    if (target.gameObject.name == "CharlieTarget" && gameObject.name == "Charlie")
+                    {
+                        //dialogue.GetComponent<DialogueRunner>().StartDialogue("Hideout");
+                    }
+
+                    if (target.gameObject.name == "Debate" && gameObject.name == "Charlie")
+                    {
+                        target.position -= new Vector3(1.5f, 0, 0);
+                    }
+
+
+                    if (gameObject.name == "Alvy" || gameObject.name == "Sam" || (gameObject.name == "Luca" && target.gameObject.name == "TownHallDoor") || gameObject.name == "Tam"
+                        || gameObject.name == "Riley" || (gameObject.name == "Devon" && target.gameObject.name != "DevonTarget")|| (gameObject.name == "Eden" && target.gameObject.name == "PoliceStationExt"))
                     {
                         Destroy(gameObject);
                     }
@@ -112,7 +123,7 @@ namespace Yarn.Unity {
             m_Animator.SetFloat("Turn", 0, 0, 0);
         }
 
-        [YarnCommand("lookat")]
+        [YarnCommand("lookAt")]
         public void look(string temp)
         {
             Transform a = GameObject.Find(temp).transform;
