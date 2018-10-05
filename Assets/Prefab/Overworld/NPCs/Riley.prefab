@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: 136653645806978520}
   - component: {fileID: 114181029463165190}
   - component: {fileID: 114018965774244182}
+  - component: {fileID: 195768621009972842}
   m_Layer: 0
   m_Name: Riley
   m_TagString: Townspeople
@@ -1132,7 +1133,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1741861912722632}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.2, y: 12.4, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4017797474302748}
@@ -1479,7 +1480,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1400594050263076}
   m_LocalRotation: {x: -0.0042339345, y: -0.9979351, z: -0.008781843, w: -0.06348552}
-  m_LocalPosition: {x: 15.938477, y: -0.572937, z: -16.164673}
+  m_LocalPosition: {x: 14.628479, y: -0.5600004, z: -16.334656}
   m_LocalScale: {x: 19.493973, y: 19.49394, z: 19.493973}
   m_Children:
   - {fileID: 4550729375631888}
@@ -1856,8 +1857,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d3e8bc9b8e2321544b672a9f6cbe7661, type: 3}
-  - {fileID: 2100002, guid: d3e8bc9b8e2321544b672a9f6cbe7661, type: 3}
+  - {fileID: 2100000, guid: 4d0ac32658fb3de42bdde4e32c76c812, type: 2}
+  - {fileID: 2100000, guid: 18fc3f502ab8c7b4d90f070e5aa802e5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2798,6 +2799,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0024164147, y: -0.005146101, z: -0.00006248086}
     m_Extent: {x: 0.0012686278, y: 0.0012685257, z: 0.00097245496}
   m_DirtyAABB: 0
+--- !u!195 &195768621009972842
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400594050263076}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.03
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.1
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!212 &212575909988709118
 SpriteRenderer:
   m_ObjectHideFlags: 1

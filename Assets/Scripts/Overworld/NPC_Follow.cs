@@ -51,7 +51,7 @@ public class NPC_Follow : MonoBehaviour
                     
         //We can sample the terrain height so we don't have to use physics to keep the NPC on the floor
         //Actually using a RB was a lot cleaner than I thought lol
-        float y = terrain.SampleHeight(followPos);
+        //float y = terrain.SampleHeight(followPos);
         transform.position = new Vector3(followPos.x, followPos.y, followPos.z); 
                 
         //Look at is great, but this will rotate on all axis (axises?) even though we only want 1  

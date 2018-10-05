@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 136693135656458890}
   - component: {fileID: 114941408742254900}
   - component: {fileID: 114224009709149766}
+  - component: {fileID: 195402984960899502}
   m_Layer: 0
   m_Name: Sam
   m_TagString: Townspeople
@@ -2666,6 +2667,27 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.009864629, y: -0.014246748, z: -0.00004138623}
     m_Extent: {x: 0.0016794177, y: 0.0027135415, z: 0.00074618205}
   m_DirtyAABB: 0
+--- !u!195 &195402984960899502
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1291324426724240}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.03
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.1
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!212 &212137708485938758
 SpriteRenderer:
   m_ObjectHideFlags: 1

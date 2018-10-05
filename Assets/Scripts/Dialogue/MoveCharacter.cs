@@ -3,132 +3,113 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Yarn.Unity {
-	public class MoveCharacter : MonoBehaviour {
+namespace Yarn.Unity
+{
+	public class MoveCharacter : MonoBehaviour
+	{
+		private Transform target;		
+		private GameObject dialogue;
+		private NavMeshAgent agent;
+		private Animator myAnim;
 
-		Transform target;
-		float speed;
-		GameObject dialogue;
-		NavMeshAgent agent;
-        Animator m_Animator;
+		private const float destinationRange = 2.0f;
 
+		// Use this for initialization
+		void Start()
+		{
+			if (!dialogue) dialogue = GameObject.Find("Yarn");
+			agent = gameObject.GetComponent<NavMeshAgent>();
+			agent.enabled = false;
 
-        // Use this for initialization
-        void Start () {
-			target = null;
-			speed = 2.0f;
-
-            if (!dialogue) dialogue = GameObject.Find("Yarn");
-            //agent = gameObject.GetComponent<NavMeshAgent> ();
-
-            m_Animator = GetComponent<Animator>();
-        }
+			myAnim = GetComponent<Animator>();
+		}
 
 		// Update is called once per frame
-		void Update () {
-			if (target != null ) {
-
-			float step = speed * Time.deltaTime;
-			//Transform destination = target.gameObject.transform;
-                transform.LookAt(target);
-                Vector3 move = Vector3.MoveTowards(transform.position, target.position, step);
-                transform.position = move;
-                if (m_Animator)
-                {
-                    UpdateAnimator(move);
-                }
-
-                if (Vector3.Distance (transform.position, target.position) < 2.0f) {
-
-                    if (gameObject.name == "Kim" && target.GetComponent<OW_Character>().Name == "Charlie") {
-						string startNode = gameObject.GetComponent<OW_NPC> ().StartNode;
-						dialogue.GetComponent<DialogueRunner>().StartDialogue (startNode);
+		void Update()
+		{
+			if (myAnim) myAnim.SetFloat("Walking", agent.velocity.sqrMagnitude);
+			
+			if (target != null)
+			{				
+				//AMYYYYYYYYYYYYYYYYYYYYYYYY AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				if (Vector3.Distance(transform.position, agent.destination) < destinationRange)
+				{
+					if (gameObject.name == "Kim" && target.GetComponent<OW_Character>().Name == "Charlie")
+					{
+						string startNode = gameObject.GetComponent<OW_NPC>().StartNode;
+						dialogue.GetComponent<DialogueRunner>().StartDialogue(startNode);
 					}
-                    //print(target.gameObject.name);
+					//print(target.gameObject.name);
 
-                    if (target.gameObject.name == "CharlieTarget" && gameObject.name == "Charlie")
-                    {
-                        //dialogue.GetComponent<DialogueRunner>().StartDialogue("Hideout");
-                    }
+//					if (target.gameObject.name == "CharlieTarget" && gameObject.name == "Charlie")
+//					{
+//						//dialogue.GetComponent<DialogueRunner>().StartDialogue("Hideout");
+//					}
+//
+//					if (target.gameObject.name == "Debate" && gameObject.name == "Charlie")
+//					{
+//						target.position -= new Vector3(1.5f, 0, 0);
+//					}
 
-                    if (target.gameObject.name == "Debate" && gameObject.name == "Charlie")
-                    {
-                        target.position -= new Vector3(1.5f, 0, 0);
-                    }
+					if (gameObject.name == "Alvy" || gameObject.name == "Sam" ||
+					    (gameObject.name == "Luca" && target.gameObject.name == "TownHallDoor") ||
+					    gameObject.name == "Tam"
+					    || gameObject.name == "Riley" ||
+					    (gameObject.name == "Devon" && target.gameObject.name != "DevonTarget") ||
+					    (gameObject.name == "Eden" && target.gameObject.name == "PoliceStationExt"))
+					{
+						Destroy(gameObject);
+					}
 
-
-                    if (gameObject.name == "Alvy" || gameObject.name == "Sam" || (gameObject.name == "Luca" && target.gameObject.name == "TownHallDoor") || gameObject.name == "Tam"
-                        || gameObject.name == "Riley" || (gameObject.name == "Devon" && target.gameObject.name != "DevonTarget")|| (gameObject.name == "Eden" && target.gameObject.name == "PoliceStationExt"))
-                    {
-                        Destroy(gameObject);
-                    }
-
-                    stopMoving();
-
-                }
+					stopMoving();
+				}
 			}
-
 		}
 
 
 		[YarnCommand("move")]
-		public void movetopoint(string destination) {
+		public void movetopoint(string destination)
+		{
+			agent.enabled = true;
+			
+			print(destination);
+			target = GameObject.Find(destination).transform;
+			agent.SetDestination(target.transform.position);
 
-			print (destination);
-			target = GameObject.Find (destination).transform;
+			if (destination == "Rowboat")
+			{
+				agent.speed *= 2;
+			}
 
-            if (destination == "Rowboat")
-            {
-                speed = 5.0f;
-            }
-
-            if (destination == "Debate" && gameObject.name == "Eden")
-            {
-
-                //Vector3 temp = target.position + new Vector3(1, 0, 0);
-                //target = temp;
-                //temp.position += new Vector3(1, 0, 0);
-                //target = temp;
-            }
+			if (destination == "Debate" && gameObject.name == "Eden")
+			{
+				//Vector3 temp = target.position + new Vector3(1, 0, 0);
+				//target = temp;
+				//temp.position += new Vector3(1, 0, 0);
+				//target = temp;
+			}
 
 			//Transform location = target.gameObject.transform;
 			//this.GetComponent<NavMeshAgent> ().destination = location.position;
 		}
 
 
-        //from ThirdPersonCharacter, so the animations play when it moves (with some stuff removed as I assume NPCs arent jumping)
-        void UpdateAnimator(Vector3 move)
-        {
-            float m_TurnAmount = Mathf.Atan2(move.x, move.z);
-            float m_ForwardAmount = move.z;
-            // update the animator parameters
-            m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
-            m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
-            
-            // the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
-            // which affects the movement speed because of the root motion.
-            /*if (m_IsGrounded && move.magnitude > 0)
-            {
-                m_Animator.speed = m_AnimSpeedMultiplier;
-            }*/
-            
-        }
 
-        [YarnCommand("stop")]
-        public void stopMoving()
-        {
-            target = null;
-            //stop walking animation
-            m_Animator.SetFloat("Forward", 0, 0, 0);
-            m_Animator.SetFloat("Turn", 0, 0, 0);
-        }
+		[YarnCommand("stop")]
+		public void stopMoving()
+		{
+			target = null;
+			agent.enabled = false;
+			myAnim.SetFloat("Walking",0.0f);
+		}
 
-        [YarnCommand("lookAt")]
-        public void look(string temp)
-        {
-            Transform a = GameObject.Find(temp).transform;
-            transform.LookAt(a);
-        }
-
-    }
+		[YarnCommand("lookAt")]
+		public void look(string temp)
+		{
+			agent.enabled = false;
+			
+			Transform a = GameObject.Find(temp).transform;
+			transform.LookAt(a);
+		}
+	}
 }
