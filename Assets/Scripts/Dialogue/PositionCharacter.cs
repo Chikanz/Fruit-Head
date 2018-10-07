@@ -16,7 +16,7 @@ public class PositionCharacter : MonoBehaviour {
         Charlie = GameObject.Find("Charlie");
 
         Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
-        float stage = biStage.AsNumber;
+        int stage = (int)biStage.AsNumber;
         if (stage == 0)
         {
             positionStage0();            
@@ -31,7 +31,7 @@ public class PositionCharacter : MonoBehaviour {
             //positionTownHall(false);
             positionParty("TownHallExt", false, false);
         }
-        else if (stage == 4 || stage == 8)
+        else if (stage == 4 /*|| stage == 8*/)
         {
             //positionMaisonExt();
             positionParty("MaisonsHouseExt", true, false);
@@ -57,7 +57,7 @@ public class PositionCharacter : MonoBehaviour {
                 //positionKellExt(true);
             }
         }
-        else if (stage == 6)
+        else if (stage == 6 || stage == 8)
         {
             positionParty("PoliceStationExt", true, false);
             //positionStationExt(false);

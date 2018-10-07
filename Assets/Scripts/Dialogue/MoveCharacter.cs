@@ -12,6 +12,8 @@ namespace Yarn.Unity
 		private NavMeshAgent agent;
 		private Animator myAnim;
 
+        private bool shouldDestroy;
+
 		private const float destinationRange = 2.0f;
 
 		// Use this for initialization
@@ -39,27 +41,11 @@ namespace Yarn.Unity
 						string startNode = gameObject.GetComponent<OW_NPC>().StartNode;
 						dialogue.GetComponent<DialogueRunner>().StartDialogue(startNode);
 					}
-					//print(target.gameObject.name);
 
-//					if (target.gameObject.name == "CharlieTarget" && gameObject.name == "Charlie")
-//					{
-//						//dialogue.GetComponent<DialogueRunner>().StartDialogue("Hideout");
-//					}
-//
-//					if (target.gameObject.name == "Debate" && gameObject.name == "Charlie")
-//					{
-//						target.position -= new Vector3(1.5f, 0, 0);
-//					}
-
-					if (gameObject.name == "Alvy" || gameObject.name == "Sam" ||
-					    (gameObject.name == "Luca" && target.gameObject.name == "TownHallDoor") ||
-					    gameObject.name == "Tam"
-					    || gameObject.name == "Riley" ||
-					    (gameObject.name == "Devon" && target.gameObject.name != "DevonTarget") ||
-					    (gameObject.name == "Eden" && target.gameObject.name == "PoliceStationExt"))
-					{
-						Destroy(gameObject);
-					}
+                    if (shouldDestroy)
+                    {
+                        Destroy(gameObject);
+                    }
 
 					stopMoving();
 				}
@@ -68,7 +54,7 @@ namespace Yarn.Unity
 
 
 		[YarnCommand("move")]
-		public void movetopoint(string destination)
+		public void movetopoint(string destination, string toDestroy)
 		{
 			agent.enabled = true;
 			
@@ -81,13 +67,11 @@ namespace Yarn.Unity
 				agent.speed *= 2;
 			}
 
-			if (destination == "Debate" && gameObject.name == "Eden")
-			{
-				//Vector3 temp = target.position + new Vector3(1, 0, 0);
-				//target = temp;
-				//temp.position += new Vector3(1, 0, 0);
-				//target = temp;
-			}
+            if (toDestroy == "destroy")
+            {
+                shouldDestroy = true;
+            }
+           
 
 			//Transform location = target.gameObject.transform;
 			//this.GetComponent<NavMeshAgent> ().destination = location.position;
@@ -106,8 +90,10 @@ namespace Yarn.Unity
 		[YarnCommand("lookAt")]
 		public void look(string temp)
 		{
-			agent.enabled = false;
-			
+            if (agent)
+            {
+                agent.enabled = false;
+            }
 			Transform a = GameObject.Find(temp).transform;
 			transform.LookAt(a);
 		}

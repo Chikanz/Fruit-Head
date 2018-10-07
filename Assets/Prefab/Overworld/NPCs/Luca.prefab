@@ -1060,6 +1060,7 @@ GameObject:
   - component: {fileID: 114799858680767646}
   - component: {fileID: 114773750761491078}
   - component: {fileID: 114582494536995804}
+  - component: {fileID: 195624116103306566}
   m_Layer: 0
   m_Name: Luca
   m_TagString: Untagged
@@ -5897,6 +5898,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.19249444, y: -0.097021684, z: 0.0026077554}
     m_Extent: {x: 0.10451697, y: 0.12935725, z: 0.0449091}
   m_DirtyAABB: 0
+--- !u!195 &195624116103306566
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638449722119252}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!212 &212412352390839718
 SpriteRenderer:
   m_ObjectHideFlags: 1

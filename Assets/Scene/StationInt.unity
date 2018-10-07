@@ -722,7 +722,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4110171957455360, guid: b40546697c1607c4e92adacbea2dfca7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.049
       objectReference: {fileID: 0}
     - target: {fileID: 4110171957455360, guid: b40546697c1607c4e92adacbea2dfca7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2120,6 +2120,16 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 97.868004
       objectReference: {fileID: 0}
+    - target: {fileID: 114962951163610384, guid: 5424e924bbd4ce9458674eed955f9a01,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 195605013879653846, guid: 5424e924bbd4ce9458674eed955f9a01,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114039264652974994, guid: 5424e924bbd4ce9458674eed955f9a01, type: 2}
     - {fileID: 114814218997917484, guid: 5424e924bbd4ce9458674eed955f9a01, type: 2}
@@ -2500,6 +2510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: Station
+  sceneStart: 1
 --- !u!4 &1331802393
 Transform:
   m_ObjectHideFlags: 0

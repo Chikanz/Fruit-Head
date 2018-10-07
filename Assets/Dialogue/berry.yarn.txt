@@ -1,31 +1,35 @@
 title: BerryIslandStart
 tags: 
 colorID: 5
-position: -717,-917
+position: -720,-917
 ---
 <<setFollow Maison false>>
 AVERY: Berry Island. We made it.
+//foreshadowing for the avery & tam reveal. BUT - not clear? never resolved/returned to? 
+//rewrite or remove?
 AVERY: I'd forgotten how much I hate ships.
-CHARLIE: I thought you said you'd never left Blossom Island before.
+CHARLIE: You said you'd never left Blossom Island before.
 AVERY: ...I haven't.
 CHARLIE: But you just said you hate ships. If you've never left the island, when- 
 AVERY: Don't worry about it, Charlie.
 CHARLIE: Oooookay.
 CAPTAIN REDPEEL: You kids been to Berry Island before?
-CHARLIE: A long time ago.
-CAPTAIN REDPEEL: Well then, this here's a map in case you get lost.
+CHARLIE: Not for a while.
+CAPTAIN REDPEEL: Well then, here's a map in case you get lost.
 //Hint: Press 'M' to view the map.
 AVERY: All right, let's go and see Kell.
-CHARLIE: You don't have to come with me. Didn't you have someone you wanted to see?
+CHARLIE: You don't have to come with me. Didn't you have someone here you wanted to see?
 AVERY: Nah, no rush. I'll come with you.
-->All right, let's go.
+CHARLIE: If you're sure.
+//Options removed for now. pointless unless friendship meter is implemented
+//->All right, let's go.
 //:) for not questioning
-    AVERY: Thanks, Charlie.
-->Are you sure? 
-    AVERY: Yeah, it's nothing important. I can hang with you a bit longer.
-    CHARLIE: Okay then.
-->Uhhh...Fine.
-    AVERY: Wow, don't get too excited about it. 
+    //AVERY: Thanks, Charlie.
+//->Are you sure? 
+    //AVERY: Yeah, it's nothing important. I can hang with you a bit longer.
+    //CHARLIE: Okay then.
+//->Uhhh...Fine.
+   //AVERY: Wow, don't get too excited about it. 
 //:(
 AVERY: Have you visited Kell here before? Do you know where they live?
 CHARLIE: Yeah, their house is just up ahead.
@@ -41,12 +45,12 @@ position: -499,-917
 <<if $biStage is 1>>
 CHARLIE: This is Kell's house.
 ->[Knock]
-    [No answer]
+    HOUSE: ...
     AVERY: Try knocking louder?
     ->[Knock louder]
-        [No answer]
-        AVERY: Maybe they're sleeping in.
-        CHARLIE: Maybe. Let's go in.
+        HOUSE: ...
+        AVERY: Maybe Kell's sleeping in.
+        CHARLIE: Well, time for them to wake up.
         ->[Enter]
             <<Change Scene 7>>
     ->[Enter]
@@ -64,16 +68,14 @@ CHARLIE: This is Kell's house.
 <<endif>>
 
 <<if $biStage is 5>>
-    <<if visited("KellsNote") is false>>
-    MAISON: Are you sure we'll find anything in here?
-    ->It's worth a look.
+    <<if $note is false>>
+        MAISON: Are you sure we'll find anything in here?
+        CHARLIE: It's worth a look.
         MAISON: If you say so.
         <<Change Scene 7>>
-    ->Probably not.
-        CHARLIE: Maybe we'll come back later.
     <<else>>
         AVERY: We've already searched Kell's house.
-        <<if visited("TamsDesk") is false>>
+        <<if $tam is false>>
             MAISON: We should investigate Tam.
         <<else>>
             AVERY: Let's take the evidence back to Eden.
@@ -99,19 +101,17 @@ colorID: 3
 position: -283,-916
 ---
 <<if $biStage is 1>>
-CHARLIE: Kell? It's Charlie.
-CHARLIE: Hello?
-[no answer]
-AVERY: I guess they're not home. What now?
+CHARLIE: Kell? Hello?
+CHARLIE: Looks like they're not home.
+AVERY: What now?
 <<set $looked to false>>
 <<set $biStage to 2>>
 ->Let's wait here for a bit.
-    AVERY: Cool. 
     AVERY: I wonder what Kell's been up to since they left Blossom Island.
     CHARLIE: Working, they said. I think they had a job in the mayor's office.
     AVERY: A politician, huh? Wonder if they've got any interesting dirt on the mayor lying around... 
     <<set $looked to true>>
-->Let's look around town.
+->Let's see if Kell's in town.
     <<Change Scene 6>>
 <<else>>
     <<show Maison>>
@@ -122,26 +122,26 @@ AVERY: I guess they're not home. What now?
 title: Debate
 tags: 
 colorID: 4
-position: 148,-914
+position: 148,-915
 ---
 CHARLIE: It looks like some kind of town meeting.
 AVERY: Let's see what it's about.
-<<move Charlie Debate>>
+<<move Charlie Debate no>>
 <<show Eden>>
-<<move Eden Debate>>
+<<move Eden Debate no>>
 TAM: You're all smiles and empty words. You wouldn't last a day in office.
 LUCA: What's so bad about a smile?
 TAM: You're weak. You haven't got the guts to do what needs to be done.
-LUCA: You make it all sound so dramatic. 
+LUCA: Oh, so dramatic! 
+//<<lookAt Luca Charlie>>
 LUCA: Friends, thank you for coming today. I know that what you've heard has shown you that I am the best candidate.
 LUCA: Perhaps I am weak, as Tam says. 
 LUCA: But surely it's better to be weak than hard-headed and full of aggression, howling like a mad wolf hungry for violence.
 TAM: What is THAT supposed to mean?
 LUCA: Have a good day, everyone.
-<<move Alvy AlvysHouseExt>>
-<<move Sam SamsHouseExt>>
-<<move Luca TownHallDoor>>
-<<lookAt Charlie Eden>>
+<<move Alvy AlvysHouseExt destroy>>
+<<move Sam SamsHouseExt destroy>>
+<<move Luca TownHallDoor destroy>>
 <<lookAt Bailey Ash>>
 <<lookAt Ash Bailey>>
 <<lookAt Devon Riley>>
@@ -150,17 +150,18 @@ LUCA: Have a good day, everyone.
 CHARLIE: Hey, do you know what's going on?
 <<lookAt Eden Charlie>>
 EDEN: The last mayor of Berry Island recently passed away. 
-<<move Tam TownHallDoor>>
+<<move Tam TownHallDoor destroy>>
 EDEN: Those two up there are hoping to be the next one.
 CHARLIE: It looked like it was getting pretty heated.
 EDEN: Yeah. That's politics for you.
+AVERY: You didn't already have another mayor lined up?
+EDEN: The mayor's death was...unexpected.
 EDEN: Are you two visiting? I haven't seen you around before.
-CHARLIE: I'm here to see my sibling, Kell. 
-CHARLIE: Do you know them? They weren't at home.
+CHARLIE: I'm here to see my sibling, Kell. Do you know them?
 EDEN: Yes, I know Kell. They worked for the last mayor.
-EDEN: I haven't seen them in a few days...but they mostly keep to themself.
+EDEN: I haven't seen them since the mayor passed...but they mostly keep to themself.
 EDEN: Was Kell expecting you?
-CHARLIE: I'm here to surprise them for their birthday.
+CHARLIE: No, I'm here to surprise them for their birthday.
 <<if $looked is true>>
     AVERY: We were just at their house, and it looked like no one had been home for a few days.
 <<endif>>
@@ -169,9 +170,9 @@ EDEN: Several people have gone missing in the last few weeks.
 CHARLIE: Kell's gone missing?!
 EDEN: We don't know that for sure. Why don't you ask around? Maybe someone's seen them.
 EDEN: Come and find me at the police station if you find out anything.
-<<move Eden PoliceStationExt>>
+<<move Eden PoliceStationExt destroy>>
 <<set $biStage to 3>>
-<<show Maison>>
+//<<show Maison>>
 
 
 ===
@@ -210,27 +211,39 @@ AVERY: ...
 CHARLIE: You think that one of the people going for mayor is kidnapping people?
 AVERY: To EAT them.
 CHARLIE: As part of some weird cult ritual?
-MAISON: You saw the cultists try to get me, right? The cult is real. They're taking people.
+//following line only if coming from combat
+//MAISON: You saw the cultists try to get me, right? 
+MAISON: The cult is real. They're taking people. 
 MAISON: Think about it! Who has enough power in this town to make it all just go away?
 MAISON: The mayor, that's who! That's why Tam is trying so hard to win votes.
 MAISON: They want to turn this town into an all-you-can-eat buffet!
-AVERY: Riiiiight...
-AVERY: [muttering] Charlie, they're crazy. //let's get out of here
-CHARLIE: I don't know...maybe they're on to something. We both saw those cultists.
+AVERY: Riiiiight.
+AVERY: [muttering] That's one mad mango. 
+//let's get out of here
+CHARLIE: I don't know...maybe they're on to something. No one else seems to know where Kell is.
+//We both saw those cultists. ONLY IF COMBAT
 AVERY: They think Tam is eating people!
-CHARLIE: I didn't say I believed everything they said.
+CHARLIE: I didn't say they were right about everything.
 CHARLIE: Maison, have you told the police about this?
-MAISON: Ha, those idiots? They're useless! 
-MAISON: They wouldn't be able to solve a mystery like this if the culprit was dancing naked in front of them wearing a sombrero!
-CHARLIE: Well, I was talking to one of them earlier and they said they would help me find Kell.
+MAISON: Ha, those idiots? They're useless! They can't even solve the mayor's murder!
+MAISON: They couldn't see the truth even if it was dancing naked in front of them wearing a sombrero!
+AVERY: Wait, the mayor was murdered?
+MAISON: Of course they were! Weren't you listening?
+AVERY: I tuned out after the first ten minutes.
+CHARLIE: I talked to an officer earlier and they said they would help me find Kell.
 CHARLIE: Will you come with me and tell them what you told us?
-AVERY: [whispering] This is a terrible idea.
-MAISON: Go to the police? They won't believe me. They're too stupid to see the truth.
-->Please? We need your help.
-->You never know.
-    CHARLIE: They might surprise you. ///???
-->[mean option]
-MAISON: ...Fine. Just let me grab a couple of things.
+//AVERY: [whispering] This is a terrible idea.
+MAISON: Go to the police? They won't believe me. They're too busy polishing their badges and dancing on strings like the political puppets they are.
+//political?
+CHARLIE: We believe you - 
+AVERY: I don't.
+CHARLIE: - so maybe they will too.
+//->Please? We need your help.
+//->You never know.
+   // CHARLIE: They might surprise you. ///???
+//->[mean option]
+MAISON: ...Fine. I suppose it could be entertaining. Just let me grab my knife and fork.
+AVERY: ...Your what?
 <<set $biStage to 4>>
 <<Change Scene 6>>
 <<else>>
@@ -250,21 +263,24 @@ position: 820,-693
 EDEN: Did you find Kell?
 CHARLIE: No, but we found Maison. They think they know why people are going missing.
 MAISON: Hello there, Officer Eden.
-EDEN: [sigh] Hello, Maison. What is it this time? I told you, no one's been drugging the water.
+EDEN: [sigh] Hello, Maison. What is it this time? I've already told you, no one's been drugging the water.
 MAISON: All those people who've gone missing? I figured it out. Before you.
 MAISON: It's a cult taking them. A cult led by Tam.
 EDEN: ...
 EDEN: A cult.
 MAISON: See, Charlie? I told you they wouldn't believe me.
-CHARLIE: Maison's right - about the cult, anyway. We saw them.
+CHARLIE: Just hear them out, please. No one else knows where Kell is.
+//only use this line if combat 
+//CHARLIE: Maison's right - about the cult, anyway. We saw them.
 EDEN: Listen, kid. I don't know you, but I know Maison. Their theories are always getting them into trouble.
 EDEN: Don't let them drag you into this.
-AVERY: I hate to agree with the conspiracy nut, but...we really did see the cult.
+//AVERY: I hate to agree with the conspiracy nut, but...we really did see the cult.
+MAISON: Have you got any other leads on the disappearances?
+EDEN: ...
+MAISON: I didn't think so.
 EDEN: [sigh] Even if I believed you...Cults aren't illegal. I can't arrest people for belonging to a cult.
 EDEN: If there IS a cult, and if they ARE taking people, I need proof. Solid proof. Can you give me that?
-->a
-->b
-->c
+CHARLIE: Absolutely.
 EDEN: Good luck. I'll keep an eye out for Kell.
 <<set $biStage to 5>>
 <<set $stage5 to "station">>
@@ -296,6 +312,8 @@ AVERY: If you say so...
 AVERY: It'll be a waste of time talking to Tam, though. If they are involved, they're not going to just tell us.
 MAISON: It's a better idea than going to search some empty house.
 AVERY: Guess it's up to you, Charlie.
+<<set $note to false>>
+<<set $tam to false>>
 ===
 title: TamStage5
 tags: 
@@ -303,6 +321,7 @@ colorID: 6
 position: -405,275
 ---
 <<set $stage5 to "tam">>
+<<set $tam to true>>
 TAM: What are you doing in here?
 MAISON: We know what you're up to.
 TAM: What I'm up to is running for office. If you're not here to talk about that, you should leave.
@@ -320,33 +339,20 @@ TAM: What are you talking about?
 CHARLIE: How do you know each other? Why didn't you say anything before?
 MAISON: Don't listen to them, Charlie, they're here to spy on us!
 TAM: WILL SOMEONE TELL ME WHAT IS GOING ON!
-->What do you know about the missing people?
-    TAM: I know people are going missing. That's it.
-    MAISON: They're lying. I know they're lying.
-    TAM: First you break into my office, now you accuse me of being involved with the disappearances?
-    TAM: Get out, before I throw you out.
-    AVERY: Tam--
-    TAM: All of you.
-    ->[Leave]
-        CHARLIE: We're leaving. 
-        <<Change Scene 6>>
-    ->No. Not until you answer our questions.
-        MAISON: Yeah! 
-        TAM: Get. Out.
-        CHARLIE: All right, all right, we're going.
-        <<Change Scene 6>>
-->We know you're part of the cult.
-    TAM: [sigh] You've spent too long with this conspiracy nut.
-    MAISON: Stop deflecting! We know you're guilty!
-    TAM: All right, I've had enough of this. Get out of my office.
-    CHARLIE: Tell me where Kell is, and we'll go.
-    TAM: I don't know Kell. 
-    TAM: You have three seconds to leave before I call security.
-    AVERY: Tam--
-    TAM: Get. Out.
-    CHARLIE: All right, we're leaving.
-    MAISON: But we'll be back!
-    <<Change Scene 6>>
+CHARLIE: What do you know about the missing people?
+TAM: I know people are going missing. That's it.
+MAISON: They're lying. I know they're lying. Tell us what you know!
+TAM: All right, I've had enough of this. Get out of my office.
+CHARLIE: Tell me where Kell is, and we'll go.
+TAM: I don't know where Kell is. 
+TAM: You have three seconds to leave before I call security.
+AVERY: Tam--
+TAM: All of you.
+CHARLIE: All right, we're leaving.
+MAISON: But we'll be back!
+<<Change Scene 6>>
+
+
 
 
 
@@ -366,7 +372,7 @@ MAISON: You know Tam! You didn't want us to question them!
     CHARLIE: I believe you about the cult, but I don't think Avery's a part of it.
     AVERY: I'm not.
     MAISON: How can you trust them, Charlie? They didn't tell us they knew Tam.
-    CHARLIE: Avery? Will you tell us?
+    CHARLIE: Avery? 
     
 ->[question avery]
     CHARLIE: Why didn't you tell us you knew Tam?
@@ -401,7 +407,7 @@ AVERY: I don't know. I thought...
 AVERY: It doesn't matter. We need to focus on finding Kell.
 AVERY: I swear, Charlie, I'm not part of the cult.
 MAISON: This doesn't prove anything.
-<<if visited("KellsHouse2") is true>>
+<<if $note is true>>
     CHARLIE: Let's just go talk to Officer Eden.
     <<set $biStage to 6>>
 <<else>>
@@ -428,13 +434,13 @@ EDEN: I need more than that. Get me proof that they're kidnapping people, and th
 title: Hideout
 tags: 
 colorID: 0
-position: 1254,-670
+position: 1251,-668
 ---
 <<lookAt Charlie LucaTarget>>
 MAISON: Those are some of the missing people!
 CHARLIE: Are you sure?
 MAISON: Absolutely. I snuck into Eden's office and took a photo of their files.
-AVERY: Pretty sure that's illegal.
+AVERY: I'm pretty sure that's illegal.
 MAISON: So is trespassing.
 AVERY: Fair point.
 CHARLIE: I don't see Kell anywhere.
@@ -443,13 +449,13 @@ MAISON: Unless they've already eaten them.
 AVERY: Shut up, Maison. I'm sure Kell hasn't been eaten.
 CHARLIE: ...
 CHARLIE: Avery, can you take a photo? We need to bring back proof.
-[footsteps]
+DOOR: [footsteps]
 MAISON: Someone's coming!
 <<open Door2>>
 <<show Luca>>
 <<show Devon>>
-<<move Luca LucaTarget>>
-<<move Devon DevonTarget>>
+<<move Luca LucaTarget no>>
+<<move Devon DevonTarget no>>
 LUCA: You'll take them to HQ tonight?
 DEVON: As soon as it's dark.    
 CHARLIE: LUCA is part of the cult? 
@@ -471,10 +477,11 @@ position: 838,182
 ---
 MAISON: I was right! About everything!
 AVERY: Not everything.
-EDEN: What? What are you talking about?
-CHARLIE: We found the cult's hideout. They're behind the missing people.
-AVERY: Here, we got photos. [shows phone]
-EDEN: [looks at photos] Those are definitely some of the missing people.
+EDEN: What are you talking about?
+CHARLIE: We found the cult's hideout. They're the ones who have been kidnapping people.
+AVERY: Here, look at these photos. 
+EDEN: ...
+EDEN: Those are definitely some of the missing people.
 EDEN: Is that Luca?
 MAISON: I told you so! I told you so!
 MAISON: I said one of them belonged to the cult and you didn't believe me!
@@ -494,34 +501,40 @@ AVERY: You were wrong about Tam.
 MAISON: We don't know they're NOT part of the cult.
 AVERY: What would be the point of running against Luca for mayor if they're both part of the cult?
 MAISON: So you don't suspect them. It's clearly working.
-CHARLIE: We need to get the evidence to Eden before the cultists find us.
+CHARLIE: Those cultists were right behind us. We need to get the evidence to Eden before they catch up.
 ===
 title: LucaStage10
 tags: 
 colorID: 2
 position: 464,267
 ---
-<<stop Luca>>
+//<<if $townhall is false>>
+    <<stop Luca>>
+//<<endif>>
 LUCA: Hello, Officer. And, er, friends. How can I help you?
-EDEN: You're under arrest for the abduction and unlawful detainment[????]. //???????
+EDEN: You're under arrest, Luca.
 LUCA: Under arrest? There must be some mistake.
-MAISON: We know you're part of the cult! We have proof!
-LUCA: Really, Officer Eden, you should know better than to listen to this one. 
-LUCA: Haven't they caused you plenty of trouble in the past?
-LUCA: I'm sure this is all a simple misunderstanding.
+MAISON: We know you're part of the cult! We know you've been kidnapping people!
+LUCA: Really, Officer Eden, you should know better than to listen to this troublemaker. Haven't they caused you enough problems?
 EDEN: They have proof, Luca. Are you going to come quietly?
 LUCA: ... 
-<<move Luca Rowboat>>
-MAISON: Quick, after them!
-//chase scene!!
-//uh charlie says nothing in this scene...
+//<<if $townhall is false>>
+    <<move Luca Rowboat no>>
+    MAISON: Quick, after them!
+//<<else>>
+    //<<move Luca Exit destroy>>
+    //MAISON: Quick, stop them!
+    //<<Change Scene 6>>
+//<<endif>>
+
+
 ===
 title: Docks
 tags: 
 colorID: 5
 position: 1505,-909
 ---
-<<move EvilBoat Exit>>
+<<move EvilBoat Exit destroy>>
 EDEN: Damn it, they're getting away.
 MAISON: Are there any other boats around?
 CHARLIE: I might know someone who can help.
@@ -542,12 +555,9 @@ AVERY: Are we leaving?
     <<Change Scene 6>>
 ->Not just yet.
 <<else>>
-    <<if visited("KellsNote") is true>>
-        ->[Leave]
-            CHARLIE: I think we've found what we need. 
-            <<Change Scene 6>>
-        ->[Keep looking]
-            CHARLIE: I just want to look around for a bit longer.
+    <<if $note is true>>
+        CHARLIE: I think we've found what we need. Let's go.
+        <<Change Scene 6>>
     <<else>>
         AVERY: We haven't found anything yet. We should keep looking.
     <<endif>>
@@ -556,14 +566,14 @@ AVERY: Are we leaving?
 title: testA
 tags: 
 colorID: 0
-position: -1121,-608
+position: -1126,-374
 ---
 CHARLIE: hey
 ===
 title: KellsHouseExit
 tags: 
 colorID: 3
-position: -69,-918
+position: -69,-921
 ---
 <<if $biStage is 2>>
 <<setFollow Maison false>>
@@ -580,7 +590,7 @@ position: -69,-918
 AVERY: Hey, do you hear that? There's something up ahead.
 CHARLIE: I hear it. Let's go check it out.
 <<else>>
-    <<if visited("TamsDesk") is true>>
+    <<if $tam is true>>
         <<set $biStage to 6>>
         CHARLIE: We should take all this evidence to Eden.
     <<else>>
@@ -597,17 +607,21 @@ tags:
 colorID: 4
 position: 369,-914
 ---
-RILEY: Tam has a point. Just think about it. Luca talks a good game, but what have they actually done?
-RILEY: At least Tam worked with the previous mayor, so they know what the job involves.
-DEVON: Yeah, maybe...But Luca was right. Tam's so aggressive. I don't know if I want a mayor like that.
-//aggressive??? hints of devon's involvement with cult here
-CHARLIE: Do either of you know Kell?
-DEVON: Who?
-RILEY: Kell...Kell...Didn't they work for the old mayor?
-CHARLIE: Yeah, I'm trying to find them.
-RILEY: Can't help you, sorry. We should get back to work.
-<<move Riley BankExt>>
-<<move Devon BankExt>>
+<<if visited("DR") is false>>
+    RILEY: Tam has a point. Just think about it. Luca talks a good game, but what have they actually done?
+    RILEY: At least Tam worked with the last mayor, so they know what the job involves.
+    DEVON: Yeah, maybe...But Luca's right. Tam's so aggressive. I don't know if I want a mayor like that.
+    //aggressive??? hints of devon's involvement with cult here
+    CHARLIE: Do either of you know Kell?
+    DEVON: Who?
+    RILEY: Kell...Kell...Didn't they work for the last mayor?
+    CHARLIE: Yeah, I'm trying to find them.
+    RILEY: Can't help you, sorry. We should get back to work.
+    <<move Riley BankExt destroy>>
+    <<move Devon BankExt destroy>>
+<<else>>
+    DEVON: We have to get back to work.
+<<endif>>
 
 ===
 title: Alvy
@@ -616,7 +630,7 @@ colorID: 4
 position: 153,-493
 ---
 CHARLIE: Excuse me, do you know Kell?
-ALVY: Sorry can't talk, I think I left my oven on...
+ALVY: Sorry, can't talk, think I left my oven on...
 ===
 title: Sam
 tags: 
@@ -631,31 +645,41 @@ tags:
 colorID: 4
 position: 372,-489
 ---
-BAILEY: What Luca said about Tam was totally uncalled for!
-ASH: It was the truth and you know it. Luca would never say something like that if it wasn't true.
-ASH: Oh, hi there.
-BAILEY: Can we help you?
-CHARLIE: I'm trying to find my sibling, Kell. Do you know them?
-BAILEY: I know OF them. I've seen them around, but I don't think we've ever had a conversation.
-ASH: Sorry, kid. But Bailey, seriously, Tam's only in it for the power.
+<<if visited("BA") is false>>
+    BAILEY: What Luca said about Tam was totally uncalled for!
+    ASH: It was the truth and you know it. Luca would never say something like that if it wasn't - Oh, hi there.
+    BAILEY: Can we help you?
+    CHARLIE: I'm trying to find my sibling, Kell. Do you know them?
+    BAILEY: I've seen them around, but I don't think we've ever had a conversation.
+    ASH: Sorry, kid. But Bailey, seriously, Tam's only in it for the power.
+    <<move Ash Apartments destroy>>
+    <<move Bailey Apartments destroy>>
+<<else>>
+    BAILEY: We can't help you, sorry.
+<<endif>>
 ===
 title: Dee
 tags: 
 colorID: 4
 position: 370,-705
 ---
+<<if visited("Dee") is false>>
 CHARLIE: Do you know Kell?
 DEE: Yes, I know them. Why do you ask?
 CHARLIE: I'm trying to find them. 
-DEE: I haven't seen them since the old mayor died a few days ago.
+DEE: I haven't seen them since the mayor died a few days ago.
 CHARLIE: I think they've gone missing.
 DEE: Missing? You haven't been talking to Maison, have you?
-DEE: That troublemaker was snooping around here the other day, claiming they were trying to find the missing people.
+DEE: That troublemaker was kicking up a fuss the other day, claiming that people were going missing.
 DEE: No one's missing. I'm sure Kell's just fine.
 AVERY: Where can we find Maison?
 DEE: They live in the cemetery. How they can stand to sleep in such a place, I'll never understand.
+<<move Dee AlvysHouseExt destroy>>
 AVERY: Sounds like this Maison might have an idea about what's going on.
 CHARLIE: Let's go find them.
+<<else>>
+    DEE: I'm sorry, I can't talk right now.
+<<endif>>
 
 ===
 title: Station
@@ -664,7 +688,7 @@ colorID: 1
 position: 814,-906
 ---
 <<if $biStage is 4>>
-    MAISON: Let's hope these dancing monkeys can see the truth.
+    MAISON: Now you'll see how blind these dancing monkeys really are.
     <<Change Scene 9>>
 <<endif>>
 
@@ -674,10 +698,7 @@ position: 814,-906
 
 <<if $biStage is 6>>
     MAISON: Now that we have proof, Officer Eden HAS to listen to us.
-    ->Let's go.
-        <<Change Scene 9>>
-    ->I don't want to go in just yet.
-        MAISON: The sooner we deal with the cult, the sooner they'll stopping taking people.
+    <<Change Scene 9>>
 <<endif>>
 
 <<if $biStage is 9>>
@@ -747,7 +768,7 @@ position: 366,-11
     LUCA: Yes, I know Kell. Not very well, unfortunately. They mostly kept to themself.
     LUCA: You look a little like them, in fact. Are you related?
     CHARLIE: Kell's my sibling.
-    LUCA: Of course. I can see the similarities clear as day. 
+    LUCA: Of course. I can see the resemblance clear as day. 
     LUCA: It's wonderful to meet you - what was your name?
     CHARLIE: Charlie.
     LUCA: It's wonderful to meet you, Charlie. I never knew Kell had a sibling.
@@ -756,7 +777,7 @@ position: 366,-11
     CHARLIE: Oh. Okay. Thanks anyway.
 <<else>>
     LUCA: I'm sorry I can't help you find Kell. Is there anything else I can do for you?
-    CHARLIE: No thanks.
+    CHARLIE: Not right now.
 <<endif>>
 
 [[LucaStage3A]]
@@ -769,8 +790,13 @@ position: -739,-437
 <<if $biStage is 3 or $biStage is 5>>
     [[AveryTownHall]]
 <<else>>
-    AVERY: We don't need to visit town hall right now.
-    //specific to each stage?
+    //<<if $biStage is 10 and visited("LucaStage10") is false>>
+       // EDEN: When we get in there, let me do the talking.
+        //<<set $townhall to true>>
+        //<<Change Scene 10>>
+    //<<else>>
+        AVERY: We don't need to visit town hall right now.
+    //<<endif>>
 <<endif>>
 
 
@@ -782,7 +808,7 @@ position: -739,-437
 title: AveryTownHall
 tags: 
 colorID: 0
-position: -479,-435
+position: -479,-438
 ---
 <<if $biStage is 3>>
 CHARLIE: Kell worked for the last mayor. Maybe someone in the town hall knows where they are.
@@ -805,7 +831,7 @@ AVERY: I'll wait out here.
 <<endif>>
 
 <<if $biStage is 5>>
-    <<if visited("TamsDesk") is false>>
+    <<if $tam is false>>
         AVERY: I really don't think this is necessary. I bet Tam doesn't know anything.
         MAISON: Why are you so against talking to Tam? What are you hiding?
         AVERY: Nothing! 
@@ -813,7 +839,7 @@ AVERY: I'll wait out here.
         [[TownHall2]]
     <<else>>
         MAISON: We've already got evidence from Tam's office.
-        <<if visited("KellsNote") is false>>
+        <<if $note is false>>
             AVERY: Let's see if we can find anything in Kell's house.
         <<else>>
             AVERY: Let's go and talk with Eden.
@@ -831,13 +857,19 @@ colorID: 0
 position: -480,-215
 ---
 <<setFollow Maison false>>
+<<if visited("Dee") is false>>
+    <<show Dee>>
+<<endif>>
 <<if visited("TownHallExit") is false>>
 AVERY: How'd it go?
 CHARLIE: No one knows where Kell is. It's like they just disappeared.
 AVERY: There must be someone who knows what happened to them.
 <<else>>
-AVERY: Any better luck?
-CHARLIE: No. 
+AVERY: Anything?
+CHARLIE: No.
+    <<if visited("Dee") is true>>
+        AVERY: Maybe we need to find this Maison.
+    <<endif>>
 <<endif>>
 ===
 title: KellsPlants
@@ -923,10 +955,10 @@ AVERY: Let's see what that noise is. It sounds like it's coming from the town sq
 
 <<if $biStage is 5>>
 //after talking to eden, looking for evidence with both tam and kell
-    <<if visited("KellsNote") is false>>
+    <<if $note is false>>
         AVERY: We should search Kell's house. I bet we'll find something there to prove the cult took them.
     <<endif>>
-    <<if visited("TamsDesk") is false>>
+    <<if $tam is false>>
         AVERY: I don't think we need to investigate Tam, but Maison's pretty insistent about it. 
         AVERY: Their office is in the town hall.
     <<endif>>
@@ -979,7 +1011,7 @@ CHARLIE: Look, I found a note.
 MAISON: What does it say, what does it say?
 CHARLIE: "Meeting tonight at dusk. You know where. Don't let anyone see you."
 MAISON: PROOF! 
-MAISON: I told you they were part of the cult!
+MAISON: I told you Tam was part of the cult!
 AVERY: We don't know that for sure. That note could mean anything.
 MAISON: No it couldn't! 
 ->Avery's right.
@@ -997,9 +1029,10 @@ MAISON: No it couldn't!
 title: Stage5
 tags: 
 colorID: 0
-position: -1481,-161
+position: -1406,181
 ---
 <<if $stage5 is "tam">>
+    <<set $tam to true>>
     [[TamExit]]
 <<endif>>
 
@@ -1008,9 +1041,9 @@ position: -1481,-161
 <<endif>>
 
 <<if $stage5 is "KellsHouse">>
+    <<set $note to true>>
     [[KellsHouseExit]]
 <<endif>>
-
 
 
     
@@ -1022,14 +1055,15 @@ position: -499,-698
 ---
 CHARLIE: I think there's something under the rug.
 AVERY: It looks like some kind of note.
-CHARLIE: It's written in code. I can't read it.
-MAISON: Let me see. [takes the note]
 <<Take Note>>
-MAISON: It'll take me a while to decode it. But here, look, it's the cult symbol.
+CHARLIE: It's written in code. I can't read it.
+MAISON: Let me see. 
+MAISON: It'll take me a while to decode it. But here, look, it's the cult symbol. One of them must have dropped it here.
 MAISON: It's proof that the cult exists! 
 CHARLIE: And that they took Kell.
 CHARLIE: Let's go.
 <<set $stage5 to "KellsHouse">>
+<<set $note to true>>
 ===
 title: Stage6
 tags: 
@@ -1039,11 +1073,20 @@ position: 825,-38
 MAISON: I told you involving the police was a waste of time.
 CHARLIE: We just need to find something connecting the cult to the disappearances.
 AVERY: Where do we even start looking?
-MAISON: Maybe there's something in the note we found at Kell's. 
-MAISON: Let's go back to my place. I can decode it.
-AVERY: Back to the creepy graveyard, then...
+MAISON: Maybe there's something in the note we found at Kell's. Let me see it.
+//MAISON: Let's go back to my place. I can decode it.
+//AVERY: Back to the creepy graveyard, then...
 <<set $biStage to 7>>
-<<Change Scene 8>>
+//<<Change Scene 8>>
+
+//Change here: Maison solves the note now because it's really not necessary to go back to their place
+//if another solving method is introduced eg puzzle of some kind, then change it back.
+MAISON: Hmm...It looks like they might be using a simple substitution cipher. Amateurs.
+MAISON: A little frequency analysis, some logical deduction...
+MAISON: ...
+MAISON: Solved it. It says the cult's hideout is in a cabin on the northeast side of the island.
+CHARLIE: Let's go check it out.
+<<set $biStage to 8>>
 
 ===
 title: BERRYNOTES
@@ -1073,27 +1116,43 @@ Stage 10: after telling Eden about Luca (set in PoliceStation3)
 title: MaisonsHouse
 tags: 
 colorID: 2
-position: 596,-474
+position: 596,-477
 ---
-<<if visited("MaisonsHouse") is false>>
+<<if $biStage is 3>>
+//concern that tone is lost here. difficult to convey without inflection?   
+    //CHARLIE: [knocks] Hello?
     CHARLIE: The door's locked.
-    DOOR: VOICEPRINT NOT RECOGNISED.
+    DOOR: VOICEPRINT NOT RECOGNISED. ENTRY DENIED.
     AVERY: Voiceprint?
-    DOOR: VOICEPRINT NOT RECOGNISED.
+    DOOR: VOICEPRINT NOT RECOGNISED. ENTRY DENIED.
     AVERY: Is that a keypad?
     CHARLIE: And a thumbprint scanner. And a retinal scanner.
-    DOOR: VOICEPRINT NOT RECOGNISED.
-    <<if $biStage < 3>>
-    AVERY: Whoever lived here sure didn't skimp on security.
+    AVERY: Seems excessive.
+    CHARLIE: Hello? Is anyone there? We're looking for Maison.
+    DOOR: MAISON'S NOT HERE.
+    CHARLIE: ...
+    CHARLIE: We'll just wait until they get back, then.
+    DOOR: THEY WON'T BE BACK FOR A LONG TIME. A REALLY, REALLY LONG TIME.
+    AVERY: That's okay. We're not in a hurry.
+    DOOR: ...
+    DOOR: GO AWAY.
+    CHARLIE: We're not leaving until we've talked to you.
+    DOOR: ME? WHY WOULD YOU WANT TO TALK TO ME? I'M A DOOR.
+    AVERY: Riiiiiight. Sure you are.
+    <<if visited("Dee") is true>>
+        CHARLIE: We're trying to find someone. We heard that you knew something about people going missing.
     <<else>>
-    AVERY: Wow, Maison sure didn't skimp on security.
+        CHARLIE: We're trying to find someone. Do you know Kell? We think they might be missing.
     <<endif>>
+    DOOR: OH, YOU'RE HERE ABOUT THE MISSING PEOPLE? WHY DIDN'T YOU SAY SO? COME RIGHT IN.
+    <<Change Scene 8>>
 <<else>>
-    AVERY: Is all this security necessary?
-    <<if $biStage < 3>>
-    CHARLIE: I don't think I've ever seen so many locks.
+    <<if $biStage is 1 or $biStage is 2>>
+        AVERY: Who would live in a cemetery?
     <<else>>
-    MAISON: You'd have this much security too, if you knew what was really out there.
+        AVERY: Is all this security necessary?
+        CHARLIE: I don't think I've ever seen so many locks.
+        MAISON: You'd have this much security too, if you knew what was really out there.
     <<endif>>
 <<endif>>
 ===
@@ -1103,34 +1162,46 @@ colorID: 0
 position: 1030,-907
 ---
 <<if $biStage is 8>>
-<<if visited("CabinFrontDoor") is false>>
-MAISON: Wait, we can't just charge through the front door.
-AVERY: Why not?
-MAISON: Because it lacks both subtlety and sense. Neither of which YOU possess, Avery. //too formal?
-MAISON: Unless you want us to get caught by the cultists who are undoubtedly on the other side. Because you're working with the cult.
-AVERY: Not this again.
-AVERY: We can just go through the front door and deal with whoever we find.
-MAISON: Or we could do the smart thing and find a different entrance. 
-MAISON: Barging through the front door is a good way to get us killed.
-CHARLIE: We should probably try not to draw too much attention.
-CHARLIE: Let's try to find another way in.
-<<else>>    //if already had discussion
-MAISON: We need to find another way in.
-CHARLIE: Let's keep looking.
-<<endif>>
+    <<if visited("CabinFrontDoor") is false>>
+        CHARLIE: It's locked.
+        AVERY: Out of the way, Charlie. I'll kick it down.
+        MAISON: Wait, we can't just charge through the front door.
+        AVERY: Why not?
+        MAISON: Because it will draw the attention of every cultist inside. I don't know about you, but I don't want to get caught and eaten.
+        MAISON: Or maybe you do want us to get caught. Because you're working with the cult.
+        AVERY: Not this again.
+        AVERY: We can deal with whoever's inside.
+        MAISON: Or we could do the smart thing and find a different entrance.
+        CHARLIE: We should probably try not to draw too much attention.
+        CHARLIE: Let's try to find another way in.
+    <<else>>    //if already had discussion
+        MAISON: We need to find another way in.
+        CHARLIE: Let's keep looking.
+    <<endif>>
 <<endif>>
 
 <<if $biStage is 9>>
-AVERY: We need to show Eden what we found. 
-MAISON: And we should go before the cultists find us.
+    AVERY: We need to show Eden what we found. 
+    MAISON: And we should go before the cultists find us.
 <<endif>>
 
 <<if $biStage is 10>>
-    MAISON: I think they went around the back to the docks. Quick, they're getting away!
+    <<if visited("LucaStage10") is true>>
+        MAISON: I think they went around the back to the docks. Quick, they're getting away!
+    <<else>>
+        
+        //<<if $searchedCabin is false>>
+        //    MAISON: After you, Officer.
+        //        <<Change Scene 6>>
+          //  <<else>>
+            //    AVERY: We've already searched the cabin. Luca's gone.
+              //  EDEN: They might be back in their office. Let's go.
+            //<<endif>>
+    <<endif>>
 <<endif>>
 
 <<if $biStage is 1 or $biStage is 2 or $biStage is 3 or $biStage is 4 or $biStage is 5 or $biStage is 6 or $biStage is 7>>
-    CHARLIE: The door is locked.
+    CHARLIE: We probably shouldn't just barge into a stranger's house. That seems rude.
 <<endif>>
 ===
 title: CabinSideDoor
@@ -1139,30 +1210,39 @@ colorID: 0
 position: 1032,-683
 ---
 <<if $biStage is 8>>
-<<if visited("CabinSideDoor") is false>>
-MAISON: This will do. 
-//seems quiet
-AVERY: Ready, Charlie?
-<<else>>
-    MAISON: Ready to see what's inside?
-<<endif>>
-->Let's go.
+    <<if visited("CabinFrontDoor") is true>>
+        MAISON: A side door. Much more subtle than barging through the front door.
+        AVERY: Whatever.
+        CHARLIE: It's locked too.
+    <<else>>
+        CHARLIE: This door's locked.
+    <<endif>>
+    MAISON: Good thing I know how to pick locks.
+    AVERY: Of course you do.
     MAISON: Time to prove what the cult's up to once and for all.
     <<Change Scene 12>>
-->Wait a moment.
-    CHARLIE: I'm not ready to go in just yet.
 <<endif>>
 
 <<if $biStage is 9>>
-AVERY: We've got to take this evidence to Eden.
+    AVERY: We've got to take this evidence to Eden.
 <<endif>>
 
 <<if $biStage is 10>>
-AVERY: There's Luca, look! At the dock!
+    <<if visited("LucaStage10") is true>>
+        AVERY: There's Luca, look! At the dock!
+    <<else>>
+        //<<if $searchedCabin is false>>
+        //    MAISON: After you, Officer.
+        //    <<Change Scene 6>>
+        //<<else>>
+        //    AVERY: We've already searched the cabin. Luca's gone.
+        //    EDEN: They might be back in their office. Let's go.
+        //<<endif>>
+    <<endif>>
 <<endif>>
 
 <<if $biStage is 1 or $biStage is 2 or $biStage is 3 or $biStage is 4 or $biStage is 5 or $biStage is 6 or $biStage is 7>>
-    CHARLIE: The door is locked.
+    CHARLIE: We probably shouldn't just barge into a stranger's house. That seems rude.
 <<endif>>
 
 ===
@@ -1194,8 +1274,10 @@ tags:
 colorID: 0
 position: 1051,185
 ---
-CHARLIE: [smashes the crates]
-MAISON: Hopefully no one heard that.
+//CHARLIE: [smashes the crates]
+//MAISON: Hopefully no one heard that.
+
+CHARLIE: These crates are filled with...hats. Just lots of hats.
 ===
 title: CabinDoor2
 tags: 
@@ -1206,8 +1288,6 @@ CHARLIE: I think I hear something on the other side...
 AVERY: Let's go, then.
 Maison: Quietly.
 <<open CageRoomDoor>>
-<<move Charlie CharlieTarget>>
-[[Hideout]]
 ===
 title: Stage10
 tags: 
@@ -1216,8 +1296,10 @@ position: 840,395
 ---
 <<show Luca>>
 <<position Luca CabinExt>>
-<<move Luca TownHallExt>>
+<<move Luca TownHallExt destroy>>
 <<setFollow Eden true>>
+//<<set $townhall false>>
+//<<set $searchedCabin to false>>
 EDEN: Where did you see Luca last?
 CHARLIE: The cabin.
 EDEN: Take me there, quickly.
@@ -1274,24 +1356,24 @@ position: 603,-202
 title: MaisonBerry
 tags: 
 colorID: 0
-position: -1569,-603
+position: -1565,-601
 ---
-MAISON: You know, Charlie, once this is all done there's a few things I could use your help with...
+//MAISON: You know, Charlie, once this is all done there's a few things I could use your help with...
 
 <<if $biStage is 4>>
 //between leaving maison's house and talking to eden
     MAISON: Bringing the cops into this isn't going to help, you know. You'll see, when we talk to that officer.
-    MAISON: Useless fools, the lot of them.
+    MAISON: Useless idiots, the lot of them. Haven't got more than three brain cells between them.
     //fools...
 <<endif>>
 
 <<if $biStage is 5>>
 //after talking to eden, looking for evidence with both tam and kell
-    <<if visited("TamsDesk") is false>>
+    <<if $tam is false>>
         MAISON: Tam's definitely involved with the cult. We need to interrogate them.
         MAISON: They're probably in their office in the town hall.
     <<endif>>
-    <<if visited("KellsNote") is false>>
+    <<if $note is false>>
         MAISON: We're not going to find anything in Kell's house.
         MAISON: ...But maybe we should look there anyway, just in case.
     <<endif>>
@@ -1311,13 +1393,13 @@ MAISON: You know, Charlie, once this is all done there's a few things I could us
 <<if $biStage is 8>>
 //after decoding note, going to cabin and exploring there
     MAISON: The note said the cult had a hideout in a cabin on the northeast side of the island.
-    MAISON: We need to go there and get proof that they're taking and eating people. It's probably going to be gruesome, Charlie, so you'd better prepare yourself.
+    MAISON: We need to go there and get proof that they're taking and eating people. It's going to be gruesome, so you'd better prepare yourself.
 <<endif>>
 
 <<if $biStage is 9>>
 //after seeing luca and devon in cult hideout
     MAISON: I knew that someone in town hall was involved with the cult, I knew it! 
-    MAISON: We have to go and tell Eden about this. I can't wait to see their face when they have to admit I was right.
+    MAISON: We have to go and tell Eden about this. I can't wait to see their face when they admit I was right.
 <<endif>>
 
 <<if $biStage is 10>>
@@ -1329,4 +1411,94 @@ MAISON: You know, Charlie, once this is all done there's a few things I could us
     <<endif>> 
 <<endif>>
 
+===
+title: KellSatchel
+tags: 
+colorID: 3
+position: -66,-697
+---
+<<if $biStage is 2>>
+    CHARLIE: Kell's satchel is here. Why wouldn't they take it with them when they left the house?
+    AVERY: Maybe they're just running a quick errand?
+<<else>>
+    CHARLIE: Kell wouldn't have left home without their satchel.
+    MAISON: More evidence that they were taken against their will. 
+<<endif>>
+===
+title: AveryKH
+tags: 
+colorID: 3
+position: -503,-1345
+---
+<<if $biStage is 2>>
+    AVERY: Kell's not here. Maybe we should see if they're somewhere in town.
+<<else>>
+    <<if $note is false>>
+        AVERY: There must be proof that Kell was kidnapped SOMEWHERE in here.
+    <<else>>
+        AVERY: We've got proof now. Let's take it to Eden.
+        <<if $tam is false>>
+            MAISON: We still need to interrogate Tam.
+            AVERY: Not this again...
+        <<endif>>
+    <<endif>>
+<<endif>>
+===
+title: AveryTam
+tags: 
+colorID: 0
+position: -1561,-376
+---
+AVERY: This is pointless.
+===
+title: MaisonTam
+tags: 
+colorID: 0
+position: -1342,-376
+---
+MAISON: We should see if there's anything on Tam's desk.
+===
+title: MaisonKH
+tags: 
+colorID: 3
+position: -292,-1342
+---
+<<if $note is false>>
+    MAISON: I don't think we're going to find anything here.
+    MAISON: But if it makes you feel better, search away.
+<<else>>
+    MAISON: Maybe it was worth searching this place.
+    AVERY: Told you.
+    <<if $tam is false>>
+        MAISON: But we should still interrogate Tam.
+    <<endif>>
+<<endif>>
+===
+title: AveryHideout
+tags: 
+colorID: 0
+position: 1027,-1112
+---
+AVERY: We should look around and see if we can find any proof that the cult's kidnapping people.
+===
+title: MaisonHideout
+tags: 
+colorID: 0
+position: 1251,-1118
+---
+MAISON: You know, I thought there would be more dead bodies in here.
+MAISON: They must keep them in a fridge somewhere.
+===
+title: EdenBerry
+tags: 
+colorID: 0
+position: -1129,-600
+---
+<<if $biStage is 10>>
+    <<if visited("LucaStage10") is false>>
+        EDEN: Take me to where you last saw Luca. 
+    <<else>>
+        EDEN: After Luca, quick!
+    <<endif>>
+<<endif>>
 ===

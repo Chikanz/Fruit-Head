@@ -6,33 +6,39 @@ using UnityEngine.SceneManagement;
 
 public class startDialogue : MonoBehaviour {
 
-    static GameObject dialogue;
+    GameObject dialogue;
     public string scene;
+    public bool sceneStart;
 
 
     // Use this for initialization
     void Start () {
 
         if (!dialogue) dialogue = GameObject.Find("Yarn");
-        if (gameObject.name != "MeetingTrigger" && gameObject.name != "BoatTrigger" && gameObject.name != "KellTrigger" && gameObject.name != "FinalRoomTrigger")
+
+        if (sceneStart)
         {
             positioning();
             runStartDialogue();
         }
+
     }
 	
 	void runStartDialogue()
     {
-        Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
-        float stage = biStage.AsNumber;
+        print("run");
         if (scene == "BerryIsland")
         {
+            Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
+            int stage = (int)biStage.AsNumber;
+
             if (stage == 1)
             {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("BerryIslandStart");
             }
             else if (stage == 2)
             {
+                print("stage2");
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("KellsHouseExit");
             }
             else if (stage == 3)
@@ -93,11 +99,11 @@ public class startDialogue : MonoBehaviour {
 
     void positioning()
     {
-        Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
-        float stage = biStage.AsNumber;
 
         if (scene == "TamsOffice")
         {
+            Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
+            int stage = (int)biStage.AsNumber;
             if (stage != 5)
             {
                 GameObject temp = GameObject.Find("Avery");
@@ -110,9 +116,10 @@ public class startDialogue : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+
         Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
-        float stage = biStage.AsNumber;
-        print("debate");
+        int stage = (int)biStage.AsNumber;
+
         if (gameObject.name == "MeetingTrigger")
         {
             if (enabled && stage == 2)
@@ -128,6 +135,11 @@ public class startDialogue : MonoBehaviour {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("Docks");
                 enabled = false;
             }
+        }
+        else if (gameObject.name == "HideoutTrigger")
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("Hideout");
+            enabled = false;
         }
         else if (gameObject.name == "KellTrigger")
         {
