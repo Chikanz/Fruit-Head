@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu (menuName = "PluggableAI/Actions/Growl")]
-public class GrowlAction : Action 
+public class GrowlAction : AIAction 
 {
 	public override void Act(StateController c)
 	{

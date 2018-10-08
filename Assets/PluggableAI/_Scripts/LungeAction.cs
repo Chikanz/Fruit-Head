@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu (menuName = "PluggableAI/Actions/Lunge")]
-public class LungeAction : Action
+public class LungeAction : AIAction
 {
 	public float force = 5;
 	

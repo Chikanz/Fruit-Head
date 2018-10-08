@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu (menuName = "PluggableAI/Actions/Wander")]
-public class BatWander : Action 
+public class BatWander : AIAction 
 {
 	public override void Act(StateController c)
 	{

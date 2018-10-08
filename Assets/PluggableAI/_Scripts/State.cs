@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "PluggableAI/State")]
 public class State : ScriptableObject 
 {
-	public Action[] actions;
+	public AIAction[] actions;
 	public Transition[] transitions;	
 
 	public void UpdateState(StateController controller)

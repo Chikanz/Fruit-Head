@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu (menuName = "PluggableAI/Actions/Circle")]
-public class IdleAction : Action
+public class IdleAction : AIAction
 {
 	public float TimeInState = 3;
 	
