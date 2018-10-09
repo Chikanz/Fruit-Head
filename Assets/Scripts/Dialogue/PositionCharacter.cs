@@ -98,14 +98,15 @@ public class PositionCharacter : MonoBehaviour {
         Yarn.Value forest = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$forest");
         bool temp2 = forest.AsBool;
 
-        if (gameObject.name == "Avery")
-        {
-            //set avery's position on the other side of the gate so players can't talk to them before they should
-            if (!temp && !temp2)
-            {
-                gameObject.transform.position -= new Vector3(10, 0, 0);
-            }
-        }
+        //if (gameObject.name == "Avery")
+        //{
+        //    set avery's position on the other side of the gate so players can't talk to them before they should
+        //    if (!temp && !temp2)
+        //    {
+        //        transform.position =
+        //               new Vector3(transform.position.x, transform.position.y - 5, transform.position.z);
+        //    }
+        //}
 
         if (gameObject.name == "Jack")
         {

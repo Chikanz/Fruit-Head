@@ -8,6 +8,7 @@ namespace Yarn.Unity
     {
         public bool startActive;
         SkinnedMeshRenderer[] meshes;
+        MeshRenderer[] moreMeshes;
         Transform originalPosition;
         GameObject dialogue; //Probably avoid using static vars where you can
         SpriteRenderer spriteRend;
@@ -18,18 +19,20 @@ namespace Yarn.Unity
             //Use scene changer's singleton reference instead of slow gameobject.find
             dialogue = SceneChanger.instance.transform.GetChild(0).gameObject; 
             meshes = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+            moreMeshes = gameObject.GetComponentsInChildren<MeshRenderer>();
             spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
 
             Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
             int stage = (int) biStage.AsNumber; //avoid comparison of floating point numbers by casting to int 
             if (stage == 0)
             {
-                //activate avery on blossom island
+                //hide avery and kim on blossom island
                 Yarn.Value forestComplete = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$foundDog");
                 bool temp = forestComplete.AsBool;
+                
                 if (!temp)
                 {
-                    setMesh(true, false);
+                    setMesh(false, true);
                 }
             }
             else
@@ -56,15 +59,16 @@ namespace Yarn.Unity
             //print (gameObject.name);
             if (gameObject.name == "Kim")
             {
-                Vector3 temp = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0.5f, 15.0f)); //wat
+                //placing kim just outside camera view
+                Vector3 temp = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0.5f, 15.0f)); 
                 gameObject.transform.position = temp;
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x,
                     originalPosition.position.y, gameObject.transform.position.z);
             }
-            else if (gameObject.name == "Avery")
-            {
-                gameObject.transform.position += new Vector3(10, 0, 0);
-            }
+            //else if (gameObject.name == "Avery")
+            //{
+            //    gameObject.transform.position += new Vector3(10, 0, 0);
+            //}
 
             setMesh(true, true);
         }
@@ -86,6 +90,11 @@ namespace Yarn.Unity
             }
 
             foreach (var m in meshes)
+            {
+                m.enabled = isVisible;
+            }
+
+            foreach (var m in moreMeshes)
             {
                 m.enabled = isVisible;
             }

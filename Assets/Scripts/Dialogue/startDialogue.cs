@@ -94,6 +94,10 @@ public class startDialogue : MonoBehaviour {
         {
             dialogue.GetComponent<DialogueRunner>().StartDialogue("HQInt");
         }
+        else if (scene == "BlossomForest")
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("Creepy");
+        }
 
     }
 

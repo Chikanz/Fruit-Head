@@ -3,10 +3,9 @@ tags:
 colorID: 4
 position: 407,241
 ---
-PRESENT: A gift for Kell.
-CHARLIE: Oh yeah, it’s nearly Kell’s birthday... I haven’t seen my sibling in ages. 
-CHARLIE: Maybe I should go visit them on Berry Island as a surprise, instead of just sending the present.
-CHARLIE: I guess I'll need to find a ship. 
+CHARLIE: Oh yeah, this is the present I bought for Kell. For their birthday. Which is today.
+CHARLIE: And I said I would visit them on Berry Island.
+CHARLIE: I should probably go and find a ship. 
 ->Take present
     <<Take Present>>
 ->Stay home and sleep in
@@ -18,8 +17,8 @@ tags:
 colorID: 4
 position: 704,245
 ---
-BAT: A baseball bat. Good for hitting things... Like baseballs.
-Charlie: I'd better take this in case I run into any baseballs today.
+CHARLIE: It's my baseball bat. Good for hitting things... Like baseballs.
+CHARLIE: I'd better take this in case I run into any baseballs today.
 <<Take BaseballBat>>
 ===
 title: Map
@@ -27,21 +26,26 @@ tags:
 colorID: 4
 position: 986,237
 ---
-MAP: A map of the four islands.
+CHARLIE: It's the map of the four islands I drew as a kid.
+CHARLIE: It's probably a good thing I never wanted to be an artist.
 ===
 title: TV
 tags: 
 colorID: 4
 position: 148,235
 ---
-CHARLIE: I still haven't watched the latest episode of Game of Chairs.
+CHARLIE: I still need to catch up on Orange is the New Blackberry.
+
+//girl with the dragonfruit tattoo
+//dragonfruitball z
+//orange is the new blackberry
 ===
 title: Kitchen
 tags: 
 colorID: 4
 position: 147,504
 ---
-CHARLIE: I should probably do the dishes...
+CHARLIE: Hmm...When was the last time I did the dishes?
 ===
 title: Door
 tags: 
@@ -51,13 +55,13 @@ position: 420,498
 Door: Leave?
 ->Yeah
     <<if $houseScene is false>>
-    <<if visited("Present") and visited("BaseballBat")>>
+        <<if visited("Present") and visited("BaseballBat")>>
+            <<Change Scene 1>>
+        <<else>>
+            Charlie: Wait a second... I think I'm forgetting something.
+        <<endif>>
+    <<else>>
         <<Change Scene 1>>
-    <<else>>
-        Charlie: Wait a second... I think I'm forgetting something.
-    <<endif>>
-    <<else>>
-    <<Change Scene 1>>
     <<endif>>
 ->Nah
     DOOR: Cool! We can hang out for a little longer!
@@ -67,7 +71,7 @@ tags:
 colorID: 4
 position: 691,501
 ---
-TOILET: It's a toilet. In the bedroom.
+CHARLIE: It's a toilet. In the bedroom.
 CHARLIE: I'm sure putting this here made sense to someone.
 ===
 title: Bird Statue
@@ -75,6 +79,7 @@ tags:
 colorID: 4
 position: 993,501
 ---
-BIRD STATUE: This statue stands tall and watchful. Its eyes seem to follow you wherever you go.
-BIRD STATUE: It's kind of creepy.
+//BIRD STATUE: This statue stands tall and watchful. Its eyes seem to follow you wherever you go.
+//BIRD STATUE: It's kind of creepy.
+//CHARLIE: Hey, it's my commemorative statue of the giant
 ===
