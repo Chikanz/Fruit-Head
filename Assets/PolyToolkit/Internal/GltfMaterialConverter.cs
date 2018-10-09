@@ -310,6 +310,7 @@ public class GltfMaterialConverter {
     if (pbr.baseColorTexture != null) {
       tex = pbr.baseColorTexture.texture.unityTexture;
       mat.SetTexture("_BaseColorTex", tex);
+      mat.SetTexture("_MainTex", tex);
     }
     if (tex != null) {
       matName = string.Format("{0}_{1}", matName, tex.name);

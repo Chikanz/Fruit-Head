@@ -52,35 +52,7 @@ public class PtAsset : ScriptableObject {
   /// The license under which this asset was included in the project.
   /// </summary>
   [DisabledProperty]
-  public PolyAssetLicense license;
-
-  [Range(0,180)]
-  public int SmoothingAngle = 180;
-  
-  [ExecuteInEditMode]
-  [ContextMenu("Change Smoothing angle")]
-  public void smoothie()
-  {
-    var path = AssetDatabase.GetAssetPath(this);
-    var assets = AssetDatabase.LoadAllAssetsAtPath(path);
-
-    for (var i = 0; i < assets.Length; i++)
-    {
-      Object o = assets[i];
-      Mesh mesh = o as Mesh;
-      if (mesh != null)
-      {                
-        mesh.RecalculateNormals(SmoothingAngle);
-      }
-      assets[i] = mesh;
-    }
-    
-    AssetDatabase.CreateAsset(this,path);
-    for (int i = 1; i < assets.Length; i++)
-    {
-      AssetDatabase.AddObjectToAsset(assets[i], path);
-    }
-  }
+  public PolyAssetLicense license;   
 
   /// <summary>
   /// Convenience method to return a filter string like "t:PtAsset" based on the name

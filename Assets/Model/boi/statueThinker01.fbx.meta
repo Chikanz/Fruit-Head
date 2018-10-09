@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: 38b8a915e070e95499d090dd86a27428
+guid: ec62abd259d5a2f4d8e772d384e91d61
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cinema_mesh
     400000: //RootNode
-    400002: Cinema_mesh
-    2100000: blinn1SG
-    2300000: Cinema_mesh
-    3300000: Cinema_mesh
-    4300000: Cinema_mesh
+    2100000: lambert2
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: statueThinker_msh01
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: blinn1SG
-    second: {fileID: 2100000, guid: af9ab60e4940b6944b93a6956cb9f520, type: 2}
+      name: lambert2
+    second: {fileID: 2100000, guid: 851708c67af40914cbe0919fceb04368, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: statueThinker_diff01
+    second: {fileID: 2800000, guid: 91bc965b86fe961448571a7ea21c2ed7, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
@@ -47,7 +50,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
