@@ -14,9 +14,17 @@ MonoBehaviour:
   actions:
   - {fileID: 11400000, guid: 9a3fe4412d5a56e45be006cfeba36c10, type: 2}
   transitions:
-  - Decision: {fileID: 11400000, guid: 8280b83eaa949ae42a2047ef71ba655d, type: 2}
+  - Decision:
+      float1: 3
+      float2: 0
+      float3: 0
+      eDecision: 1
     NextState: {fileID: 11400000, guid: bf1184cf3c61137488e840c9c72db845, type: 2}
     AnimationToPlay: Lunge
-  - Decision: {fileID: 11400000, guid: a2073d2e33d6f234b916923758835ef3, type: 2}
-    NextState: {fileID: 11400000, guid: 276d021dd8938f044805add1b43dbf8f, type: 2}
+  - Decision:
+      float1: 1.5
+      float2: 0
+      float3: 0
+      eDecision: 2
+    NextState: {fileID: 11400000, guid: d554706b891717b4eb9f081483e3ee8f, type: 2}
     AnimationToPlay: 

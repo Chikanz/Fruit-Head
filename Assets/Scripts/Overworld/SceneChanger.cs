@@ -100,7 +100,7 @@ public class SceneChanger: MonoBehaviour
         while (!asyncLoad.isDone)
         {
             yield return null;
-        }        
+        }                
         
         //Fade out loading screen
         while (elapsedTime < fadeTime)

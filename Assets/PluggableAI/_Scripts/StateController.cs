@@ -43,9 +43,15 @@ public class StateController : MonoBehaviour
 	void OnActive()
 	{
 		active = true;
-		myAnim.SetTrigger(StartAnimation);
+		myAnim.SetTrigger(StartAnimation); //This should be in awake maybe?
 		myAnim.SetFloat("Offset", UnityEngine.Random.Range(0.0f,1.0f));
-	}
+		
+		//Tell AI that it's showtime
+		foreach (AIAction action in currentState.actions)
+		{
+			action.OnEnter(this);
+		}
+	}	
 
 	void Update()
 	{
@@ -57,8 +63,23 @@ public class StateController : MonoBehaviour
 
 	public void TransitionToState(State nextState)
 	{
+		//Tell all of our actions that we're exiting
+		foreach (AIAction action in currentState.actions)
+		{
+			action.OnExit(this);
+		}
+		
+		//Switch to new state
 		currentState = nextState;
-		OnExitState();
+		
+		//Tell all actions in new state that we're starting
+		foreach (AIAction action in currentState.actions)
+		{
+			action.OnEnter(this);
+		}
+		
+		//Reset time elapsed
+		stateTimeElapsed = 0;
 	}
 
 	/// <summary>
@@ -72,10 +93,6 @@ public class StateController : MonoBehaviour
 		return (stateTimeElapsed >= duration);
 	}
 
-	private void OnExitState()
-	{
-		stateTimeElapsed = 0;
-	}
 
 	/// <summary>
 	/// Since our pluggable AI system behaviour is stateless, per enemy variables can't be stored on the scriptabled objects

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 /// <summary>
@@ -59,8 +60,8 @@ public class CombatCharacter : MonoBehaviour
     public event EventHandler OnHurt;
 
     //This character's move set to spawn
-    public GameObject[] Moves;
-    private List<Move> _movelist = new List<Move>();
+    [FormerlySerializedAs("Moves")] public GameObject[] MovesToSpawn;
+    public List<Move> Moves { get; private set; }
     private Transform _moveParent;
 
     private static GameObject HitCanvas;
@@ -118,10 +119,11 @@ public class CombatCharacter : MonoBehaviour
         }
 
         //Spawn moves
-        if (Moves.Length > 0)
+        Moves = new List<Move>();
+        if (MovesToSpawn.Length > 0)
         {
             _moveParent = transform.GetChild(0);
-            foreach (GameObject m in Moves)
+            foreach (GameObject m in MovesToSpawn)
             {
                 var g = Instantiate(m, Vector3.zero, Quaternion.identity);
                 g.transform.SetParent(_moveParent,false);
@@ -130,7 +132,7 @@ public class CombatCharacter : MonoBehaviour
                 var moveObj = g.GetComponent<Move>();
                 g.transform.localPosition = Vector3.zero;
                 Debug.Assert(moveObj, "No move component was found on " + m.name);
-                _movelist.Add(moveObj);
+                Moves.Add(moveObj);
             }
         }
         
@@ -216,7 +218,10 @@ public class CombatCharacter : MonoBehaviour
         }
 
         //Spawn damage canvas
-        var cap = transform.GetChild(1).GetComponent<CapsuleCollider>();
+        CapsuleCollider cap = transform.GetChild(1).GetComponent<CapsuleCollider>();
+        if(!cap) cap = GetComponent<CapsuleCollider>();
+        if(!cap) cap = GetComponentInChildren<CapsuleCollider>();
+        
         if (cap)
         {
             var h = Instantiate(HitCanvas);
@@ -332,7 +337,7 @@ public class CombatCharacter : MonoBehaviour
         //Check if performing move
         if (IsPerformingMove()) return;
 
-        Move m = _movelist[moveIndex];
+        Move m = Moves[moveIndex];
         m.Init(); //Init the move if cooldown is good
         _isPerformingMove = moveIndex;
 
@@ -363,7 +368,7 @@ public class CombatCharacter : MonoBehaviour
     /// </summary>
     public void Hit()
     {
-        _movelist[_isPerformingMove].Execute();
+        Moves[_isPerformingMove].Execute();
     }
 
     public bool IsPerformingMove()
@@ -373,7 +378,7 @@ public class CombatCharacter : MonoBehaviour
 
     public bool CanMove()
     {
-        return (!IsPerformingMove() || _movelist[_isPerformingMove].CanMoveAndUse());
+        return (!IsPerformingMove() || Moves[_isPerformingMove].CanMoveAndUse());
     }
 
     private IEnumerator Sleep(float t)

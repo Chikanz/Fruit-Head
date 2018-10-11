@@ -15,7 +15,7 @@ public class SpawnMove : Move {
 
 	[SerializeField]
 	[Tooltip("How long the attack object survives for")]
-	private float lingerTime;
+	private float lingerTime; //let action activate + deactivate the box, might have to make target distance closer 
 
 	[SerializeField]
 	[Tooltip("Should we destroy this hitbox after it hits an enemy?")]
@@ -23,7 +23,7 @@ public class SpawnMove : Move {
 
 	private GameObject ActiveObject; //The hitbox/projectile spawned
 	
-	private bool _isSubscribed;
+	private bool _isSubscribed;	
 
 	[Range(0,500)]
 	public int Knockback;
@@ -38,7 +38,7 @@ public class SpawnMove : Move {
 	{
 		base.Update();	
 	}
-	
+
 	/// <summary>
 	/// This move's functionality
 	/// </summary>
@@ -82,14 +82,23 @@ public class SpawnMove : Move {
 			}
 			else
 			{
-				ToggleChild(false);
+				ForceStop();
 			}
 		}    
 	}
 
+	public void ForceStop()
+	{
+		ToggleChild(false);
+		StopCoroutine(DelayToggleChild(0,false));
+	}
+
 	private void ToggleChild(bool enabled)
 	{
-		transform.GetChild(0).gameObject.SetActive(enabled);
+		var box = transform.GetChild(0);
+		Debug.Log("hitbox is " + box.gameObject.activeInHierarchy + " and we're setting to " + enabled);
+		
+		box.gameObject.SetActive(enabled);		
 	}
 	
 	private IEnumerator DelayToggleChild(float timer, bool enabled)

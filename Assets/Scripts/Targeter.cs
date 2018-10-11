@@ -60,7 +60,10 @@ public class Targeter : MonoBehaviour
 		{
 			if (CurrentTarget() != null)
 			{
-				targetObj.transform.position = CurrentTarget().transform.position;
+				targetObj.transform.position = 
+					CurrentTarget().GetComponentInChildren<BoxCollider>() ? 
+					CurrentTarget().GetComponentInChildren<BoxCollider>().bounds.center : 
+					CurrentTarget().transform.position;
 			}
 			else
 			{
@@ -83,7 +86,10 @@ public class Targeter : MonoBehaviour
 			targetInt = 0;
 			
 			//Spawn target Reticle
-			targetObj = Instantiate(TargetPrebab, CurrentTarget().transform.position, Quaternion.identity);
+			if(!targetObj)
+				targetObj = Instantiate(TargetPrebab, CurrentTarget().transform.position, Quaternion.identity);
+			else
+				targetObj.SetActive(true);
 		}
 		else //Already snapped, so cycle
 		{
@@ -103,7 +109,8 @@ public class Targeter : MonoBehaviour
 	void ResetSnap()
 	{		
 		cameraSnapped = false;
-		Destroy(targetObj);
+		//Destroy(targetObj);
+		targetObj.SetActive(false);
 		CTG.m_Targets[1] = MakeCMTarget(null);
 		Targets.Clear();
 		targetInt = -1;

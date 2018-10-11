@@ -39,8 +39,8 @@ public class BaseAI : MonoBehaviour
 		if(velocity.magnitude > 1) velocity.Normalize();
 
 		//Move
-		var finalVel = (velocity * stats.moveSpeed); //+
-		               //((burstVel * stats.moveSpeed) * 2);		               
+		var finalVel = (velocity * stats.moveSpeed) +
+		               (burstVel * stats.moveSpeed);		               
 
 		RB.MovePosition(transform.position + finalVel);
 		Debug.DrawLine(transform.position, transform.position + finalVel * 100, Color.red);
@@ -59,7 +59,7 @@ public class BaseAI : MonoBehaviour
 		RB.MoveRotation(Quaternion.Lerp(transform.rotation, look, 0.1f));
 
 		if(burstVel.sqrMagnitude > 0)
-			burstVel *= 0.9f;
+			burstVel *= 0.98f;
 		
 		velocity = Vector3.zero;
 
@@ -81,6 +81,11 @@ public class BaseAI : MonoBehaviour
 	public void BurstMove(Vector3 vUnclamped)
 	{
 		burstVel += vUnclamped;
+	}
+
+	public void StopBurst()
+	{
+		burstVel = Vector3.zero;
 	}
 
 	public void ForceLookAt(Transform cTarget)

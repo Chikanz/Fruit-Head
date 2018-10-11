@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1773372471602260
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,8 +53,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1763812118398944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.164, z: 0.239}
-  m_LocalScale: {x: 0.4880653, y: 0.4880653, z: 0.4880653}
+  m_LocalPosition: {x: 0, y: 0.215, z: 0.05}
+  m_LocalScale: {x: 0.18282522, y: 0.18282522, z: 0.18282522}
   m_Children: []
   m_Father: {fileID: 4827108525958644}
   m_RootOrder: 0
@@ -65,9 +65,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1773372471602260}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 107.1268, y: 3.3145695, z: 103.00868}
-  m_LocalScale: {x: 1.6101495, y: 1.61014, z: 1.61014}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -315.05972, y: 1018.36774, z: -2882.457}
+  m_LocalScale: {x: 2.5925817, y: 2.5925508, z: 2.5925508}
   m_Children:
   - {fileID: 4436242692395390}
   m_Father: {fileID: 0}
@@ -145,8 +145,8 @@ MonoBehaviour:
   _canMoveWhileUsing: 1
   Projectile: {fileID: 0}
   isProjectile: 0
-  lingerTime: 3
-  DestroyOnHit: 0
+  lingerTime: 999
+  DestroyOnHit: 1
   Knockback: 179
 --- !u!114 &114719684052334852
 MonoBehaviour:

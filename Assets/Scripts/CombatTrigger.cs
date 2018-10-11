@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Will start combat when a plater enters 
+/// Will start combat when a player enters 
 /// </summary>
 public class CombatTrigger : MonoBehaviour
 {

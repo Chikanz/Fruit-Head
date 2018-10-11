@@ -23,7 +23,6 @@ public class CircleAction : AIAction
 						
 		//Boid the fuck away from other doggos
 		Vector3 seperation = Vector3.zero;
-		
 		foreach (var e in c.GetComponentInParent<EnemyManager>().Enemies)
 		{
 			var d = Vector3.Distance(c.transform.position, e.transform.position);

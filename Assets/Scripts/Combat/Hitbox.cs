@@ -19,9 +19,9 @@ public class Hitbox : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-    {
+	{	    
         var objs = Physics.OverlapBox(transform.position,
-            GetComponent<BoxCollider>().bounds.extents, transform.rotation, ~9);
+            GetComponent<BoxCollider>().bounds.extents, transform.rotation, ~9); //Cast only on hitbox layer
         
         foreach(Collider c in objs)
         {
@@ -32,7 +32,7 @@ public class Hitbox : MonoBehaviour
             if (c.transform.parent.name != daddy.name)
                 Debug.Log("hit " + c.transform.parent.name);
 
-            if (OnHit != null)
+            if (OnHit != null) //Send out hit event
             {
                 OnHit(c.gameObject);
             }
@@ -41,8 +41,8 @@ public class Hitbox : MonoBehaviour
         }
 	}
 
-    //Clear list if we're a hitbox
-    private void OnDisable()
+    //Clear list if we're a hitbox    
+    private void OnEnable()
     {
         if (BeenHit != null)
         {
