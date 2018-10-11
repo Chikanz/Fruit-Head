@@ -22,6 +22,8 @@ public class SpawnMove : Move {
 	private bool DestroyOnHit;
 
 	private GameObject ActiveObject; //The hitbox/projectile spawned
+
+	//public float forwardForce;
 	
 	private bool _isSubscribed;	
 
@@ -57,6 +59,9 @@ public class SpawnMove : Move {
 			ToggleChild(true); //enable child
 			StartCoroutine(DelayToggleChild(lingerTime, false)); //disable child on timer
 			ActiveObject = transform.GetChild(0).gameObject; //set active object to child
+			
+			//if (daddy.GetComponent<Rigidbody>()) 
+				//daddy.GetComponent<Rigidbody>().AddForce(daddy.forward * forwardForce);
 		}
 
 		//Subscribe to hitbox event if it's lonely

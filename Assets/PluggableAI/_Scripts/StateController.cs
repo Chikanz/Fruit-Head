@@ -23,28 +23,28 @@ public class StateController : MonoBehaviour
 
 	public string StartAnimation;
 
-	private bool active = false; 
-	
-	public Dictionary<string, object> VarStorage { get; private set; }
+	private bool active = false;
+
+	private Dictionary<string, object> VarStorage = new Dictionary<string, object>();
 
 	void Awake ()
 	{
 		//Target = GameObject.FindWithTag("Player").transform;
 		MyAI = GetComponent<BaseAI>();
 		MyCC = GetComponent<CombatCharacter>();
-		VarStorage = new Dictionary<string, object>();
 
 		myAnim = GetComponentInChildren<Animator>();
 
 		CombatManager.OnCombatStart += (sender, args) => OnActive();
+		
+		myAnim.SetTrigger(StartAnimation);
+		myAnim.SetFloat("Offset", UnityEngine.Random.Range(0.0f,1.0f)); //Tick the parameter box in ya AC + add a float named offset to enable
 	}
 
 	//Called on started active
 	void OnActive()
 	{
-		active = true;
-		myAnim.SetTrigger(StartAnimation); //This should be in awake maybe?
-		myAnim.SetFloat("Offset", UnityEngine.Random.Range(0.0f,1.0f));
+		active = true;		
 		
 		//Tell AI that it's showtime
 		foreach (AIAction action in currentState.actions)
@@ -105,7 +105,7 @@ public class StateController : MonoBehaviour
 	{
 		object returnVal = null;
 		VarStorage.TryGetValue(name, out returnVal);
-		Debug.Assert(returnVal != null, "Couldn't get var"); //This func shouldn't return nully boyes, use dict contains instead
+		Debug.Assert(returnVal != null, "Couldn't get var " + name); //This func shouldn't return nully boyes, use dict contains instead
 		Debug.Assert(returnVal is T, "Var is wrong type"); //Janky type safety ftw
 		
 		return (T) returnVal; //Cast and return knowing we've got the right type
@@ -115,4 +115,20 @@ public class StateController : MonoBehaviour
 	{
 		VarStorage.Add(name, o);
 	}
+
+	public bool HasKey(string key)
+	{
+		return VarStorage.ContainsKey(key);
+	}
+	
+	/// <summary>
+	/// Get a unique key from instance id (guaranteed to be unique)
+	/// make sure to ALWAYS add some other shit at the end
+	/// </summary>
+	/// <returns>transform instance id</returns>
+	public string ID()
+	{
+		return transform.GetInstanceID().ToString();
+	}
+	
 }

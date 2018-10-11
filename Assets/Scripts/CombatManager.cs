@@ -52,8 +52,8 @@ public class CombatManager : MonoBehaviour
 		TimerText = GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
 		
 		//Get trans
-		EnemyOrigin = transform.GetChild(0);
-		PartyOrigin = transform.GetChild(1);
+		EnemyOrigin = transform.GetChild(1);
+		PartyOrigin = transform.GetChild(0);
 		
 		//Feed into enemy man
 		int alternate = 0;
@@ -65,6 +65,7 @@ public class CombatManager : MonoBehaviour
 
 			var p = GetAlternatingPosition(EnemyOrigin.position, i, ref alternate);
 			spawnedEnemy.transform.position = p; //Set to alternating pos
+			spawnedEnemy.transform.rotation = EnemyOrigin.rotation;
 		}
 		
 		//Spawn our HEROS
@@ -72,7 +73,7 @@ public class CombatManager : MonoBehaviour
 		for (int i = 0; i < Party.Count; i++)
 		{
 			var p = GetAlternatingPosition(PartyOrigin.position, i, ref alternate);
-			var g = Instantiate(Party[i], p, Quaternion.Euler(0,180,0));
+			var g = Instantiate(Party[i], p, PartyOrigin.rotation);
 			SpawnedParty.Add(g);
 		}
 		

@@ -15,11 +15,10 @@ public class TimedDecision : Decision
     
     public override bool Decide(StateController c)
     {
-        //Get a unique key from instance id (guaranteed to be unique)
-        var key = c.transform.GetInstanceID().ToString();
+        var key = c.ID() + "_variation";
         
         //Set variation amount if not set
-        if(!c.VarStorage.ContainsKey(key))
+        if(!c.HasKey(key))
             c.SetVar(key, Random.Range(0.0f, VariationAmount));
            
         //Get amnt from var storage
