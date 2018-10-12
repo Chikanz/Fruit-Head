@@ -36,6 +36,9 @@ public class CombatManager : MonoBehaviour
 	private Transform EnemyOrigin;
 	private Transform PartyOrigin;
 
+	public Color HealthGood;
+	public Color HealthBad;
+
 	public void Awake()
 	{
 		if (!instance)

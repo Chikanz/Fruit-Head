@@ -29,11 +29,26 @@ ModelImporter:
     400020: shoulderLEFT_jnt01
     400022: shoulderLEFT_jnt02
     400024: Wings_msh01
-    2100000: Apple_TXT
-    4300000: apple_msh01
+    2100000: wing_TXT
+    2100002: Apple_TXT
+    4300000: Foot_msh01
+    4300002: Wings_msh01
+    4300004: apple_msh01
     9500000: //RootNode
     13700000: apple_msh01
-  externalObjects: {}
+    13700002: Foot_msh01
+    13700004: Wings_msh01
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Apple_TXT
+    second: {fileID: 2100000, guid: 9fb0c12b68bb2f142af59d60c3c12604, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wing_TXT
+    second: {fileID: 2100000, guid: 98c2fdf207593a846a3b04b92a23805e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
