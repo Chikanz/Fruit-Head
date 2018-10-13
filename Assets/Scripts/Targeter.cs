@@ -9,6 +9,8 @@ public class Targeter : MonoBehaviour
 {
 	private EnemyManager EM;
 	private Camera cam;
+	
+	[HideInInspector]
 	public CinemachineTargetGroup CTG;
 	
 	[Tooltip("The gameobject that will follow the targeted enemy")]
@@ -67,8 +69,9 @@ public class Targeter : MonoBehaviour
 			}
 			else
 			{
-				Snap(); //Lost current target, cycle snap
-				Targets = GetTargetsByDot(); //Refresh targets list (maybe bad idea?)
+				ResetSnap();
+				//Snap(); //Lost current target, cycle snap
+				//Targets = GetTargetsByDot(); //Refresh targets list (maybe bad idea?)
 			}
 		}
 	}

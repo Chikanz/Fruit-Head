@@ -22,9 +22,16 @@ MonoBehaviour:
     NextState: {fileID: 11400000, guid: bf1184cf3c61137488e840c9c72db845, type: 2}
     AnimationToPlay: Lunge
   - Decision:
-      float1: 1.5
+      float1: 2
       float2: 0
       float3: 0
       eDecision: 2
     NextState: {fileID: 11400000, guid: d554706b891717b4eb9f081483e3ee8f, type: 2}
-    AnimationToPlay: 
+    AnimationToPlay: Run
+  - Decision:
+      float1: 8
+      float2: 0
+      float3: 0
+      eDecision: 3
+    NextState: {fileID: 11400000, guid: d554706b891717b4eb9f081483e3ee8f, type: 2}
+    AnimationToPlay: Run

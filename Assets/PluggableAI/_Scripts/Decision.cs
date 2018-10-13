@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Decision
-{		
-	public virtual bool Decide(StateController c)
-	{
-		return false;
-	}
+public abstract class Decision
+{
+	public abstract bool Decide(StateController c);
 }
 
 /// <summary>
@@ -33,6 +30,8 @@ public class DecisionFactory
 		RANDOM_TIMED,
 		TIMED,
 		TARGET_NEAR,
+		TARGET_FAR,
+		ON_HIT,
 	}
 
 	public float float1;
@@ -52,9 +51,13 @@ public class DecisionFactory
 				return TimedDecisionMaker(false);
 				break;
 			case DecisionType.TARGET_NEAR:
-				var tn = new TargetNearDecision();
-				tn.Distance = float1;
-				return tn;
+				return DistanceDecision(false);
+				break;
+			case DecisionType.TARGET_FAR:
+				return DistanceDecision(true);
+				break;
+			case DecisionType.ON_HIT:
+				return new HitDecision();
 				break;
 			default:
 				throw new ArgumentOutOfRangeException();
@@ -64,5 +67,10 @@ public class DecisionFactory
 	private Decision TimedDecisionMaker(bool random)
 	{
 		return new TimedDecision {randomize = random, TimeInState = float1, VariationAmount = float2};		
+	}
+
+	private TargetDistanceDecision DistanceDecision(bool flip)
+	{
+		return new TargetDistanceDecision {Distance = float1, Flip = flip};		
 	}
 }

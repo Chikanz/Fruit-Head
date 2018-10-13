@@ -14,9 +14,16 @@ MonoBehaviour:
   actions: []
   transitions:
   - Decision:
-      float1: 1
+      float1: 0.7
       float2: 0
       float3: 0
       eDecision: 1
+    NextState: {fileID: 11400000, guid: d554706b891717b4eb9f081483e3ee8f, type: 2}
+    AnimationToPlay: Run
+  - Decision:
+      float1: 0
+      float2: 0
+      float3: 0
+      eDecision: 4
     NextState: {fileID: 11400000, guid: d554706b891717b4eb9f081483e3ee8f, type: 2}
     AnimationToPlay: Run

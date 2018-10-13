@@ -1141,7 +1141,7 @@ public class AssetBrowserWindow : EditorWindow {
 
   private void OnDestroy() {
     PtDebug.Log("ABW: destroying.");
-    manager.SetRefreshCallback(null);
+    if(manager != null) manager.SetRefreshCallback(null);
   }
 
   private struct CategoryInfo {

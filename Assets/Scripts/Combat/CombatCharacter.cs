@@ -15,6 +15,8 @@ using UnityStandardAssets.Characters.ThirdPerson;
 [RequireComponent(typeof(Rigidbody))]
 public class CombatCharacter : MonoBehaviour
 {
+    public string friendlyName = "charleee";
+    
     /// <summary>
     /// The multiplier for a critical hit
     /// </summary>        

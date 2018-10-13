@@ -27,6 +27,9 @@ public class CombatManager : MonoBehaviour
 
 	public GameObject CinemachineFreelook;
 
+	public GameObject HealthUIObj;
+	private List<GameObject> spawnedUIList = new List<GameObject>();
+
 	//Passed in through combat loader
 	[HideInInspector] public List<GameObject> Party = new List<GameObject>();
 	[HideInInspector] public List<GameObject> Enemies = new List<GameObject>();
@@ -38,6 +41,8 @@ public class CombatManager : MonoBehaviour
 
 	public Color HealthGood;
 	public Color HealthBad;
+	
+	
 
 	public void Awake()
 	{
@@ -73,12 +78,26 @@ public class CombatManager : MonoBehaviour
 		
 		//Spawn our HEROS
 		alternate = 0; //ugh
+		var uiRoot = transform.GetComponentInChildren<Canvas>().transform.Find("Party Health");
 		for (int i = 0; i < Party.Count; i++)
 		{
+			//Spawn in at the right pos
 			var p = GetAlternatingPosition(PartyOrigin.position, i, ref alternate);
 			var g = Instantiate(Party[i], p, PartyOrigin.rotation);
 			SpawnedParty.Add(g);
+			
+			//Refresh UI on hit
+			g.GetComponent<CombatCharacter>().OnHurt += (sender, args) => RefreshUI();
+
+			//Add associated UI
+			var ui = Instantiate(HealthUIObj, uiRoot);			
+			ui.GetComponent<RectTransform>().localPosition = new Vector3(0, i * 20,0);
+			ui.GetComponent<RectTransform>().localScale = Vector3.one;
+			spawnedUIList.Add(ui);			
 		}
+
+		//Generat
+		RefreshUI();
 		
 		//Create camera + set ctg on charlie
 		var fl = Instantiate(CinemachineFreelook, transform.position + Vector3.up * 10, Quaternion.identity);
@@ -91,6 +110,26 @@ public class CombatManager : MonoBehaviour
 			EnemyManager.instance.Enemies[i].GetComponent<StateController>().Target = SpawnedParty[Random.Range(0, Party.Count)].transform;
 		}
 		
+	}
+
+	private void RefreshUI()
+	{
+		for (int i = 0; i < SpawnedParty.Count; i++)
+		{
+			var party = SpawnedParty[i].GetComponent<CombatCharacter>();
+			var ui = spawnedUIList[i];
+
+			//fill in text
+			var text = ui.GetComponentsInChildren<Text>();
+			text[0].text = party.friendlyName;
+			text[1].text = "lvl 1"; //Don't have stats yet (will we ever lol)
+			
+			//health value + color
+			var slider = ui.GetComponentInChildren<Slider>();
+			slider.maxValue = party.MaxHealth;
+			slider.value = party.Health;
+			slider.image.color = Color.Lerp(HealthBad, HealthGood, party.Health / party.MaxHealth);
+		}
 	}
 
 	private Vector3 GetAlternatingPosition(Vector3 origin, int i, ref int alternate)

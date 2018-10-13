@@ -7,7 +7,19 @@ public class CircleAction : AIAction
 {
 	public float radius = 3;
 	public Vector3 outttt;
-	
+
+	public override void OnEnter(StateController c)
+	{
+		base.OnEnter(c);
+		if (c != null) c.AC.SetBool("Running", true);
+	}
+
+	public override void OnExit(StateController c)
+	{
+		base.OnExit(c);
+		if (c != null) c.AC.SetBool("Running", false);
+	}
+
 	public override void Act(StateController c)
 	{
 		//Clear force look

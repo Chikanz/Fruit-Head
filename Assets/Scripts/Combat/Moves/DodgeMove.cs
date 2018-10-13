@@ -10,12 +10,17 @@ public class DodgeMove : Move
 	public float stopMag = 2;
 	private Vector3 moveVec;
 	private Transform mainCam;
+	private Animator myAnim;
 	
+	private float dodgeX;
+	private float dodgeY;
+
 	// Use this for initialization
 	protected override void Start()
 	{
 		base.Start();
 		mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+		myAnim = daddy.GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -56,6 +61,9 @@ public class DodgeMove : Move
 			var camFwd = Vector3.Scale(mainCam.forward, new Vector3(1, 0, 1)).normalized;
 			moveVec = v * camFwd +  h * mainCam.right;
 			moveVec.Normalize();
+
+			dodgeX = h;
+			dodgeY = v;
 		}
 	}
 
@@ -63,13 +71,22 @@ public class DodgeMove : Move
 	{
 		base.Execute();
 
-		toggleMoveSystems(false);
-
-		moveVec *= 10; 
+		Invoke("dodge",0.12f);
+		myAnim.SetTrigger("Dodge");
+		myAnim.SetFloat("DodgeX",dodgeX);
 		
 		//daddy.GetComponent<Rigidbody>().AddForce(Vector3.left * 3000);
 		//Invoke("Reset",0.5f);
 		
+	}
+
+	void dodge()
+	{
+		toggleMoveSystems(false);
+
+		moveVec *= 10; 
+		
+		//Set anim state		
 	}
 
 	void Reset()
