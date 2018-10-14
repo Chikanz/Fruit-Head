@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 314a8caac3c43a54f90e8720bc414afb
+guid: 70bec7809d6026946ae778a1ea8908ab
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -62,7 +62,6 @@ ModelImporter:
     100112: spineBase_Jnt
     100114: spineMid_Jnt
     100116: spineTop_Jnt
-    100118: strawberry1
     400000: bodyMesh
     400002: //RootNode
     400004: L_ankle_Jnt
@@ -122,10 +121,7 @@ ModelImporter:
     400112: spineBase_Jnt
     400114: spineMid_Jnt
     400116: spineTop_Jnt
-    400118: strawberry1
     2100000: black_plain
-    2100002: strawberry_strawberry_red
-    2100004: strawberry_strawberry_green
     4300000: pasted__pSphere3
     4300002: pasted__pCylinder1
     4300004: pasted__pSphere2
@@ -142,8 +138,6 @@ ModelImporter:
     4300026: pCube1
     4300028: pSphere2
     4300030: pCylinder2
-    4300032: strawberry1
-    7400000: idle
     9500000: //RootNode
     13700000: pasted__pCylinder1
     13700002: pasted__pCylinder1 1
@@ -161,23 +155,12 @@ ModelImporter:
     13700026: pCylinder3
     13700028: pSphere2
     13700030: pSphere2 1
-    13700032: strawberry1
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: black_plain
-    second: {fileID: 2100000, guid: 0b86de404014ac6429150ad3298e7e65, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: strawberry_strawberry_green
-    second: {fileID: 2100000, guid: aac855f0e7afed341a2d3234f57672c1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: strawberry_strawberry_red
-    second: {fileID: 2100000, guid: 650859364a558f646a6a55d78593fb95, type: 2}
+    second: {fileID: 2100000, guid: c9bd9d1719d6dfc42af50bca5f07c3ca, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -204,35 +187,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: idle
-      takeName: Take 001
-      firstFrame: 1
-      lastFrame: 48
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
