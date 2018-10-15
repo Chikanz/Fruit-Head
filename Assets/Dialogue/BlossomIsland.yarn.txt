@@ -47,14 +47,19 @@ position: 2127,106
 ---
 <<if visited("RedpeelStart") is false>>
 CAPTAIN REDPEEL: How’s it goin’ kid? What brings you to the docks this fine mornin’?
+
+//[[TESTING]]
 CHARLIE: Can you take me to Berry Island?
-CAPTAIN REDPEEL: Arr, I can take ye. For fifty gold doubloons.
-CHARLIE: Fifty...doubloons?
-CAPTAIN REDPEEL: Dollars. It’s fifty dollars.
-CHARLIE: I don't have that much.
-CAPTAIN REDPEEL: Then get goin', kid. I ain't runnin' a charity. Pay or stay. 
+CAPTAIN REDPEEL: Arr, I can take ye. For fifty bucks.
+//CHARLIE: Fifty...doubloons?
+//CAPTAIN REDPEEL: Dollars. It’s fifty dollars.
+//CHARLIE: I don't have that much.
+CHARLIE: Fifty bucks? Do you have a discount? 
+CAPTAIN REDPEEL: Nope.
+CHARLIE: Not even for kids who want to visit their sibling for their birthday?
+CAPTAIN REDPEEL: I ain't runnin' a charity, kid. Pay or stay. 
 CAPTAIN REDPEEL: If you want to earn some money, try talkin’ to some folks. Maybe they’ll give you a few bucks if you help ‘em out.
-CHARLIE: I should see if I have anything lying around at home first.
+CHARLIE: Fine. I should see if I have anything lying around at home first.
 
 <<else>>
 CAPTAIN REDPEEL: You got the money yet, kid?
@@ -62,7 +67,6 @@ CAPTAIN REDPEEL: You got the money yet, kid?
         CHARLIE: Not yet.
         CAPTAIN REDPEEL: Get on, then. See if anyone around the village needs some help.
     <<else>>    //has the money and is with avery
-    //position avery with redpeel?
         CHARLIE: Yep, we both do.
         CAPTAIN REDPEEL: Arr, excellent.
         CAPTAIN REDPEEL: We be sailin’ soon, so you just hop on board now.
@@ -128,6 +132,7 @@ NANCY: Oh, Charlie, dear! Will you help me? There’s a swarm of fruitbats in my
 ->Sure.
     <<set $nancyaccept to true>>
     NANCY: Oh, thank you, Charlie!
+    <<StartCombat Attic-Bat-3>>
 ->Not right now.
     <<set $nancyaccept to false>>
     NANCY: Please come back soon, Charlie. I need your help.
@@ -140,7 +145,7 @@ NANCY: It was so wonderful. Orchard Island is beautiful, Charlie, you should vis
 NANCY: We journeyed all over that island, and it was the best time of my life. 
 NANCY: The sun, the people, the food...and, of course, Harold. 
 <<if $nancyaccept is true>>
-    CHARLIE: About those bats...
+   CHARLIE: About those bats...
     NANCY: Ah, yes, the bats. Do you think you can handle them, dear? Maybe I should ask someone else. You're just a little thing. 
 <<else>>
     CHARLIE: Sounds great...
@@ -153,15 +158,15 @@ NANCY: Are you lonely? You should come and visit more often, dear. We can keep e
 <<else>>
     CHARLIE: I think I know enough about Harold.
 <<endif>>
-NANCY: Did I ever tell you about that time we went fishing off the coast of Berry Island?
-NANCY: I'm not much of a one for fishing, to tell the truth, but Harold loved it so. 
-NANCY: They caught all sorts of fish on that trip. They were very good at fishing, you know. The best on Blossom Island! Do you like fishing, Charlie?
+//NANCY: Did I ever tell you about that time we went fishing off the coast of Berry Island?
+//NANCY: I'm not much of a one for fishing, to tell the truth, but Harold loved it so. 
+//NANCY: They caught all sorts of fish on that trip. They were very good at fishing, you know. The best on Blossom Island! Do you like fishing, Charlie?
 <<if $nancyaccept is true>>
-    CHARLIE: No, but I like clearing bats out of attics.
-    NANCY: Oh, excellent! There’s a swarm of fruitbats in my attic and they’re making an awful mess.
-    CHARLIE: I know. You told me.
-    NANCY: Did I? I've been having trouble remembering things since dear Harold died.   
-    NANCY: Harold was my spouse, you know.
+    //CHARLIE: No, but I like clearing bats out of attics.
+    //NANCY: Oh, excellent! There’s a swarm of fruitbats in my attic and they’re making an awful mess.
+    //CHARLIE: I know. You told me.
+    //NANCY: Did I? I've been having trouble remembering things since dear Harold died.   
+    //NANCY: Harold was my spouse, you know.
     CHARLIE: ...I'm just gonna go deal with those bats now.
     <<set $batscomplete to true>>
     //<<Change Scene 3>>
@@ -187,7 +192,7 @@ position: 2905,108
         CHARLIE: I’m looking for the dog too. You think the two of us can take those wolves?
         AVERY: Depends. How good are you with that bat?
         ->I guess we’ll find out.
-            AVERY: Love the confidence, there.
+            AVERY: Love the confidence.
         ->You should ask Nancy.
             CHARLIE: I just took out an attic full of fruitbats for them.
             AVERY: Well, I guess that’s something. 
@@ -340,11 +345,11 @@ JACK: Please do it soon, I'm going to puke if I have to wait much longer.
     <<set $jackcomplete to true>>
     <<set $money to $money + 10>>
     <<if $jackcomplete is true and $nancycomplete is true and $houseScene is true>>
-        <<show Kim>>
-        <<move Kim Charlie no>>
+        [[KimStart]]
     <<endif>>
-
-
+    <<if $jackcomplete is true and $nancycomplete is true and $houseScene is false>>
+        [[HouseHint]]
+    <<endif>>
 <<endif>>
 ===
 title: JackTask1A
@@ -501,6 +506,11 @@ colorID: 1
 position: 2674,108
 ---
 <<if visited ("KimStart") is false>>
+    <<show Kim>>
+    <<move Kim Charlie no>>
+    CHARLIE: ...
+    CHARLIE: I still need more - Wait, is that Kim? They look upset about something.
+    KIM: Charlie!
     KIM: Charlie, you have to help me! I can’t find my dog anywhere! 
     KIM: I’m sure Spot was inside last night but they didn’t come when I called this morning!
     KIM: I’ve searched the whole house and I can’t find them! 
@@ -541,7 +551,7 @@ position: 2674,108
 title: JackAndFinn
 tags: 
 colorID: 3
-position: 1142,915
+position: 1139,915
 ---
 //looking for spot
 <<if $kimaccept is true and $forest is false>>
@@ -572,7 +582,7 @@ JACK: Sorry, Charlie, I don't really feel like talking right now.
 title: AverySailing
 tags: 
 colorID: 2
-position: 2910,423
+position: 2907,423
 ---
 //after forest and speaking to kim
 AVERY: Well, that wasn't too bad. You're a mean hand with that bat.
@@ -580,7 +590,10 @@ CHARLIE: Thanks.
 AVERY: I can't stick around - I have to catch Captain Redpeel before they set sail.
 CHARLIE: You're going to Berry Island too?
 AVERY: Yeah - wait, are you? That's great, we can go together!
-AVERY: Come on, we should head to the docks before they leave without us.
+AVERY: Why are you going to Berry Island?
+CHARLIE: My sibling Kell lives there. I'm visiting them for their birthday. Why are you going?
+AVERY: Oh. Um. I'm visiting someone too. 
+AVERY: Come on, we should head to the docks before Captain Redpeel leaves without us.
 
 
 
@@ -619,8 +632,11 @@ NANCY: Come back when you're free, dear, and I'll tell you all about them.
 
 
 <<if $jackcomplete is true and $nancycomplete is true and $houseScene is true>>
-    <<show Kim>>
-    <<move Kim Charlie no>>
+    [[KimStart]]
+<<endif>>
+
+<<if $jackcomplete is true and $nancycomplete is true and $houseScene is false>>
+    [[HouseHint]]
 <<endif>>
 ===
 title: Flowers
@@ -640,10 +656,10 @@ SIGNPOST: A signpost pointing to the docks, the market, and the forest.
 title: Kim2
 tags: 
 colorID: 2
-position: 2647,420
+position: 2644,420
 ---
 <<if visited ("Kim2") is false>>
-//dog appears with kim when you speak to her?
+    <<show Spot>>
     KIM: Spot! Oh my poor little puppy, where have you been?
     AVERY: We found them in the forest.
     KIM: In the forest? They must have been so scared!
@@ -654,7 +670,7 @@ position: 2647,420
         KIM: Oh, uh, yes, of course. Here.
     <<set $money to 55>>
     KIM: Thank you. Now, Spot, you're not going to run away again, are you?
-    //SPOT: [barks]
+    SPOT: Woof!
     [[AverySailing]]
 <<else>>
     KIM: Thank you so much for finding Spot!
@@ -667,6 +683,8 @@ position: 2001,-221
 ---
 
 CHARLIE: hi
+
+<<set $jackcomplete to true>>
 ===
 title: Gate
 tags: 
@@ -676,7 +694,17 @@ position: 1099,-217
 <<if visited("RedpeelStart") is true>>
     <<if visited("KimStart") is true>>
         <<if visited("AveryStart") is true>>
-            CHARLIE: I don't need to go into the forest.
+            <<if $forest is true>>
+                CHARLIE: I don't need to go into the forest.
+            <<else>> 
+                AVERY: Ready to head into the forest?
+                    ->Let's go.
+                        <<set $averyaccept to true>>
+                        <<set $forest to true>>
+                        <<Change Scene 5>>
+                    ->Not yet.
+                        AVERY: We should probably go soon, before that poor little dog gets eaten.
+            <<endif>>
         <<else>>
             CHARLIE: There are wolves in the forest. It's probably not a good idea to go in alone.
         <<endif>>
@@ -702,4 +730,24 @@ jackcomplete
 housescene
 
 kimaccept
+===
+title: HouseHint
+tags: 
+colorID: 1
+position: 1380,1083
+---
+CHARLIE: ...
+CHARLIE: I still don't have enough money. Maybe I have some lying around the house.
+===
+title: AfterHouse
+tags: 
+colorID: 1
+position: 1631,1091
+---
+<<if $jackcomplete is true and $nancycomplete is true>>
+    [[KimStart]]
+<<else>>
+    CHARLIE: Hmm...I still don't have quite enough for the ship.
+    CHARLIE: I should keep asking around.
+<<endif>>
 ===

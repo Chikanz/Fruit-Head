@@ -32,13 +32,26 @@ public class NPC_Follow : MonoBehaviour
         Debug.Assert(myAnim, gameObject.name + " is missing an animator component! Add it even if you don't have anims yet uwu");
 
         follow = gameObject.name != "Eden"; //don't follow if eden (Boolean expressions are much cleaner than if else)
+
+        if (gameObject.name == "Avery")
+        {
+            GameObject dialogue = GameObject.Find("Yarn");
+            Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
+            int stage = (int)biStage.AsNumber;
+            if (stage == 0)
+            {
+                Yarn.Value forest = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$forest");
+                follow = forest.AsBool;
+
+            }
+        }
     }
 
     // Update is called once per frame
     void Update() 
     {
         if (!follow) return; //Don't bother updating if we don't need to follow
-        
+
         float distance = Vector3.Distance(transform.position, Charlie.transform.position);
 
         Vector3 followPos = Vector3.zero;

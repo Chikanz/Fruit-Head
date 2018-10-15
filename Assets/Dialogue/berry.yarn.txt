@@ -4,23 +4,14 @@ colorID: 5
 position: -720,-917
 ---
 <<setFollow Maison false>>
-AVERY: Berry Island. We made it.
-//foreshadowing for the avery & tam reveal. BUT - not clear? never resolved/returned to? 
-//rewrite or remove?
-AVERY: I'd forgotten how much I hate ships.
-CHARLIE: You said you'd never left Blossom Island before.
-AVERY: ...I haven't.
-CHARLIE: But you just said you hate ships. If you've never left the island, when- 
-AVERY: Don't worry about it, Charlie.
-CHARLIE: Oooookay.
-CAPTAIN REDPEEL: You kids been to Berry Island before?
+CAPTAIN REDPEEL: Here we are. Berry Island.
+CAPTAIN REDPEEL: You kids been here before?
 CHARLIE: Not for a while.
 CAPTAIN REDPEEL: Well then, here's a map in case you get lost.
-//Hint: Press 'M' to view the map.
 AVERY: All right, let's go and see Kell.
 CHARLIE: You don't have to come with me. Didn't you have someone here you wanted to see?
-AVERY: Nah, no rush. I'll come with you.
-CHARLIE: If you're sure.
+AVERY: Well, yes, but. You know. No rush. I'll come with you.
+CHARLIE: ...If you're sure.
 //Options removed for now. pointless unless friendship meter is implemented
 //->All right, let's go.
 //:) for not questioning
@@ -34,6 +25,14 @@ CHARLIE: If you're sure.
 AVERY: Have you visited Kell here before? Do you know where they live?
 CHARLIE: Yeah, their house is just up ahead.
 AVERY: Then let's go say hi.
+<<show Hinty>>
+HINTY: Hey Charlie! I'm just dropping by to let you know that you can press 'M' to see your map.
+CHARLIE: Did anyone else hear that?
+AVERY: Hear what?
+CHARLIE: ...Never mind.
+HINTY: Bye Charlie! Have fun!
+<<Take Hinty>>
+
 
 
 ===

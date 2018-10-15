@@ -298,8 +298,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 75921737}
-  m_LocalRotation: {x: -0.027605806, y: -0.1577153, z: -0.0044108066, w: 0.98708886}
-  m_LocalPosition: {x: -1.1438717, y: 1.0479524, z: -6.2201653}
+  m_LocalRotation: {x: -0.027597977, y: -0.15771534, z: -0.004409556, w: 0.9870891}
+  m_LocalPosition: {x: -1.1438717, y: 0.8058009, z: -6.2201653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -605,8 +605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0
   ParticlesOnHit: 2
@@ -878,6 +879,48 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 152603760}
   m_Mesh: {fileID: 4300004, guid: a3ed634368c3031438c721ab5b7c6c57, type: 3}
+--- !u!1001 &166648061
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 762714539}
+    m_Modifications:
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 7.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.059
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.607
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.97134584
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.23767062
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &195653350
 Prefab:
   m_ObjectHideFlags: 0
@@ -1017,6 +1060,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1341891605434212, guid: ed9a4bca1281d44428b101fb3856c1ae, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114577697889458850, guid: ed9a4bca1281d44428b101fb3856c1ae,
+        type: 2}
+      propertyPath: startNode
+      value: GameStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 114577697889458850, guid: ed9a4bca1281d44428b101fb3856c1ae,
+        type: 2}
+      propertyPath: startAutomatically
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1275,7 +1328,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 360321194}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.06, y: -1.2528179, z: -0.7}
+  m_LocalPosition: {x: 7.06, y: -1.495, z: -0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1324531194}
@@ -1385,8 +1438,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9915.205, y: 3424.7607, z: 6293.2188}
-  m_Center: {x: 3804.475, y: 1531.072, z: -14551.4}
+  m_Size: {x: 9915.205, y: 2097.3389, z: 6293.2188}
+  m_Center: {x: 3804.475, y: 867.36115, z: -14551.4}
 --- !u!114 &387956430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1411,8 +1464,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.615
   ParticlesOnHit: 2
@@ -1796,7 +1850,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 612298799}
-  m_LocalRotation: {x: -0.0005233815, y: -0.15777695, z: -0.000083624174, w: 0.9874746}
+  m_LocalRotation: {x: -0.00051555026, y: -0.15777695, z: -0.000082372855, w: 0.9874747}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2395,8 +2449,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.46
   ParticlesOnHit: 2
@@ -2459,6 +2514,7 @@ Transform:
   - {fileID: 1201717473}
   - {fileID: 1112976172}
   - {fileID: 1728733830}
+  - {fileID: 1050051196}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3415,8 +3471,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.069
   ParticlesOnHit: 2
@@ -3622,8 +3679,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.302
   ParticlesOnHit: 2
@@ -3646,6 +3704,40 @@ Rigidbody:
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 764e511a8642f9847aa43ad8bdf0102c, type: 3}
   m_PrefabInternal: {fileID: 346002427}
+--- !u!1 &1050051195 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1323917525079526, guid: 6af9786eec6bea44db3bb9d2b53beb93,
+    type: 2}
+  m_PrefabInternal: {fileID: 166648061}
+--- !u!4 &1050051196 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93,
+    type: 2}
+  m_PrefabInternal: {fileID: 166648061}
+--- !u!114 &1050051197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1050051195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f889a7cbe68714dab83020ad8cc818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &1050051199
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1050051195}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.0566609
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.56598604, z: -0}
 --- !u!1 &1073470757 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 0bb5c9e5488c1e74ab476d87dd55e28f, type: 3}
@@ -3690,8 +3782,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.067
   ParticlesOnHit: 2
@@ -3822,7 +3915,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1104390607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2219701, y: 1.0481914, z: -6.4162855}
+  m_LocalPosition: {x: -1.2219701, y: 0.8060093, z: -6.4162855}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 612298801}
@@ -4008,8 +4101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.141
   ParticlesOnHit: 2
@@ -5478,8 +5572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0
   ParticlesOnHit: 0
@@ -6519,7 +6614,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2003872442}
-  m_LocalRotation: {x: 0.019926237, y: 0.15774539, z: 0.0032129402, w: -0.9872736}
+  m_LocalRotation: {x: 0.019918403, y: 0.15774544, z: 0.0032117304, w: -0.9872737}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6555,8 +6650,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.069
   ParticlesOnHit: 2
@@ -6655,7 +6751,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2017305621}
-  m_LocalRotation: {x: 0.039114043, y: 0.15765336, z: 0.0062561366, w: -0.98669976}
+  m_LocalRotation: {x: 0.039106216, y: 0.1576534, z: 0.006254879, w: -0.9867001}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6849,8 +6945,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0
   ParticlesOnHit: 2

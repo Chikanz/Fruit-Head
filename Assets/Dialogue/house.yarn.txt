@@ -83,3 +83,36 @@ position: 993,501
 //BIRD STATUE: It's kind of creepy.
 //CHARLIE: Hey, it's my commemorative statue of the giant
 ===
+title: GameStart
+tags: 
+colorID: 3
+position: 146,-9
+---
+HINTY: Good morning, Charlie. I just dropped by this morning to let you know a couple of things. First, you should press spacebar to continue.
+CHARLIE: Who are you and what are you doing in my house?
+HINTY: I'm just here to help! Now, if you have a choice to make, you can use the W and S keys to browse through your options. Got it?
+->What are you talking about?
+    HINTY: Choices are part of life, Charlie. It's important that you can make the right one. W and S keys, remember that.
+        ->I still don't understand.
+            HINTY: Well, you'll figure it out eventually.
+        ->Okay then.
+            HINTY: Great!
+->I think so...
+    HINTY: That's great!
+HINTY: One more thing. Remember how I said you can press spacebar to continue? 
+HINTY: You can also use the spacebar to interact with objects, like that baseball bat over there!
+CHARLIE: Sure...
+HINTY: That's all for now! I'll see you later, Charlie!
+<<Take Hinty>>
+===
+title: BattleHints
+tags: 
+colorID: 3
+position: 394,-6
+---
+HINTY: Hey there Charlie, it's me again! Just thought I'd give you another tip.
+HINTY: If you want to hit things, just left click! Maybe you should try hitting some furniture, and see what you find.
+CHARLIE: O...kay?
+HINTY: Good luck, Charlie!
+<<Take Hinty>>
+===

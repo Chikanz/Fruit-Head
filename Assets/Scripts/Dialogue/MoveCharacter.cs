@@ -59,7 +59,7 @@ namespace Yarn.Unity
 					if (gameObject.name == "Kim" && target.GetComponent<OW_Character>().Name == "Charlie")
 					{
 						string startNode = gameObject.GetComponent<OW_NPC>().StartNode;
-						dialogue.GetComponent<DialogueRunner>().StartDialogue(startNode);
+						//dialogue.GetComponent<DialogueRunner>().StartDialogue(startNode);
 					}
 
                     if (shouldDestroy)

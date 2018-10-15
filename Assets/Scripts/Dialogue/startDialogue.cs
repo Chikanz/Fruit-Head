@@ -26,7 +26,7 @@ public class startDialogue : MonoBehaviour {
 	
 	void runStartDialogue()
     {
-        print("run");
+        
         if (scene == "BerryIsland")
         {
             Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
@@ -61,6 +61,20 @@ public class startDialogue : MonoBehaviour {
             {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("Stage10");
             }
+        }
+        else if (scene == "BlossomIsland")
+        {
+            Yarn.Value forestComplete = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$forest");
+            bool temp = forestComplete.AsBool;
+
+            if (!temp)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("AfterHouse");
+            }
+        }
+        else if (scene == "BattleChairs")
+        {
+            dialogue.GetComponent<DialogueRunner>().StartDialogue("BattleHints");
         }
         else if (scene == "KellsHouse")
         {

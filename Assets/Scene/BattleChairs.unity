@@ -283,7 +283,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 75921737}
-  m_LocalRotation: {x: -0.017518243, y: -0.33595553, z: -0.006249747, w: 0.9416942}
+  m_LocalRotation: {x: -0.017518247, y: -0.33595553, z: -0.006249748, w: 0.9416942}
   m_LocalPosition: {x: -8.104688, y: 1.0866973, z: -5.0988083}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -590,8 +590,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0
   ParticlesOnHit: 2
@@ -861,7 +862,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: c3ff83d541e37804ead9f8433192ae3d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4215393
+      value: -2.656
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: c3ff83d541e37804ead9f8433192ae3d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -943,7 +944,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 764e511a8642f9847aa43ad8bdf0102c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.3462694
+      value: -2.58073
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 764e511a8642f9847aa43ad8bdf0102c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1027,8 +1028,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves:
+  MovesToSpawn:
   - {fileID: 1773372471602260, guid: d68bbd5c53678f44eb9833b38b9381a7, type: 2}
   Friendly: 0
   weight: 0
@@ -1260,8 +1262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.615
   ParticlesOnHit: 2
@@ -1731,7 +1734,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 612298799}
-  m_LocalRotation: {x: 0.008315404, y: -0.33600056, z: 0.0029665139, w: 0.94182044}
+  m_LocalRotation: {x: 0.008315431, y: -0.3360006, z: 0.0029665239, w: 0.94182044}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1900,7 +1903,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: c3ff83d541e37804ead9f8433192ae3d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4215393
+      value: -2.656
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: c3ff83d541e37804ead9f8433192ae3d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2330,8 +2333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.46
   ParticlesOnHit: 2
@@ -2392,6 +2396,7 @@ Transform:
   - {fileID: 1686159747}
   - {fileID: 1506102635}
   - {fileID: 1112976172}
+  - {fileID: 1039900644}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3348,8 +3353,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.069
   ParticlesOnHit: 2
@@ -3507,6 +3513,81 @@ Transform:
   m_Father: {fileID: 1735245229}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1039900643
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 762714539}
+    m_Modifications:
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.3532495
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.864
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 2.2167654
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.9991275
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.041764777
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -184.78699
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.291502
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.291502
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6af9786eec6bea44db3bb9d2b53beb93, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1039900644 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4778067801612804, guid: 6af9786eec6bea44db3bb9d2b53beb93,
+    type: 2}
+  m_PrefabInternal: {fileID: 1039900643}
+--- !u!1 &1039900645 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1323917525079526, guid: 6af9786eec6bea44db3bb9d2b53beb93,
+    type: 2}
+  m_PrefabInternal: {fileID: 1039900643}
+--- !u!114 &1039900646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1039900645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f889a7cbe68714dab83020ad8cc818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1045411340 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 764e511a8642f9847aa43ad8bdf0102c, type: 3}
@@ -3547,8 +3628,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.302
   ParticlesOnHit: 2
@@ -3615,8 +3697,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.067
   ParticlesOnHit: 2
@@ -3933,8 +4016,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.141
   ParticlesOnHit: 2
@@ -5234,8 +5318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0
   ParticlesOnHit: 0
@@ -5437,6 +5522,48 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1698616192}
   m_Mesh: {fileID: 4300012, guid: 59887ac13e97a0c469ff1a5bb0f957b0, type: 3}
+--- !u!1 &1727349950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1727349952}
+  - component: {fileID: 1727349951}
+  m_Layer: 0
+  m_Name: startDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1727349951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727349950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3180589c54c66e349a83e34bbad00ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: BattleChairs
+  sceneStart: 1
+--- !u!4 &1727349952
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727349950}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.385344, y: 1.0719283, z: -1.0758998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1735245228
 GameObject:
   m_ObjectHideFlags: 0
@@ -6319,8 +6446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0.069
   ParticlesOnHit: 2
@@ -6419,7 +6547,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2017305621}
-  m_LocalRotation: {x: 0.028496763, y: 0.33585995, z: 0.010172883, w: -0.94142586}
+  m_LocalRotation: {x: 0.028496766, y: 0.33585995, z: 0.010172885, w: -0.94142586}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6613,8 +6741,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves: []
+  MovesToSpawn: []
   Friendly: 0
   weight: 0
   ParticlesOnHit: 2
