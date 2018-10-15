@@ -33,9 +33,12 @@ public class StateController : MonoBehaviour
 		MyAI = GetComponent<BaseAI>();
 		MyCC = GetComponent<CombatCharacter>();
 
+		//Disable on ded
+		if (MyCC) MyCC.OnDefeat += (sender, args) => this.enabled = false;
+
 		AC = GetComponentInChildren<Animator>();
 
-		CombatManager.OnCombatStart += (sender, args) => OnActive();
+		CombatManager.OnCombatStart += (sender, args) => OnActive();		
 		
 		AC.SetFloat("Offset", UnityEngine.Random.Range(0.0f,1.0f)); //Tick the parameter box in ya AC + add a float named offset to enable
 	}

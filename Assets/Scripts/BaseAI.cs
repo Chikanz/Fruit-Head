@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿	using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -30,6 +30,10 @@ public class BaseAI : MonoBehaviour
         m_Animator = GetComponent<Animator>();
 
 		_EM = GetComponentInParent<EnemyManager>();
+
+		//Disable on ded
+		var MyCC = GetComponent<CombatCharacter>();
+		if (MyCC) MyCC.OnDefeat += (sender, args) => this.enabled = false;
 	}
 
 	private void FixedUpdate ()

@@ -7,6 +7,7 @@ using Cinemachine;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.ThirdPerson;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -28,7 +29,9 @@ public class CombatManager : MonoBehaviour
 	public GameObject CinemachineFreelook;
 
 	public GameObject HealthUIObj;
-	private List<GameObject> spawnedUIList = new List<GameObject>();
+	public GameObject AbilityUIObj;
+	private List<GameObject> spawnedHealthUI = new List<GameObject>();
+	private List<GameObject> spawnedAbilityUI = new List<GameObject>();
 
 	//Passed in through combat loader
 	[HideInInspector] public List<GameObject> Party = new List<GameObject>();
@@ -41,8 +44,8 @@ public class CombatManager : MonoBehaviour
 
 	public Color HealthGood;
 	public Color HealthBad;
-	
-	
+
+	private List<Move> MovesToUpdate;
 
 	public void Awake()
 	{
@@ -93,10 +96,26 @@ public class CombatManager : MonoBehaviour
 			var ui = Instantiate(HealthUIObj, uiRoot);			
 			ui.GetComponent<RectTransform>().localPosition = new Vector3(0, i * 20,0);
 			ui.GetComponent<RectTransform>().localScale = Vector3.one;
-			spawnedUIList.Add(ui);			
+			spawnedHealthUI.Add(ui);			
+			
+			//Add ability UI if player
+			if (g.GetComponent<ThirdPersonUserControl>())
+			{
+				MovesToUpdate = g.GetComponent<CombatCharacter>().Moves;
+				var abilityRoot = transform.GetComponentInChildren<Canvas>().transform.Find("Abilities");
+				
+				for (var index = 0; index < MovesToUpdate.Count; index++)
+				{
+					//Move move = MovesToUpdate[index]; //why did I put this here again? I feel like I had a reason but I've forgotten now thanks for coming to my ted talk
+					var u = Instantiate(AbilityUIObj, abilityRoot).transform;
+					u.GetComponent<RectTransform>().localPosition = new Vector3(index * 50, 0, 0);
+					u.GetComponent<RectTransform>().localScale = Vector3.one * 0.5f;
+					spawnedAbilityUI.Add(u.gameObject);
+				}
+			}
 		}
 
-		//Generat
+		//Generate ui
 		RefreshUI();
 		
 		//Create camera + set ctg on charlie
@@ -117,7 +136,7 @@ public class CombatManager : MonoBehaviour
 		for (int i = 0; i < SpawnedParty.Count; i++)
 		{
 			var party = SpawnedParty[i].GetComponent<CombatCharacter>();
-			var ui = spawnedUIList[i];
+			var ui = spawnedHealthUI[i];
 
 			//fill in text
 			var text = ui.GetComponentsInChildren<Text>();
@@ -128,7 +147,7 @@ public class CombatManager : MonoBehaviour
 			var slider = ui.GetComponentInChildren<Slider>();
 			slider.maxValue = party.MaxHealth;
 			slider.value = party.Health;
-			slider.image.color = Color.Lerp(HealthBad, HealthGood, party.Health / party.MaxHealth);
+			slider.image.color = Color.Lerp(Color.red, Color.green, party.Health / party.MaxHealth);
 		}
 	}
 
@@ -157,12 +176,19 @@ public class CombatManager : MonoBehaviour
 			TimerText.text = Mathf.CeilToInt(StartTimer).ToString();
 		}
 		
+		//Update ability UI
+		for (var i = 0; i < spawnedAbilityUI.Count; i++)
+		{
+			GameObject o = spawnedAbilityUI[i];
+			o.transform.GetChild(1).GetComponent<Image>().fillAmount = MovesToUpdate[i].GetCoolDownRatio();
+		}
 	}
 
-	private void OnDestroy()
-	{
-		instance = null; //Not sure if we actually need this or the GC does it
-	}
+//	private void OnDestroy()
+//	{
+//		instance = null; //Not sure if we actually need this or the GC does it
+//	}
+	//why did you write this past zac you're a big silly
 
 	//Turn off timer
 	void end()

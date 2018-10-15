@@ -27,6 +27,8 @@ public class SceneChanger: MonoBehaviour
     private BattleData BD;
     private Image[] LoadingUIList;
 
+    private int precombatSceneCache;
+
     void Awake ()
     {
         //Enforce singleton
@@ -140,7 +142,7 @@ public class SceneChanger: MonoBehaviour
     {
         //Load in battle data
         BD = Resources.Load<BattleData>(resourceName);
-        Debug.Assert(BD != null);
+        Debug.Assert(BD != null, "Couldn't find a battle with that name, try again? owo");
         StartCombat(BD);
     }
 
@@ -150,6 +152,9 @@ public class SceneChanger: MonoBehaviour
         BD = data;
         //Subby to scene loaded event
         SceneManager.sceneLoaded += CombatSceneLoaded;
+        
+        precombatSceneCache = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("scene " + precombatSceneCache);
         
         //Then load combat scene
         Change(BD.SceneToLoad);
@@ -181,6 +186,14 @@ public class SceneChanger: MonoBehaviour
             cm.Party.Add(Resources.Load<GameObject>("MasonCombat"));
         
         SceneManager.sceneLoaded -= CombatSceneLoaded; //unsubby event
+    }
+
+    //Load the last scene we were in 
+    public void EndCombat()
+    {
+        Debug.Assert(precombatSceneCache != -1);
+        Change(precombatSceneCache);
+        precombatSceneCache = -1;
     }
 }
 

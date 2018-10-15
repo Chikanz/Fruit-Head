@@ -58,6 +58,9 @@ public class EnemyManager : MonoBehaviour
     {
         Debug.Assert(sender is CombatCharacter, "Invalid defeated message");
         Enemies.Remove((CombatCharacter)sender);
+	    
+	    //End combat
+	    if(Enemies.Count == 0) SceneChanger.instance.EndCombat();
     }
 
 	private void OnDestroy()

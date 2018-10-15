@@ -63,15 +63,17 @@ public class CombatCharacter : MonoBehaviour
 
     //This character's move set to spawn
     [FormerlySerializedAs("Moves")] public GameObject[] MovesToSpawn;
+    
+    [HideInInspector]
     public List<Move> Moves { get; private set; }
     private Transform _moveParent;
 
-    private static GameObject HitCanvas;
-
-    public bool Friendly;
+    private static GameObject HitCanvas;   
 
     [Range(0.0f,1.0f)]
     public float weight;
+
+    private Animator myAnim;
 
     public enum HitParticles
     {
@@ -138,10 +140,12 @@ public class CombatCharacter : MonoBehaviour
             }
         }
         
-        
         //Cheese player activation for now
         var uc = GetComponent<ThirdPersonUserControl>();
         if (uc) CombatManager.OnCombatStart += (sender, args) => uc.CanMove = true;
+       
+        myAnim = GetComponent<Animator>();
+        if (!myAnim) myAnim = GetComponentInChildren<Animator>();
     }
 
     public virtual void Update()
@@ -220,7 +224,9 @@ public class CombatCharacter : MonoBehaviour
         }
 
         //Spawn damage canvas
-        CapsuleCollider cap = transform.GetChild(1).GetComponent<CapsuleCollider>();
+        CapsuleCollider cap = null;
+        if(transform.childCount > 1) cap = transform.GetChild(1).GetComponent<CapsuleCollider>();
+        
         if(!cap) cap = GetComponent<CapsuleCollider>();
         if(!cap) cap = GetComponentInChildren<CapsuleCollider>();
         
@@ -298,8 +304,12 @@ public class CombatCharacter : MonoBehaviour
         // We've now sent the defeated message
         hasSentDefeated = true;
         
-        //DEBUG
-        Destroy(gameObject);
+        //on death
+        //if(DookTools.HasAnim(myAnim, "Death"))
+        myAnim.SetTrigger("Death");
+        GetComponent<BaseAI>().enabled = false;
+        //else
+        //Destroy(gameObject);
     }
 
     /// <summary>
@@ -348,8 +358,8 @@ public class CombatCharacter : MonoBehaviour
         if (m.AnimationTriggerName != "" || !m.fireImmediate)
         {
             var resetTime = 1f;
-            if (GetComponent<Animator>())
-                resetTime = DookTools.GetAnimationLength(GetComponent<Animator>(), m.AnimationTriggerName);
+            if (myAnim)
+                resetTime = DookTools.GetAnimationLength(myAnim, m.AnimationTriggerName);
             Debug.Assert(resetTime > 0, "Couldn't find clip in animator, you probably have the wrong " +
                                         "AnimationTriggerName on the move prefab");
             Invoke("ResetMove", resetTime);

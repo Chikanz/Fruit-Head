@@ -121,7 +121,7 @@ namespace Yarn.Unity
             }
 
             if (startAutomatically) {
-                StartDialogue();
+                Invoke("StartDialogue",1); //when in doubt add a delay
             }
 
             if (stringGroups != null) {
@@ -137,7 +137,7 @@ namespace Yarn.Unity
                 }
             }
 
-        }
+        }        
 
         /// Add a string of text to a script
         public void AddScript(string text) {

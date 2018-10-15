@@ -86,4 +86,9 @@ public class Move : MonoBehaviour
     {
         return _canMoveWhileUsing;
     }
+
+    public float GetCoolDownRatio()
+    {
+        return _coolDownTimer / CoolDown;
+    }
 }

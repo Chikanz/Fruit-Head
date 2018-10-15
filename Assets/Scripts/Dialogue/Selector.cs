@@ -53,7 +53,7 @@ public class Selector : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && !hasClicked)
             {
                 Selected.GetComponent<Button>().onClick.Invoke();
-                hasClicked = true;
+                hasClicked = true;                
             }
         }
         else
@@ -61,6 +61,7 @@ public class Selector : MonoBehaviour
             childCount = 0;
             arrow.enabled = false;
             hasClicked = false;
+            selected = 0;
         }
     }
 }
