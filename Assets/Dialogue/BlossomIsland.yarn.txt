@@ -49,8 +49,8 @@ position: 2127,106
 CAPTAIN REDPEEL: How’s it goin’ kid? What brings you to the docks this fine mornin’?
 
 //[[TESTING]]
-<<set $jackcomplete to true>>
-<<set $nancycomplete to true>>
+//<<set $jackcomplete to true>>
+//<<set $nancycomplete to true>>
 CHARLIE: Can you take me to Berry Island?
 CAPTAIN REDPEEL: Arr, I can take ye. For fifty bucks.
 //CHARLIE: Fifty...doubloons?
@@ -747,20 +747,24 @@ tags:
 colorID: 1
 position: 1631,1091
 ---
-<<if visited("RedpeelStart") is false>>
-    CHARLIE: I need to get a ship to Berry Island, so I'd better head to the docks.
-<<else>>
-    <<if $afterhouse is "nancy">>
-        [[Nancy2]]
-        <<set $afterhouse to "other">>
+<<if visited("KimStart") is false>>
+    <<if visited("RedpeelStart") is false>>
+        CHARLIE: I need to get a ship to Berry Island, so I'd better head to the docks.
     <<else>>
-        <<if $jackcomplete is true and $nancycomplete is true>>
-            [[KimStart]]
+        <<if $afterhouse is "nancy">>
+            [[Nancy2]]
+            <<set $afterhouse to "other">>
         <<else>>
-            CHARLIE: Hmm...I still don't have quite enough for the ship.
-            CHARLIE: I should keep asking around.
+            <<if $jackcomplete is true and $nancycomplete is true>>
+                [[KimStart]]
+            <<else>>
+                CHARLIE: Hmm...I still don't have quite enough for the ship.
+                CHARLIE: I should keep asking around.
+            <<endif>>
         <<endif>>
     <<endif>>
+<<else>>
+    [[Kim2]]
 <<endif>>
 
 
