@@ -132,7 +132,6 @@ NANCY: Oh, Charlie, dear! Will you help me? There’s a swarm of fruitbats in my
 ->Sure.
     <<set $nancyaccept to true>>
     NANCY: Oh, thank you, Charlie!
-    <<Combat Scene Attic-Bat-3>>
 ->Not right now.
     <<set $nancyaccept to false>>
     NANCY: Please come back soon, Charlie. I need your help.
@@ -169,6 +168,7 @@ NANCY: Are you lonely? You should come and visit more often, dear. We can keep e
     //NANCY: Harold was my spouse, you know.
     CHARLIE: ...I'm just gonna go deal with those bats now.
     <<set $batscomplete to true>>
+    <<Combat Scene Attic-Bat-3>>
     //<<Change Scene 3>>
 <<else>>
     CHARLIE: I do like fishing. In fact, I'm going to go fishing right now. Bye.
