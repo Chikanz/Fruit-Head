@@ -66,10 +66,12 @@ public class startDialogue : MonoBehaviour {
         {
             Yarn.Value forestComplete = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$forest");
             bool temp = forestComplete.AsBool;
+            
 
             if (!temp)
             {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("AfterHouse");
+                print("house");
             }
         }
         else if (scene == "BattleChairs")
@@ -111,6 +113,10 @@ public class startDialogue : MonoBehaviour {
         else if (scene == "BlossomForest")
         {
             dialogue.GetComponent<DialogueRunner>().StartDialogue("Creepy");
+        }
+        else
+        {
+            print("no scene");
         }
 
     }

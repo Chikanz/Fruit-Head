@@ -56,11 +56,13 @@ Door: Leave?
 ->Yeah
     <<if $houseScene is false>>
         <<if visited("Present") and visited("BaseballBat")>>
+            <<set $afterhouse to "other">>
             <<Change Scene 1>>
         <<else>>
             Charlie: Wait a second... I think I'm forgetting something.
         <<endif>>
     <<else>>
+        <<set $afterhouse to "other">>
         <<Change Scene 1>>
     <<endif>>
 ->Nah

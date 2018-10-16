@@ -3,20 +3,24 @@ tags:
 colorID: 3
 position: 55,-313
 ---
-AVERY: Oh man it's dark in here. 
-CHARLIE: Scared?
-AVERY: No!
-AVERY: Unless you're scared, in which case...a little bit, maybe.
-->It is pretty creepy in here. 
-	AVERY: So creepy.
+<<if visited("Creepy") is false>>
+    AVERY: Oh man it's dark in here. 
+    CHARLIE: Scared?
+    AVERY: No!
+    AVERY: Unless you're scared, in which case...a little bit, maybe.
+    ->It is pretty creepy in here. 
+	    AVERY: So creepy.
     //plus friendship!
-->It's not that bad.
-	AVERY: You sure about that?
-->Ha, I'm not scared. 
-	AVERY: Well, good for you. 
+    ->It's not that bad.
+	    AVERY: You sure about that?
+    ->Ha, I'm not scared. 
+	    AVERY: Well, good for you. 
     //minus friendship :(
 AVERY: Come on, let's look for that dog.
+<<else>>
+    AVERY: Ugh, wolves.
 
+<<endif>>
 
 ===
 title: Spot
