@@ -79,6 +79,10 @@ namespace Yarn.Unity
                 gameObject.transform.position += new Vector3(10, 0, 0);
                 setMesh(true, false);
             }
+            else if (gameObject.name == "Eden")
+            {
+                setMesh(true, false);
+            }
             else
             {
                 setMesh(true, true);
