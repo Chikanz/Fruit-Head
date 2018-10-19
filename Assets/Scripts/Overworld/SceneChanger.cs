@@ -13,13 +13,12 @@ using Image = UnityEngine.UI.Image;
 /// </summary>
 /// 
 public class SceneChanger: MonoBehaviour
-{
-    // Use this for initialization
-    bool isOverWorld = true;
+{        
+    public static SceneChanger instance;    
 
-    public static SceneChanger instance;
+    public delegate void SceneChange(int scene); //Fired when the scene is changed
 
-    public event EventHandler OnSceneChange;
+    public event SceneChange OnSceneChange;
 
     [HideInInspector]
     public Vector3 RememberPlayerPos;
@@ -28,22 +27,33 @@ public class SceneChanger: MonoBehaviour
     private Image[] LoadingUIList;
 
     private int precombatSceneCache;
-
+    
+    public static GameObject Yarn { get; private set; }
+    
+   
     void Awake ()
     {
         //Enforce singleton
         if (!instance) instance = this;
         else Destroy(gameObject);
 
+        Yarn = transform.GetChild(0).gameObject;
+
         DontDestroyOnLoad(gameObject);
 
         //Get all kiddy images
         transform.GetChild(1).gameObject.SetActive(true); //Make sure loading screen is active
         LoadingUIList = GetComponentInChildren<Canvas>().GetComponentsInChildren<Image>();
-        LoadingFade(0); //Turn make loading screen transparent
+        LoadingFade(0); //Turn make loading screen transparent        
     }
-	
-	// Update is called once per frame
+
+    private void Start()
+    {
+        //For debug really, if scene change code is written well this should do nothing
+        if (OnSceneChange != null) OnSceneChange(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    // Update is called once per frame
 	void Update ()
     {
         
@@ -52,15 +62,14 @@ public class SceneChanger: MonoBehaviour
     [YarnCommand("Change")]
     public void Change(string scene)
     {
-        //Trigger Events
-        if (OnSceneChange != null) OnSceneChange(this,null);
-
+        //Trigger Events        
+        var sceneIndex = int.Parse(scene);
+        if (OnSceneChange != null) OnSceneChange(sceneIndex);
+        
         //Make dialouge events run + clean up
         GetComponentInChildren<DialogueRunner>().Stop();
 
-        //Change scene
-        var sceneIndex = Int32.Parse(scene);
-        //SceneManager.LoadScene(sceneIndex);
+        //Change scene        
         StartCoroutine(LoadSceneAsync(sceneIndex, 0.25f));
 
         var player = GetComponentInChildren<DialogueUI>().playerControl;
@@ -194,7 +203,7 @@ public class SceneChanger: MonoBehaviour
         Debug.Assert(precombatSceneCache != -1);
         Change(precombatSceneCache);
         precombatSceneCache = -1;
-    }
+    }    
 }
 
 

@@ -27,9 +27,9 @@ public class Hitbox : MonoBehaviour
         {
             if (BeenHit.Contains(c.gameObject)) continue;                           //Already been hit!
             if (!c.GetComponentInParent<CombatCharacter>()) continue;               //Only care about characters
-            if (c.transform.parent.name == daddy.name) continue;                       //Stop hitting yourself!
+            if (c.transform.parent && c.transform.parent.name == daddy.name) continue;   //Stop hitting yourself!
 
-            if (c.transform.parent.name != daddy.name)
+            if (c.transform.parent && c.transform.parent.name != daddy.name)
                 Debug.Log("hit " + c.transform.parent.name);
 
             if (OnHit != null) //Send out hit event

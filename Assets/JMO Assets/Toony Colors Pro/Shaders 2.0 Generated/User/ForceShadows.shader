@@ -12,7 +12,6 @@ Shader "Toony Colors Pro 2/User/ForceShadows"
 		
 		//DIFFUSE
 		_MainTex ("Main Texture (RGB)", 2D) = "white" {}
-		_Detail ("Detail (RGB)", 2D) = "gray" {}
 		
 		//TOONY COLORS RAMP
 		_RampThreshold ("#RAMPF# Ramp Threshold", Range(0,1)) = 0.5
@@ -37,13 +36,11 @@ Shader "Toony Colors Pro 2/User/ForceShadows"
 		
 		fixed4 _Color;
 		sampler2D _MainTex;
-		sampler2D _Detail;
 		
 		
 		struct Input
 		{
 			half2 uv_MainTex;
-			half2 uv_Detail;
 		};
 		
 		//================================================================
@@ -52,10 +49,6 @@ Shader "Toony Colors Pro 2/User/ForceShadows"
 		void surf (Input IN, inout SurfaceOutput o)
 		{
 			fixed4 mainTex = tex2D(_MainTex, IN.uv_MainTex);
-			
-			//Detail Tex
-			fixed4 detail = tex2D(_Detail, IN.uv_Detail);
-			mainTex.rgb *= (detail.rgb * 2.0);
 			
 			o.Albedo = mainTex.rgb * _Color.rgb;
 			o.Alpha = mainTex.a * _Color.a;

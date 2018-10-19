@@ -139,10 +139,12 @@ public class PolyImporter : AssetPostprocessor {
     result.root.AddComponent<PtAssetObject>().asset = newAsset;
     
     //smooth meshes (why can't i fuCKING SAVE IT AT EDIT TIME UJNTIY WHAT THE FUCKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK)
+    
     foreach (Mesh mesh in result.meshes)
     {
       mesh.RecalculateNormals(180);
     }
+    
     
     // Add all the meshes to the PtAsset.
     SaveMeshes(result.meshes, newAsset);

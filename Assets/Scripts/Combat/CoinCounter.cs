@@ -17,15 +17,17 @@ public class CoinCounter : MonoBehaviour
 
     ExampleVariableStorage VS;
 
-	// Use this for initialization
-	void Start ()
+    private void Awake()
     {
         //Enforce singleton
         if (!instance)
             instance = this;
         else
             Destroy(gameObject);
+    }
 
+    void Start ()
+    {
         VS = SceneChanger.instance.GetComponentInChildren<ExampleVariableStorage>();
 
         //Get coin count from yarn variable
@@ -40,7 +42,7 @@ public class CoinCounter : MonoBehaviour
 
         //Set initial coins
         if(myChild)
-        myChild.text = totalCoins() > 0 ? "$" + totalCoins() : "u broke";
+        myChild.text = TotalCoins() > 0 ? "$" + TotalCoins() : "u broke";
     }
 
     public static CoinCounter GetInstance()
@@ -48,7 +50,7 @@ public class CoinCounter : MonoBehaviour
         return instance;
     }
 
-    int totalCoins()
+    private int TotalCoins()
     {
         return startCoins + coins;
     }
@@ -66,7 +68,10 @@ public class CoinCounter : MonoBehaviour
 
         if (!Finished())
         {
-            coins += mons;
+            if (mons + coins > maxCoins) //Don't go over max
+                coins += maxCoins - coins;
+            else
+                coins += mons;
 
             if (!updatingDisplay) StartCoroutine(DisplayLag(0.1f));
         }
@@ -80,7 +85,7 @@ public class CoinCounter : MonoBehaviour
     IEnumerator DisplayLag(float delay)
     {        
         updatingDisplay = true;
-        while (displayCoins < totalCoins())
+        while (displayCoins < TotalCoins())
         {
             displayCoins += 1;
             myChild.text = "$" + displayCoins;
@@ -89,7 +94,7 @@ public class CoinCounter : MonoBehaviour
         updatingDisplay = false;
     }
 
-    private void Coin_OnSceneChange(object sender, System.EventArgs e)
+    private void Coin_OnSceneChange(int scene)
     {
         VS.SetValue("$money", new Yarn.Value(coins + startCoins));
     }

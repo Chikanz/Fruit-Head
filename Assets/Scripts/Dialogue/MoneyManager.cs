@@ -1,29 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Yarn.Unity;
 
-public class MoneyManager : MonoBehaviour {
-
+public class MoneyManager : MonoBehaviour 
+{
 	Text displayText;
-	static GameObject dialogue;
+	GameObject dialogue;
 	Yarn.Value money;
 
+	public int ChairHittingScene = 2;
+
+	private ExampleVariableStorage EVS; //Cache class reference since get component calls are not free
+	
 	// Use this for initialization
 	void Start () {
-		displayText = gameObject.GetComponent<Text> ();
+		displayText = gameObject.GetComponent<Text>();
 
-		if (!dialogue) dialogue = GameObject.Find("Yarn");
+		dialogue = SceneChanger.Yarn;
+		EVS = dialogue.GetComponent<ExampleVariableStorage>();
 
+		//Only update money when changing scenes, instead of every frame
+		SceneChanger.instance.OnSceneChange += UpdateMoney;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		money = dialogue.GetComponent<ExampleVariableStorage> ().GetValue ("$money");
-		float temp = money.AsNumber;
-		string temp2 = temp.ToString();
-		displayText.text = "$" + temp2;
-
+	void UpdateMoney(int scene) 
+	{
+		//Disable on chair hitting scene
+		GetComponent<Text>().enabled = scene != ChairHittingScene;
+		
+		//Update val
+		money = EVS.GetValue("$money");		 
+		displayText.text = "$" + money.AsNumber; //Combine with string to avoid .toString()
 	}
 }
