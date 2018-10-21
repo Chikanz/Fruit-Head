@@ -1,4 +1,5 @@
 using System;
+using Luminosity.IO;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -38,7 +39,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
 
             // get the third person character ( this should never be null due to require component )
-            m_Character = GetComponent<ThirdPersonCharacter>();
+            m_Character = GetComponent<ThirdPersonCharacter>();            
         }
 
 
@@ -64,8 +65,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             float v = 0, h = 0;
             if ((!CC || CC.CanMove()) && CanMove)
             {
-               h = CrossPlatformInputManager.GetAxis("Horizontal");
-               v = CrossPlatformInputManager.GetAxis("Vertical");    
+               h = InputManager.GetAxis("Horizontal");
+               v = InputManager.GetAxis("Vertical");               
+               
             }
 
             if ((targeter && !targeter.cameraSnapped) || !targeter) //Normal third person move

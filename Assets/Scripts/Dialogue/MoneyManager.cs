@@ -25,7 +25,14 @@ public class MoneyManager : MonoBehaviour
 		//Only update money when changing scenes, instead of every frame
 		SceneChanger.instance.OnSceneChange += UpdateMoney;
 	}
-	
+
+	//unsub from event since it'll be called even if this object is destroyed
+	private void OnDestroy()
+	{
+		SceneChanger.instance.OnSceneChange -= UpdateMoney;
+		Debug.Log("money manager destroyed");
+	}
+
 	// Update is called once per frame
 	void UpdateMoney(int scene) 
 	{

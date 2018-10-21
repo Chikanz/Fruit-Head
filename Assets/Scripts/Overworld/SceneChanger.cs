@@ -18,7 +18,10 @@ public class SceneChanger: MonoBehaviour
 
     public delegate void SceneChange(int scene); //Fired when the scene is changed
 
-    public event SceneChange OnSceneChange;
+    public delegate void SceneLoaded();
+
+    public event SceneChange OnSceneChange; 
+    //use SceneManager.sceneLoaded for scene loaded event
 
     [HideInInspector]
     public Vector3 RememberPlayerPos;
@@ -44,7 +47,7 @@ public class SceneChanger: MonoBehaviour
         //Get all kiddy images
         transform.GetChild(1).gameObject.SetActive(true); //Make sure loading screen is active
         LoadingUIList = GetComponentInChildren<Canvas>().GetComponentsInChildren<Image>();
-        LoadingFade(0); //Turn make loading screen transparent        
+        LoadingFade(0); //Turn make loading screen transparent
     }
 
     private void Start()
