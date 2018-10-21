@@ -160,7 +160,7 @@ CHARLIE: I'm here to see my sibling, Kell. Do you know them?
 EDEN: Yes, I know Kell. They worked for the last mayor.
 EDEN: I haven't seen them since the mayor passed...but they mostly keep to themself.
 EDEN: Was Kell expecting you?
-CHARLIE: No, I'm here to surprise them for their birthday.
+CHARLIE: Yeah, I'm here to see them for their birthday.
 <<if $looked is true>>
     AVERY: We were just at their house, and it looked like no one had been home for a few days.
 <<endif>>
@@ -171,7 +171,7 @@ EDEN: We don't know that for sure. Why don't you ask around? Maybe someone's see
 EDEN: Come and find me at the police station if you find out anything.
 <<move Eden PoliceStationExt destroy>>
 <<set $biStage to 3>>
-//<<show Maison>>
+
 
 
 ===
@@ -586,8 +586,9 @@ position: -69,-921
 <<show Sam>>
 <<show Alvy>>
 
-AVERY: Hey, do you hear that? There's something up ahead.
-CHARLIE: I hear it. Let's go check it out.
+AVERY: Hey, do you hear that? There's something up ahead. 
+CHARLIE: I hear it. It sounds like it's coming from near the town hall.
+AVERY: Let's go check it out.
 <<else>>
     <<if $tam is true>>
         <<set $biStage to 6>>

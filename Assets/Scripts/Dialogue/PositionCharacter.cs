@@ -98,6 +98,8 @@ public class PositionCharacter : MonoBehaviour {
         bool temp = forestComplete.AsBool;
         Yarn.Value forest = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$forest");
         bool temp2 = forest.AsBool;
+        Yarn.Value house = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$afterhouse");
+        string spawn = house.AsString;
 
         if (gameObject.name == "Avery")
         {
@@ -138,6 +140,13 @@ public class PositionCharacter : MonoBehaviour {
 
         if (gameObject.name == "Charlie")
         {
+            //place charlie outside nancy's house when they finish killing the bats
+            if (spawn == "nancy")
+            {
+                GameObject destination = GameObject.Find("CharlieBats");
+                Vector3 pos = destination.gameObject.transform.position;
+                gameObject.transform.position = pos;
+            }
             //place charlie near forest entrance after they return
             if (temp)
             {
@@ -325,22 +334,24 @@ public class PositionCharacter : MonoBehaviour {
         }
         else if (gameObject.name == "Avery")
         {
-            if (location != "TownHallExt")
-            {
-                gameObject.transform.position = pos + (localForward - new Vector3(-1, 0, 3));
-            }
-            else
-            {
-                if (!maison)
-                {
-                    gameObject.transform.position = GameObject.Find("Debate").transform.position;
-                    gameObject.transform.LookAt(Charlie.transform);
-                }
-                else
-                {
-                    gameObject.transform.position = pos + (localForward - new Vector3(-1, 0, 3));
-                }
-            }
+            gameObject.transform.position = pos;
+            print("ab");
+            //if (location != "TownHallExt")
+            //{
+            //    gameObject.transform.position = pos + (localForward - new Vector3(-1, 0, 3));
+            //}
+            //else
+            //{
+            //    if (!maison)
+            //    {
+            //        gameObject.transform.position = GameObject.Find("Debate").transform.position;
+            //        gameObject.transform.LookAt(Charlie.transform);
+            //    }
+            //    else
+            //    {
+            //        gameObject.transform.position = pos + (localForward - new Vector3(-1, 0, 3));
+            //    }
+            //}
             
         }
 

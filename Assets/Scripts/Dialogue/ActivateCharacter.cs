@@ -27,7 +27,7 @@ namespace Yarn.Unity
             if (stage == 0)
             {
                 //hide avery and kim on blossom island
-                if (gameObject.name != "Spot")
+                if (gameObject.name != "Spot" && gameObject.name != "Hinty")
                 {
                     Yarn.Value forestComplete = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$foundDog");
                     bool temp = forestComplete.AsBool;
@@ -46,7 +46,7 @@ namespace Yarn.Unity
             {
                 if (!startActive && gameObject.name != "Avery")
                 {
-                    if ((stage > 2 && gameObject.name == "Maison") || (stage == 10 && gameObject.name == "Eden"))
+                    if ((stage > 3 && gameObject.name == "Maison") || (stage == 10 && gameObject.name == "Eden"))
                     {
                         setMesh(true, false);
                     }
