@@ -110,7 +110,7 @@ position: 2063,392
 ---
 CHARLIE: Jack gave me a poem to give to you, but I won't subject you to it. 
 FINN: Ha ha...Is it really that bad?
-[[Here, see for yourself. (give poem)|FinnTask1A]]
+[[Here, see for yourself. [give poem]|FinnTask1A]]
 [[It's really that bad.|FinnTaskC]]
 ===
 title: FinnTaskC
@@ -128,7 +128,7 @@ FINN: Thanks, Charlie, you're the best.
 title: NancyTask1
 tags: 
 colorID: 2
-position: 1551,379
+position: 1547,379
 ---
 NANCY: Oh, Charlie, dear! Will you help me? There’s a swarm of fruitbats in my attic and they’re making an awful mess.
 ->Sure.
@@ -139,27 +139,27 @@ NANCY: Oh, Charlie, dear! Will you help me? There’s a swarm of fruitbats in my
     NANCY: Please come back soon, Charlie. I need your help.
 NANCY: I've been having so much trouble here alone, since my dear Harold died. Harold was my spouse, you know.
 CHARLIE: I know. I've lived on this island my whole life. 
-NANCY: Harold died a few years ago, and I miss them so much. They used to be the one who would deal with things like this, you know.
-NANCY: Dear Harold. Did I ever tell you about the time we went on holiday to Orchard Island?
+NANCY: Harold died a few years ago. I miss them so much. They used to be the one who would deal with things like this, you know.
+NANCY: Dear Harold. Did I ever tell you about the time we went on holiday to Flower Island?
 CHARLIE: You might have mentioned it once or twice.
-NANCY: It was so wonderful. Orchard Island is beautiful, Charlie, you should visit sometime. Harold loved it there. 
-NANCY: We journeyed all over that island, and it was the best time of my life. 
-NANCY: The sun, the people, the food...and, of course, Harold. 
+NANCY: It was so wonderful. Flower Island is beautiful, Charlie, you must visit sometime. Harold loved it there. 
+NANCY: We journeyed all over that island. It was the best time of my life. 
+NANCY: Oh, it was truly amazing. The sun, the people, the food...and, of course, Harold. 
 <<if $nancyaccept is true>>
    CHARLIE: About those bats...
     NANCY: Ah, yes, the bats. Do you think you can handle them, dear? Maybe I should ask someone else. You're just a little thing. 
 <<else>>
     CHARLIE: Sounds great...
 <<endif>>
-NANCY: You live alone, don't you, since Kell moved to Berry Island. Are you eating enough? Are you looking after yourself? It's quiet, living alone. 
+NANCY: Hmm. You live alone, don't you, since Kell moved to Berry Island? Are you eating enough? Are you looking after yourself?
 NANCY: Are you lonely? You should come and visit more often, dear. We can keep each other company. I can tell you more about Harold.
 <<if $nancyaccept is true>>
-    CHARLIE: I really should go and deal with those bats now.
-    NANCY: Of course, dear. You're so helpful, Charlie. Just like Harold. Oh, I miss them. 
+    CHARLIE: I really should go and get rid of those bats.
+    NANCY: Of course, of course. You're so helpful, Charlie. Just like Harold. Oh, I miss them. 
+    NANCY: Did I ever tell you about that time we went fishing off the coast of Berry Island?
 <<else>>
     CHARLIE: I think I know enough about Harold.
 <<endif>>
-//NANCY: Did I ever tell you about that time we went fishing off the coast of Berry Island?
 //NANCY: I'm not much of a one for fishing, to tell the truth, but Harold loved it so. 
 //NANCY: They caught all sorts of fish on that trip. They were very good at fishing, you know. The best on Blossom Island! Do you like fishing, Charlie?
 <<if $nancyaccept is true>>
@@ -168,11 +168,8 @@ NANCY: Are you lonely? You should come and visit more often, dear. We can keep e
     //CHARLIE: I know. You told me.
     //NANCY: Did I? I've been having trouble remembering things since dear Harold died.   
     //NANCY: Harold was my spouse, you know.
-    CHARLIE: ...I'm just gonna go deal with those bats now.
-    <<set $batscomplete to true>>
-    <<set $afterhouse to "nancy">>
-    <<Combat Scene Attic-Bat-3>>
-    //<<Change Scene 3>>
+    CHARLIE: ...I'm gonna go deal with those bats now.
+    [[AtticHint]]
 <<else>>
     CHARLIE: I do like fishing. In fact, I'm going to go fishing right now. Bye.
     NANCY: Oh...goodbye.
@@ -312,8 +309,8 @@ FINN: Hi Charlie! What can I do for you?
         <<if visited ("FinnTask1A") is false and visited ("FinnTask1B") is false>>
         //if they haven't talked to finn about the poem
         FINN: Hey Charlie!
-        [[(Give poem)|FinnTask1A]]
-        [[(Don't give poem)|FinnTask1B]]
+        [[[Give poem]|FinnTask1A]]
+        [[[Don't give poem]|FinnTask1B]]
         <<else>>
         //if they've talked to finn about the poem and got their response and
             <<if $jackcomplete is true>> //have brought it to jack
@@ -358,11 +355,11 @@ JACK: Please do it soon, I'm going to puke if I have to wait much longer.
 title: JackTask1A
 tags: 
 colorID: 3
-position: 982,426
+position: 975,363
 ---
 //spoken to jack but haven't accepted quest
 JACK: I can't do it, Charlie, I can't do it. Please, you have to help me!
-->Alright, I'll do it
+->Alright, I'll do it.
     <<set $jackaccept to true>> //shortened from "All right I'll give Finn your poem."
     <<set $jackcomplete to false>>
     JACK: Great! Thank you so much, Charlie!
@@ -409,9 +406,6 @@ position: 1867,879
     <<if $finnyes is true>> //jack is standing there
         FINN: Hi Charlie. Um, listen...
         FINN: Thanks for saying...what you said. I think it was the right call.
-        //point to these options?
-        ->You're welcome, Finn.
-        ->I hope it works out for you.
         JACK: What are you guys talking about?
         FINN: Oh, nothing.
     <<else>>
@@ -569,7 +563,7 @@ position: 1139,915
 title: Jack3
 tags: 
 colorID: 3
-position: 707,435
+position: 696,392
 ---
 //if finn rejected jack and charlie hasn't moved on to stage 2/accepted kim's task
 JACK: Sorry, Charlie, I don't really feel like talking right now.
@@ -609,7 +603,7 @@ position: 2381,401
 DALE: Hello Charlie! What are you getting up to today?
 CHARLIE: I'm going to visit Kell for their birthday.
 DALE: Oh, how nice!
-DALE: I haven't seen Kell since they moved to Berry Island-what was it, two years ago?
+DALE: I haven't seen Kell since they moved to Berry Island - what was it, two years ago?
 DALE: Please say hello to them for me.
 <<if visited("RedpeelStart") is false>>
     DALE: You hurry along to the docks now, you don't want to miss the ship.
@@ -666,13 +660,9 @@ position: 2644,420
     KIM: Spot! Oh my poor little puppy, where have you been?
     AVERY: We found them in the forest.
     KIM: In the forest? They must have been so scared!
-    ->They're safe now.
-        KIM: Thank you so much, both of you. 
-        KIM: Here, take this as a reward.
-    ->Do we get a reward?
-        KIM: Oh, uh, yes, of course. Here.
+    KIM: Thank you so much, both of you. Here, take this as a reward.
     <<set $money to 55>>
-    KIM: Thank you. Now, Spot, you're not going to run away again, are you?
+    KIM: Now, Spot, you're not going to run away again, are you?
     SPOT: Woof!
     [[AverySailing]]
 <<else>>
@@ -768,4 +758,75 @@ position: 1631,1091
 <<endif>>
 
 
+===
+title: AtticHint
+tags: 
+colorID: 4
+position: 2395,841
+---
+<<if visited("BattleHint") is false>>
+    <<show Hinty>>
+    HINTY: Hey there, Charlie! If you're going to deal with those bats you need to know how to fight.
+    CHARLIE: Where did you come from?
+    HINTY: Just left click, and you'll be able to do some serious damage!
+    HINTY: Good luck!
+    <<Take Hinty>>
+    CHARLIE: Do you see that?!
+    NANCY: See what, dear?
+    CHARLIE: ...Never mind.
+<<endif>>
+
+<<set $batscomplete to true>>
+<<set $afterhouse to "nancy">>
+<<Combat Scene Attic-Bat-3>>
+===
+title: MarketSign
+tags: 
+colorID: 4
+position: 1749,-205
+---
+CHARLIE: It says "Market". Because this is the market.
+===
+title: FinnsHouse
+tags: 
+colorID: 5
+position: 329,208
+---
+<<if visited("FinnStart") is true>>
+    CHARLIE: I saw Finn working in the market, so there's no one home.
+<<else>>
+    CHARLIE: Finn's usually working in the market, so they're probably not home.
+<<endif>>
+===
+title: AverysHouse
+tags: 
+colorID: 5
+position: 330,432
+---
+<<if $forest is false>>
+    CHARLIE: I haven't hung out with Avery in a while.
+    <<if visited("RedpeelStart") is false>>
+        CHARLIE: I don't have time to hang out with them today, though. I need to get to the docks.
+    <<else>>
+        CHARLIE: I don't have time to hang out with them today, though. I need to get enough money for the ship to Berry Island.
+    <<endif>>
+<<else>>
+    AVERY: We don't need to go into my house. I've got everything I need.
+    AVERY: We should get to the docks. Don't want the ship to leave without us!
+<<endif>>
+===
+title: JacksHouse
+tags: 
+colorID: 5
+position: 329,651
+---
+CHARLIE: Jack lives here, but they're usually hanging around the village centre.
+===
+title: Lighthouse
+tags: 
+colorID: 5
+position: 335,871
+---
+CHARLIE: Kell and I used to break into the lighthouse all the time and watch all the ships out at sea.
+CHARLIE: We should go up there next time Kell comes to visit. Whenever that is. They haven't visited much recently.
 ===
