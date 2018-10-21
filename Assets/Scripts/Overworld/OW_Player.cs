@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Luminosity.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
@@ -17,14 +18,14 @@ public class OW_Player : OW_Character
         Name = "Charlie";
 
         SceneChanger.instance.OnSceneChange += scene => canTalk = false; //Can't talk when scene is loading
-        SceneManager.sceneLoaded += (arg0, mode) => canTalk = true; //ok we can taco now
+        SceneChanger.instance.OnSceneLoaded += scene => canTalk = true;  //ok we can taco now
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
         //Get everything in range
-        if(canTalk && Input.GetKeyDown(KeyCode.Space) && !_DR.isDialogueRunning)
+        if(canTalk && InputManager.GetButtonDown("UI_Submit") && !_DR.isDialogueRunning)
         {
             float highestDot = -1;
             OW_NPC highestDotNpc = null;

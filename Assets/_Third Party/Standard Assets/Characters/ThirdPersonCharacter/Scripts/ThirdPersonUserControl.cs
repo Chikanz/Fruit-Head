@@ -46,12 +46,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void Update()
         {
             //Get input for moves
-            if (!CC) return;
-            if(Input.GetMouseButtonDown(0))
+            if (!CC) return;                        
+            
+            if(InputManager.GetButtonDown("Move0"))
             {
                 GetComponent<CombatCharacter>().UseMove(0);
             }
-            else if (Input.GetMouseButtonDown(1))
+            else if (InputManager.GetButtonDown("Move1"))
             {
                 GetComponent<CombatCharacter>().UseMove(1);
             }
@@ -67,7 +68,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                h = InputManager.GetAxis("Horizontal");
                v = InputManager.GetAxis("Vertical");               
-               
             }
 
             if ((targeter && !targeter.cameraSnapped) || !targeter) //Normal third person move

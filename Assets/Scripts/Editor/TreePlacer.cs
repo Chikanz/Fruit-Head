@@ -53,10 +53,10 @@ public class TreePlacer : EditorWindow
         if (old) DestroyImmediate(old);        
 
         //Create daddy
-        var parent = new GameObject("Trees");
+        var parent = new GameObject("Trees");        
 
         //Get terrain
-        var terrain = FindObjectOfType<Terrain>();
+        var terrain = FindObjectOfType<Terrain>();        
 
         var terrainWidth = (int)terrain.terrainData.size.x;
         var terrainLength = (int)terrain.terrainData.size.z;
@@ -95,6 +95,6 @@ public class TreePlacer : EditorWindow
             newObject.transform.parent = parent.transform;
             newObject.transform.localScale = Vector3.one * Random.Range(scaleRange.x, scaleRange.y);
             placedObjects++;
-        }        
+        }                 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Luminosity.IO;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
@@ -40,23 +41,12 @@ public class DodgeMove : Move
 		else
 		{
 			float v = 0, h = 0;
-			moveVec = Vector3.zero;	
-			if (Input.GetKey(KeyCode.W))
-			{
-				v += 1;
-			}
-			if (Input.GetKey(KeyCode.S))
-			{
-				v -= 1;
-			}
-			if (Input.GetKey(KeyCode.A))
-			{
-				h -= 1;
-			}
-			if (Input.GetKey(KeyCode.D))
-			{
-				h += 1;
-			}
+			moveVec = Vector3.zero;
+
+			//Get input
+			v = InputManager.GetAxis("Vertical");
+			h = InputManager.GetAxis("Horizontal");
+			
 			// calculate camera relative direction to move:
 			var camFwd = Vector3.Scale(mainCam.forward, new Vector3(1, 0, 1)).normalized;
 			moveVec = v * camFwd +  h * mainCam.right;

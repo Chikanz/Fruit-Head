@@ -21,7 +21,9 @@
 //	ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 using UnityEngine;
-#if(UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN) && ENABLE_X_INPUT
+using XInputDotNetPure;
+
+#if(UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN)
 using XInputDotNetPure;
 using XButtonState = XInputDotNetPure.ButtonState;
 using XPlayerIndex = XInputDotNetPure.PlayerIndex;
@@ -64,7 +66,7 @@ namespace Luminosity.IO
 			set { m_ignoreTimescale = value; }
 		}
 
-#if(UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN) && ENABLE_X_INPUT
+#if(UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN)
 		private struct DPADState { public float X; public float Y; }
 
 		[System.NonSerialized]

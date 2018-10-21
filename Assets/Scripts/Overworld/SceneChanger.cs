@@ -20,7 +20,8 @@ public class SceneChanger: MonoBehaviour
 
     public delegate void SceneLoaded();
 
-    public event SceneChange OnSceneChange; 
+    public event SceneChange OnSceneChange;
+    public event SceneChange OnSceneLoaded;
     //use SceneManager.sceneLoaded for scene loaded event
 
     [HideInInspector]
@@ -54,6 +55,7 @@ public class SceneChanger: MonoBehaviour
     {
         //For debug really, if scene change code is written well this should do nothing
         if (OnSceneChange != null) OnSceneChange(SceneManager.GetActiveScene().buildIndex);
+        if (OnSceneChange != null) OnSceneLoaded(SceneManager.GetActiveScene().buildIndex);
     }
 
     // Update is called once per frame
@@ -114,8 +116,11 @@ public class SceneChanger: MonoBehaviour
         while (!asyncLoad.isDone)
         {
             yield return null;
-        }                
-        
+        }
+
+        //Send out event
+        if (OnSceneLoaded != null) OnSceneLoaded(index);
+
         //Fade out loading screen
         while (elapsedTime < fadeTime)
         {

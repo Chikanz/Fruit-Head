@@ -343,24 +343,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!1 &1674558495425074
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 224803011471263556}
-  - component: {fileID: 222897687470496414}
-  - component: {fileID: 114331142175889544}
-  - component: {fileID: 114932960536464996}
-  m_Layer: 5
-  m_Name: old Name tag (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &1787426396356072
 GameObject:
   m_ObjectHideFlags: 1
@@ -463,24 +445,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1931730025435634
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 224015900958914774}
-  - component: {fileID: 222120703987218846}
-  - component: {fileID: 114218902146054884}
-  - component: {fileID: 114057328736871644}
-  m_Layer: 5
-  m_Name: old
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &1950121968834790
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +543,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1003524232348218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.381811, y: 0.6678114, z: 6.8201036}
+  m_LocalPosition: {x: -18, y: 4, z: 6.8201036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4314885938381154}
@@ -726,20 +690,6 @@ MonoBehaviour:
   m_SubmitButton: UI_Submit
   m_CancelButton: UI_Cancel
   m_ForceModuleActive: 0
---- !u!114 &114057328736871644
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931730025435634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 0.25, y: 0.25}
-  m_UseGraphicAlpha: 1
 --- !u!114 &114112439937194534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -759,7 +709,7 @@ MonoBehaviour:
     value: false
     type: 2
   - name: forest
-    value: False
+    value: false
     type: 2
   - name: finnyes
     value: False
@@ -783,14 +733,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.9098039}
+  m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 0.9098039}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 54e36f8aaa321954d84874b6749fca49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 21f949c216fd28f45801152b88e2706e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -824,10 +774,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_controlSchemes:
-  - m_name: KeyboardAndMouse
+  - m_name: Default
     m_description: 
     m_isExpanded: 1
-    m_uniqueID: 06cd669440d0422a95f3e89bd3812515
+    m_uniqueID: 85c52da314c14ce8bc1999635dc6e642
     m_actions:
     - m_name: Horizontal
       m_description: 
@@ -840,6 +790,19 @@ MonoBehaviour:
         m_snap: 1
         m_invert: 0
         m_type: 2
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 275
+        m_negative: 276
+        m_deadZone: 0.2
+        m_gravity: 3
+        m_sensitivity: 2
+        m_snap: 1
+        m_invert: 0
+        m_type: 6
         m_axis: 0
         m_joystick: 0
         m_gamepadButton: 0
@@ -861,6 +824,19 @@ MonoBehaviour:
         m_gamepadButton: 0
         m_gamepadAxis: 0
         m_gamepadIndex: 0
+      - m_positive: 273
+        m_negative: 274
+        m_deadZone: 0.1
+        m_gravity: 3
+        m_sensitivity: 2
+        m_snap: 1
+        m_invert: 1
+        m_type: 6
+        m_axis: 1
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 1
+        m_gamepadIndex: 0
     - m_name: LookHorizontal
       m_description: 
       m_bindings:
@@ -870,12 +846,25 @@ MonoBehaviour:
         m_gravity: 1
         m_sensitivity: 0.1
         m_snap: 0
-        m_invert: 0
+        m_invert: 1
         m_type: 1
         m_axis: 0
         m_joystick: 0
         m_gamepadButton: 0
         m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 0
+        m_negative: 0
+        m_deadZone: 0.2
+        m_gravity: 1
+        m_sensitivity: 0.5
+        m_snap: 0
+        m_invert: 1
+        m_type: 6
+        m_axis: 3
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 2
         m_gamepadIndex: 0
     - m_name: LookVertical
       m_description: 
@@ -893,63 +882,28 @@ MonoBehaviour:
         m_gamepadButton: 0
         m_gamepadAxis: 0
         m_gamepadIndex: 0
-    - m_name: Jump
-      m_description: 
-      m_bindings:
-      - m_positive: 32
+      - m_positive: 0
         m_negative: 0
-        m_deadZone: 0
-        m_gravity: 0
-        m_sensitivity: 0
+        m_deadZone: 0.2
+        m_gravity: 1
+        m_sensitivity: 0.5
         m_snap: 0
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
+        m_invert: 1
+        m_type: 6
+        m_axis: 4
         m_joystick: 0
         m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: Pause
-      m_description: 
-      m_bindings:
-      - m_positive: 19
-        m_negative: 0
-        m_deadZone: 0
-        m_gravity: 0
-        m_sensitivity: 0
-        m_snap: 0
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: PauseMenu
-      m_description: 
-      m_bindings:
-      - m_positive: 27
-        m_negative: 0
-        m_deadZone: 0
-        m_gravity: 0
-        m_sensitivity: 0
-        m_snap: 0
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
+        m_gamepadAxis: 3
         m_gamepadIndex: 0
     - m_name: UI_Up
       m_description: 
       m_bindings:
       - m_positive: 119
-        m_negative: 0
+        m_negative: 97
         m_deadZone: 0
-        m_gravity: 0
-        m_sensitivity: 0
-        m_snap: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_snap: 1
         m_invert: 0
         m_type: 0
         m_axis: 0
@@ -958,14 +912,27 @@ MonoBehaviour:
         m_gamepadAxis: 0
         m_gamepadIndex: 0
       - m_positive: 273
-        m_negative: 0
+        m_negative: 276
         m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_snap: 1
+        m_invert: 0
+        m_type: 9
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 1
+        m_gamepadIndex: 0
+      - m_positive: 0
+        m_negative: 0
+        m_deadZone: 0.5
         m_gravity: 1
         m_sensitivity: 1
         m_snap: 0
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
+        m_invert: 1
+        m_type: 5
+        m_axis: 1
         m_joystick: 0
         m_gamepadButton: 0
         m_gamepadAxis: 0
@@ -974,11 +941,11 @@ MonoBehaviour:
       m_description: 
       m_bindings:
       - m_positive: 115
-        m_negative: 0
+        m_negative: 115
         m_deadZone: 0
-        m_gravity: 0
-        m_sensitivity: 0
-        m_snap: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_snap: 1
         m_invert: 0
         m_type: 0
         m_axis: 0
@@ -987,14 +954,27 @@ MonoBehaviour:
         m_gamepadAxis: 0
         m_gamepadIndex: 0
       - m_positive: 274
-        m_negative: 0
+        m_negative: 274
         m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_snap: 1
+        m_invert: 0
+        m_type: 9
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 1
+        m_gamepadIndex: 0
+      - m_positive: 0
+        m_negative: 0
+        m_deadZone: 0.5
         m_gravity: 1
         m_sensitivity: 1
         m_snap: 0
         m_invert: 0
-        m_type: 0
-        m_axis: 0
+        m_type: 5
+        m_axis: 1
         m_joystick: 0
         m_gamepadButton: 0
         m_gamepadAxis: 0
@@ -1003,11 +983,11 @@ MonoBehaviour:
       m_description: 
       m_bindings:
       - m_positive: 97
-        m_negative: 0
+        m_negative: 115
         m_deadZone: 0
-        m_gravity: 0
-        m_sensitivity: 0
-        m_snap: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_snap: 1
         m_invert: 0
         m_type: 0
         m_axis: 0
@@ -1016,13 +996,13 @@ MonoBehaviour:
         m_gamepadAxis: 0
         m_gamepadIndex: 0
       - m_positive: 276
-        m_negative: 0
+        m_negative: 274
         m_deadZone: 0
-        m_gravity: 1
-        m_sensitivity: 1
-        m_snap: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_snap: 1
         m_invert: 0
-        m_type: 0
+        m_type: 9
         m_axis: 0
         m_joystick: 0
         m_gamepadButton: 0
@@ -1032,11 +1012,11 @@ MonoBehaviour:
       m_description: 
       m_bindings:
       - m_positive: 100
-        m_negative: 0
+        m_negative: 115
         m_deadZone: 0
-        m_gravity: 0
-        m_sensitivity: 0
-        m_snap: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_snap: 1
         m_invert: 0
         m_type: 0
         m_axis: 0
@@ -1051,14 +1031,15 @@ MonoBehaviour:
         m_sensitivity: 1
         m_snap: 0
         m_invert: 0
-        m_type: 0
+        m_type: 9
         m_axis: 0
         m_joystick: 0
         m_gamepadButton: 0
         m_gamepadAxis: 0
         m_gamepadIndex: 0
     - m_name: UI_Submit
-      m_description: 
+      m_description: 'so the "joystick 1 button 0" is just a redundency for xbox controllers
+        on windoze '
       m_bindings:
       - m_positive: 32
         m_negative: 0
@@ -1073,7 +1054,7 @@ MonoBehaviour:
         m_gamepadButton: 0
         m_gamepadAxis: 0
         m_gamepadIndex: 0
-      - m_positive: 13
+      - m_positive: 350
         m_negative: 0
         m_deadZone: 0
         m_gravity: 1
@@ -1084,6 +1065,19 @@ MonoBehaviour:
         m_axis: 0
         m_joystick: 0
         m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 13
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 0
+        m_sensitivity: 0
+        m_snap: 0
+        m_invert: 0
+        m_type: 7
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 10
         m_gamepadAxis: 0
         m_gamepadIndex: 0
     - m_name: UI_Cancel
@@ -1102,7 +1096,201 @@ MonoBehaviour:
         m_gamepadButton: 0
         m_gamepadAxis: 0
         m_gamepadIndex: 0
-  - m_name: Gamepad
+      - m_positive: 0
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 7
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 11
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 351
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: Target
+      m_description: 
+      m_bindings:
+      - m_positive: 304
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 0
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 9
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 6
+        m_gamepadIndex: 0
+      - m_positive: 0
+        m_negative: 0
+        m_deadZone: 0.2
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 5
+        m_axis: 8
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: Target_Tab
+      m_description: 
+      m_bindings:
+      - m_positive: 9
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 354
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 0
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 7
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 2
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: Move0
+      m_description: combat move 0 (hit)
+      m_bindings:
+      - m_positive: 323
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 0
+        m_negative: 0
+        m_deadZone: 0.1
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 5
+        m_axis: 9
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 0
+        m_negative: 0
+        m_deadZone: 0.1
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 8
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 7
+        m_gamepadIndex: 0
+    - m_name: Move1
+      m_description: Combat 1 (dodge)
+      m_bindings:
+      - m_positive: 324
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 0
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 7
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 3
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 355
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+  - m_name: Gamepad (read only, don't use!)
     m_description: 
     m_isExpanded: 1
     m_uniqueID: 410c68e0bb7d4b4a9ce7068e7e283889
@@ -1315,7 +1503,7 @@ MonoBehaviour:
         m_gamepadButton: 0
         m_gamepadAxis: 0
         m_gamepadIndex: 0
-  m_playerOneDefault: 410c68e0bb7d4b4a9ce7068e7e283889
+  m_playerOneDefault: 85c52da314c14ce8bc1999635dc6e642
   m_playerTwoDefault: 
   m_playerThreeDefault: 
   m_playerFourDefault: 
@@ -1413,40 +1601,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Hey hi i hope you have a wonderful day <3
---- !u!114 &114218902146054884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931730025435634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 5bb4ff226d900384d992a0714d32c253, type: 3}
-    m_FontSize: 22
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 53
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Hey did you know Hinty is actually Mr. Testy's bastard child it's in the
-    game now it's lore you can't stop me and also I need to fill this box word
 --- !u!114 &114224094854998702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1480,8 +1634,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 45c74505de671c34db32f3e3b5404f32, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1502,39 +1656,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &114331142175889544
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1674558495425074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 5bb4ff226d900384d992a0714d32c253, type: 3}
-    m_FontSize: 20
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Nancy
 --- !u!114 &114402365309263426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1670,14 +1791,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.9098039}
+  m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 0.9098039}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 54e36f8aaa321954d84874b6749fca49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 21f949c216fd28f45801152b88e2706e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1697,14 +1818,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0.91764706}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9529412}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 17a79dde25624914ebcf673a66c0d7e2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cf988c5c24260f4c98430ffd5ce489c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1733,11 +1854,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5bb4ff226d900384d992a0714d32c253, type: 3}
-    m_FontSize: 14
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1769,7 +1890,7 @@ MonoBehaviour:
   overrideLanguage: 10
   variableStorage: {fileID: 114112439937194534}
   dialogueUI: {fileID: 114913650572056540}
-  startNode: 
+  startNode: NancyTask1
   startAutomatically: 0
   automaticCommands: 0
 --- !u!114 &114603585411323080
@@ -1821,14 +1942,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.9098039}
+  m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 0.9098039}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 54e36f8aaa321954d84874b6749fca49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 21f949c216fd28f45801152b88e2706e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1850,7 +1971,7 @@ MonoBehaviour:
   x: 0
   y: 0
   z: 1
-  Speed: 200
+  Speed: 100
 --- !u!114 &114727066595599526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1922,7 +2043,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 683b5b1cbe01e814f92e414897250f5b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0f850016552910b4bbb6bc8025c0655a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1941,7 +2062,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1972,11 +2093,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5bb4ff226d900384d992a0714d32c253, type: 3}
-    m_FontSize: 14
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 40
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2075,7 +2196,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 683b5b1cbe01e814f92e414897250f5b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0f850016552910b4bbb6bc8025c0655a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2140,20 +2261,6 @@ MonoBehaviour:
   WaitForUITransition: 0.4
   playerControl: {fileID: 0}
   charName: {fileID: 114402365309263426}
---- !u!114 &114932960536464996
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1674558495425074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 0.2, y: 0.2}
-  m_UseGraphicAlpha: 1
 --- !u!114 &114964208067584610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2227,11 +2334,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5bb4ff226d900384d992a0714d32c253, type: 3}
-    m_FontSize: 14
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2267,12 +2374,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!222 &222120703987218846
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931730025435634}
 --- !u!222 &222130789132546772
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -2363,12 +2464,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1524643284718258}
---- !u!222 &222897687470496414
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1674558495425074}
 --- !u!222 &222937213697222734
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -2421,24 +2516,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!224 &224015900958914774
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931730025435634}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8634992, y: 0.8634991, z: 0.8634991}
-  m_Children: []
-  m_Father: {fileID: 224144463265054520}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 44.299927, y: -0.000015258789}
-  m_SizeDelta: {x: 480.5, y: 93.5}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224074578944874328
 RectTransform:
   m_ObjectHideFlags: 1
@@ -2469,7 +2546,7 @@ RectTransform:
   m_GameObject: {fileID: 1976180571733012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.3360746, y: 2.3360734, z: 2.3360734}
+  m_LocalScale: {x: 0.8047642, y: 0.8047639, z: 0.8047639}
   m_Children: []
   m_Father: {fileID: 224207768827141476}
   m_RootOrder: 1
@@ -2563,9 +2640,7 @@ RectTransform:
   m_Children:
   - {fileID: 224093729868171562}
   - {fileID: 224173470576637634}
-  - {fileID: 224803011471263556}
   - {fileID: 224201712028706258}
-  - {fileID: 224015900958914774}
   - {fileID: 224387938262421136}
   - {fileID: 224407058281548352}
   m_Father: {fileID: 224972301423880530}
@@ -2624,7 +2699,7 @@ RectTransform:
   m_LocalScale: {x: 0.4429274, y: 0.44292736, z: 0.44292736}
   m_Children: []
   m_Father: {fileID: 224144463265054520}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2678,15 +2753,15 @@ RectTransform:
   m_GameObject: {fileID: 1296325512360694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.38574418, y: 0.38574392, z: 0.38574392}
   m_Children: []
   m_Father: {fileID: 224157133466941954}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.0002822876, y: -0.0000009536743}
+  m_SizeDelta: {x: 291.96, y: 47.772}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224246087044441406
 RectTransform:
@@ -2696,15 +2771,15 @@ RectTransform:
   m_GameObject: {fileID: 1087044406590996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.38574418, y: 0.38574392, z: 0.38574392}
   m_Children: []
   m_Father: {fileID: 224225691862989588}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.0002822876, y: -0.0000009536743}
+  m_SizeDelta: {x: 291.96, y: 47.772}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224256366497996784
 RectTransform:
@@ -2714,15 +2789,15 @@ RectTransform:
   m_GameObject: {fileID: 1001922821557642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.38574418, y: 0.38574392, z: 0.38574392}
   m_Children: []
   m_Father: {fileID: 224257509129957524}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.0002822876, y: -0.0000009536743}
+  m_SizeDelta: {x: 291.96, y: 47.772}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224257509129957524
 RectTransform:
@@ -2773,7 +2848,7 @@ RectTransform:
   m_Children:
   - {fileID: 224293171554079498}
   m_Father: {fileID: 224144463265054520}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2792,7 +2867,7 @@ RectTransform:
   m_Children:
   - {fileID: 224970943463824250}
   m_Father: {fileID: 224144463265054520}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2838,24 +2913,6 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -211}
   m_SizeDelta: {x: 1280, y: 717.95}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224803011471263556
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1674558495425074}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8634929, y: 0.86349285, z: 0.86349285}
-  m_Children: []
-  m_Father: {fileID: 224144463265054520}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -224.80002, y: -34.700027}
-  m_SizeDelta: {x: 77.86, y: 33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224970943463824250
 RectTransform:

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
-
+using Luminosity.IO;
 using UnityEngine;
 
 public class Targeter : MonoBehaviour
@@ -39,7 +39,7 @@ public class Targeter : MonoBehaviour
 	void Update () 
 	{
 		//Snap
-		if (Input.GetKey(KeyCode.LeftShift))  
+		if (InputManager.GetButton("Target"))  
 		{
 			if (!cameraSnapped)
 			{
@@ -52,7 +52,7 @@ public class Targeter : MonoBehaviour
 		}
 		
 		//Cycle
-		if (Input.GetKeyDown(KeyCode.Tab))
+		if (InputManager.GetButtonDown("Target_Tab"))
 		{
 			Snap();
 		}

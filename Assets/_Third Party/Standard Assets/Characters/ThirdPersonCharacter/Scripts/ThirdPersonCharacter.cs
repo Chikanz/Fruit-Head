@@ -82,9 +82,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
 
 		public void Strafe(float horizontal, float vertical)
-		{
+		{				
 			m_Rigidbody.velocity += (transform.forward * vertical * m_MoveSpeedMultiplier * 0.8f) +
 			                        (transform.right * horizontal * m_MoveSpeedMultiplier * 0.8f);
+			
+			UpdateAnimator(new Vector3(horizontal,0,vertical));
 		}
 
         void ScaleCapsuleForCrouching(bool crouch)
@@ -130,7 +132,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		{
 			// update the animator parameters
 			if(!m_Animator) Start();
-			m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
+			m_Animator.SetFloat("Forward", Mathf.Clamp(move.z,-1,1), 0.1f, Time.deltaTime);
 			m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
 			m_Animator.SetBool("Crouch", m_Crouching);
 			m_Animator.SetBool("OnGround", m_IsGrounded);

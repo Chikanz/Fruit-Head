@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Luminosity.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,8 +38,8 @@ public class Selector : MonoBehaviour
                 childCount = transform.parent.GetComponentsInChildren<Button>().Length;
 
             arrow.enabled = true;
-            if (Input.GetKeyDown(KeyCode.W)) selected -= 1;
-            else if (Input.GetKeyDown(KeyCode.S)) selected += 1;            
+            if (InputManager.GetButtonDown("UI_Up")) selected -= 1;
+            else if (InputManager.GetButtonDown("UI_Down")) selected += 1;            
 
             selected = Mathf.Clamp(selected, 0, childCount - 1);
 
@@ -50,7 +51,7 @@ public class Selector : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPos, 0.1f);
 
             //Select the button
-            if (Input.GetKeyDown(KeyCode.Space) && !hasClicked)
+            if (InputManager.GetButtonDown("UI_Submit") && !hasClicked)
             {
                 Selected.GetComponent<Button>().onClick.Invoke();
                 hasClicked = true;                

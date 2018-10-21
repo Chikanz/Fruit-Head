@@ -8,6 +8,7 @@ using UnityEngine.Playables;
 using UnityStandardAssets.Characters.ThirdPerson;
 using System;
 using System.Diagnostics;
+using Luminosity.IO;
 using Debug = UnityEngine.Debug;
 
 /// Displays dialogue lines to the player, and sends
@@ -122,7 +123,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
                 lineText.text = stringBuilder.ToString();
 
                 //Early exit
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (InputManager.GetButtonDown("UI_Submit"))
                 {
                     lineText.text = finalLine;
                     break;
@@ -144,7 +145,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
             continuePrompt.SetActive(true);
 
         // Wait for any user input
-        while (Input.GetKeyDown(KeyCode.Space) == false)
+        while (InputManager.GetButtonDown("UI_Submit") == false)
         {
             yield return null;
         }
