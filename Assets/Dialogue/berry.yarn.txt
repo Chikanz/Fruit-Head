@@ -25,7 +25,7 @@ CHARLIE: ...If you're sure.
 AVERY: Have you visited Kell here before? Do you know where they live?
 CHARLIE: Yeah, their house is just up ahead.
 AVERY: Then let's go say hi.
-<<show Hinty>>
+<<show Hinty true>>
 HINTY: Hey Charlie! I'm just dropping by to let you know that you can press 'M' to see your map.
 CHARLIE: Did anyone else hear that?
 AVERY: Hear what?
@@ -113,21 +113,21 @@ AVERY: What now?
 ->Let's see if Kell's in town.
     <<Change Scene 6>>
 <<else>>
-    <<show Maison>>
-    <<show Note>>
+    <<show Maison false>>
+    <<show Note true>>
     AVERY: Let's look for anything that can prove the cult took Kell.
 <<endif>>
 ===
 title: Debate
 tags: 
 colorID: 4
-position: 148,-915
+position: 145,-913
 ---
 CHARLIE: It looks like some kind of town meeting.
 AVERY: Let's see what it's about.
-<<move Charlie Debate no>>
-<<show Eden>>
-<<move Eden Debate no>>
+<<move Charlie Eden no>>
+//<<show Eden>>
+//<<move Eden Debate no>>
 TAM: You're all smiles and empty words. You wouldn't last a day in office.
 LUCA: What's so bad about a smile?
 TAM: You're weak. You haven't got the guts to do what needs to be done.
@@ -138,7 +138,7 @@ LUCA: Perhaps I am weak, as Tam says.
 LUCA: But surely it's better to be weak than hard-headed and full of aggression, howling like a mad wolf hungry for violence.
 TAM: What is THAT supposed to mean?
 LUCA: Have a good day, everyone.
-<<move Alvy AlvysHouseExt destroy>>
+<<move Alvy BankExt destroy>>
 <<move Sam SamsHouseExt destroy>>
 <<move Luca TownHallDoor destroy>>
 <<lookAt Bailey Ash>>
@@ -147,7 +147,7 @@ LUCA: Have a good day, everyone.
 <<lookAt Riley Devon>>
 <<lookAt Charlie Eden>>
 CHARLIE: Hey, do you know what's going on?
-<<lookAt Eden Charlie>>
+//<<lookAt Eden Charlie>>
 EDEN: The last mayor of Berry Island recently passed away. 
 <<move Tam TownHallDoor destroy>>
 EDEN: Those two up there are hoping to be the next one.
@@ -313,6 +313,19 @@ MAISON: It's a better idea than going to search some empty house.
 AVERY: Guess it's up to you, Charlie.
 <<set $note to false>>
 <<set $tam to false>>
+
+<<position Ash Apartments>>
+<<show Ash false>>
+<<move Ash BankExt destroy>>
+
+<<position Alvy AlvysHouseExt>>
+<<show Alvy false>>
+<<move Alvy Cinema destroy>>
+<<set $alvy5 to false>>
+
+<<position Sam SamsHouseExt>>
+<<show Sam false>>
+<<set $samJaime to false>>
 ===
 title: TamStage5
 tags: 
@@ -400,18 +413,36 @@ colorID: 4
 position: 132,356
 ---
 AVERY: ...
-AVERY: Tam's my sibling.
+AVERY: Tam's my sibling. They're the reason I came back to Berry Island.
 CHARLIE: Why didn't you say something?
-AVERY: I don't know. I thought...
-AVERY: It doesn't matter. We need to focus on finding Kell.
+AVERY: I don't know. I thought...I thought they'd want to see me. It's been years, but I guess...
+AVERY: Whatever. It doesn't matter. We need to focus on finding Kell.
 AVERY: I swear, Charlie, I'm not part of the cult.
 MAISON: This doesn't prove anything.
 <<if $note is true>>
     CHARLIE: Let's just go talk to Officer Eden.
     <<set $biStage to 6>>
+    <<if $samJaime is true>>
+        <<position Sam PoliceStationExt>>
+        <<show Sam false>>
+    <<endif>>
 <<else>>
     CHARLIE: Let's just go check out Kell's house.
+    <<if $samJaime is false>>
+        <<position Sam SamsHouseExt>>
+        <<show Sam false>>
+    <<endif>>
 <<endif>>
+
+
+<<position Ash BankExt>>
+<<show Ash false>>
+<<move Ash Apartments destroy>>
+
+<<position Bailey SamsHouseExt>>
+<<show Bailey false>>
+<<move Bailey TownHallExt destroy>>
+
 ===
 title: PoliceStation2
 tags: 
@@ -451,8 +482,8 @@ CHARLIE: Avery, can you take a photo? We need to bring back proof.
 DOOR: [footsteps]
 MAISON: Someone's coming!
 <<open Door2>>
-<<show Luca>>
-<<show Devon>>
+<<show Luca true>>
+<<show Devon true>>
 <<move Luca LucaTarget no>>
 <<move Devon DevonTarget no>>
 LUCA: You'll take them to HQ tonight?
@@ -501,6 +532,12 @@ MAISON: We don't know they're NOT part of the cult.
 AVERY: What would be the point of running against Luca for mayor if they're both part of the cult?
 MAISON: So you don't suspect them. It's clearly working.
 CHARLIE: Those cultists were right behind us. We need to get the evidence to Eden before they catch up.
+
+<<position Ash BankExt>>
+<<show Ash false>>
+
+<<position Bailey Cinema>>
+<<show Bailey false>>
 ===
 title: LucaStage10
 tags: 
@@ -572,32 +609,50 @@ CHARLIE: hey
 title: KellsHouseExit
 tags: 
 colorID: 3
-position: -69,-921
+position: -63,-922
 ---
 <<if $biStage is 2>>
 <<setFollow Maison false>>
-<<show Devon>>
-<<show Riley>>
-<<show Luca>>
-<<show Tam>>
-<<show Bailey>>
-<<show Ash>>
-<<show Dee>>
-<<show Sam>>
-<<show Alvy>>
+<<show Eden false>>
+<<show Devon true>>
+<<show Riley true>>
+<<show Luca true>>
+<<show Tam true>>
+<<show Bailey true>>
+<<show Ash true>>
+<<show Dee true>>
+<<show Sam true>>
+<<show Alvy true>>
 
 AVERY: Hey, do you hear that? There's something up ahead. 
 CHARLIE: I hear it. It sounds like it's coming from near the town hall.
 AVERY: Let's go check it out.
+//<<move Eden Debate no>>
+
 <<else>>
     <<if $tam is true>>
         <<set $biStage to 6>>
         CHARLIE: We should take all this evidence to Eden.
+        <<if $samJaime is true>>
+            <<position Sam PoliceStationExt>>
+            <<show Sam false>>
+        <<endif>>
     <<else>>
         MAISON: Let's pay a visit to Tam.
         AVERY: But we already have proof that the cult exists.
-        MAISON: And now we need proof that Tam is involved.
+        MAISON: And now we need proof that Tam is involved. 
+        <<if $samJaime is false>>
+            <<position Sam SamsHouseExt>>
+            <<show Sam false>>
+        <<endif>>
     <<endif>>
+
+    
+    <<show Riley true>>
+    <<show Dee true>>
+    <<lookAt Riley Dee>>
+    <<lookAt Dee Riley>>
+
 <<endif>>
 
 
@@ -607,7 +662,8 @@ tags:
 colorID: 4
 position: 369,-914
 ---
-<<if visited("DR") is false>>
+<<if $biStage is 3>>
+    <<if visited("DR") is false>>
     RILEY: Tam has a point. Just think about it. Luca talks a good game, but what have they actually done?
     RILEY: At least Tam worked with the last mayor, so they know what the job involves.
     DEVON: Yeah, maybe...But Luca's right. Tam's so aggressive. I don't know if I want a mayor like that.
@@ -619,26 +675,102 @@ position: 369,-914
     RILEY: Can't help you, sorry. We should get back to work.
     <<move Riley BankExt destroy>>
     <<move Devon BankExt destroy>>
-<<else>>
-    DEVON: We have to get back to work.
+    <<else>>
+        DEVON: We have to get back to work.
+    <<endif>>
 <<endif>>
 
+<<if $biStage is 4>>
+    <<if visited("DR") is false>>
+        DEVON: Do we know you?
+        CHARLIE: I'm from Blossom Island, I'm here to see - 
+        DEVON: So we don't know you. Go away.
+        <<lookAt Devon Riley>>
+        <<lookAt Riley Devon>>
+    <<else>>
+        DEVON: You again. And you've got Maison with you.
+        MAISON: I know you're planning to rig the election, Devon. You're not going to get away with it, I swear!
+        DEVON: I'm going to rig the election. Sure. 
+        <<lookAt Devon Riley>>
+        DEVON: Now, Riley, where were we?
+    <<endif>> 
+<<endif>>
 ===
 title: Alvy
 tags: 
 colorID: 4
-position: 153,-493
+position: 150,-496
 ---
+<<if $biStage is 3>>
 CHARLIE: Excuse me, do you know Kell?
 ALVY: Sorry, can't talk, think I left my oven on...
+<<endif>>
+
+<<if $biStage is 5>>
+    <<stop Alvy>>    
+    ALVY: Hello there, stranger. What can I do for you?
+    CHARLIE: I'm looking for evidence that a cult is kidnapping people.
+    ALVY: Oh...Well. Um, I'm afraid I can't help you with that. Uh, good luck?
+    <<move Alvy Cinema destroy>>
+    <<set $alvy5 to true>>
+<<endif>>
+
+<<if $biStage is 8>>
+    <<stop Alvy>>
+    <<if $alvy5 is true>>
+        ALVY: Uh, hello again. How goes your search for the, um, cult?
+        CHARLIE: We just need a bit more proof.
+        ALVY: Well, uh, best of luck.
+        <<move Alvy BankExt destroy>>
+    <<else>>
+        ALVY: Hello there, stranger. What can I do for you?
+        CHARLIE: I'm looking for evidence that a cult is kidnapping people.
+        ALVY: Oh...Well. Um, I'm afraid I can't help you with that. Uh, good luck?
+        <<move Alvy BankExt destroy>>
+        <<set $alvy5 to true>>
+    <<endif>>
+<<endif>>
+    
 ===
 title: Sam
 tags: 
 colorID: 4
-position: 152,-706
+position: 152,-711
 ---
-CHARLIE: Hey, do you know Kell?
-SAM: GO AWAY CAN'T YOU SEE I'M IN A HURRY!
+<<if $biStage is 5>>
+    <<if visited("Sam") is false>>
+    SAM: Hello there! Have you seen Jaime? They were supposed to meet me here this morning, but they never showed.
+    MAISON: They've probably been taken by the cult.
+    SAM: Taken? What are you talking about? What cult?
+    MAISON: Well - 
+    AVERY: Go and talk to Officer Eden at the station. They can fill you in.
+    SAM: Oh, well, thank you, I guess?
+    <<move Sam PoliceStationExt destroy>>
+    <<else>>
+        <<stop Sam>>
+        SAM: I hope nothing's happened to Jaime.
+        SAM: I guess I should go and talk to that police officer. 
+        <<move Sam PoliceStationExt destroy>>
+    <<endif>>
+    <<set $samJaime to true>>
+    <<set $samStation to false>>
+<<endif>>
+
+<<if $biStage is 6>>
+    <<if $samStation is false>>
+    SAM: I spoke to Officer Eden like you said. Apparently people have been going missing all over the island.
+    SAM: Why doesn't everyone know about this? I suppose with the election coming up, people have been distracted.
+    SAM: Officer Eden said that we couldn't know for sure Jaime is missing, but I know they are. I...I don't know what to do.
+    CHARLIE: We're looking for someone who's missing too. And we're going to find them. I promise.
+    SAM: Well, thank you. I should...go home, I suppose. Good luck.
+    <<set $samStation to true>>
+    <<move Sam SamsHouseExt destroy>>
+    <<else>>
+        <<stop Sam>>
+        SAM: Thank you for your help, but I think I'll just go home.
+        <<move Sam SamsHouseExt destroy>>
+    <<endif>>
+<<endif>>
 ===
 title: BA
 tags: 
@@ -663,6 +795,7 @@ tags:
 colorID: 4
 position: 370,-705
 ---
+<<if $biStage is 3>>
 <<if visited("Dee") is false>>
 CHARLIE: Do you know Kell?
 DEE: Yes, I know them. Why do you ask?
@@ -671,6 +804,10 @@ DEE: I haven't seen them since the mayor died a few days ago.
 CHARLIE: I think they've gone missing.
 DEE: Missing? You haven't been talking to Maison, have you?
 DEE: That troublemaker was kicking up a fuss the other day, claiming that people were going missing.
+<<if visited("TownHallExit") is true>>
+    <<show Tam true>>
+    <<move Tam BankExt destroy>>
+<<endif>>
 DEE: No one's missing. I'm sure Kell's just fine.
 AVERY: Where can we find Maison?
 DEE: They live in the cemetery. How they can stand to sleep in such a place, I'll never understand.
@@ -680,7 +817,11 @@ CHARLIE: Let's go find them.
 <<else>>
     DEE: I'm sorry, I can't talk right now.
 <<endif>>
+<<endif>>
 
+<<if $biStage is 5 or $biStage is 6>>
+    [[Dee&Riley]]
+<<endif>>
 ===
 title: Station
 tags: 
@@ -718,7 +859,7 @@ colorID: 6
 position: 155,-278
 ---
 <<if $biStage is 3>>
-    <<show Tam>>
+    <<show Tam true>>
     [[TamStage3]]
 <<endif>>
 <<if $biStage is 5>>
@@ -818,11 +959,8 @@ AVERY: I think I'll just...wait out here.
     AVERY: Uhh...
     AVERY: Politicians, you know.
     CHARLIE: All right, I'll be back soon.
-->Are you sure?
-    AVERY: Yeah, go right ahead.
-    CHARLIE: All right, I'll be back soon.
 ->Do what you want.
-    AVERY: I will.
+    AVERY: I will!
 [[TownHall2]]
 <<else>>
 AVERY: I'll wait out here.
@@ -854,12 +992,22 @@ AVERY: I'll wait out here.
 title: TownHallExit
 tags: 
 colorID: 0
-position: -480,-215
+position: -478,-215
 ---
 <<setFollow Maison false>>
+
 <<if visited("Dee") is false>>
-    <<show Dee>>
+    <<show Dee true>>
 <<endif>>
+
+<<if visited("DR") is false>>
+    <<show Devon true>>
+    <<show Riley true>>
+    <<lookAt Devon Riley>>
+    <<lookAt Riley Devon>>
+<<endif>>
+
+
 <<if visited("TownHallExit") is false>>
 AVERY: How'd it go?
 CHARLIE: No one knows where Kell is. It's like they just disappeared.
@@ -871,6 +1019,13 @@ CHARLIE: No.
         AVERY: Maybe we need to find this Maison.
     <<endif>>
 <<endif>>
+
+<<position Alvy BankExt>>
+<<show Alvy false>>
+<<move Alvy AlvysHouseExt destroy>>
+<<position Bailey Apartments>>
+<<show Bailey false>>
+<<move Bailey SamsHouseExt destroy>>
 ===
 title: KellsPlants
 tags: 
@@ -1022,7 +1177,7 @@ MAISON: No it couldn't!
 ->Maison's right.
     CHARLIE: This proves that Tam's involved with the cult.
     MAISON: I knew you were a smart one, Charlie.
-<<show Tam>>
+<<show Tam true>>
 <<position Tam Entry>>
 [[TamStage5]]
 ===
@@ -1077,6 +1232,9 @@ MAISON: Maybe there's something in the note we found at Kell's. Let me see it.
 //MAISON: Let's go back to my place. I can decode it.
 //AVERY: Back to the creepy graveyard, then...
 <<set $biStage to 7>>
+<<position Ash Apartments>>
+<<show Ash false>>
+<<move Ash PoliceStationExt destroy>>
 //<<Change Scene 8>>
 
 //Change here: Maison solves the note now because it's really not necessary to go back to their place
@@ -1087,6 +1245,10 @@ MAISON: ...
 MAISON: Solved it. It says the cult's hideout is in a cabin on the northeast side of the island.
 CHARLIE: Let's go check it out.
 <<set $biStage to 8>>
+
+<<position Alvy Cinema>>
+<<show Alvy false>>
+<<move Alvy BankExt destroy>>
 
 ===
 title: BERRYNOTES
@@ -1294,7 +1456,7 @@ tags:
 colorID: 1
 position: 840,395
 ---
-<<show Luca>>
+<<show Luca true>>
 <<position Luca CabinExt>>
 <<move Luca TownHallExt destroy>>
 <<setFollow Eden true>>
@@ -1494,11 +1656,96 @@ tags:
 colorID: 0
 position: -1129,-600
 ---
+<<if $biStage is 3>>
+    EDEN: You should ask around and see if anyone knows where Kell is. 
+    EDEN: Come and find me in the police station if you learn anything.
+<<endif>>
+
 <<if $biStage is 10>>
     <<if visited("LucaStage10") is false>>
         EDEN: Take me to where you last saw Luca. 
     <<else>>
         EDEN: After Luca, quick!
     <<endif>>
+<<endif>>
+===
+title: Bailey
+tags: 
+colorID: 0
+position: 365,-1148
+---
+<<if $biStage is 3>>
+    <<if visited("TownHallExit") is false>>
+        [[BA]]
+    <<else>>
+        <<stop Bailey>>
+        <<if visited("BA") is true>>
+            BAILEY: Are you still looking for Kell? Perhaps you should try talking to Maison.
+            BAILEY: They're a little mad, but they know a lot about what goes on around here.
+            BAILEY: Their house is in the cemetery. I hope they have some answers for you.
+        <<else>>
+            BAILEY: Can I help you?
+            CHARLIE: I'm trying to find my sibling, Kell. Do you know them?
+            BAILEY: I've seen them around, but I don't think we've ever had a conversation. Sorry.
+        <<endif>>
+        <<move Bailey SamsHouseExt destroy>>
+    <<endif>>
+<<endif>>
+
+<<if $biStage is 5 or $biStage is 6 or $biStage is 8>>
+    BAILEY: I'm sorry, I'm rather busy at the moment.
+<<endif>>
+
+<<if $biStage is 9>>
+    BAILEY: I'm waiting for Alvy to get here so we can see the new Fruitvengers movie. 
+    BAILEY: Have you seen it? Wait, don't tell me, I don't want a single spoiler.
+<<endif>>
+===
+title: Ash
+tags: 
+colorID: 0
+position: 356,-1362
+---
+<<if $biStage is 3>>
+    [[BA]]
+<<endif>>
+
+<<if $biStage is 5 or $biStage is 6 or $biStage is 8>>
+    ASH: Sorry kid, no time to talk.
+<<endif>>
+
+<<if $biStage is 9>>
+    ASH: You look like you're in a hurry.
+    CHARLIE: Sorry, no time to talk.
+<<endif>>
+===
+title: Dee&Riley
+tags: 
+colorID: 0
+position: 147,-1140
+---
+<<if visited("Dee&Riley") is false>>    
+    DEE: None of this would be of any concern if the previous mayor hadn't died so abruptly -
+    DEE: Oh, hello there. 
+    RILEY: Did you need something?
+    CHARLIE: Have either of you heard anything about a cult?
+    DEE: I see Maison's gotten to you. 
+    MAISON: The cult is real. You're so comfortable in your bubble of ignorance -
+    AVERY: And that's our cue to leave.
+<<else>>
+    DEE: You really shouldn't listen to Maison's conspiracy talk. It does no one any good.
+<<endif>>
+===
+title: Riley
+tags: 
+colorID: 0
+position: 137,-1365
+---
+<<if $biStage is 3 or $biStage is 4>>
+    [[DR]]
+<<endif>>
+
+<<if $biStage is 5 or $biStage is 6>>
+    [[Dee&Riley]]
 <<endif>>
 ===

@@ -35,6 +35,15 @@ public class PositionCharacter : MonoBehaviour {
         {
             //positionMaisonExt();
             positionParty("MaisonsHouseExt", true, false);
+            if (gameObject.name == "Riley" || gameObject.name == "Devon")
+            {
+                setAtPoint("BankExt");
+                GetComponent<ActivateCharacter>().show("false");
+            }
+            if (gameObject.name == "Devon")
+            {
+                transform.position += new Vector3(1.0f, 0, 1.0f);
+            }
         }
         else if (stage == 5)
         {

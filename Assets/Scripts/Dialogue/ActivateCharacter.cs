@@ -61,32 +61,45 @@ namespace Yarn.Unity
         }
 
         [YarnCommand("show")]
-        public void show()
+        public void show(string move)
         {
             //print (gameObject.name);
-            if (gameObject.name == "Kim")
+            
+
+            if (move == "true")
             {
-                //placing kim just outside camera view
-                //Vector3 temp = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0.5f, 15.0f));
-                Vector3 temp = Camera.main.ViewportToWorldPoint(new Vector3(5.0f, 0.5f, 1.1f));
-                gameObject.transform.position = temp;
-                gameObject.transform.position = new Vector3(gameObject.transform.position.x,
-                    originalPosition.position.y, gameObject.transform.position.z);
-                setMesh(true, false);
+                setMesh(true, true);
             }
-            else if (gameObject.name == "Avery")
-            {
-                gameObject.transform.position += new Vector3(10, 0, 0);
-                setMesh(true, false);
-            }
-            else if (gameObject.name == "Eden")
+            else if (move == "false")
             {
                 setMesh(true, false);
             }
             else
             {
-                setMesh(true, true);
+                if (gameObject.name == "Kim")
+                {
+                    //placing kim just outside camera view
+                    //Vector3 temp = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0.5f, 15.0f));
+                    Vector3 temp = Camera.main.ViewportToWorldPoint(new Vector3(5.0f, 0.5f, 1.1f));
+                    gameObject.transform.position = temp;
+                    gameObject.transform.position = new Vector3(gameObject.transform.position.x,
+                        originalPosition.position.y, gameObject.transform.position.z);
+                    setMesh(true, false);
+                }
+                else if (gameObject.name == "Avery")
+                {
+                    gameObject.transform.position += new Vector3(10, 0, 0);
+                    setMesh(true, false);
+                }
             }
+            //else if (gameObject.name == "Eden" || gameObject.name == "Alvy" || gameObject.name == "Bailey" || gameObject.name == "Riley" || gameObject.name == "Devon")
+            //{
+            //    setMesh(true, false);
+            //}
+            //else
+            //{
+            //    setMesh(true, true);
+            //}
 
             
         }

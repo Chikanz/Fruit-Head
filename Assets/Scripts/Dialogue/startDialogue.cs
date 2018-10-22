@@ -146,7 +146,7 @@ public class startDialogue : MonoBehaviour {
 
         if (gameObject.name == "MeetingTrigger")
         {
-            if (enabled && stage == 2)
+            if (other.gameObject.name == "Charlie" && enabled && stage == 2)
             {
                 dialogue.GetComponent<DialogueRunner>().StartDialogue("Debate");
                 enabled = false;

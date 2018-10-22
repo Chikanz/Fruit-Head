@@ -50,6 +50,7 @@ CAPTAIN REDPEEL: How’s it goin’ kid? What brings you to the docks this fine 
 
 //[[TESTING]]
 //<<set $jackcomplete to true>>
+//<<set $houseScene to true>>
 //<<set $nancycomplete to true>>
 CHARLIE: Can you take me to Berry Island?
 CAPTAIN REDPEEL: Arr, I can take ye. For fifty bucks.
@@ -503,7 +504,7 @@ colorID: 1
 position: 2674,108
 ---
 <<if visited ("KimStart") is false>>
-    <<show Kim>>
+    <<show Kim other>>
     <<move Kim Charlie no>>
     CHARLIE: ...
     CHARLIE: I still need more - Wait, is that Kim? They look upset about something.
@@ -517,11 +518,11 @@ position: 2674,108
     ->Absolutely.
         KIM: Thank you thank you thank you thank you!
         <<set $kimaccept to true>>
-        <<show Avery>>
+        <<show Avery other>>
     ->For a fee.
         KIM: If you bring my dear Spot home, I'll pay whatever you want.
         <<set $kimaccept to true>>
-        <<show Avery>>
+        <<show Avery other>>
     ->In a bit.
         KIM: Please hurry!
         <<set $kimaccept to false>>
@@ -539,7 +540,7 @@ position: 2674,108
         ->I'll go look for them right now.
             KIM: Thank you thank you thank you thank you!
             <<set $kimaccept to true>>
-            <<show Avery>>
+            <<show Avery other>>
         ->I'll look for them soon.
             KIM: Hurry, Charlie! I'm so worried.
     <<endif>>
@@ -582,7 +583,7 @@ colorID: 2
 position: 2907,423
 ---
 //after forest and speaking to kim
-AVERY: Well, that wasn't too bad. You're a mean hand with that bat.
+AVERY: Well, that wasn't too bad. You're a mean hand with that bat, Charlie.
 CHARLIE: Thanks. 
 AVERY: I can't stick around - I have to catch Captain Redpeel before they set sail.
 CHARLIE: You're going to Berry Island too?
@@ -656,7 +657,7 @@ colorID: 2
 position: 2644,420
 ---
 <<if visited ("Kim2") is false>>
-    <<show Spot>>
+    <<show Spot true>>
     KIM: Spot! Oh my poor little puppy, where have you been?
     AVERY: We found them in the forest.
     KIM: In the forest? They must have been so scared!
@@ -677,7 +678,7 @@ position: 2001,-221
 
 CHARLIE: hi
 
-<<set $jackcomplete to true and $nancycomplete to true>>
+<<set $jackcomplete to true and $houseScene to true>>
 ===
 title: Gate
 tags: 
@@ -765,7 +766,7 @@ colorID: 4
 position: 2395,841
 ---
 <<if visited("BattleHint") is false>>
-    <<show Hinty>>
+    <<show Hinty true>>
     HINTY: Hey there, Charlie! If you're going to deal with those bats you need to know how to fight.
     CHARLIE: Where did you come from?
     HINTY: Just left click, and you'll be able to do some serious damage!
