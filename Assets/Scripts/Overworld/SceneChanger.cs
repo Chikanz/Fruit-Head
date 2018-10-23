@@ -55,7 +55,7 @@ public class SceneChanger: MonoBehaviour
     {
         //For debug really, if scene change code is written well this should do nothing
         if (OnSceneChange != null) OnSceneChange(SceneManager.GetActiveScene().buildIndex);
-        if (OnSceneChange != null) OnSceneLoaded(SceneManager.GetActiveScene().buildIndex);
+        if (OnSceneLoaded != null) OnSceneLoaded(SceneManager.GetActiveScene().buildIndex);
     }
 
     // Update is called once per frame

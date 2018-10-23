@@ -39,7 +39,8 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
     public float textSpeed = 0.025f;
 
     /// The buttons that let the user choose an option
-    public List<Button> optionButtons;
+    public GameObject optionButtonRoot;
+    private Button[] optionButtons;
 
     [Tooltip("How long to wait for the options UI transition")]
     public float WaitForUITransition = 0.4f;
@@ -56,18 +57,19 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
     public Text charName;
     public string TalkingTo { get; set; }
 
-
     void Start()
     {
-        //Debug.Log(UppercaseFirst("big Butts i cannot lie") + ".");
-
+        //Get option butts
+        Debug.Assert(optionButtonRoot);
+        optionButtons = optionButtonRoot.GetComponentsInChildren<Button>();
+        
         // Start by hiding the container, line and option buttons
         if (dialogueContainer != null)
             dialogueContainer.SetActive(false);
 
         lineText.gameObject.SetActive(false);
 
-        for(int i = 0; i < optionButtons.Count; i++)
+        for(int i = 0; i < optionButtons.Length; i++)
         {
             var button = optionButtons[i];
             //yarn spinner no likey guess I'll die
@@ -166,7 +168,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         lineText.gameObject.SetActive(true);
 
         // Do a little bit of safety checking
-        if (optionsCollection.options.Count > optionButtons.Count)
+        if (optionsCollection.options.Count > optionButtons.Length)
         {
             Debug.LogWarning("There are more options to present than there are" +
                              "buttons to present them in. This will cause problems.");

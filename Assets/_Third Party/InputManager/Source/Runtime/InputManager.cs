@@ -519,6 +519,8 @@ namespace Luminosity.IO
 
 		public static InputAction GetAction(PlayerID playerID, string actionName)
 		{
+			if (!m_instance) return null;
+			
 			var scheme = m_instance.GetControlSchemeByPlayerID(playerID);
 			if(scheme == null)
 				return null;

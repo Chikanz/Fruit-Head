@@ -44,7 +44,7 @@ public class Selector : MonoBehaviour
             selected = Mathf.Clamp(selected, 0, childCount - 1);
 
             //Get Y of selected button
-            Selected = transform.parent.GetChild(selected);
+            Selected = transform.parent.GetChild(selected + 1);
             targetPos = new Vector3(transform.position.x, Selected.position.y, transform.position.z);
 
             //Lerp there reeeeeeeeeeel smoooooooooth
