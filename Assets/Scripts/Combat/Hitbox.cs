@@ -7,6 +7,8 @@ public class Hitbox : MonoBehaviour
     public delegate void EnemyHit(GameObject enemy);
     public EnemyHit OnHit;
 
+    private bool _isSphere;
+
     HashSet<GameObject> BeenHit = new HashSet<GameObject>(); //List of who's been hit
 
     private Transform daddy; //our root character combat script
@@ -15,13 +17,16 @@ public class Hitbox : MonoBehaviour
     void Start ()
     {
         daddy = GetComponentInParent<Move>().daddy;
+        _isSphere = GetComponent<SphereCollider>() != null;
     }
 	
 	// Update is called once per frame
 	void Update ()
 	{	    
-        var objs = Physics.OverlapBox(transform.position,
-            GetComponent<BoxCollider>().bounds.extents, transform.rotation, ~9); //Cast only on hitbox layer
+	    //Cast only on hitbox layer
+	    var objs = _isSphere
+	        ? Physics.OverlapSphere(transform.position,  GetComponent<SphereCollider>().radius, ~9)
+	        : Physics.OverlapBox(transform.position,GetComponent<BoxCollider>().bounds.extents, transform.rotation, ~9); 
         
         foreach(Collider c in objs)
         {

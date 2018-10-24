@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac47687a73f6bf49955d95f4303f33f, type: 3}
+  m_Name: Run to heal
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: 71a81d265111da149a4052e3b5e4b9ec, type: 2}
+  transitions:
+  - Decision:
+      float1: 1
+      float2: 0
+      float3: 0
+      eDecision: 2
+    NextState: {fileID: 11400000, guid: 6e3421382e1444f459f40ae7069d4ca7, type: 2}
+    AnimationToPlay: Heal

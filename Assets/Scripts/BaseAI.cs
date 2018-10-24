@@ -14,7 +14,7 @@ public class BaseAI : MonoBehaviour
 	private Vector3 velocity;
 	private Vector3 burstVel;
 	private EnemyStats stats;
-    private Animator m_Animator;
+    private Animator myAnim;
 
 	private Transform lookatTarget;
 	private EnemyManager _EM;
@@ -27,7 +27,7 @@ public class BaseAI : MonoBehaviour
 
 		stats = GetComponent<StateController>().enemyStats;
 
-        m_Animator = GetComponent<Animator>();
+        myAnim = GetComponent<Animator>();
 
 		_EM = GetComponentInParent<EnemyManager>();
 
@@ -57,6 +57,7 @@ public class BaseAI : MonoBehaviour
 		if (lookatTarget)
 		{
 			var l = (lookatTarget.position - transform.position).normalized;
+			l.y = 0;
 			look = Quaternion.LookRotation(l);
 		}	
 		
@@ -65,8 +66,10 @@ public class BaseAI : MonoBehaviour
 		if(burstVel.sqrMagnitude > 0)
 			burstVel *= 0.98f;
 		
-		velocity = Vector3.zero;
-
+		//walking for avery
+		if(myAnim) myAnim.SetFloat("Walking", velocity.sqrMagnitude);
+		
+		velocity = Vector3.zero;		
 	}
 
 	/// <summary>

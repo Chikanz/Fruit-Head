@@ -75,6 +75,8 @@ public class CombatCharacter : MonoBehaviour
 
     private Animator myAnim;
 
+    public bool Friendly = false;
+
     public enum HitParticles
     {
         NONE,

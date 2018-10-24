@@ -16,7 +16,7 @@ public class StateController : MonoBehaviour
 	[HideInInspector] public BaseAI MyAI;
 	[HideInInspector] public CombatCharacter MyCC;
 	
-	public Transform Target;
+	[HideInInspector] public Transform Target;
 	[HideInInspector] public float stateTimeElapsed;
 
 	public Animator AC { get; set; }
@@ -41,12 +41,20 @@ public class StateController : MonoBehaviour
 		CombatManager.OnCombatStart += (sender, args) => OnActive();		
 		
 		AC.SetFloat("Offset", UnityEngine.Random.Range(0.0f,1.0f)); //Tick the parameter box in ya AC + add a float named offset to enable
+		
+		Debug.Assert(currentState != null);
+	}
+
+	private void Start()
+	{			
+		//Set new target
+		RefreshTarget();
 	}
 
 	//Called on started active
 	void OnActive()
 	{
-		active = true;		
+		active = true;				
 		
 		//Tell AI that it's showtime
 		foreach (AIAction action in currentState.actions)
@@ -149,5 +157,15 @@ public class StateController : MonoBehaviour
 	{
 		return transform.GetInstanceID().ToString();
 	}
-	
+
+	void RefreshTarget()
+	{
+		if(EnemyManager.instance == null || CombatManager.instance == null) return; //Stop error on exit playmode
+		
+		Target = MyCC.Friendly 
+			? EnemyManager.instance.GetRandomEnemy().transform 
+			: CombatManager.instance.GetRandomParty().transform;
+
+		Target.GetComponent<CombatCharacter>().OnDefeat += (sender, args) => RefreshTarget();
+	}	
 }

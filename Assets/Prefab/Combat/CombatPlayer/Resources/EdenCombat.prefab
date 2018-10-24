@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 114430461480422598}
   - component: {fileID: 114220525461018432}
   m_Layer: 0
-  m_Name: CombatEden
+  m_Name: EdenCombat
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1849,7 +1849,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!95 &95074803656877380
 Animator:
@@ -1916,7 +1916,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5510ecfe4ca42c4396f1535525dc76b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   CTG: {fileID: 0}
   TargetPrebab: {fileID: 1462213017973930, guid: 20927bb367d1a6f4eafe68cffbf36a52,
     type: 2}
@@ -1931,10 +1930,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585b3968e4ea517499da4246e2cef205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlyName: charleee
   hp: 100
-  Moves:
+  MovesToSpawn:
   - {fileID: 1773372471602260, guid: d68bbd5c53678f44eb9833b38b9381a7, type: 2}
   weight: 0
+  Friendly: 1
   ParticlesOnHit: 0
 --- !u!114 &114525215649357062
 MonoBehaviour:

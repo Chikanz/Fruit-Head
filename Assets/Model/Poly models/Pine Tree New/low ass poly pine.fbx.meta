@@ -1,11 +1,27 @@
 fileFormatVersion: 2
-guid: a7f7e6dc3b2fda44481974a81e717613
+guid: e059336d34012f449a76450bfe1b5520
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-  externalObjects: {}
+    2100000: model_mat21
+    2100002: lambert1
+    2100004: model_mat12
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: low_ass_poly_tree
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: model_mat12
+    second: {fileID: 2100000, guid: 244ae9d12f3327d49bb2f42ea190ab91, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: model_mat21
+    second: {fileID: 2100000, guid: 8b3fd475998c14d4a9de349bc767294b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -36,7 +52,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -57,11 +73,11 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
-    normalImportMode: 0
+    normalSmoothAngle: 180
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

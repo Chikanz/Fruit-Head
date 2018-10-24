@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
     public int SceneToExitTo = 1;
 
+	//List of spawned enemies
     public List<CombatCharacter> Enemies { get; private set; }
 
     private bool _changingScene;
@@ -60,13 +62,20 @@ public class EnemyManager : MonoBehaviour
         Enemies.Remove((CombatCharacter)sender);
 	    
 	    //End combat
-	    if(Enemies.Count == 0) SceneChanger.instance.EndCombat();
+	    if(Enemies.Count == 0 && SceneChanger.instance) 
+		    SceneChanger.instance.EndCombat();
     }
 
 	private void OnDestroy()
 	{
 		instance = null;
 	}
+
+	public CombatCharacter GetRandomEnemy()
+	{
+		return Enemies[Random.Range(0, Enemies.Count)];
+	}
+	
 
 	// Update is called once per frame
 	void Update ()

@@ -11,7 +11,7 @@ public class SpawnMove : Move {
 	private GameObject Projectile;
 	
 	[SerializeField]
-	private bool isProjectile;
+	protected bool isProjectile;
 
 	[SerializeField]
 	[Tooltip("How long the attack object survives for")]
@@ -19,9 +19,9 @@ public class SpawnMove : Move {
 
 	[SerializeField]
 	[Tooltip("Should we destroy this hitbox after it hits an enemy?")]
-	private bool DestroyOnHit;
+	protected bool DestroyOnHit;
 
-	private GameObject ActiveObject; //The hitbox/projectile spawned
+	protected GameObject ActiveObject; //The hitbox/projectile spawned
 
 	//public float forwardForce;
 	
@@ -101,7 +101,7 @@ public class SpawnMove : Move {
 	private void ToggleChild(bool enabled)
 	{
 		var box = transform.GetChild(0);
-		Debug.Log("hitbox is " + box.gameObject.activeInHierarchy + " and we're setting to " + enabled);
+		//Debug.Log("hitbox is " + box.gameObject.activeInHierarchy + " and we're setting to " + enabled);
 		
 		box.gameObject.SetActive(enabled);		
 	}

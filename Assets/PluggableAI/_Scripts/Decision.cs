@@ -32,6 +32,7 @@ public class DecisionFactory
 		TARGET_NEAR,
 		TARGET_FAR,
 		ON_HIT,
+		COMRADE_HEALTH
 	}
 
 	public float float1;
@@ -59,6 +60,10 @@ public class DecisionFactory
 			case DecisionType.ON_HIT:
 				return new HitDecision();
 				break;
+			case DecisionType.COMRADE_HEALTH:
+				return new ComradeHealth {healthThresh = float1, setTarget = (Mathf.RoundToInt(float2) == 1)};
+				break;
+			
 			default:
 				throw new ArgumentOutOfRangeException();
 		}

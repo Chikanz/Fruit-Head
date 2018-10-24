@@ -66,7 +66,7 @@ public class SceneChanger: MonoBehaviour
 
     [YarnCommand("Change")]
     public void Change(string scene)
-    {
+    {           
         //Trigger Events        
         var sceneIndex = int.Parse(scene);
         if (OnSceneChange != null) OnSceneChange(sceneIndex);
@@ -201,6 +201,12 @@ public class SceneChanger: MonoBehaviour
             cm.Party.Add(Resources.Load<GameObject>("EdenCombat"));
         if(BD.Mason)
             cm.Party.Add(Resources.Load<GameObject>("MasonCombat"));
+        
+        //sanity check
+        foreach (GameObject p in cm.Party)
+        {
+            Debug.Assert(p != null);
+        }
         
         SceneManager.sceneLoaded -= CombatSceneLoaded; //unsubby event
     }

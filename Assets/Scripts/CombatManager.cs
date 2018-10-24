@@ -20,7 +20,6 @@ public class CombatManager : MonoBehaviour
 	public float StartTimer = 3;
 
 	public static CombatManager instance { get; private set; }
-
 	public static event EventHandler OnCombatStart;
 
 	private Text TimerText;
@@ -30,6 +29,8 @@ public class CombatManager : MonoBehaviour
 
 	public GameObject HealthUIObj;
 	public GameObject AbilityUIObj;
+	public Sprite[] AbilityIcons;
+	
 	private List<GameObject> spawnedHealthUI = new List<GameObject>();
 	private List<GameObject> spawnedAbilityUI = new List<GameObject>();
 
@@ -37,7 +38,7 @@ public class CombatManager : MonoBehaviour
 	[HideInInspector] public List<GameObject> Party = new List<GameObject>();
 	[HideInInspector] public List<GameObject> Enemies = new List<GameObject>();
 
-	private List<GameObject> SpawnedParty = new List<GameObject>();
+	private List<CombatCharacter> SpawnedParty = new List<CombatCharacter>();
 	
 	private Transform EnemyOrigin;
 	private Transform PartyOrigin;
@@ -46,6 +47,12 @@ public class CombatManager : MonoBehaviour
 	public Color HealthBad;
 
 	private List<Move> MovesToUpdate;
+
+	private string[] ControllerHints =
+	{
+		"RT",
+		"RB"
+	};
 
 	public void Awake()
 	{
@@ -87,7 +94,7 @@ public class CombatManager : MonoBehaviour
 			//Spawn in at the right pos
 			var p = GetAlternatingPosition(PartyOrigin.position, i, ref alternate);
 			var g = Instantiate(Party[i], p, PartyOrigin.rotation);
-			SpawnedParty.Add(g);
+			SpawnedParty.Add(g.GetComponent<CombatCharacter>());									
 			
 			//Refresh UI on hit
 			g.GetComponent<CombatCharacter>().OnHurt += (sender, args) => RefreshUI();
@@ -104,12 +111,23 @@ public class CombatManager : MonoBehaviour
 				MovesToUpdate = g.GetComponent<CombatCharacter>().Moves;
 				var abilityRoot = transform.GetComponentInChildren<Canvas>().transform.Find("Abilities");
 				
-				for (var index = 0; index < MovesToUpdate.Count; index++)
+				for (var j = 0; j < MovesToUpdate.Count; j++)
 				{
 					//Move move = MovesToUpdate[index]; //why did I put this here again? I feel like I had a reason but I've forgotten now thanks for coming to my ted talk
 					var u = Instantiate(AbilityUIObj, abilityRoot).transform;
-					u.GetComponent<RectTransform>().localPosition = new Vector3(index * 50, 0, 0);
+					u.GetComponent<RectTransform>().localPosition = new Vector3(j * 50, 0, 0);
 					u.GetComponent<RectTransform>().localScale = Vector3.one * 0.5f;
+
+					//Set ability icons for all images (BG and fill)
+					foreach (var img in u.GetComponentsInChildren<Image>())
+					{
+						img.sprite = AbilityIcons[j];
+					}
+
+					//Set text to controller hint (use instead of a separate sprite since it's more efficient)
+					u.GetComponentInChildren<Text>().text = ControllerHints[j];
+					
+					//Add to list
 					spawnedAbilityUI.Add(u.gameObject);
 				}
 			}
@@ -124,10 +142,11 @@ public class CombatManager : MonoBehaviour
 		fl.GetComponentInChildren<CinemachineFreeLook>().Follow = SpawnedParty[0].transform.Find("Cam Point");
 		
 		//Set up targets
-		for (int i = 0; i < Enemies.Count; i++)
-		{
-			EnemyManager.instance.Enemies[i].GetComponent<StateController>().Target = SpawnedParty[Random.Range(0, Party.Count)].transform;
-		}
+		//Done on state machine now 
+		//for (int i = 0; i < Enemies.Count; i++)
+		//{
+		//	EnemyManager.instance.Enemies[i].GetComponent<StateController>().Target = SpawnedParty[Random.Range(0, Party.Count)].transform;
+		//}
 		
 	}
 
@@ -135,19 +154,19 @@ public class CombatManager : MonoBehaviour
 	{
 		for (int i = 0; i < SpawnedParty.Count; i++)
 		{
-			var party = SpawnedParty[i].GetComponent<CombatCharacter>();
+			var p = SpawnedParty[i];
 			var ui = spawnedHealthUI[i];
 
 			//fill in text
 			var text = ui.GetComponentsInChildren<Text>();
-			text[0].text = party.friendlyName;
+			text[0].text = p.friendlyName;
 			text[1].text = "lvl 1"; //Don't have stats yet (will we ever lol)
 			
 			//health value + color
 			var slider = ui.GetComponentInChildren<Slider>();
-			slider.maxValue = party.MaxHealth;
-			slider.value = party.Health;
-			slider.image.color = Color.Lerp(Color.red, Color.green, party.Health / party.MaxHealth);
+			slider.maxValue = p.MaxHealth;
+			slider.value = p.Health;
+			slider.image.color = Color.Lerp(Color.red, Color.green, (float) p.Health / p.MaxHealth);
 		}
 	}
 
@@ -184,15 +203,33 @@ public class CombatManager : MonoBehaviour
 		}
 	}
 
-//	private void OnDestroy()
-//	{
-//		instance = null; //Not sure if we actually need this or the GC does it
-//	}
+	private void OnDestroy()
+	{
+		instance = null;
+	}
+	
 	//why did you write this past zac you're a big silly
+	
+	//no actually wait this makes a lot of sense since it's static and won't be marked for GC, meaning any future scenes
+	//might not allow this obj to spawn since the instance reference isn't null
+	//https://blog.stephencleary.com/2010/02/q-should-i-set-variables-to-null-to.html
 
 	//Turn off timer
 	void end()
 	{
 		TimerText.enabled = false;
+	}
+
+	/// <summary>
+	/// Return a copy of spawned the party list
+	/// </summary>
+	public List<CombatCharacter> GetParty()
+	{
+		return SpawnedParty;
+	}
+
+	public CombatCharacter GetRandomParty()
+	{
+		return SpawnedParty[Random.Range(0, SpawnedParty.Count)];
 	}
 }
