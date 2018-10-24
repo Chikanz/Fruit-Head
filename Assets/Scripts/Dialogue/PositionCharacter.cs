@@ -88,6 +88,8 @@ public class PositionCharacter : MonoBehaviour {
 
 		GameObject location = GameObject.Find (point);
 
+        print("position " + gameObject.name + " at " + point);
+
         if (gameObject.name != "Tam" && gameObject.name != "Luca")
         {
             gameObject.transform.position = location.transform.position + new Vector3(1, 0, 1);

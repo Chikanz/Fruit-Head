@@ -63,7 +63,7 @@ namespace Yarn.Unity
         [YarnCommand("show")]
         public void show(string move)
         {
-            //print (gameObject.name);
+            print ("show " + gameObject.name);
             
 
             if (move == "true")

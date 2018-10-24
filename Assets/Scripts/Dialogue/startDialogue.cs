@@ -156,8 +156,13 @@ public class startDialogue : MonoBehaviour {
         {
             if (stage == 10 && enabled)
             {
-                dialogue.GetComponent<DialogueRunner>().StartDialogue("Docks");
-                enabled = false;
+                Yarn.Value temp = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$luca10");
+                bool luca = temp.AsBool;
+                if (luca)
+                {
+                    dialogue.GetComponent<DialogueRunner>().StartDialogue("Docks");
+                    enabled = false;
+                }
             }
         }
         else if (gameObject.name == "HideoutTrigger")

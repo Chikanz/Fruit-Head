@@ -26,7 +26,7 @@ AVERY: Have you visited Kell here before? Do you know where they live?
 CHARLIE: Yeah, their house is just up ahead.
 AVERY: Then let's go say hi.
 <<show Hinty true>>
-HINTY: Hey Charlie! I'm just dropping by to let you know that you can press 'M' to see your map.
+HINTY: Hey Charlie! I'm just dropping by to let you know that you can press Y to see your map.
 CHARLIE: Did anyone else hear that?
 AVERY: Hear what?
 CHARLIE: ...Never mind.
@@ -487,6 +487,7 @@ MAISON: Someone's coming!
 <<move Luca LucaTarget no>>
 <<move Devon DevonTarget no>>
 LUCA: You'll take them to HQ tonight?
+<<lookAt Luca Devon>>
 DEVON: As soon as it's dark.    
 CHARLIE: LUCA is part of the cult? 
 LUCA: Good. The ritual is almost ready.
@@ -544,24 +545,17 @@ tags:
 colorID: 2
 position: 464,267
 ---
-//<<if $townhall is false>>
-    <<stop Luca>>
-//<<endif>>
-LUCA: Hello, Officer. And, er, friends. How can I help you?
 EDEN: You're under arrest, Luca.
 LUCA: Under arrest? There must be some mistake.
 MAISON: We know you're part of the cult! We know you've been kidnapping people!
 LUCA: Really, Officer Eden, you should know better than to listen to this troublemaker. Haven't they caused you enough problems?
 EDEN: They have proof, Luca. Are you going to come quietly?
 LUCA: ... 
-//<<if $townhall is false>>
-    <<move Luca Rowboat no>>
-    MAISON: Quick, after them!
-//<<else>>
-    //<<move Luca Exit destroy>>
-    //MAISON: Quick, stop them!
-    //<<Change Scene 6>>
-//<<endif>>
+<<move Luca Rowboat no>>
+MAISON: Quick, after them!
+<<set $luca10 to true>>
+
+
 
 
 ===
@@ -574,10 +568,9 @@ position: 1505,-909
 EDEN: Damn it, they're getting away.
 MAISON: Are there any other boats around?
 CHARLIE: I might know someone who can help.
-AVERY: Oh, no.
 //fade to redpeel conversation?
 //or go straight to final island and thank redpeel as you're leaving the dock there?
-<<Change Scene 13>>
+<<Change Scene 16>>
 ===
 title: KellsDoor
 tags: 
@@ -869,7 +862,7 @@ position: 155,-278
 title: Luca
 tags: 
 colorID: 6
-position: 370,-274
+position: 370,-272
 ---
 <<if $biStage is 3>>
     [[LucaStage3]]
@@ -877,7 +870,13 @@ position: 370,-274
 
 
 <<if $biStage is 10>>
-    [[LucaStage10]]
+    <<if visited("LucaStage10") is false>>
+        <<stop Luca>>
+        LUCA: Hello, Officer. And, er, friends. How can I help you?
+        [[LucaStage10]]
+    <<else>>
+        LUCA: No! I won't be arrested! We must complete the ritual!
+    <<endif>>
 <<endif>>
 ===
 title: TamStage3
@@ -931,14 +930,23 @@ position: -739,-437
 <<if $biStage is 3 or $biStage is 5>>
     [[AveryTownHall]]
 <<else>>
-    //<<if $biStage is 10 and visited("LucaStage10") is false>>
-       // EDEN: When we get in there, let me do the talking.
-        //<<set $townhall to true>>
-        //<<Change Scene 10>>
-    //<<else>>
+    <<if $biStage is 10>>
+        <<if visited("LucaStage10") is false>>
+            EDEN: When we get in there, let me -
+            <<position Luca TownHallExt>>
+            <<show Luca false>>
+            EDEN: Luca. Just the person we were here to see.
+            LUCA: Oh - Hello, Officer. And, uh, friends. I'm rather busy at the moment, just on my way to a meeting, perhaps we could -
+            [[LucaStage10]]
+        <<else>>
+            AVERY: Luca's getting away! Let's go!
+        <<endif>>
+    <<else>>
         AVERY: We don't need to visit town hall right now.
-    //<<endif>>
+    <<endif>>  
 <<endif>>
+
+  
 
 
 
@@ -992,7 +1000,7 @@ AVERY: I'll wait out here.
 title: TownHallExit
 tags: 
 colorID: 0
-position: -478,-215
+position: -476,-215
 ---
 <<setFollow Maison false>>
 
@@ -1143,9 +1151,13 @@ AVERY: Let's see what that noise is. It sounds like it's coming from the town sq
 <<if $biStage is 10>>
 //after telling eden about luca, includes chasing luca and heading to the docks
     <<if visited("LucaStage10") is false>>
-        AVERY: Luca's probably still at the cabin. We can catch them if we hurry.
+        <<if visited("DoorNote") is false>>
+            AVERY: Luca's probably still at the cabin. We can catch them if we hurry.
+        <<else>>
+            AVERY: We need to find Luca. They might be in their office.
+        <<endif>>
     <<else>>
-        AVERY: Quick, after Luca! It looks like they're heading for the docks behind the cabin!
+            AVERY: Quick, after Luca! It looks like they're heading for the docks behind the cabin!
     <<endif>>
 <<endif>>
 ===
@@ -1160,7 +1172,7 @@ MAISON: Quick, let's search their office before they get back.
 title: TamsDesk
 tags: 
 colorID: 6
-position: -402,34
+position: -407,29
 ---
 CHARLIE: Look, I found a note.
 MAISON: What does it say, what does it say?
@@ -1351,14 +1363,7 @@ position: 1030,-907
     <<if visited("LucaStage10") is true>>
         MAISON: I think they went around the back to the docks. Quick, they're getting away!
     <<else>>
-        
-        //<<if $searchedCabin is false>>
-        //    MAISON: After you, Officer.
-        //        <<Change Scene 6>>
-          //  <<else>>
-            //    AVERY: We've already searched the cabin. Luca's gone.
-              //  EDEN: They might be back in their office. Let's go.
-            //<<endif>>
+        [[DoorNote]]
     <<endif>>
 <<endif>>
 
@@ -1393,13 +1398,7 @@ position: 1032,-683
     <<if visited("LucaStage10") is true>>
         AVERY: There's Luca, look! At the dock!
     <<else>>
-        //<<if $searchedCabin is false>>
-        //    MAISON: After you, Officer.
-        //    <<Change Scene 6>>
-        //<<else>>
-        //    AVERY: We've already searched the cabin. Luca's gone.
-        //    EDEN: They might be back in their office. Let's go.
-        //<<endif>>
+        [[DoorNote]]
     <<endif>>
 <<endif>>
 
@@ -1444,27 +1443,30 @@ CHARLIE: These crates are filled with...hats. Just lots of hats.
 title: CabinDoor2
 tags: 
 colorID: 0
-position: 1254,-908
+position: 1251,-909
 ---
-CHARLIE: I think I hear something on the other side...
-AVERY: Let's go, then.
-Maison: Quietly.
-<<open CageRoomDoor>>
+//CHARLIE: I think I hear something on the other side...
+//AVERY: Let's go, then.
+//Maison: Quietly.
+//<<open CageRoomDoor>>
 ===
 title: Stage10
 tags: 
 colorID: 1
 position: 840,395
 ---
-<<show Luca true>>
-<<position Luca CabinExt>>
-<<move Luca TownHallExt destroy>>
-<<setFollow Eden true>>
+
 //<<set $townhall false>>
 //<<set $searchedCabin to false>>
 EDEN: Where did you see Luca last?
 CHARLIE: The cabin.
 EDEN: Take me there, quickly.
+<<show Luca true>>
+<<position Luca CabinExt>>
+<<move Luca PointA no>>
+<<setFollow Eden true>>
+<<set $luca10 to false>>
+
 ===
 title: RedpeelBerry
 tags: 
@@ -1567,7 +1569,11 @@ position: -1565,-601
 <<if $biStage is 10>>
 //after telling eden about luca, includes chasing luca and heading to the docks
     <<if visited("LucaStage10") is false>>
-        MAISON: I bet Luca's still in the cabin. If we hurry we can catch them there.
+        <<if visited("DoorNote") is false>>
+            MAISON: I bet Luca's still in the cabin. If we hurry we can catch them there.
+        <<else>>
+            MAISON: We can't let Luca get away with this! To their office, quick!
+        <<endif>>
     <<else>>
         MAISON: We need to catch Luca before they get away! They're heading for the dock behind the cabin!
     <<endif>> 
@@ -1663,7 +1669,11 @@ position: -1129,-600
 
 <<if $biStage is 10>>
     <<if visited("LucaStage10") is false>>
-        EDEN: Take me to where you last saw Luca. 
+        <<if visited("DoorNote") is false>>
+            EDEN: Take me to where you last saw Luca. 
+        <<else>>
+            EDEN: We need to stop Luca before they do any more damage. Let's see if they're in their office.
+        <<endif>>
     <<else>>
         EDEN: After Luca, quick!
     <<endif>>
@@ -1697,8 +1707,8 @@ position: 365,-1148
 <<endif>>
 
 <<if $biStage is 9>>
-    BAILEY: I'm waiting for Alvy to get here so we can see the new Fruitvengers movie. 
-    BAILEY: Have you seen it? Wait, don't tell me, I don't want a single spoiler.
+    BAILEY: I'm waiting for Alvy to get here so we can go and see "Citrus 2: Partners in Lime". 
+    BAILEY: Have you seen it? Wait, don't tell me, I don't want to be spoiled.
 <<endif>>
 ===
 title: Ash
@@ -1747,5 +1757,22 @@ position: 137,-1365
 
 <<if $biStage is 5 or $biStage is 6>>
     [[Dee&Riley]]
+<<endif>>
+===
+title: DoorNote
+tags: 
+colorID: 0
+position: 1268,-227
+---
+<<if visited("DoorNote") is false>>
+CHARLIE: There's a note on the door. It looks like it's written in code.
+MAISON: Let me see. Hmm.
+MAISON: ...
+MAISON: It says "Hideout may be compromised. Lay low and wait for further instruction."
+AVERY: Now what do we do? Where would Luca go?
+CHARLIE: Maybe we should try their office.
+EDEN: Good idea, Charlie. Let's go.
+<<else>>
+    EDEN: The note says the cult has abandoned the cabin. We need to go to Luca's office in town hall.
 <<endif>>
 ===

@@ -68,7 +68,29 @@ namespace Yarn.Unity
 	                    Debug.Log("Destroying " + gameObject.name);
                     }
 
-					stopMoving();
+                    if (gameObject.name == "Luca") 
+                    {
+                        if (target.gameObject.name == "PointA")
+                        {
+                            movetopoint("TownHallExt", "no");
+                        }
+                        else if (target.gameObject.name == "TownHallExt")
+                        {
+                            Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
+                            int stage = (int)biStage.AsNumber;
+                            if (stage == 10)
+                            {
+                                GetComponent<ActivateCharacter>().setMesh(false, true);
+                                stopMoving();
+                            }
+                        }
+                    }
+                    else
+                    {
+
+                        stopMoving();
+
+                    }
 				}
 			}
 		}
@@ -83,13 +105,13 @@ namespace Yarn.Unity
 		{
 			agent.enabled = true;
 			
-			print(destination);
+			print(gameObject.name + " move to " + destination);
 			target = GameObject.Find(destination).transform;
 			agent.SetDestination(target.transform.position);
 
 			if (destination == "Rowboat")
 			{
-				agent.speed *= 2;
+				agent.speed *= 2.0f;
 			}
 
             if (toDestroy == "destroy")
