@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Luminosity.IO;
 using UnityEngine;
 using Yarn.Unity;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 /// <summary>
 /// Not a good idea to put script in a class name 
@@ -12,6 +13,7 @@ public class MapEnabler : MonoBehaviour
     //private CanvasGroup canvas;
 	private GameObject map;
     private DialogueRunner dialogueR;
+    public GameObject Charlie;
 
 	// Use this for initialization
 	void Start ()
@@ -31,6 +33,7 @@ public class MapEnabler : MonoBehaviour
         if (InputManager.GetButtonDown("Map") && !dialogueR.isDialogueRunning)
         {
 	        map.SetActive(!map.activeInHierarchy); //just set the gameobject to be what it wasn't before
+            Charlie.GetComponent<ThirdPersonUserControl>().CanMove = !Charlie.GetComponent<ThirdPersonUserControl>().CanMove;
         }
 	}
 

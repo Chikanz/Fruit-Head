@@ -47,7 +47,6 @@ position: 2127,106
 ---
 <<if visited("RedpeelStart") is false>>
 CAPTAIN REDPEEL: How’s it goin’ kid? What brings you to the docks this fine mornin’?
-
 //[[TESTING]]
 //<<set $jackcomplete to true>>
 //<<set $houseScene to true>>
@@ -334,7 +333,8 @@ CHARLIE: I haven't spoken to them yet.
 JACK: Please do it soon, I'm going to puke if I have to wait much longer.
 <<else>>
     <<if $finnyes is true>>
-        CHARLIE: Here, see for yourself. (give Finn's poem)
+        CHARLIE: Here, see for yourself. 
+        JACK: [reads Finn's note]
         JACK: Finn likes me? Finn likes me! This is the best day of my life! 
         JACK: I'm going to go and talk to them, bye Charlie, thanks!
         JACK: Oh, and here's your money!
@@ -345,9 +345,19 @@ JACK: Please do it soon, I'm going to puke if I have to wait much longer.
     <<endif>>
     <<set $jackcomplete to true>>
     <<set $money to $money + 10>>
+
+    <<if $jackcomplete is true and $nancycomplete is false and $houseScene is true>>
+        CHARLIE: $10 from Jack. I've got $30 total. Nearly there...
+    <<endif>>
+
+    <<if $jackcomplete is true and $nancycomplete is false and $houseScene is false>>
+        CHARLIE: $10 from Jack. I need to keep asking around.
+    <<endif>>
+
     <<if $jackcomplete is true and $nancycomplete is true and $houseScene is true>>
         [[KimStart]]
     <<endif>>
+
     <<if $jackcomplete is true and $nancycomplete is true and $houseScene is false>>
         [[HouseHint]]
     <<endif>>
@@ -507,7 +517,7 @@ position: 2674,108
     <<show Kim other>>
     <<move Kim Charlie no>>
     CHARLIE: ...
-    CHARLIE: I still need more - Wait, is that Kim? They look upset about something.
+    CHARLIE: $40. I still need more - Wait, is that Kim? They look upset about something.
     KIM: Charlie!
     KIM: Charlie, you have to help me! I can’t find my dog anywhere! 
     KIM: I’m sure Spot was inside last night but they didn’t come when I called this morning!
@@ -628,6 +638,15 @@ CHARLIE: I'm busy. Very busy.
 NANCY: Come back when you're free, dear, and I'll tell you all about them.
 <<set $nancycomplete to true>>
 
+<<if $jackcomplete is false and $nancycomplete is true and $houseScene is false>>
+    CHARLIE: Nancy gave me $10. I still need another $40...
+    CHARLIE: I should keep asking around.
+<<endif>>
+
+<<if $jackcomplete is false and $nancycomplete is true and $houseScene is true>>
+    CHARLIE: Nancy gave me $10, so that makes $30 total. Nearly there.
+<<endif>>
+
 
 <<if $jackcomplete is true and $nancycomplete is true and $houseScene is true>>
     [[KimStart]]
@@ -730,8 +749,10 @@ tags:
 colorID: 1
 position: 1380,1083
 ---
+//runs after completing jack and nancy
 CHARLIE: ...
-CHARLIE: I still don't have enough money. Maybe I have some lying around the house.
+CHARLIE: That's $20. Still not enough money. 
+CHARLIE: Maybe I have some lying around the house.
 ===
 title: AfterHouse
 tags: 
@@ -748,9 +769,18 @@ position: 1631,1091
         <<else>>
             <<if $jackcomplete is true and $nancycomplete is true>>
                 [[KimStart]]
-            <<else>>
-                CHARLIE: Hmm...I still don't have quite enough for the ship.
-                CHARLIE: I should keep asking around.
+            <<endif>>
+
+            <<if $jackcomplete is false and $nancycomplete is true>>
+                CHARLIE: I have $30. That's more than half. I just have to ask one or two more people.
+            <<endif>>
+
+            <<if $jackcomplete is true and $nancycomplete is false>>
+                CHARLIE: I have $30. That's more than half. I just have to ask one or two more people.
+            <<endif>>
+
+            <<if $jackcomplete is false and $nancycomplete is false>>
+                CHARLIE: I found $20 at home, so I need another $30. I should ask around.
             <<endif>>
         <<endif>>
     <<endif>>
