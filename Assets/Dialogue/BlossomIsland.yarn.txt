@@ -795,17 +795,16 @@ tags:
 colorID: 4
 position: 2395,841
 ---
-<<if visited("BattleHint") is false>>
-    <<show Hinty true>>
-    HINTY: Hey there, Charlie! If you're going to deal with those bats you need to know how to fight.
-    CHARLIE: Where did you come from?
-    HINTY: Just use the right trigger, and you'll be able to do some serious damage!
-    HINTY: Good luck!
-    <<Take Hinty>>
-    CHARLIE: Do you see that?!
-    NANCY: See what, dear?
-    CHARLIE: ...Never mind.
-<<endif>>
+<<show Hinty true>>
+HINTY: Hey there, Charlie! If you're going to deal with those bats you need to know how to fight.
+CHARLIE: Where did you come from?
+HINTY: Just use the right trigger, and you'll be able to do some serious damage!
+HINTY: Good luck!
+<<Take Hinty>>
+CHARLIE: Do you see that?!
+NANCY: See what, dear?
+CHARLIE: ...Never mind.
+
 
 <<set $batscomplete to true>>
 <<set $afterhouse to "nancy">>
