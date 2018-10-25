@@ -33,7 +33,6 @@ public class SceneChanger: MonoBehaviour
     private int precombatSceneCache;
     
     public static GameObject Yarn { get; private set; }
-    
    
     void Awake ()
     {
@@ -41,7 +40,7 @@ public class SceneChanger: MonoBehaviour
         if (!instance) instance = this;
         else Destroy(gameObject);
 
-        Yarn = transform.GetChild(0).gameObject;
+        if(!Yarn) Yarn = transform.GetChild(0).gameObject;
 
         DontDestroyOnLoad(gameObject);
 
@@ -217,7 +216,12 @@ public class SceneChanger: MonoBehaviour
         Debug.Assert(precombatSceneCache != -1);
         Change(precombatSceneCache);
         precombatSceneCache = -1;
-    }    
+    }
+
+    public GameObject GetYarn()
+    {
+        return transform.GetChild(0).gameObject;
+    }
 }
 
 

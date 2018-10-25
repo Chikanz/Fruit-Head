@@ -197,7 +197,6 @@ namespace Yarn.Unity
         /// Start the dialogue from a given node
         public void StartDialogue (string startNode)
         {
-
             // Stop any processes that might be running already
             StopAllCoroutines ();
             dialogueUI.StopAllCoroutines ();

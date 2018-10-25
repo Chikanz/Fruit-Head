@@ -5,6 +5,9 @@ using UnityEngine;
 public class BDtestSpawn : MonoBehaviour
 {
 	public BattleData BD;
+	public BattleData BD2;
+
+	private static bool yeeted = false;
 	
 	// Use this for initialization
 	void Start () 
@@ -14,7 +17,15 @@ public class BDtestSpawn : MonoBehaviour
 
 	void changeScene()
 	{
-		SceneChanger.instance.StartCombat(BD);
+		if (!yeeted)
+		{
+			SceneChanger.instance.StartCombat(BD);
+			yeeted = true;
+		}
+		else
+		{
+			SceneChanger.instance.StartCombat(BD2);
+		}
 	}
 	
 	// Update is called once per frame

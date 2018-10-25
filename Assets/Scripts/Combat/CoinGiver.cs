@@ -34,6 +34,8 @@ public class CoinGiver : MonoBehaviour {
     // Update is called once per frame
     void Update () 
     {
+        if(!CoinCount) return;        
+        
         /*
         if (timer > 0)
             timer -= Time.deltaTime;

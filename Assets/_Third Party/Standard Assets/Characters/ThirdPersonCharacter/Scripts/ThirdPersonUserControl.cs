@@ -17,6 +17,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Targeter targeter;
 
         public bool CanMove = true;
+        public bool CanAttack = true;
         
         private void Start()
         {
@@ -46,7 +47,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void Update()
         {
             //Get input for moves
-            if (!CC) return;                        
+            if (!CC || !CanAttack) return;                        
             
             if(InputManager.GetButtonDown("Move0"))
             {

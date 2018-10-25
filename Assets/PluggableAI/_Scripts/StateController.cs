@@ -38,11 +38,22 @@ public class StateController : MonoBehaviour
 
 		AC = GetComponentInChildren<Animator>();
 
-		CombatManager.OnCombatStart += (sender, args) => OnActive();		
+		//Subscribe to combat start
+		CombatManager.OnCombatStart += CombatStart;		
 		
 		AC.SetFloat("Offset", UnityEngine.Random.Range(0.0f,1.0f)); //Tick the parameter box in ya AC + add a float named offset to enable
 		
 		Debug.Assert(currentState != null);
+	}
+
+	private void CombatStart(object sender, EventArgs e)
+	{
+		OnActive();
+	}
+	
+	private void OnDestroy()
+	{
+		CombatManager.OnCombatStart -= CombatStart;
 	}
 
 	private void Start()
@@ -62,7 +73,7 @@ public class StateController : MonoBehaviour
 			action.OnEnter(this);
 		}
 		
-		AC.SetTrigger(StartAnimation); //yeah no don't move this to awake 
+		if(AC) AC.SetTrigger(StartAnimation); //yeah no don't move this to awake 
 	}	
 
 	void Update()

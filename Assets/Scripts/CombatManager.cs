@@ -160,13 +160,13 @@ public class CombatManager : MonoBehaviour
 			//fill in text
 			var text = ui.GetComponentsInChildren<Text>();
 			text[0].text = p.friendlyName;
-			text[1].text = "lvl 1"; //Don't have stats yet (will we ever lol)
+			text[1].text = "lvl 1"; //Don't have stats yet (will we ever lol) (NOPE)
 			
 			//health value + color
 			var slider = ui.GetComponentInChildren<Slider>();
 			slider.maxValue = p.MaxHealth;
 			slider.value = p.Health;
-			slider.image.color = Color.Lerp(Color.red, Color.green, (float) p.Health / p.MaxHealth);
+			slider.image.color = Color.Lerp(HealthBad, HealthGood, (float) p.Health / p.MaxHealth);
 		}
 	}
 

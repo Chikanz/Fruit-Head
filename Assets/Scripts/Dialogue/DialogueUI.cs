@@ -9,6 +9,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 using System;
 using System.Diagnostics;
 using Luminosity.IO;
+using Yarn.Unity;
 using Debug = UnityEngine.Debug;
 
 /// Displays dialogue lines to the player, and sends
@@ -64,7 +65,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
         optionButtons = optionButtonRoot.GetComponentsInChildren<Button>();
         
         // Start by hiding the container, line and option buttons
-        if (dialogueContainer != null)
+        if (dialogueContainer != null && !GetComponent<DialogueRunner>().isDialogueRunning) //Stop closing if already running
             dialogueContainer.SetActive(false);
 
         lineText.gameObject.SetActive(false);

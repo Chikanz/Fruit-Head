@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -41,4 +42,5 @@ public class HealMove : SpawnMove
 		if(targetCC && targetCC.Friendly == friendlyHeal) //null check + see if we're on the same team
 			targetCC.Heal(Damage);
 	}
+	
 }

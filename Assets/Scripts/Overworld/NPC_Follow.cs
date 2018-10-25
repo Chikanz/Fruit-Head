@@ -42,7 +42,6 @@ public class NPC_Follow : MonoBehaviour
             {
                 Yarn.Value forest = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$forest");
                 follow = forest.AsBool;
-
             }
         }
     }
