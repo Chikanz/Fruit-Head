@@ -53,14 +53,17 @@ namespace Yarn.Unity
 				//Animator stuff
 				if(GetComponent<ThirdPersonUserControl>()) myAnim.SetFloat("Forward", agent.velocity.sqrMagnitude);
 				if (myAnim) myAnim.SetFloat("Walking", agent.velocity.sqrMagnitude);
-				
-				if (Vector3.Distance(transform.position, agent.destination) < destinationRange)
+
+
+                if (Vector3.Distance(transform.position, agent.destination) < destinationRange)
 				{
 					if (gameObject.name == "Kim" && target.GetComponent<OW_Character>().Name == "Charlie")
 					{
 						string startNode = gameObject.GetComponent<OW_NPC>().StartNode;
 						//dialogue.GetComponent<DialogueRunner>().StartDialogue(startNode);
 					}
+
+                    
 
                     if (shouldDestroy)
                     {
@@ -87,7 +90,7 @@ namespace Yarn.Unity
                     }
                     else
                     {
-
+                        print(gameObject.name + " at destination");
                         stopMoving();
 
                     }
