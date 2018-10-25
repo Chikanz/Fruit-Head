@@ -144,7 +144,17 @@ public class startDialogue : MonoBehaviour {
         Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
         int stage = (int)biStage.AsNumber;
 
+        print(gameObject.name);
+
         if (gameObject.name == "MeetingTrigger")
+        {
+            if (other.gameObject.name == "Charlie" && enabled && stage == 2)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("PreDebate");
+                enabled = false;
+            }
+        }
+        else if (gameObject.name == "DebateTrigger")
         {
             if (other.gameObject.name == "Charlie" && enabled && stage == 2)
             {
@@ -178,17 +188,37 @@ public class startDialogue : MonoBehaviour {
                 enabled = false;
             }
         }
-        else
+        else if (gameObject.name == "FinalRoomTrigger")
         {
             if (enabled)
             {
-                dialogue.GetComponent<DialogueRunner>().StartDialogue("FinalRoom");
+                //dialogue.GetComponent<DialogueRunner>().StartDialogue("FinalRoom");
                 enabled = false;
             }
             
         }
+        else
+        {
+            print("Name doesn't match.");
+        }
 
 
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        Yarn.Value biStage = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$biStage");
+        int stage = (int)biStage.AsNumber;
+
+        if (gameObject.name == "MeetingBounds")
+        {
+            if (other.gameObject.name == "Charlie" && enabled && stage == 2)
+            {
+                dialogue.GetComponent<DialogueRunner>().StartDialogue("MeetingHint");
+                //enabled = false;
+            }
+        }
     }
 
 }

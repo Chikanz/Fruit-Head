@@ -121,18 +121,16 @@ AVERY: What now?
 title: Debate
 tags: 
 colorID: 4
-position: 145,-913
+position: 151,-921
 ---
-CHARLIE: It looks like some kind of town meeting.
-AVERY: Let's see what it's about.
-<<move Charlie Eden no>>
-//<<show Eden>>
-//<<move Eden Debate no>>
+
+//<<move Charlie Eden no>>
+
 TAM: You're all smiles and empty words. You wouldn't last a day in office.
 LUCA: What's so bad about a smile?
 TAM: You're weak. You haven't got the guts to do what needs to be done.
 LUCA: Oh, so dramatic! 
-//<<lookAt Luca Charlie>>
+<<lookAt Luca Bailey>> 
 LUCA: Friends, thank you for coming today. I know that what you've heard has shown you that I am the best candidate.
 LUCA: Perhaps I am weak, as Tam says. 
 LUCA: But surely it's better to be weak than hard-headed and full of aggression, howling like a mad wolf hungry for violence.
@@ -145,11 +143,14 @@ LUCA: Have a good day, everyone.
 <<lookAt Ash Bailey>>
 <<lookAt Devon Riley>>
 <<lookAt Riley Devon>>
-<<lookAt Charlie Eden>>
-CHARLIE: Hey, do you know what's going on?
-//<<lookAt Eden Charlie>>
-EDEN: The last mayor of Berry Island recently passed away. 
+AVERY: What was all that about?
+CHARLIE: Let's ask.
+<<lookAt Tam TownHallDoor>>
 <<move Tam TownHallDoor destroy>>
+<<lookAt Eden Charlie>>
+<<move Charlie Eden no>>
+CHARLIE: Hey, do you know what's going on?
+EDEN: The last mayor of Berry Island recently passed away. 
 EDEN: Those two up there are hoping to be the next one.
 CHARLIE: It looked like it was getting pretty heated.
 EDEN: Yeah. That's politics for you.
@@ -326,6 +327,10 @@ AVERY: Guess it's up to you, Charlie.
 <<position Sam SamsHouseExt>>
 <<show Sam false>>
 <<set $samJaime to false>>
+
+//<<position Devon TownHallExt>>
+//<<show Devon false>>
+//<<move Devon CabinExt no>>
 ===
 title: TamStage5
 tags: 
@@ -339,7 +344,7 @@ MAISON: We know what you're up to.
 TAM: What I'm up to is running for office. If you're not here to talk about that, you should leave.
 CHARLIE: We just have a few questions.
 TAM: I don't have time for this. I don't know you, but I know your friend there. Always causing trouble.
-TAM: You all need to--Wait. Avery? Is that you?
+TAM: You all need to - Wait. Avery? Is that you?
 AVERY: Hi, Tam.
 CHARLIE: Avery? You know Tam?
 AVERY: No...
@@ -358,7 +363,7 @@ TAM: All right, I've had enough of this. Get out of my office.
 CHARLIE: Tell me where Kell is, and we'll go.
 TAM: I don't know where Kell is. 
 TAM: You have three seconds to leave before I call security.
-AVERY: Tam--
+AVERY: Tam - 
 TAM: All of you.
 CHARLIE: All right, we're leaving.
 MAISON: But we'll be back!
@@ -616,6 +621,13 @@ position: -63,-922
 <<show Dee true>>
 <<show Sam true>>
 <<show Alvy true>>
+<<lookAt Bailey TownHallExt>>
+<<lookAt Ash TownHallExt>>
+<<lookAt Devon TownHallExt>>
+<<lookAt Riley TownHallExt>>
+<<lookAt Sam TownHallExt>>
+<<lookAt Alvy TownHallExt>>
+<<lookAt Eden TownHallExt>>
 
 AVERY: Hey, do you hear that? There's something up ahead. 
 CHARLIE: I hear it. It sounds like it's coming from near the town hall.
@@ -659,8 +671,7 @@ position: 369,-914
     <<if visited("DR") is false>>
     RILEY: Tam has a point. Just think about it. Luca talks a good game, but what have they actually done?
     RILEY: At least Tam worked with the last mayor, so they know what the job involves.
-    DEVON: Yeah, maybe...But Luca's right. Tam's so aggressive. I don't know if I want a mayor like that.
-    //aggressive??? hints of devon's involvement with cult here
+    DEVON: The last mayor was useless. Luca's right - Tam's unreliable. I don't want a mayor like that.
     CHARLIE: Do either of you know Kell?
     DEVON: Who?
     RILEY: Kell...Kell...Didn't they work for the last mayor?
@@ -694,6 +705,11 @@ tags:
 colorID: 4
 position: 150,-496
 ---
+<<if $biStage is 2>>
+    ALVY: Just a moment. I'd like to listen.
+<<endif>>
+
+
 <<if $biStage is 3>>
 CHARLIE: Excuse me, do you know Kell?
 ALVY: Sorry, can't talk, think I left my oven on...
@@ -788,6 +804,10 @@ tags:
 colorID: 4
 position: 370,-705
 ---
+<<if $biStage is 2>>
+    DEE: Can this wait until after the debate?
+<<endif>>
+
 <<if $biStage is 3>>
 <<if visited("Dee") is false>>
 CHARLIE: Do you know Kell?
@@ -1172,7 +1192,7 @@ MAISON: Quick, let's search their office before they get back.
 title: TamsDesk
 tags: 
 colorID: 6
-position: -407,29
+position: -407,26
 ---
 CHARLIE: Look, I found a note.
 MAISON: What does it say, what does it say?
@@ -1184,7 +1204,7 @@ MAISON: No it couldn't!
 ->Avery's right.
     CHARLIE: It's suspicious, but it doesn't say anything about a cult.
     AVERY: Told you.
-->We still need more evidence.
+->We need more evidence.
     CHARLIE: Let's keep looking before we jump to any conclusions.
 ->Maison's right.
     CHARLIE: This proves that Tam's involved with the cult.
@@ -1196,7 +1216,7 @@ MAISON: No it couldn't!
 title: Stage5
 tags: 
 colorID: 0
-position: -1406,181
+position: -1409,181
 ---
 <<if $stage5 is "tam">>
     <<set $tam to true>>
@@ -1228,7 +1248,6 @@ MAISON: Let me see.
 MAISON: It'll take me a while to decode it. But here, look, it's the cult symbol. One of them must have dropped it here.
 MAISON: It's proof that the cult exists! 
 CHARLIE: And that they took Kell.
-CHARLIE: Let's go.
 <<set $stage5 to "KellsHouse">>
 <<set $note to true>>
 ===
@@ -1665,6 +1684,7 @@ position: -1129,-600
 <<if $biStage is 3>>
     EDEN: You should ask around and see if anyone knows where Kell is. 
     EDEN: Come and find me in the police station if you learn anything.
+    <<move Eden PoliceStationExt destroy>>
 <<endif>>
 
 <<if $biStage is 10>>
@@ -1684,6 +1704,10 @@ tags:
 colorID: 0
 position: 365,-1148
 ---
+<<if $biStage is 2>>
+    BAILEY: Could we speak later? I want to hear what they have to say.
+<<endif>>
+
 <<if $biStage is 3>>
     <<if visited("TownHallExit") is false>>
         [[BA]]
@@ -1716,6 +1740,10 @@ tags:
 colorID: 0
 position: 356,-1362
 ---
+<<if $biStage is 2>>
+    ASH: Not now, kid, this is getting interesting.
+<<endif>>
+
 <<if $biStage is 3>>
     [[BA]]
 <<endif>>
@@ -1751,6 +1779,10 @@ tags:
 colorID: 0
 position: 137,-1365
 ---
+<<if $biStage is 2>>
+    RILEY: Shh, I'm trying to listen.
+<<endif>>
+
 <<if $biStage is 3 or $biStage is 4>>
     [[DR]]
 <<endif>>
@@ -1775,4 +1807,52 @@ EDEN: Good idea, Charlie. Let's go.
 <<else>>
     EDEN: The note says the cult has abandoned the cabin. We need to go to Luca's office in town hall.
 <<endif>>
+===
+title: Devon
+tags: 
+colorID: 0
+position: 586,-1368
+---
+<<if $biStage is 2>>
+    DEVON: Not now! I'm listening!
+<<endif>>
+
+<<if $biStage is 3 or $biStage is 4>>
+    [[DR]]
+<<endif>>
+
+<<if $biStage is 5>>
+    [[Devon5]]
+<<endif>>
+===
+title: Devon5
+tags: 
+colorID: 0
+position: 822,-1369
+---
+<<if visited("Devon5") is false>>
+    <<stop Devon>>
+    DEVON: I have a million things to do. This better be important.
+    MAISON: You're helping run Luca's mayoral campaign. What have you got to say about the conspiracy to cover up the last mayor's murder?
+    DEVON: ...
+    DEVON: Bye.
+    <<move Devon CabinExt destroy>>
+<<else>>
+    DEVON: I don't have time for your crazy conspiracies.
+<<endif>>
+===
+title: PreDebate
+tags: 
+colorID: 4
+position: 122,-1579
+---
+CHARLIE: It looks like there's some kind of town meeting just ahead.
+AVERY: Let's see what it's about.
+===
+title: MeetingHint
+tags: 
+colorID: 0
+position: 352,-1568
+---
+AVERY: I think we're going in the wrong direction. We need to head to the town square.
 ===

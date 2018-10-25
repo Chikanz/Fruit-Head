@@ -88,12 +88,12 @@ position: 993,501
 title: GameStart
 tags: 
 colorID: 3
-position: 146,-9
+position: 143,-9
 ---
 HINTY: Good morning, Charlie. I just dropped by this morning to let you know a couple of things. First, you should press A to continue.
 CHARLIE: Who are you and what are you doing in my house?
 HINTY: I'm just here to help! Now, if you have a choice to make, you can use the left joystick to browse through your options. Got it?
-->What are you talking about?
+->What?
     HINTY: Choices are part of life, Charlie. It's important that you can make the right one. Left joystick, remember that.
         ->I still don't understand.
             HINTY: Well, you'll figure it out eventually.
@@ -116,7 +116,7 @@ position: 394,-6
 ---
 CHARLIE: There's got to be some money in here somewhere.
 CHARLIE: Maybe I should look between the couch cushions. And under the bed. And in every other piece of furniture.
-<<show Hinty>>
+<<show Hinty true>>
     HINTY: Hey there Charlie, it's me again! Just thought I'd give you another tip.
     HINTY: If you want to search the furniture, try the right trigger! 
     CHARLIE: O...kay?
