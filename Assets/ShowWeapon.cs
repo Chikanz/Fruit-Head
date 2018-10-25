@@ -16,7 +16,8 @@ public class ShowWeapon : MonoBehaviour
 	//public float 
 
 	private Quaternion startRot;
-	
+	[SerializeField] private float animationTime = 1.25f;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -29,8 +30,8 @@ public class ShowWeapon : MonoBehaviour
 	{
 		Weapon.SetActive(_TPUC.CanAttack);
 
-		if (InputManager.GetButton("Move0") && _TPUC.CanAttack && RotateOnHit && !isHitting)
-		{
+		if (InputManager.GetButton("Move0") && _TPUC.CanAttack && RotateOnHit)
+		{		
 			StartCoroutine(LerpRot(0.1f, Quaternion.Euler(0, 0, 0)));
 		}
 	}
@@ -49,19 +50,17 @@ public class ShowWeapon : MonoBehaviour
 		}
 		
 		//Wait for swing to finish
-		var t = 1.25f - timeElapsed;
-		print(t);
+		var t = animationTime - timeElapsed;
 		yield return new WaitForSeconds(t);
+		
+		isHitting = false;
 		
 		//Lerp off
 		while(Quaternion.Angle(Weapon.transform.localRotation, startRot) > 1)
 		{
 			Weapon.transform.localRotation = Quaternion.Lerp(Weapon.transform.localRotation, startRot, speed);
 			yield return null;
-		}
-		
-
-		isHitting = false;
+		}		
 		
 	}
 }

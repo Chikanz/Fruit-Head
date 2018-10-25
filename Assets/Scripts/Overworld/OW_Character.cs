@@ -19,7 +19,7 @@ public class OW_Character : MonoBehaviour {
     // Use this for initialization
     public virtual void Start ()
     {
-        if(!_DR) _DR = FindObjectOfType<DialogueRunner>();
+        if(!_DR) _DR = SceneChanger.Yarn.GetComponent<DialogueRunner>();
     }
 	
 	// Update is called once per frame

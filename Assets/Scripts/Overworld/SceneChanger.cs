@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
 using System;
+using Luminosity.IO;
 using UnityEngine.Experimental.UIElements;
 using UnityStandardAssets.Characters.ThirdPerson;
 using Image = UnityEngine.UI.Image;
@@ -22,6 +23,8 @@ public class SceneChanger: MonoBehaviour
 
     public event SceneChange OnSceneChange;
     public event SceneChange OnSceneLoaded;
+
+    public event EventHandler OnGameReset;
     //use SceneManager.sceneLoaded for scene loaded event
 
     [HideInInspector]
@@ -33,6 +36,8 @@ public class SceneChanger: MonoBehaviour
     private int precombatSceneCache;
     
     public static GameObject Yarn { get; private set; }
+
+    private float ResetTimer;
    
     void Awake ()
     {
@@ -59,9 +64,11 @@ public class SceneChanger: MonoBehaviour
 
     // Update is called once per frame
 	void Update ()
-    {
-        
-    }
+	{
+	    //Add timer when pressed
+	    ResetTimer = InputManager.GetButton("Start") ? ResetTimer + Time.deltaTime : 0;
+	    if (ResetTimer > 5) ResetGame();
+	}
 
     [YarnCommand("Change")]
     public void Change(string scene)
@@ -221,6 +228,16 @@ public class SceneChanger: MonoBehaviour
     public GameObject GetYarn()
     {
         return transform.GetChild(0).gameObject;
+    }
+
+    private void ResetGame()
+    {
+        //Fire off reset event
+        if (OnGameReset != null) OnGameReset(this,null);
+        
+        ResetTimer = 0;
+        Yarn.GetComponent<ExampleVariableStorage>().ResetToDefaults();
+        Change(0);
     }
 }
 

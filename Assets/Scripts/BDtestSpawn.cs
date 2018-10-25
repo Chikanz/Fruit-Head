@@ -12,7 +12,8 @@ public class BDtestSpawn : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		Invoke("changeScene",1);
+		SceneChanger.instance.Change(5);
+		//Invoke("changeScene",1);
 	}
 
 	void changeScene()

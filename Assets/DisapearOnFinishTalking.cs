@@ -19,7 +19,7 @@ public class DisapearOnFinishTalking : MonoBehaviour {
 
 	private void OnDestroy()
 	{
-		SceneChanger.Yarn.GetComponent<DialogueUI>().OnDialogueEnd -= disapear;
+		if(SceneChanger.Yarn) SceneChanger.Yarn.GetComponent<DialogueUI>().OnDialogueEnd -= disapear;
 	}
 
 	// Update is called once per frame

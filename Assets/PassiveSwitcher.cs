@@ -20,6 +20,7 @@ public class PassiveSwitcher : MonoBehaviour
 	void Awake()
 	{
 		OnSceneChange();
+		SceneChanger.instance.OnGameReset += (sender, args) => Stage = -1;
 	}
 
 	private void OnSceneChange()

@@ -283,13 +283,14 @@ GameObject:
   - component: {fileID: 224797500168594292}
   - component: {fileID: 222724766541864232}
   - component: {fileID: 114819443594758568}
+  - component: {fileID: 114680006428481496}
   m_Layer: 5
   m_Name: Yarn debug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1541182891322314
 GameObject:
   m_ObjectHideFlags: 1
@@ -545,7 +546,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1003524232348218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18, y: 4, z: 6.8201036}
+  m_LocalPosition: {x: -9.381811, y: 0.6678114, z: 6.8201036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4314885938381154}
@@ -729,7 +730,7 @@ MonoBehaviour:
     value: false
     type: 2
   - name: forest
-    value: false
+    value: true
     type: 2
   - name: finnyes
     value: False
@@ -881,7 +882,7 @@ MonoBehaviour:
         m_gravity: 1
         m_sensitivity: 0.5
         m_snap: 0
-        m_invert: 1
+        m_invert: 0
         m_type: 6
         m_axis: 4
         m_joystick: 0
@@ -1283,6 +1284,64 @@ MonoBehaviour:
         m_gamepadButton: 0
         m_gamepadAxis: 0
         m_gamepadIndex: 0
+    - m_name: Map
+      m_description: 
+      m_bindings:
+      - m_positive: 109
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 353
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: Start
+      m_description: 
+      m_bindings:
+      - m_positive: 357
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 27
+        m_negative: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
   - m_name: Gamepad (read only, don't use!)
     m_description: 
     m_isExpanded: 0
@@ -1497,9 +1556,9 @@ MonoBehaviour:
         m_gamepadAxis: 0
         m_gamepadIndex: 0
   m_playerOneDefault: 85c52da314c14ce8bc1999635dc6e642
-  m_playerTwoDefault: 
-  m_playerThreeDefault: 
-  m_playerFourDefault: 
+  m_playerTwoDefault: 85c52da314c14ce8bc1999635dc6e642
+  m_playerThreeDefault: 85c52da314c14ce8bc1999635dc6e642
+  m_playerFourDefault: 85c52da314c14ce8bc1999635dc6e642
   m_ignoreTimescale: 1
 --- !u!114 &114196231280804048
 MonoBehaviour:
@@ -1693,7 +1752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b895e486d0a8d754e8dce51e7e75b9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChairHittingScene: 2
+  ScenesToShow: 01000000
 --- !u!114 &114465383974370416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1837,7 +1896,7 @@ MonoBehaviour:
   overrideLanguage: 10
   variableStorage: {fileID: 114112439937194534}
   dialogueUI: {fileID: 114913650572056540}
-  startNode: NancyTask1
+  startNode: KimStart
   startAutomatically: 0
   automaticCommands: 0
 --- !u!114 &114603585411323080
@@ -1875,6 +1934,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1327945023, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114680006428481496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529759976081652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acfdc4ff73c669f45b5e1fc516d21c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114691934761152988
@@ -2079,7 +2149,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1529759976081652}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 

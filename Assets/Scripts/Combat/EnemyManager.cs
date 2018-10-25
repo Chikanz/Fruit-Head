@@ -16,6 +16,8 @@ public class EnemyManager : MonoBehaviour
 
     public static EnemyManager instance;
 
+	public GameObject healthUI;
+
 	// Use this for initialization
 	void Awake ()
 	{
@@ -53,6 +55,12 @@ public class EnemyManager : MonoBehaviour
 		Enemies.Add(cc);
 		cc.OnDefeat += RemoveDefeatedEnemy;
 		spawned.transform.SetParent(transform,true); //Now belongs to meeeee
+		
+		//Add health UI
+		var c = spawned.GetComponentInChildren<Collider>();
+		var ui = Instantiate(healthUI, spawned.transform.position, Quaternion.identity);				
+		ui.transform.SetParent(spawned.transform,true);
+		
 		return spawned;
 	}
 

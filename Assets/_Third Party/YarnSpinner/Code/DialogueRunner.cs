@@ -94,9 +94,15 @@ namespace Yarn.Unity
             }
         }
 
+        private void SetupReset()
+        {
+            _dialogue.UnloadAll();
+            Start();
+        }
+
         /// Start the dialogue
         void Start ()
-        {
+        {            
             // Ensure that we have our Implementation object
             if (dialogueUI == null) {
                 Debug.LogError ("Implementation was not set! Can't run the dialogue!");
