@@ -112,6 +112,9 @@ public class PositionCharacter : MonoBehaviour {
         Yarn.Value house = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$afterhouse");
         string spawn = house.AsString;
 
+        Yarn.Value t = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$forestLoad");
+        bool forestLoad = t.AsBool;
+
         if (gameObject.name == "Avery")
         {
             //set avery's position on the other side of the gate so players can't talk to them before they should
@@ -119,6 +122,12 @@ public class PositionCharacter : MonoBehaviour {
             {
                 transform.position -=
                        new Vector3(10, 0, 0);
+            }
+
+            if (forestLoad && !temp)
+            {
+                GameObject spot = GameObject.Find("SpotPos");
+                transform.position = spot.transform.position + new Vector3(1, 0, 1);
             }
         }
 
@@ -148,7 +157,7 @@ public class PositionCharacter : MonoBehaviour {
             }
 
         }
-
+        print("load " + forestLoad + " forestBool " + temp + gameObject.name);
         if (gameObject.name == "Charlie")
         {
             //place charlie outside nancy's house when they finish killing the bats
@@ -164,6 +173,12 @@ public class PositionCharacter : MonoBehaviour {
                 GameObject destination = GameObject.Find("CharlieForest");
                 Vector3 pos = destination.gameObject.transform.position;
                 gameObject.transform.position = pos;
+            }
+            
+            if (forestLoad && !temp)
+            {
+                GameObject spot = GameObject.Find("SpotPos");
+                transform.position = spot.transform.position;
             }
 
         }

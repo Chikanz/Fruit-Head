@@ -62,7 +62,7 @@ CHARLIE: Not even for kids who want to visit their sibling for their birthday?
 CAPTAIN REDPEEL: I ain't runnin' a charity, kid. Pay or stay. 
 CAPTAIN REDPEEL: If you want to earn some money, try talkin’ to some folks. Maybe they’ll give you a few bucks if you help ‘em out.
 CHARLIE: Fine. I should see if I have anything lying around at home first.
-
+<<set $forestLoad to false>>
 <<else>>
 CAPTAIN REDPEEL: You got the money yet, kid?
     <<if $money < 50>>  //doesn't have the money
@@ -298,10 +298,8 @@ position: 1829,107
 ---
 <<if visited ("RedpeelStart") is false>>
 FINN: Hi Charlie! What can I do for you?
-->I want to go to Berry Island.
-    FINN: Just go and talk to Captain Redpeel at the docks, they'll get you there.
-->Just wanted to say hi.
-    FINN: Oh. Hi! 
+CHARLIE: Just wanted to say hi.
+FINN: Oh. Hi! 
 <<else>>
     <<if visited ("JackTask1") is false>>   //if haven't visited jack
         FINN: Hey Charlie!
@@ -488,6 +486,18 @@ position: 2413,112
         DALE: You should go and speak to Captain Redpeel at the docks if you want to get to Berry Island.
     <<endif>>
 <<else>>
+    //<<if $jackcomplete is true and $nancycomplete is true and $houseScene is true>>
+        //<<if visited("KimStart") is false>>
+            //[[KimStart]]
+        //<<else>>
+           // <<if $kimaccept is true and $forest is false>>
+            //CHARLIE: Have you seen Kim's dog?
+            //DALE: I believe I saw it running towards the forest earlier.
+        //<<else>>
+           // DALE: Hello there, Charlie. 
+        //<<endif>>
+        //<<endif>>
+    //<<else>>
     <<if visited ("KimStart") is false>>
         <<if visited("DaleGreeting") is true>>  
             DALE: Hello again, Charlie. I thought you were going to Berry Island.
@@ -505,6 +515,7 @@ position: 2413,112
         <<else>>
             DALE: Hello there, Charlie. 
         <<endif>>
+    //<<endif>>
     <<endif>>
 <<endif>>
 ===
@@ -593,7 +604,8 @@ colorID: 2
 position: 2907,423
 ---
 //after forest and speaking to kim
-AVERY: Well, that wasn't too bad. You're a mean hand with that bat, Charlie.
+
+AVERY: Well, the forest wasn't too bad. You're a mean hand with that bat, Charlie.
 CHARLIE: Thanks. 
 AVERY: I can't stick around - I have to catch Captain Redpeel before they set sail.
 CHARLIE: You're going to Berry Island too?
@@ -684,6 +696,7 @@ position: 2644,420
     <<set $money to 55>>
     KIM: Now, Spot, you're not going to run away again, are you?
     SPOT: Woof!
+    CHARLIE: Kim gave me $15. Now I have enough for the ship!
     [[AverySailing]]
 <<else>>
     KIM: Thank you so much for finding Spot!

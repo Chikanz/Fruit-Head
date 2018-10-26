@@ -66,7 +66,7 @@ public class startDialogue : MonoBehaviour {
         {
             Yarn.Value forestComplete = dialogue.GetComponent<ExampleVariableStorage>().GetValue("$forest");
             bool temp = forestComplete.AsBool;
-            
+            print(temp);
 
             if (!temp)
             {
